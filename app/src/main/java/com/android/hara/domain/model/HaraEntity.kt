@@ -1,11 +1,10 @@
-package com.android.hara.data.model
+package com.android.hara.domain.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class HaraDTO(
+data class HaraEntity (
     @SerialName("HARA")
     val hara: String
 )
-
