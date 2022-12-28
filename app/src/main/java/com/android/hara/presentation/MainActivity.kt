@@ -1,7 +1,8 @@
-package com.android.hara
+package com.android.hara.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.android.hara.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
