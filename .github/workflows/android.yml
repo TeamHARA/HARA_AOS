@@ -22,9 +22,16 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      
     - name: Build with Gradle
       run: ./gradlew build
+      
     - name: Create Local Properties
       run: touch local.properties
-    - name: Add secret API Key
-      run: echo "BASE_URL=\""${{ secrets.HARA_URL }}"\"" >> local.properties
+      
+    - name: Access BASE_URL
+      run: |
+        echo BASE_URL=\"$BASE_URL\" > local.properties
+      shell: bash
+      env:
+        BASE_URL: ${{ secrets.BASE_URL }}
