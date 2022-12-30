@@ -24,3 +24,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Access BASE_URL
+      run: |
+        echo EXAMPLE_API_KEY=\"$HARA_URL\" > local.properties
+      shell: bash
+      env:
+        API_KEY: ${{ secrets.HARA_URL }}
