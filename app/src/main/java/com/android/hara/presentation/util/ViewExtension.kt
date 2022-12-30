@@ -22,6 +22,10 @@ fun View.makeToast(messgae: String) {
     ).show()
 }
 
+fun View.setOnSingleClickListener(onSingleClick: (View) -> Unit) {
+    setOnClickListener(OnSingleClickListener { onSingleClick(it) })
+}
+
 fun Context.stringOf(@StringRes resId: Int) = getString(resId)
 
 fun Context.colorOf(@ColorRes resId: Int) = ContextCompat.getColor(this, resId)
