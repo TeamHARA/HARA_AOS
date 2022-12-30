@@ -21,7 +21,7 @@
             app:navGraph="@navigation/bottom_nav_graph" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottom_bar"
+            android:id="@+id/bottom_bar_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -29,11 +29,10 @@
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
             app:fabAlignmentMode="center"
-            app:fabAnchorMode="cradle"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:fabAnchorMode="cradle">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_nav"
+                android:id="@+id/bottom_nav_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:backgroundTint="@android:color/transparent"
@@ -50,6 +49,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add"
-            app:layout_anchor="@id/bottom_bar" />
+            app:layout_anchor="@id/bottom_bar_home" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

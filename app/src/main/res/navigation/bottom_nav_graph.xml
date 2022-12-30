@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav_graph"
-    app:startDestination="@id/togetherFragment">
+    app:startDestination="@+id/fragment_together">
 
     <fragment
-        android:id="@+id/togetherFragment"
+        android:id="@+id/fragment_together"
         android:name="com.android.hara.presentation.home.fragment.TogetherFragment"
-        android:label="TogetherFragment"
+        android:label="@string/together_hara"
         tools:layout="@layout/fragment_together" />
 
     <fragment
-        android:id="@+id/storageFragment"
+        android:id="@+id/fragment_storage"
         android:name="com.android.hara.presentation.home.fragment.StorageFragment"
-        android:label="StorageFragment"
+        android:label="@string/storage"
         tools:layout="@layout/fragment_storage" />
 </navigation>
