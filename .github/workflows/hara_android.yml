@@ -34,4 +34,7 @@ jobs:
       
     - name: Build with Gradle
       run: ./gradlew build
-      
+    
+    - name: action-slack
+      uses: 8398a7/action-slack@v3.15.0
+
