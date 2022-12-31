@@ -123,7 +123,10 @@ obj/
 .idea/discord.xml
 .idea/git_toolbox_prj.xml
 .idea/deploymentTargetDropDown.xml
-
+.idea/codeStyles/Project.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/copyright/AndroidCopyright.xml
+.idea/inspectionProfiles/Project_Default.xml
 # OS-specific files
 .DS_Store
 .DS_Store?
