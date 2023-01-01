@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="home_bottom_nav_height">100dp</dimen>
-    <dimen name="home_bottom_appbar_height">60dp</dimen>
+    <dimen name="home_bottom_nav_height">86dp</dimen>
+    <dimen name="home_bottom_appbar_height">58dp</dimen>
 
 </resources>

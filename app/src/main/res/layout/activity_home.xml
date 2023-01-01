@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_bottom_nav_height"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="-10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -39,12 +40,10 @@
                 android:layout_height="@dimen/home_bottom_appbar_height"
                 android:layout_gravity="bottom"
                 app:backgroundTint="?attr/colorPrimary"
-                app:contentInsetEnd="30dp"
-                app:contentInsetStart="30dp"
                 app:fabAlignmentMode="center"
                 app:fabAnchorMode="cradle"
-                app:fabCradleMargin="5dp"
-                app:fabCradleRoundedCornerRadius="5dp"
+                app:fabCradleMargin="8dp"
+                app:fabCradleRoundedCornerRadius="20dp"
                 app:fabCradleVerticalOffset="0dp">
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
