@@ -11,7 +11,7 @@
         android:fontWeight="500" />
     <!-- font/pretendard_semibold.xml -->
     <font
-        android:font="@font/pretendard_semi_bold"
+        android:font="@font/pretendard_semibold"
         android:fontStyle="normal"
         android:fontWeight="600" />
 </font-family>
