@@ -7,48 +7,66 @@
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.home.HomeActivity">
+        android:layout_height="match_parent">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/home_bottom_appbar_height"
             app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/bottom_nav_graph" />
+        <!-- 여기 MarginBottom 같은 경우에는 추후 디자인에서 정해준 BottomAppbar 만큼 적용해줄것 -->
 
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottom_bar_home"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/cd_home"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:backgroundTint="?attr/colorPrimary"
-            app:contentInsetEnd="0dp"
-            app:contentInsetStart="0dp"
-            app:fabAlignmentMode="center"
-            app:fabAnchorMode="cradle">
+            android:layout_height="@dimen/home_bottom_nav_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_nav_home"
+            <com.google.android.material.bottomappbar.BottomAppBar
+                android:id="@+id/bottom_bar_home"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:backgroundTint="@android:color/transparent"
-                app:elevation="0dp"
-                app:itemIconTint="@android:color/white"
-                app:itemRippleColor="@android:color/white"
-                app:itemTextColor="@android:color/white"
-                app:menu="@menu/bottom_nav_menu" />
+                android:layout_height="@dimen/home_bottom_appbar_height"
+                android:layout_gravity="bottom"
+                app:backgroundTint="?attr/colorPrimary"
+                app:contentInsetEnd="30dp"
+                app:contentInsetStart="30dp"
+                app:fabAlignmentMode="center"
+                app:fabAnchorMode="cradle"
+                app:fabCradleMargin="5dp"
+                app:fabCradleRoundedCornerRadius="5dp"
+                app:fabCradleVerticalOffset="0dp">
 
-        </com.google.android.material.bottomappbar.BottomAppBar>
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_nav_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="@android:color/transparent"
+                    app:elevation="0dp"
+                    app:itemIconTint="@android:color/white"
+                    app:itemRippleColor="@android:color/white"
+                    app:itemTextColor="@android:color/white"
+                    app:menu="@menu/bottom_nav_menu" />
+            </com.google.android.material.bottomappbar.BottomAppBar>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
-            app:layout_anchor="@id/bottom_bar_home" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"
+                app:layout_anchor="@id/bottom_bar_home" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
