@@ -10,6 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/home_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_appbar_height"
+            android:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:paddingStart="12dp"
+                app:navigationIcon="@drawable/img_title_logo" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -20,9 +38,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_appbar"
             app:navGraph="@navigation/bottom_nav_graph" />
-        <!-- 여기 MarginBottom 같은 경우에는 추후 디자인에서 정해준 BottomAppbar 만큼 적용해줄것 -->
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/cd_home"
@@ -39,6 +56,7 @@
                 android:layout_height="@dimen/home_bottom_appbar_height"
                 android:layout_gravity="bottom"
                 app:backgroundTint="@color/white"
+                app:elevation="5dp"
                 app:fabAlignmentMode="center"
                 app:fabAnchorMode="cradle"
                 app:fabCradleMargin="8dp"
@@ -64,6 +82,7 @@
                 android:backgroundTint="@color/orange_1"
                 android:src="@drawable/ic_write"
                 android:tint="@color/white"
+                app:elevation="0dp"
                 app:layout_anchor="@id/bottom_bar_home"
                 app:tint="@color/white" />
 
