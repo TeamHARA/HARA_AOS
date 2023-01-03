@@ -13,23 +13,23 @@ Enjoy, think, solve
 풍요로운 선택지 속에서 진짜 내가 원하는 것을 발견할 수 있는, 스스로의 힘을 믿어주는 서비스가 되고자 합니다.
 
 🔘 Android Contributors
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ca4fd93c-e32e-4ad6-95ed-a761dff93183/Untitled.png)
 
 **김준우** 
+![kim](https://user-images.githubusercontent.com/70648111/210428609-7cc6ae75-c31b-4ae6-9e4f-89437115b3dd.png)
 
 바텀네비게이션 / 앱바
-
 투표 상세화면
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4d1d018a-60be-4b34-9429-05efa5609aa2/Untitled.png)
+
 
 **장유진**
+![jang](https://user-images.githubusercontent.com/70648111/210428550-3bb9068f-ed99-4cee-969f-cad3bcd75450.png)
 
 홈화면 , 게시물 쓰기 / 수정
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/073309bd-98e7-48b2-9972-f9be0b28ccc3/Untitled.png)
 
 **이수현**
+![lee](https://user-images.githubusercontent.com/70648111/210428639-0151f375-e0b6-458c-a9fe-1b440d99878f.png)
 
 보관함
 
