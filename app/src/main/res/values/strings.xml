@@ -4,4 +4,17 @@
     <string name="storage">보관함</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  home  -->
+    <string name="vote">투표하기</string>
+    <string-array name="category">
+        <item>전체</item>
+        <item>일상</item>
+        <item>연애</item>
+        <item>패션/뷰티</item>
+        <item>커리어</item>
+        <item>운동</item>
+        <item>여행</item>
+        <item>기타</item>
+    </string-array>
 </resources>
