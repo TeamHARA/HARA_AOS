@@ -7,7 +7,7 @@
 
     <!--  home  -->
     <string name="vote">투표하기</string>
-    <string-array name="category">
+    <string-array name="category_array">
         <item>전체</item>
         <item>일상</item>
         <item>연애</item>
