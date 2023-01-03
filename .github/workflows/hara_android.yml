@@ -33,7 +33,7 @@ jobs:
       run: chmod +x gradlew
       
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew :app:assembleRelease
     
     - name: action-slack
       uses: 8398a7/action-slack@v3
