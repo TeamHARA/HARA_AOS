@@ -13,25 +13,12 @@ Enjoy, think, solve
 풍요로운 선택지 속에서 진짜 내가 원하는 것을 발견할 수 있는, 스스로의 힘을 믿어주는 서비스가 되고자 합니다.
 
 🔘 Android Contributors
-
-**김준우** 
-![kim](https://user-images.githubusercontent.com/70648111/210428609-7cc6ae75-c31b-4ae6-9e4f-89437115b3dd.png)
-
-바텀네비게이션 / 앱바
-투표 상세화면
-
-
-
-**장유진**
-![jang](https://user-images.githubusercontent.com/70648111/210428550-3bb9068f-ed99-4cee-969f-cad3bcd75450.png)
-
-홈화면 , 게시물 쓰기 / 수정
-
-
-**이수현**
-![lee](https://user-images.githubusercontent.com/70648111/210428639-0151f375-e0b6-458c-a9fe-1b440d99878f.png)
-
-보관함
+|김준우|장유진|이수현|
+|------|---|---|
+|![kim](https://user-images.githubusercontent.com/70648111/210428609-7cc6ae75-c31b-4ae6-9e4f-89437115b3dd.png)|![jang](https://user-images.githubusercontent.com/70648111/210428550-3bb9068f-ed99-4cee-969f-cad3bcd75450.png)|![lee](https://user-images.githubusercontent.com/70648111/210428639-0151f375-e0b6-458c-a9fe-1b440d99878f.png)|
+|바텀네비게이션 / 앱바
+투표 상세화면|홈화면 , 게시물 쓰기 / 수정|보관함|
+|@IslandOfDream|@skylartosf|@wkdyujin|
 
 🔘 Coding/Git Convnetions
 https://daffy-lawyer-1b8.notion.site/Android-1c147c6c1e3c4e2eacdb1e781581d4aa
