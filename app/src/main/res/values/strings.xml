@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">HARA</string>
+    <string name="together_hara">함께해라</string>
+    <string name="storage">보관함</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

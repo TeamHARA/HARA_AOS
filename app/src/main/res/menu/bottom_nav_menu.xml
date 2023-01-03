@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragment_together"
+        android:icon="@drawable/ic_home"
+        android:title="@string/together_hara" />
+
+    <item
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
+        android:id="@+id/fragment_storage"
+        android:icon="@drawable/ic_storage"
+        android:title="@string/storage" />
+
+</menu>
