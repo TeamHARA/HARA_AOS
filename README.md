@@ -16,8 +16,7 @@ Enjoy, think, solve
 |김준우|장유진|이수현|
 |------|---|---|
 |![kim](https://user-images.githubusercontent.com/70648111/210428609-7cc6ae75-c31b-4ae6-9e4f-89437115b3dd.png)|![jang](https://user-images.githubusercontent.com/70648111/210428550-3bb9068f-ed99-4cee-969f-cad3bcd75450.png)|![lee](https://user-images.githubusercontent.com/70648111/210428639-0151f375-e0b6-458c-a9fe-1b440d99878f.png)|
-|바텀네비게이션 / 앱바
-투표 상세화면|홈화면 , 게시물 쓰기 / 수정|보관함|
+|바텀네비게이션/앱바 , 투표 상세화면|홈화면 , 게시물 쓰기/수정|보관함|
 |@IslandOfDream|@skylartosf|@wkdyujin|
 
 🔘 Coding/Git Convnetions
