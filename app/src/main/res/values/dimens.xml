@@ -3,5 +3,6 @@
     <dimen name="home_appbar_height">50dp</dimen>
     <dimen name="home_bottom_nav_height">86dp</dimen>
     <dimen name="home_bottom_appbar_height">58dp</dimen>
+    <dimen name="appbase_margin_space">12dp</dimen>
 
 </resources>

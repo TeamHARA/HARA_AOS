@@ -11,20 +11,67 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/home_appbar_height">
+            android:layout_height="@dimen/home_appbar_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/appbar_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:title="@string/worring"
-                app:contentInsetEndWithActions="@string"
-                app:titleTextAppearance="@style/hara_heading1_sb16"
                 android:background="@color/white"
-                app:navigationIcon="@drawable/ic_close" />
-
+                app:navigationIcon="@drawable/ic_close"
+                app:title="@string/worring"
+                app:titleTextAppearance="@style/hara_heading1_sb16" />
 
         </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/iv_detail_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/appbase_margin_space"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+        <TextView
+            android:id="@+id/tv_detail_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/nickname"
+            android:textAppearance="@style/hara_sub1_sb12"
+            app:layout_constraintStart_toEndOf="@+id/iv_detail_profile"
+            app:layout_constraintTop_toTopOf="@+id/iv_detail_profile" />
+
+        <TextView
+            android:id="@+id/tv_detail_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/dummy_date"
+            android:textAppearance="@style/hara_sub3_r12"
+            android:textColor="@color/gray_2"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_detail_profile"
+            app:layout_constraintStart_toEndOf="@+id/iv_detail_profile" />
+
+        <TextView
+            android:id="@+id/tv_detail_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="@string/vote"
+            android:textAppearance="@style/hara_sub2_m12"
+            android:textColor="@color/blue_1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_detail_data"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_data" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
