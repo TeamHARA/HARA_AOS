@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,6 +9,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_appbar_height">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:title="@string/worring"
+                app:contentInsetEndWithActions="@string"
+                app:titleTextAppearance="@style/hara_heading1_sb16"
+                android:background="@color/white"
+                app:navigationIcon="@drawable/ic_close" />
+
+
+        </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
