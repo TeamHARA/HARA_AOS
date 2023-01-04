@@ -6,7 +6,7 @@
         <!-- 선 : 길이 -->
         <shape android:shape="line">
             <stroke
-                android:width="8dp"
+                android:width="5dp"
                 android:color="@color/blue_4" />
         </shape>
     </item>
@@ -16,7 +16,7 @@
         <clip>
             <shape android:shape="line">
                 <stroke
-                    android:width="8dp"
+                    android:width="5dp"
                     android:color="@color/blue_1" />
             </shape>
         </clip>

@@ -13,6 +13,7 @@
         android:layout_marginTop="86dp"
         android:text="@string/write_title_question"
         android:textAppearance="@style/hara_modal1_m24"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,6 +25,7 @@
         android:layout_marginTop="96dp"
         android:background="@null"
         android:hint="@string/write_title_answer_hint"
+        android:textColor="@color/gray_3"
         android:inputType="text"
         android:maxLength="25"
         android:textAppearance="@style/hara_modal2_m18"
