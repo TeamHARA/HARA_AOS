@@ -1,4 +1,4 @@
-package com.android.hara.presentation.home.fragment
+package com.android.hara.presentation.home.fragment.together
 
 import android.os.Bundle
 import android.util.Log
