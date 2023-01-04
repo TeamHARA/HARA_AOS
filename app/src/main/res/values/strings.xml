@@ -17,4 +17,7 @@
         <item>여행</item>
         <item>기타</item>
     </string-array>
+
+    <string name="storage_filter_ing">고민중</string>
+    <string name="storage_filter_com">고민 완료</string>
 </resources>
