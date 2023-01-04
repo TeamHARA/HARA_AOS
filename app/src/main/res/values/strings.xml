@@ -17,4 +17,32 @@
         <item>여행</item>
         <item>기타</item>
     </string-array>
+
+    <!--  write  -->
+    <string name="write_appbar">고민 작성하기</string>
+    <string name="write_title_question">Q.\n내 고민의\n제목이 무엇인가요?</string>
+    <string name="write_title_answer_hint">제목을 입력해주세요.</string>
+    <string name="write_content_question">Q.\n내 고민의\n내용이 무엇인가요?</string>
+    <string name="write_content_answer">내용을 입력해주세요.</string>
+    <string name="write_option_question_hint">고민되는 선택지를\n적어주세요.</string>
+    <string name="write_option_answer">제목을 입력해주세요.</string>
+    <string name="write_proscons_question">선택지의\n장단점을 적어보세요!</string>
+    <string name="write_proscons_explanation">장단점은 스킵 할 수 있어요.</string>
+    <string name="write_pros">장점</string>
+    <string name="write_cons">단점</string>
+    <string name="write_pros_answer_hint">해당 선택지의 장점을 적어보세요</string>
+    <string name="write_cons_answer_hint">해당 선택지의 단점을 적어보세요</string>
+    <string name="write_category_question">고민의 카테고리를\n정해주세요.</string>
+    <string name="write_category_answer_hint">카테고리를 선택해주세요.</string>
+    <string name="write_category_alone">혼자 고민할래요</string>
+    <string name="write_category_with">함께 고민할래요</string>
+    <string name="write_comment_option">댓글 켜기</string>
+    <string name="write_upload_button">업로드하기</string>
+
+    <!--  dialog  -->
+    <string name="dialog_cancel">취소</string>
+    <string name="dialog_upload">업로드</string>
+    <string name="dialog_category">카테고리</string>
+    <string name="dialog_finish">완료</string>
+
 </resources>
