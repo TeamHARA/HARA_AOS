@@ -5,5 +5,7 @@
     <dimen name="home_bottom_appbar_height">58dp</dimen>
     <dimen name="appbase_margin_space">12dp</dimen>
     <dimen name="detail_checkbox">14dp</dimen>
+    <dimen name="dialog_button_height">36dp</dimen>
+    <dimen name="dialog_button_width">124dp</dimen>
 
 </resources>

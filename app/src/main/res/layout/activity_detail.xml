@@ -184,7 +184,7 @@
                 app:layout_constraintTop_toTopOf="@+id/cl_comment" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tv_anonymity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -210,7 +210,7 @@
                 app:hintEnabled="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/tv_anonymity"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
