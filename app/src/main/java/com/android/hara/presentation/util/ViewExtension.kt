@@ -31,3 +31,15 @@ fun Context.stringOf(@StringRes resId: Int) = getString(resId)
 fun Context.colorOf(@ColorRes resId: Int) = ContextCompat.getColor(this, resId)
 
 fun Context.drawableOf(@DrawableRes resId: Int) = ContextCompat.getDrawable(this, resId)
+
+fun Int.dpToPx(context: Context): Int {
+    return context.resources.displayMetrics.density.let { density ->
+        (this * density).toInt()
+    }
+}
+
+fun Int.pxToDp(context: Context): Int {
+    return context.resources.displayMetrics.density.let { density ->
+        (this / density).toInt()
+    }
+}
