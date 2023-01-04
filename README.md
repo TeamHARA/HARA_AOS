@@ -5,11 +5,6 @@
 
 <br>
 
-## Video
-<img width="270" src="https://.gif">
-
-<br>
-
 ## 프로덕트 이름
 해라(HARA)
 
@@ -37,7 +32,7 @@ Enjoy, think, solve
 | 김준우 [@IslandOfDream](https://github.com/IslandOfDream) | 장유진 [@wkdyujin](https://github.com/wkdyujin) | 이수현 [@skylartosf](https://github.com/skylartosf) |
 | :---: | :---: | :---: |
 |<img width="1400" src="https://user-images.githubusercontent.com/70648111/210428609-7cc6ae75-c31b-4ae6-9e4f-89437115b3dd.png">|<img width="1400" src="https://user-images.githubusercontent.com/70648111/210428550-3bb9068f-ed99-4cee-969f-cad3bcd75450.png">|<img width="1400" src="https://user-images.githubusercontent.com/70648111/210428639-0151f375-e0b6-458c-a9fe-1b440d99878f.png">|
-|**바텀네비게이션/앱바 , 투표 상세화면**|**홈화면 , 게시물 쓰기/수정**|**보관함**|
+|**바텀네비게이션/앱바 , 투표 상세화면**|**홈화면 , 게시물 쓰기/수정**|**보관함 , 1초만에 고민해결하기**|
 
 <br>
 
@@ -49,29 +44,49 @@ Enjoy, think, solve
 ## Foldering
 
 ```
-📂 org.sopt.jointseminar.melon
+📂 com.android.hara
+┣ 📂 application
+┃ ┣ 📜 Application.kt
 ┣ 📂 data
-┃ ┃ ┣ 📂 api
-┃ ┃ ┃ ┣ 📜 Service.kt
-┃ ┃ ┃ ┣ 📜 ServiceCreator.kt
-┃ ┃ ┣ 📂 entity
-┃ ┃ ┃ ┣ 📂 album
-┃ ┃ ┃ ┃ ┣ 📜 AlbumCommentAuthorInfo.kt
-┃ ┃ ┃ ┃ ┣ 📜 AlbumCommentInfo.kt
-┃ ┃ ┃ ┃ ┣ 📜 AlbumInfo.kt
-┃ ┃ ┃ ┃ ┣ 📜 AlbumSongInfo.kt
-┃ ┃ ┃ ┃ ┣ 📜 ResponseAlbumCommentData.kt
-┃ ┃ ┃ ┃ ┣ 📜 ResponseAlbumData.kt
-┃ ┃ ┃ ┣ 📂 music
-┃ ┃ ┃ ┃ ┣ 📜 ResponseHomeFavoriteData.kt
-┃ ┃ ┃ ┃ ┣ 📜 ResponseRecentMusicData.kt
-┃ ┃ ┃ ┃ ┣ 📜 TopMusicInfo.kt
-┃ ┃ ┃ ┣ 📂 posting
-┃ ┃ ┃ ┃ ┣ 📜 RequestPosingData.kt
-┃ ┃ ┃ ┃ ┣ 📜 ResponsePosingData.kt
-┃ ┃ ┃ ┣ 📜 Rank.kt
+┃ ┣ 📂 datasource
+┃ ┃ ┣ 📜 HaraService.kt
+┃ ┣ 📂 model
+┃ ┃ ┣ 📜 HaraDTO.kt
+┃ ┣ 📂 repository
+┃ ┃ ┣ 📜 HaraRepositoryImpl.kt
+┣ 📂 di
+┃ ┣ 📜 DataSourceModule.kt
+┃ ┣ 📜 RepositroyModule.kt
+┣ 📂 domain
+┃ ┣ 📂 model
+┃ ┃ ┣ 📜 HaraEntity.kt
+┃ ┣ 📂 repository
+┃ ┃ ┣ 📜 HaraRepository.kt
 ┣ 📂 presentation
-┃ ┃ ┣ 📂 album
-┃ ┃ ┃ ┣ 📜 AlbumCommentListAdapter.kt
-┃ ┃ ┃ ┣ 📜 AlbumFragment.kt
+┃ ┣ 📂 base
+┃ ┃ ┣ 📜 AlbumCommentListAdapter.kt
+┃ ┃ ┣ 📜 AlbumFragment.kt
+┃ ┣ 📂 cardgame
+┃ ┃ ┣ 📜 AlbumCommentListAdapter.kt
+┃ ┃ ┣ 📜 AlbumFragment.kt
+┃ ┣ 📂 detail
+┃ ┃ ┣ 📜 AlbumCommentListAdapter.kt
+┃ ┃ ┣ 📜 AlbumFragment.kt
+┃ ┣ 📂 home
+┃ ┃ ┣ 📂 fragment
+┃ ┃ ┃ ┣ 📜 CategoryAdapter.kt
+┃ ┃ ┃ ┣ 📜 StorageFragment.kt
+┃ ┃ ┃ ┣ 📜 TogetherFragment.kt
+┃ ┃ ┣ 📂 viewmodel
+┃ ┃ ┃ ┣ 📜 HomeViewModel.kt
+┃ ┃ ┣ 📜 HomeActivity.kt
+┃ ┣ 📂 setting
+┃ ┃ ┣ 📜 HomeActivity.kt
+┃ ┣ 📂 util
+┃ ┃ ┣ 📜 BindingConversion.kt
+┃ ┃ ┣ 📜 ContentUriRequestBody.kt
+┃ ┃ ┣ 📜 OnSingleClickListener.kt
+┃ ┃ ┣ 📜 ViewExtension.kt.kt
+┃ ┣ 📂 write
+┃ ┃ ┣ 📜 WriteActivity.kt
 ```
