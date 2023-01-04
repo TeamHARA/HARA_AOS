@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.home.fragment.StorageFragment">
+        tools:context=".presentation.home.fragment.storage.StorageFragment">
 
         <TextView
             android:layout_width="wrap_content"

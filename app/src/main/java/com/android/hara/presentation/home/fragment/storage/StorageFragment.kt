@@ -1,4 +1,4 @@
-package com.android.hara.presentation.home.fragment
+package com.android.hara.presentation.home.fragment.storage
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
