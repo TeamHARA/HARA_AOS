@@ -49,29 +49,49 @@ Enjoy, think, solve
 ## Foldering
 
 ```
-📂 org.sopt.jointseminar.melon
+📂 com.android.hara
+┣ 📂 application
+┃ ┣ 📜 Application.kt
 ┣ 📂 data
-┃ ┃ ┣ 📂 api
-┃ ┃ ┃ ┣ 📜 Service.kt
-┃ ┃ ┃ ┣ 📜 ServiceCreator.kt
-┃ ┃ ┣ 📂 entity
-┃ ┃ ┃ ┣ 📂 album
-┃ ┃ ┃ ┃ ┣ 📜 AlbumCommentAuthorInfo.kt
-┃ ┃ ┃ ┃ ┣ 📜 AlbumCommentInfo.kt
-┃ ┃ ┃ ┃ ┣ 📜 AlbumInfo.kt
-┃ ┃ ┃ ┃ ┣ 📜 AlbumSongInfo.kt
-┃ ┃ ┃ ┃ ┣ 📜 ResponseAlbumCommentData.kt
-┃ ┃ ┃ ┃ ┣ 📜 ResponseAlbumData.kt
-┃ ┃ ┃ ┣ 📂 music
-┃ ┃ ┃ ┃ ┣ 📜 ResponseHomeFavoriteData.kt
-┃ ┃ ┃ ┃ ┣ 📜 ResponseRecentMusicData.kt
-┃ ┃ ┃ ┃ ┣ 📜 TopMusicInfo.kt
-┃ ┃ ┃ ┣ 📂 posting
-┃ ┃ ┃ ┃ ┣ 📜 RequestPosingData.kt
-┃ ┃ ┃ ┃ ┣ 📜 ResponsePosingData.kt
-┃ ┃ ┃ ┣ 📜 Rank.kt
+┃ ┣ 📂 datasource
+┃ ┃ ┣ 📜 HaraService.kt
+┃ ┣ 📂 model
+┃ ┃ ┣ 📜 HaraDTO.kt
+┃ ┣ 📂 repository
+┃ ┃ ┣ 📜 HaraRepositoryImpl.kt
+┣ 📂 di
+┃ ┣ 📜 DataSourceModule.kt
+┃ ┣ 📜 RepositroyModule.kt
+┣ 📂 domain
+┃ ┣ 📂 model
+┃ ┃ ┣ 📜 HaraEntity.kt
+┃ ┣ 📂 repository
+┃ ┃ ┣ 📜 HaraRepository.kt
 ┣ 📂 presentation
-┃ ┃ ┣ 📂 album
-┃ ┃ ┃ ┣ 📜 AlbumCommentListAdapter.kt
-┃ ┃ ┃ ┣ 📜 AlbumFragment.kt
+┃ ┣ 📂 base
+┃ ┃ ┣ 📜 AlbumCommentListAdapter.kt
+┃ ┃ ┣ 📜 AlbumFragment.kt
+┃ ┣ 📂 cardgame
+┃ ┃ ┣ 📜 AlbumCommentListAdapter.kt
+┃ ┃ ┣ 📜 AlbumFragment.kt
+┃ ┣ 📂 detail
+┃ ┃ ┣ 📜 AlbumCommentListAdapter.kt
+┃ ┃ ┣ 📜 AlbumFragment.kt
+┃ ┣ 📂 home
+┃ ┃ ┣ 📂 fragment
+┃ ┃ ┃ ┣ 📜 CategoryAdapter.kt
+┃ ┃ ┃ ┣ 📜 StorageFragment.kt
+┃ ┃ ┃ ┣ 📜 TogetherFragment.kt
+┃ ┃ ┣ 📂 viewmodel
+┃ ┃ ┃ ┣ 📜 HomeViewModel.kt
+┃ ┃ ┣ 📜 HomeActivity.kt
+┃ ┣ 📂 setting
+┃ ┃ ┣ 📜 HomeActivity.kt
+┃ ┣ 📂 util
+┃ ┃ ┣ 📜 BindingConversion.kt
+┃ ┃ ┣ 📜 ContentUriRequestBody.kt
+┃ ┃ ┣ 📜 OnSingleClickListener.kt
+┃ ┃ ┣ 📜 ViewExtension.kt.kt
+┃ ┣ 📂 write
+┃ ┃ ┣ 📜 WriteActivity.kt
 ```
