@@ -24,7 +24,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="166dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/shape_rectangle_white_fill_8">
 
         <TextView
@@ -56,10 +56,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
+            android:layout_marginBottom="30dp"
             android:orientation="horizontal"
             app:constraint_referenced_ids="btn_dialog_action,btn_dialog_cancel"
             app:flow_horizontalAlign="start"
             app:flow_verticalAlign="center"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_dialog_warn">
@@ -71,6 +73,7 @@
             android:layout_width="@dimen/dialog_button_width"
             android:layout_height="@dimen/dialog_button_height"
             android:background="@drawable/shape_rectangle_gray4_fill_8"
+            android:stateListAnimator="@null"
             android:text="@{cancel}"
             android:textAppearance="@style/hara_body2_m14"
             tools:text="@string/cancel" />
@@ -80,6 +83,7 @@
             android:layout_width="124dp"
             android:layout_height="36dp"
             android:background="@drawable/shape_rectangle_blue3_fill_8"
+            android:stateListAnimator="@null"
             android:text="@{action}"
             android:textAppearance="@style/hara_body2_m14"
             android:textColor="@color/blue_1"
