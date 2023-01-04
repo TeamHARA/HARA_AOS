@@ -18,6 +18,9 @@
         <item>기타</item>
     </string-array>
 
+    <string name="storage_filter_ing">고민중</string>
+    <string name="storage_filter_com">고민 완료</string>
+
     <!--  write  -->
     <string name="write_appbar">고민 작성하기</string>
     <string name="write_title_question">Q.\n내 고민의\n제목이 무엇인가요?</string>
@@ -44,5 +47,4 @@
     <string name="dialog_upload">업로드</string>
     <string name="dialog_category">카테고리</string>
     <string name="dialog_finish">완료</string>
-
 </resources>
