@@ -58,7 +58,7 @@
             android:layout_marginTop="17dp"
             android:layout_marginBottom="30dp"
             android:orientation="horizontal"
-            app:constraint_referenced_ids="btn_dialog_action,btn_dialog_cancel"
+            app:constraint_referenced_ids="btn_dialog_cancle,btn_dialog_action"
             app:flow_horizontalAlign="start"
             app:flow_verticalAlign="center"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +69,7 @@
         </androidx.constraintlayout.helper.widget.Flow>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_dialog_action"
+            android:id="@+id/btn_dialog_cancle"
             android:layout_width="@dimen/dialog_button_width"
             android:layout_height="@dimen/dialog_button_height"
             android:background="@drawable/shape_rectangle_gray4_fill_8"
@@ -79,7 +79,7 @@
             tools:text="@string/cancel" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_dialog_cancel"
+            android:id="@+id/btn_dialog_action"
             android:layout_width="124dp"
             android:layout_height="36dp"
             android:background="@drawable/shape_rectangle_blue3_fill_8"

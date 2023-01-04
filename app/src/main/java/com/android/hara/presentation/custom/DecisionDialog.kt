@@ -11,6 +11,7 @@ import android.view.WindowManager
 import com.android.hara.databinding.DialogDecisionBinding
 import com.android.hara.presentation.custom.model.DialogData
 import com.android.hara.presentation.util.dpToPx
+import com.android.hara.presentation.util.setOnSingleClickListener
 
 class DecisionDialog(
     val context: Context,
@@ -47,7 +48,13 @@ class DecisionDialog(
             } // 레이아웃 속성 재 적용
             dialog.window!!.attributes = params
         }
-        //TODO setListener(itemAddListener, item)
+        setListener(itemActionListener)
         dialog.show()
+    }
+
+    private fun setListener(itemAddListener: (String) -> Unit) {
+        binding.btnDialogCancle.setOnSingleClickListener {
+            dialog.cancel()
+        }
     }
 }
