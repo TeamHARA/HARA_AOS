@@ -23,9 +23,9 @@
     <string name="write_title_question">Q.\n내 고민의\n제목이 무엇인가요?</string>
     <string name="write_title_answer_hint">제목을 입력해주세요.</string>
     <string name="write_content_question">Q.\n내 고민의\n내용이 무엇인가요?</string>
-    <string name="write_content_answer">내용을 입력해주세요.</string>
-    <string name="write_option_question_hint">고민되는 선택지를\n적어주세요.</string>
-    <string name="write_option_answer">제목을 입력해주세요.</string>
+    <string name="write_content_answer_hint">내용을 입력해주세요.</string>
+    <string name="write_option_question">고민되는 선택지를\n적어주세요.</string>
+    <string name="write_option_answer_hint">제목을 입력해주세요.</string>
     <string name="write_proscons_question">선택지의\n장단점을 적어보세요!</string>
     <string name="write_proscons_explanation">장단점은 스킵 할 수 있어요.</string>
     <string name="write_pros">장점</string>
