@@ -62,7 +62,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/iv_solved_card"
             android:layout_width="175dp"
             android:layout_height="214dp"
             android:layout_marginTop="16dp"
@@ -71,14 +71,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_et_search" />
 
+        <TextView
+            android:id="@+id/tv_one_sec_solution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_solved_card"
+            app:layout_constraintStart_toStartOf="@+id/iv_solved_card"
+            app:layout_constraintTop_toTopOf="@+id/iv_solved_card"
+            tools:text="ㅅㅎ에\n 물어보거라" />
+
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton"
+            android:id="@+id/btn_pick_solve"
             android:layout_width="153dp"
             android:layout_height="40dp"
+            android:text="@string/one_sec_pick"
+            android:textColor="@color/gray_2"
+            android:textAppearance="@style/hara_heading1_sb16"
             android:layout_marginTop="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_solved_card" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -86,7 +100,7 @@
             android:layout_marginTop="14dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatButton">
+            app:layout_constraintTop_toBottomOf="@+id/btn_pick_solve">
 
             <TextView
                 android:id="@+id/tv_last_worry"
