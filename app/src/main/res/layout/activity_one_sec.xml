@@ -90,6 +90,7 @@
             app:layout_constraintTop_toTopOf="@+id/iv_solved_card"
             tools:text="ㅅㅎ에\n 물어보거라" />
 
+        <!-- shape 바꿔주기 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_pick_solve"
             android:layout_width="153dp"
