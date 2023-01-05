@@ -139,6 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/appbase_margin_space"
                     android:layout_marginTop="16dp"
+                    tools:listitem="@layout/item_write_proscons"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_image" />
