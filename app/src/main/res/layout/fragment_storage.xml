@@ -10,16 +10,157 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.home.fragment.StorageFragment">
+        tools:context=".presentation.home.fragment.storage.StorageFragment">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="보관함"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_storage_onesec"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            app:strokeColor="@color/blue_3"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:padding="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/hara_launcher_foreground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_storage_btn1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="1초만에"
+                    android:textAppearance="@style/hara_game_sb18"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_iv"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_storage_btn2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고민 해결"
+                    android:textAppearance="@style/hara_game_sb18"
+                    android:textColor="@color/blue_1"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_storage_btn1"
+                    app:layout_constraintEnd_toStartOf="@id/tv_storage_btn3"
+                    app:layout_constraintStart_toEndOf="@+id/tv_storage_btn1"
+                    app:layout_constraintTop_toTopOf="@+id/tv_storage_btn1"
+                    android:layout_marginRight="0dp"/>
+
+                <TextView
+                    android:id="@+id/tv_storage_btn3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="하러 가기"
+                    android:textAppearance="@style/hara_game_sb18"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_storage_btn2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_storage_btn2"
+                    app:layout_constraintTop_toTopOf="@+id/tv_storage_btn2"
+                    android:layout_marginRight="30dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_storage_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_storage_onesec"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            app:tabTextAppearance="@style/hara_heading1_sb16"
+            app:tabTextColor="@color/blue_3"
+            app:tabSelectedTextColor="@color/blue_1"
+            app:tabBackground="@drawable/shape_stroke_blue3"
+            app:tabIndicatorColor="@color/blue_1"
+            app:tabIndicatorHeight="2dp">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="혼자 고민"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="함께 고민"/>
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_storage_align"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rectangle_blue3_stroke_1_30"
+            android:drawableStart="@drawable/ic_change"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:drawablePadding="2dp"
+            android:text="@string/storage_filter_ing"
+            android:textColor="@color/blue_1"
+            app:layout_constraintStart_toStartOf="@+id/tl_storage_tab"
+            app:layout_constraintTop_toBottomOf="@+id/tl_storage_tab"
+            android:textAppearance="@style/hara_sub2_m12"
+            android:padding="0dp"
+            android:layout_marginTop="12dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="편집"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_storage_align"
+            app:layout_constraintEnd_toEndOf="@+id/btn_storage_onesec"
+            app:layout_constraintTop_toTopOf="@id/btn_storage_align"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:background="@android:color/transparent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/btn_storage_align"
+            android:layout_marginTop="12dp"
+            tools:listitem="@layout/item_storage"
+            android:layout_marginRight="12dp"
+            android:layout_marginLeft="12dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

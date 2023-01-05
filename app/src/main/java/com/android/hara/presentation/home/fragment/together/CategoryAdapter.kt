@@ -1,4 +1,4 @@
-package com.android.hara.presentation.home.fragment
+package com.android.hara.presentation.home.fragment.together
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.databinding.ItemCategoryBinding
 
 // private val itemClickListener: (String) -> Unit : ?
-class CategoryAdapter(context: Context, private val itemClickListener: (String) -> Unit) : ListAdapter<String, RecyclerView.ViewHolder>(TestDiffCallback()) {
+class CategoryAdapter(context: Context, private val itemClickListener: (String) -> Unit) : ListAdapter<String, RecyclerView.ViewHolder>(
+    TestDiffCallback()) {
     // notifyDatasetChange대신 submitlist 리스트를 넣는다
 
     private val inflater by lazy { LayoutInflater.from(context) }
