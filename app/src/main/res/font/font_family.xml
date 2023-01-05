@@ -1,10 +1,10 @@
-<!-- font/pretendard_medium.xml -->
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- font/pretendard.xml -->
     <font
         android:font="@font/pretendard_regular"
         android:fontStyle="normal"
         android:fontWeight="400" />
+    <!-- font/pretendard_medium.xml -->
     <font
         android:font="@font/pretendard_medium"
         android:fontStyle="normal"
@@ -14,4 +14,9 @@
         android:font="@font/pretendard_semibold"
         android:fontStyle="normal"
         android:fontWeight="600" />
+    <!-- cafe24_ssurround.xml -->
+    <font
+        android:font="@font/cafe24_ssurround"
+        android:fontStyle="normal"
+        android:fontWeight="700" />
 </font-family>
