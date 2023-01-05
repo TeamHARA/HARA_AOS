@@ -13,6 +13,8 @@
     <string name="detail_comment_hint">댓글 내용을 입력해주세요</string>
     <string name="dialog_delete">고민글을 삭제하시겠습니까?</string>
     <string name="dialog_delete_warn">작성하신 글을 삭제하습니까?</string>
+    <string name="one_sec_solve">1초만에 해결하기</string>
+    <string name="one_sec_hint">고민의 제목을 입력해주세요.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
