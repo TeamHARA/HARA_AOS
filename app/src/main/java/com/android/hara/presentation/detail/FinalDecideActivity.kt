@@ -1,12 +1,13 @@
-package com.android.hara.presentation.detail.fragment
+package com.android.hara.presentation.detail
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import com.android.hara.R
-import com.android.hara.databinding.FragmentFinalDecideBinding
-import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.databinding.ActivityFinalDecideBinding
+import com.android.hara.presentation.base.BindingActivity
+import com.android.hara.presentation.write.WriteActivity
 
-class FinalDecideFragment :BindingFragment<FragmentFinalDecideBinding>(R.layout.fragment_final_decide) {
+class FinalDecideActivity :BindingActivity<ActivityFinalDecideBinding>(R.layout.activity_final_decide) {
     // FinalDecideFragment에서 버튼을 다스릴 애가 local임.
     // local이 data binding으로 연결된 fragment_final_decide.xml에 있는 selected라는 변수로 전달됨.
     // .xml에서 selected가 버튼에 달려있어.
@@ -16,11 +17,14 @@ class FinalDecideFragment :BindingFragment<FragmentFinalDecideBinding>(R.layout.
     // sel에 최종적으로 selected가 전달되는 것
     // [결론] Fragment의 local = .xml의 selected = BindingConversion.kt의 sel
     var local = true
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.btnFinalSolve.setOnClickListener {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding.btnFinalDecideLetssolve.setOnClickListener {
             local = !(local)
             binding.selected = local
+
+            val intent = Intent(this, FinalResolveActivity::class.java)
+            startActivity(intent)
         }
     }
 }

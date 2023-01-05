@@ -7,15 +7,24 @@
         <variable
             name="selected"
             type="boolean" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_final_decide_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_close"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/iv_final_decide_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="141dp"
@@ -25,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_final_decide_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
@@ -33,20 +42,34 @@
             android:layout_marginRight="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/iv_final_decide_title"
             tools:text="글자수 제한은 공백 포함 28자 글자수 제한은 공백" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_final_decide_img"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_final_decide_title"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            tools:listitem="@layout/item_final_decide_img"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_final_decide_option"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="60dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_final_solve"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_final_decide_letssolve"
+            app:layout_constraintTop_toBottomOf="@+id/rv_final_decide_img"
             tools:listitem="@layout/item_final_option" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_final_solve"
+            android:id="@+id/btn_final_decide_letssolve"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
