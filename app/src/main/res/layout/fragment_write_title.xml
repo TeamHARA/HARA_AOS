@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.android.hara.presentation.write.fragment.TitleFragViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,10 +34,12 @@
             android:layout_marginTop="96dp"
             android:background="@null"
             android:hint="@string/write_title_answer_hint"
-            android:textColor="@color/gray_3"
             android:inputType="text"
             android:maxLength="25"
             android:textAppearance="@style/hara_modal2_m18"
+            android:text="@={vm.answer}"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray_3"
             app:layout_constraintEnd_toStartOf="@+id/iv_write_pencil_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_write_title_question" />
@@ -75,12 +80,24 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
-            android:id="@+id/ib_write_next_button"
+            android:id="@+id/ib_write_next_button_off"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_next_off"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_write_upload_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ib_write_upload_button" />
+
+        <ImageButton
+            android:id="@+id/ib_write_next_button_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_next_on"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/ib_write_upload_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ib_write_upload_button" />

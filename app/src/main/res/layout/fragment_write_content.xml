@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.android.hara.presentation.write.fragment.ContentFragViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,8 +38,10 @@
             android:hint="@string/write_content_answer_hint"
             android:paddingHorizontal="12dp"
             android:paddingVertical="14dp"
+            android:text="@={vm.answer}"
             android:textAppearance="@style/hara_heading2_m16"
-            android:textColor="@color/gray_3"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray_3"
             app:layout_constraintBottom_toTopOf="@+id/ib_write_content_upload_button"
             app:layout_constraintTop_toBottomOf="@+id/tv_write_content_question" />
 
@@ -67,7 +72,19 @@
             app:layout_constraintTop_toTopOf="@+id/ib_write_content_upload_button" />
 
         <ImageButton
-            android:id="@+id/ib_write_content_next_button"
+            android:id="@+id/ib_write_content_next_button_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_next_on"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_write_content_upload_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ib_write_content_upload_button" />
+
+        <ImageButton
+            android:id="@+id/ib_write_content_next_button_off"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
