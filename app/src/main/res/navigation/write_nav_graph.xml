@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/writeTitleFragment"
-        android:name="com.android.hara.presentation.write.fragment.WriteTitleFragment"
+        android:name="com.android.hara.presentation.write.fragment.title.WriteTitleFragment"
         android:label="WriteTitleFragment"
         tools:layout="@layout/fragment_write_title">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/writeContentFragment"
-        android:name="com.android.hara.presentation.write.fragment.WriteContentFragment"
+        android:name="com.android.hara.presentation.write.fragment.content.WriteContentFragment"
         android:label="WriteContentFragment"
         tools:layout="@layout/fragment_write_content">
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/writeOptionFragment"
-        android:name="com.android.hara.presentation.write.fragment.WriteOptionFragment"
+        android:name="com.android.hara.presentation.write.fragment.option.WriteOptionFragment"
         android:label="WriteOptionFragment"
         tools:layout="@layout/fragment_write_option">
         <action
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/writeProsconsFragment"
-        android:name="com.android.hara.presentation.write.fragment.WriteProsconsFragment"
+        android:name="com.android.hara.presentation.write.fragment.proscons.WriteProsconsFragment"
         android:label="WriteProsconsFragment"
         tools:layout="@layout/fragment_write_proscons">
         <action
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/writeCategoryFragment"
-        android:name="com.android.hara.presentation.write.fragment.WriteCategoryFragment"
+        android:name="com.android.hara.presentation.write.fragment.category.WriteCategoryFragment"
         android:label="WriteCategoryFragment"
         tools:layout="@layout/fragment_write_category" />
 

@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.android.hara.presentation.write.fragment.ContentFragViewModel" />
+            type="com.android.hara.presentation.write.fragment.content.ContentFragViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

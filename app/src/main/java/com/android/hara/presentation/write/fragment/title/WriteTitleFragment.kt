@@ -1,4 +1,4 @@
-package com.android.hara.presentation.write.fragment
+package com.android.hara.presentation.write.fragment.title
 
 import android.os.Bundle
 import android.view.View
