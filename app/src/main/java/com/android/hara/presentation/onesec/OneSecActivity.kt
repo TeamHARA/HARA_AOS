@@ -29,17 +29,26 @@ class OneSecActivity : BindingActivity<ActivityOneSecBinding>(R.layout.activity_
     private val solvedList =
         listOf("가", "나", "다", "라", "마", "바", "사", "아", "자", "차", "카", "타", "파", "하")
 
-    //TODO [보관함]에서 넘어와 [1초만에 고민해결하기] 부분 액티비티 입니다. 추후 네이밍 변경예정
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        init()
+        addObserve()
+        setOnClickListener()
+    }
+
+    private fun init() {
         binding.viewmodel = onesecViewModel
         binding.rcvLastWorry.adapter = oneSecAdapter
         oneSecAdapter.submitList(lastworrise.toList())
+    }
 
-        addObserve()
+    private fun setOnClickListener() {
+        binding.appbarDetail.setNavigationOnClickListener {
+            finish()
+        }
         binding.btnPickSolve.setOnSingleClickListener {
             binding.ivSolvedCard.setImageResource(R.drawable.img_card_result)
-            onesecViewModel.solution.value = solvedList[(0..solvedList.size - 1).random()]
+            onesecViewModel.solution.value = solvedList[(solvedList.indices).random()]
         }
     }
 

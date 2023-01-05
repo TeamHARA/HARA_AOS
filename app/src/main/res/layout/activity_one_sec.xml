@@ -20,6 +20,7 @@
             android:id="@+id/appbar_layout_detail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_appbar_height"
+            android:elevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -80,7 +81,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:fontFamily="@font/cafe24_ssurround"
             android:text="@={viewmodel.solution}"
+            android:textAlignment="center"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/iv_solved_card"
             app:layout_constraintStart_toStartOf="@+id/iv_solved_card"
