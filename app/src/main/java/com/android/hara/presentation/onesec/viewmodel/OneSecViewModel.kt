@@ -7,9 +7,7 @@ class OneSecViewModel : ViewModel() {
     private val _enabled = MutableLiveData<Boolean>(false)
     val enabled get() = _enabled
 
-//    fun textChanged(){
-//        if()
-//    }
-
+    private val _worry = MutableLiveData<String>()
+    val worry get() = _worry
 
 }

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewmodel"
+            type="com.android.hara.presentation.onesec.viewmodel.OneSecViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,6 +55,7 @@
                 android:background="@drawable/shape_rectangle_blue3_stroke_1_8"
                 android:hint="@string/one_sec_hint"
                 android:maxLength="30"
+                android:text="@={viewmodel.worry}"
                 android:paddingVertical="0dp"
                 android:textAlignment="center"
                 android:textAppearance="@style/hara_body2_m14"
@@ -86,6 +89,7 @@
             android:id="@+id/btn_pick_solve"
             android:layout_width="153dp"
             android:layout_height="40dp"
+            android:background="@drawable/selector_rectangle_blue3_blue1"
             android:text="@string/one_sec_pick"
             android:textColor="@color/gray_2"
             android:textAppearance="@style/hara_heading1_sb16"
