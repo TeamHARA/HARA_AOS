@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="warn"
+            type="String" />
+
+        <variable
+            name="cancel"
+            type="String" />
+
+        <variable
+            name="action"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rectangle_white_fill_8">
+
+        <TextView
+            android:id="@+id/tv_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@{title}"
+            android:textAppearance="@style/hara_heading1_sb16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/dialog_delete" />
+
+        <TextView
+            android:id="@+id/tv_dialog_warn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@{warn}"
+            android:textAppearance="@style/hara_body3_r14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dialog_title"
+            tools:text="@string/dialog_delete_warn" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="btn_dialog_cancle,btn_dialog_action"
+            app:flow_horizontalAlign="start"
+            app:flow_verticalAlign="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dialog_warn">
+
+        </androidx.constraintlayout.helper.widget.Flow>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dialog_cancle"
+            android:layout_width="@dimen/dialog_button_width"
+            android:layout_height="@dimen/dialog_button_height"
+            android:background="@drawable/shape_rectangle_gray4_fill_8"
+            android:stateListAnimator="@null"
+            android:text="@{cancel}"
+            android:textAppearance="@style/hara_body2_m14"
+            tools:text="@string/cancel" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dialog_action"
+            android:layout_width="124dp"
+            android:layout_height="36dp"
+            android:background="@drawable/shape_rectangle_blue3_fill_8"
+            android:stateListAnimator="@null"
+            android:text="@{action}"
+            android:textAppearance="@style/hara_body2_m14"
+            android:textColor="@color/blue_1"
+            tools:text="@string/delete" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
