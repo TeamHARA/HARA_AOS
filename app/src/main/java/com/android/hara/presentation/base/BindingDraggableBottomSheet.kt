@@ -1,5 +1,6 @@
 package com.android.hara.presentation.base
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -41,6 +42,7 @@ abstract class BindingDraggableBottomSheet<T : ViewDataBinding>(@LayoutRes priva
         return dialog
     }
 
+    @SuppressLint("RestrictedApi")
     open fun setupRatio(bottomSheetDialog: BottomSheetDialog) {
         bottomSheetDialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         val behavior = bottomSheetDialog.behavior
@@ -49,6 +51,7 @@ abstract class BindingDraggableBottomSheet<T : ViewDataBinding>(@LayoutRes priva
             skipCollapsed =
                 true // 바텀 시트를 접을때 절반에서 멈추는 경우를 방지하고 한번에 쭉 내려감
             // 일단 남겨둠
+            disableShapeAnimations()
             addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {}
                 override fun onSlide(bottomSheet: View, slideOffset: Float) {}

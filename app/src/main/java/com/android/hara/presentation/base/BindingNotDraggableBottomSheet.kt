@@ -1,5 +1,6 @@
 package com.android.hara.presentation.base
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,6 +30,7 @@ abstract class BindingNotDraggableBottomSheet<T : ViewDataBinding>(@LayoutRes pr
         return binding.root
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         setStyle(STYLE_NORMAL, R.style.BottomSheetDialog_Rounded)
         val bottomSheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
@@ -37,6 +39,7 @@ abstract class BindingNotDraggableBottomSheet<T : ViewDataBinding>(@LayoutRes pr
             behavior.apply {
                 isDraggable = false // 드래그 불가
                 skipCollapsed = true
+                disableShapeAnimations()
                 state = BottomSheetBehavior.STATE_EXPANDED
             }
         }
