@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.android.hara.presentation.write.fragment.option.OptionFragViewModel" />
@@ -26,16 +27,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_write_worry_option"
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/rv_write_worry_option"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginHorizontal="12dp"-->
+        <!--            android:layout_marginTop="45dp"-->
+        <!--            tools:itemCount="4"-->
+        <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/tv_write_option_question"-->
+        <!--            tools:listitem="@layout/item_write_option" />-->
+
+        <LinearLayout
+            android:id="@+id/linear_option_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="45dp"
-            tools:itemCount="4"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/tv_write_option_question"
-            tools:listitem="@layout/item_write_option" />
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/tv_write_option_question">
+
+            <include
+                android:id="@+id/option1"
+                layout="@layout/item_write_option" />
+
+            <include
+                android:id="@+id/option2"
+                layout="@layout/item_write_option" />
+
+            <include
+                android:id="@+id/option3"
+                layout="@layout/item_write_option" />
+
+            <include
+                android:id="@+id/option4"
+                layout="@layout/item_write_option" />
+        </LinearLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btn_option_add_button"
@@ -45,7 +73,7 @@
             android:background="@drawable/shape_rectangle_blue3_stroke_1_8"
             android:paddingVertical="12dp"
             android:stateListAnimator="@null"
-            app:layout_constraintTop_toBottomOf="@+id/rv_write_worry_option">
+            app:layout_constraintTop_toBottomOf="@+id/linear_option_layout">
 
             <ImageView
                 android:layout_width="wrap_content"
