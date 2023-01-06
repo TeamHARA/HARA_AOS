@@ -13,7 +13,7 @@ class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragmen
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnStorageOnesec.setOnClickListener {
-
+//TODO 1초만에 해결하기 로 연결해주기
         }
     }
 }
