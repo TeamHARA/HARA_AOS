@@ -20,15 +20,16 @@ class FinalDecideActivity :
     // sel에 최종적으로 selected가 전달되는 것
     // [결론] Fragment의 local = .xml의 selected = BindingConversion.kt의 sel
 
-    //var local = true
     private val decisionViewModel by viewModels<DecideViewModel>()
-    private var count = 4
+    private var count = 4 //TODO 서버통신 시 옵션 몇 개인지 세기
 
     private var selectListBool = mutableListOf<Boolean>(false, false, false, false)
+    // 1, 2, 3, 4번째 옵션 뷰가 선택(클릭)됐는지를 저장. n+1번째 옵션 뷰가 선택됐으면 [n]이 true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // 옵션 개수에 따라 그 개수의 옵션 뷰가 보이게  
         if (count == 2) {
             binding.clOpt3.visibility = View.VISIBLE
             binding.clOpt4.visibility = View.VISIBLE
@@ -64,24 +65,28 @@ class FinalDecideActivity :
 
     }
 
-    private fun checkAndSetSelected(vm: DecideViewModel, n: Int) {
-        // 옵션이 하나라도 true라면
+    private fun checkAndSetSelected(vm: DecideViewModel, n: Int) { // n+1번째 옵션이 선택됐다
+        // 1) 옵션이 하나라도 true라면
         if (selectListBool.contains(true)) {
+            // 1-1) 그 옵션이 이미 true였다면 false로 바꿔줘야 한다
             if (selectListBool[n]) {
                 selectListBool[n] = false
-                decisionViewModel.enabled.value = false
-                changeOptStyle(n, false)
-            } else {
-                selectListBool.replaceAll { false }
+                decisionViewModel.enabled.value = false // n+1번째 옵션이 다시 선택됐으니 버튼이 비활성화돼야 한다
+                changeOptStyle(n, false) // n+1번째 옵션 뷰를 'selected 스타일'로 바꿔준다
+            }
+            // 1-2) 어떤 옵션이 true인데, 또다른 옵션(n+1번째)을 선택한 거라면,
+            // 그 옵션 뷰의 스타일이 그 옵션 뷰가 선택된 것처럼 바뀌어야 한다 
+            else {
+                selectListBool.replaceAll { false } // 모든 옵션에 대해 일단 false로 바꿔준다
                 selectListBool.forEachIndexed { index, _ ->
                     changeOptStyle(index,false)
-                }
-                selectListBool[n] = true
-                decisionViewModel.enabled.value = true
-                changeOptStyle(n, true)
+                } // 역시 모든 옵션 뷰에 대해 스타일을 안 선택된 것처럼 바꿔준다
+                selectListBool[n] = true // n+1번째 옵션이 선택된 것이니 그것을 true로 바꿔준다
+                decisionViewModel.enabled.value = true // 버튼은 활성화가 돼야 한다
+                changeOptStyle(n, true) // n+1번째 옵션 뷰를 'selected 스타일'로 바꿔준다
             }
         }
-        // 옵션이 다 false라면
+        // 2) 옵션이 모두 false라면
         else {
             selectListBool[n] = true
             decisionViewModel.enabled.value = true
@@ -89,16 +94,19 @@ class FinalDecideActivity :
         }
     }
 
-
     private fun observeSelected(vm: DecideViewModel) {
+        // 뷰모델 내 enabled가 true가 되면
+        // (데이터 바인딩된) .xml 내 selected 변수를 true로 설정하고 버튼을 활성화시킨다
         decisionViewModel.enabled.observe(this){
+            // it: 뷰모델 내 enabled의 값
             binding.selected = it
             binding.btnFinalDecideLetssolve.isEnabled = it
         }
     }
 
+    // 옵션 뷰 배경/텍스트컬러를 바꿔준다
     private fun changeOptStyle(n: Int, b: Boolean) {
-        if (b) {
+        if (b) { // n+1번째 옵션 뷰의 배경/글자색 등을 'selected' 스타일로 바꿔준다
             when (n) {
                 0 -> {
                     binding.clOpt1.background =
@@ -126,7 +134,7 @@ class FinalDecideActivity :
                 }
             }
         }
-        else {
+        else { // n+1번째 옵션 뷰의 배경/글자색 등을 'not selected' 스타일로 바꿔준다
             when (n) {
                 0 -> {
                     binding.clOpt1.background =
