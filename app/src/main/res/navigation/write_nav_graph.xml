@@ -9,21 +9,17 @@
         android:id="@+id/writeTitleFragment"
         android:name="com.android.hara.presentation.write.fragment.title.WriteTitleFragment"
         android:label="WriteTitleFragment"
-        tools:layout="@layout/fragment_write_title">
+        tools:layout="@layout/fragment_write_what">
         <action
-            android:id="@+id/action_writeTitleFragment_to_writeContentFragment"
-            app:destination="@id/writeContentFragment" />
+            android:id="@+id/action_writeTitleFragment_to_writeOptionFragment"
+            app:destination="@id/writeOptionFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/writeContentFragment"
         android:name="com.android.hara.presentation.write.fragment.content.WriteContentFragment"
         android:label="WriteContentFragment"
-        tools:layout="@layout/fragment_write_content">
-        <action
-            android:id="@+id/action_writeContentFragment_to_writeOptionFragment"
-            app:destination="@id/writeOptionFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_write_how"/>
 
     <fragment
         android:id="@+id/writeOptionFragment"
@@ -49,6 +45,10 @@
         android:id="@+id/writeCategoryFragment"
         android:name="com.android.hara.presentation.write.fragment.category.WriteCategoryFragment"
         android:label="WriteCategoryFragment"
-        tools:layout="@layout/fragment_write_category" />
+        tools:layout="@layout/fragment_write_category" >
+        <action
+            android:id="@+id/action_writeCategoryFragment_to_writeContentFragment"
+            app:destination="@id/writeContentFragment" />
+    </fragment>
 
 </navigation>
