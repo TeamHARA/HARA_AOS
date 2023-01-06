@@ -7,6 +7,9 @@
         <variable
             name="selected"
             type="boolean" />
+        <variable
+            name="op"
+            type="com.android.hara.presentation.detail.model.DecideData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +19,7 @@
         android:layout_marginBottom="24dp">
 
         <TextView
-            android:id="@+id/tv_final_option1"
+            android:id="@+id/tv_opt1_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
@@ -27,19 +30,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/gray_2"
             android:textAppearance="@style/hara_modal2_m18"
-            tools:text="선택지 글자수 제한 공백 포함 20자" />
+            android:text="@{op.content}"
+            tools:text="안녕하세용 나 오늘 머리 안 깜았어요"/>
 
         <TextView
-            android:id="@+id/tv_final_option2"
+            android:id="@+id/tv_opt1_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="14dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_final_option1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_opt1_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_final_option1"
+            app:layout_constraintTop_toTopOf="@+id/tv_opt1_content"
             android:textColor="@color/gray_2"
             android:textAppearance="@style/hara_heading2_m16"
-            tools:text="20%" />
+            android:text="@{op.number}"
+            tools:text="20%"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

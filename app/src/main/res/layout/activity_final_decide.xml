@@ -27,7 +27,7 @@
             android:id="@+id/iv_final_decide_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="141dp"
+            android:layout_marginTop="82dp"
             android:background="@drawable/img_decide_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,15 +58,168 @@
             android:orientation="horizontal"
             tools:listitem="@layout/item_final_decide_img"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_final_decide_option"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_options"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_final_decide_letssolve"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_final_decide_img"
-            tools:listitem="@layout/item_final_option" />
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="30dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_opt1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_rectangle_blue3_stroke_1_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_opt1_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="12dp"
+                    android:textAppearance="@style/hara_modal2_m18"
+                    android:textColor="@color/gray_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="안녕하세용 나 오늘 머리 안 깜았어요" />
+
+                <TextView
+                    android:id="@+id/tv_opt1_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:textAppearance="@style/hara_heading2_m16"
+                    android:textColor="@color/gray_2"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_opt1_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_opt1_content"
+                    android:text="20%" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_opt2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_rectangle_blue3_stroke_1_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_opt1">
+
+                <TextView
+                    android:id="@+id/tv_opt2_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="12dp"
+                    android:textAppearance="@style/hara_modal2_m18"
+                    android:textColor="@color/gray_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="안녕하세용 나 오늘 머리 안 깜았어요" />
+
+                <TextView
+                    android:id="@+id/tv_opt2_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:textAppearance="@style/hara_heading2_m16"
+                    android:textColor="@color/gray_2"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_opt2_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_opt2_content"
+                    android:text="20%" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_opt3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_rectangle_blue3_stroke_1_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_opt2">
+
+                <TextView
+                    android:id="@+id/tv_opt3_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="12dp"
+                    android:textAppearance="@style/hara_modal2_m18"
+                    android:textColor="@color/gray_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="안녕하세용 나 오늘 머리 안 깜았어요" />
+
+                <TextView
+                    android:id="@+id/tv_opt3_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:textAppearance="@style/hara_heading2_m16"
+                    android:textColor="@color/gray_2"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_opt3_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_opt3_content"
+                    android:text="20%" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_opt4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_rectangle_blue3_stroke_1_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_opt3">
+
+                <TextView
+                    android:id="@+id/tv_opt4_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="12dp"
+                    android:textAppearance="@style/hara_modal2_m18"
+                    android:textColor="@color/gray_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="안녕하세용 나 오늘 머리 안 깜았어요" />
+
+                <TextView
+                    android:id="@+id/tv_opt4_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="14dp"
+                    android:textAppearance="@style/hara_heading2_m16"
+                    android:textColor="@color/gray_2"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_opt4_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_opt4_content"
+                    android:text="20%" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_final_decide_letssolve"
@@ -80,7 +233,8 @@
             android:text="고민 해결하기"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:enabled="false"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
