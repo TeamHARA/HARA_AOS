@@ -4,8 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class WhatFragViewModel : ViewModel() {
-    private val _answer = MutableLiveData<String>()
+    private val _title = MutableLiveData<String>()
+    val title get() = _title
 
-    // 양방향데이터바인딩은 LiveData 사용 불가
-    val answer get() = _answer
+    private val _content = MutableLiveData<String>()
+    val content get() = _content
+
+    private val _enabled = MutableLiveData<Boolean>()
+    val enabled get() = _enabled
+
+    fun setNextBtn() {
+        _enabled.value = !_title.value.isNullOrEmpty() && !_content.value.isNullOrEmpty()
+    }
 }

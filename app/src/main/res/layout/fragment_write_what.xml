@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="vm"
             type="com.android.hara.presentation.write.fragment.what.WhatFragViewModel" />
@@ -18,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="86dp"
+            android:layout_marginTop="70dp"
             android:text="@string/write_title_question"
             android:textAppearance="@style/hara_modal1_m24"
             android:textColor="@color/black"
@@ -30,13 +31,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="96dp"
+            android:layout_marginTop="33dp"
             android:background="@null"
             android:hint="@string/write_title_answer_hint"
             android:inputType="text"
-            android:maxLength="25"
+            android:maxLength="20"
+            android:text="@={vm.title}"
             android:textAppearance="@style/hara_modal2_m18"
-            android:text="@={vm.answer}"
             android:textColor="@color/black"
             android:textColorHint="@color/gray_3"
             app:layout_constraintEnd_toStartOf="@+id/iv_write_pencil_image"
@@ -54,6 +55,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_write_what_answer" />
 
+        <TextView
+            android:id="@+id/what_title_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="0/20"
+            android:textAppearance="@style/hara_body3_r14"
+            android:textColor="@color/gray_3"
+            app:layout_constraintEnd_toEndOf="@+id/view_title_divider"
+            app:layout_constraintTop_toBottomOf="@+id/view_title_divider" />
+
         <ImageView
             android:id="@+id/iv_write_pencil_image"
             android:layout_width="wrap_content"
@@ -70,19 +82,32 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="38dp"
             android:layout_marginBottom="79dp"
             android:background="@drawable/shape_rectangle_blue3_stroke_1_12"
             android:gravity="top"
             android:hint="@string/write_content_answer_hint"
+            android:maxLength="300"
             android:paddingHorizontal="12dp"
             android:paddingVertical="14dp"
-            android:text="@={vm.answer}"
+            android:text="@={vm.content}"
             android:textAppearance="@style/hara_heading2_m16"
             android:textColor="@color/black"
             android:textColorHint="@color/gray_3"
             app:layout_constraintBottom_toTopOf="@+id/ib_write_upload_button"
             app:layout_constraintTop_toBottomOf="@+id/view_title_divider" />
+
+        <TextView
+            android:id="@+id/what_content_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            android:text="0/300"
+            android:textAppearance="@style/hara_body3_r14"
+            android:textColor="@color/gray_3"
+            app:layout_constraintBottom_toBottomOf="@+id/et_write_content_answer"
+            app:layout_constraintEnd_toEndOf="@+id/et_write_content_answer" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ib_write_upload_button"
