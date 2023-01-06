@@ -2,13 +2,11 @@ package com.android.hara.presentation.home.fragment.storage
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.android.hara.R
 import com.android.hara.databinding.FragmentStorageBinding
 import com.android.hara.presentation.base.BindingFragment
-import com.android.hara.presentation.home.fragment.storage.model.StorageData
 import com.android.hara.presentation.onesec.OneSecActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

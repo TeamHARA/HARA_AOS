@@ -1,6 +1,5 @@
 package com.android.hara.presentation.home.fragment.storage
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.databinding.ItemStorageBinding
 import com.android.hara.presentation.home.fragment.storage.model.StorageData
 import com.android.hara.presentation.util.GlobalDiffCallBack
-import android.content.Context
 
 class StorageAdapter(private val itemClickListener: (String) -> Unit)
     : ListAdapter<StorageData, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
