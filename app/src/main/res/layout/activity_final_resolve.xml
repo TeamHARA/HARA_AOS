@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+
+        <ImageView
+            android:id="@+id/iv_final_resolve_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img_decide_text_result"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="104dp" />
+
+        <TextView
+            android:id="@+id/tv_final_resolve_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="32dp"
+            android:text="글자수 제한은 공백 포함 28자 글자수 제한은 공백"
+            android:textAppearance="@style/hara_heading1_sb16"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_final_resolve_title" />
+
+        <ImageView
+            android:id="@+id/iv_final_resolve_img"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_final_resolve_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/ic_close"
+            android:layout_marginTop="24dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rectangle_black_fill_8"
+            android:text="선택지 글자수 제한 공백 포함 20자"
+            android:textAppearance="@style/hara_modal2_m18"
+            android:textColor="@color/white"
+            android:paddingTop="13dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="14dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginHorizontal="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_final_resolve_img" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

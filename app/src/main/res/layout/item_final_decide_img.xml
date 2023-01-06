@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/iv_item_final_decide_img"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginRight="8dp"
+        android:alpha="0.3"
+        android:background="@drawable/ic_launcher_background"/>
