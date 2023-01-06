@@ -6,4 +6,7 @@ import com.android.hara.presentation.base.BindingBottomSheetDialog
 
 class PickerBottomSheetDialog :
     BindingBottomSheetDialog<FragmentBottomsheetPickerBinding>(R.layout.fragment_bottomsheet_picker) {
+
+
+
 }
