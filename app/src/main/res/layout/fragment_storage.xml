@@ -13,7 +13,7 @@
         tools:context=".presentation.home.fragment.storage.StorageFragment">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/btn_storage_onesec"
+            android:id="@+id/cv_btn_onesec"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:orientation="vertical"
@@ -29,6 +29,7 @@
             app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_btn_onesec"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/img_game"
@@ -39,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tv_storage_btn1"
+                    android:id="@+id/tv_btn1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -52,30 +53,30 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_storage_btn2"
+                    android:id="@+id/tv_btn2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="고민 해결"
                     android:textAppearance="@style/hara_game_sb18"
                     android:textColor="@color/blue_1"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_storage_btn1"
-                    app:layout_constraintEnd_toStartOf="@id/tv_storage_btn3"
-                    app:layout_constraintStart_toEndOf="@+id/tv_storage_btn1"
-                    app:layout_constraintTop_toTopOf="@+id/tv_storage_btn1"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_btn1"
+                    app:layout_constraintEnd_toStartOf="@id/tv_btn3"
+                    app:layout_constraintStart_toEndOf="@+id/tv_btn1"
+                    app:layout_constraintTop_toTopOf="@+id/tv_btn1"
                     android:layout_marginRight="0dp"/>
 
                 <TextView
-                    android:id="@+id/tv_storage_btn3"
+                    android:id="@+id/tv_btn3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="하러 가기"
                     android:textAppearance="@style/hara_game_sb18"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_storage_btn2"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_btn2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_storage_btn2"
-                    app:layout_constraintTop_toTopOf="@+id/tv_storage_btn2"
+                    app:layout_constraintStart_toEndOf="@+id/tv_btn2"
+                    app:layout_constraintTop_toTopOf="@+id/tv_btn2"
                     android:layout_marginRight="30dp"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -88,7 +89,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_storage_onesec"
+            app:layout_constraintTop_toBottomOf="@id/cv_btn_onesec"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"
@@ -138,7 +139,7 @@
             android:text="편집"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/btn_storage_align"
-            app:layout_constraintEnd_toEndOf="@+id/btn_storage_onesec"
+            app:layout_constraintEnd_toEndOf="@+id/cv_btn_onesec"
             app:layout_constraintTop_toTopOf="@id/btn_storage_align"
             android:minHeight="0dp"
             android:minWidth="0dp"

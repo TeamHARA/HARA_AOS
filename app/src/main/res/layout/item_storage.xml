@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/btn_storage_onesec"
+        android:id="@+id/cv_btn_onesec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
