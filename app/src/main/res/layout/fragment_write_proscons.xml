@@ -34,17 +34,48 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_write_proscons_question" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_write_proscons_option"
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_write_proscons_option"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginHorizontal="12dp"-->
+<!--            android:layout_marginTop="21dp"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_write_proscons_explanation"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/ib_write_proscons_upload_button"-->
+<!--            tools:itemCount="4"-->
+<!--            tools:listitem="@layout/item_write_proscons" />-->
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="21dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="45dp"
             app:layout_constraintTop_toBottomOf="@+id/tv_write_proscons_explanation"
-            app:layout_constraintBottom_toTopOf="@+id/ib_write_proscons_upload_button"
-            tools:itemCount="4"
-            tools:listitem="@layout/item_write_proscons" />
+            app:layout_constraintBottom_toTopOf="@+id/ib_write_proscons_upload_button">
+            <LinearLayout
+                android:id="@+id/linear_option_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/proscons1"
+                    layout="@layout/item_write_proscons" />
+
+                <include
+                    android:id="@+id/proscons2"
+                    layout="@layout/item_write_proscons" />
+
+                <include
+                    android:id="@+id/proscons3"
+                    layout="@layout/item_write_proscons" />
+
+                <include
+                    android:id="@+id/proscons4"
+                    layout="@layout/item_write_proscons" />
+            </LinearLayout>
+        </ScrollView>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ib_write_proscons_upload_button"
