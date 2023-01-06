@@ -1,6 +1,7 @@
 package com.android.hara.presentation.write.fragment.option
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -20,6 +21,11 @@ class WriteOptionFragment :
         setNavigation(view)
         onClickNextBtn()
         onClickBackBtn()
+
+        val optionAdapter = OptionAdapter(requireContext()) {
+            Log.d("TEST", it.id.toString())
+        }
+        binding.rvWriteWorryOption.adapter = optionAdapter
     }
 
     private fun setNavigation(view: View) {
