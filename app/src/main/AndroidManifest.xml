@@ -18,9 +18,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
-            android:name=".presentation.cardgame.CardGameActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:name=".presentation.onesec.OneSecActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".presentation.setting.SettingActivity"
             android:exported="false"
@@ -32,21 +32,11 @@
         <activity
             android:name=".presentation.detail.FinalDecideActivity"
             android:exported="true"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".presentation.detail.FinalResolveActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".presentation.detail.DetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.write.WriteActivity"
             android:exported="false"
@@ -55,6 +45,11 @@
             android:name=".presentation.home.HomeActivity"
             android:exported="true"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

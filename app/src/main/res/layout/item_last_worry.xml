@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="worrydata"
+            type="com.android.hara.presentation.onesec.model.WorryData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_rectangle_blue3_stroke_1_8">
+
+        <TextView
+            android:id="@+id/tv_one_sec_date"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@{worrydata.date}"
+            android:textAppearance="@style/hara_body3_r14"
+            android:textColor="@color/gray_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="22.12.25" />
+
+        <TextView
+            android:id="@+id/tv_one_sec_study"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:gravity="center"
+            android:text="@{worrydata.content}"
+            android:textAppearance="@style/hara_body2_m14"
+            android:textColor="@color/blue_1"
+            app:layout_constraintStart_toStartOf="@+id/tv_one_sec_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_one_sec_date"
+            tools:text="어떤 공부부터 시작할까요?" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

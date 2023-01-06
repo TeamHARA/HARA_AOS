@@ -4,12 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.android.hara.R
 import com.android.hara.databinding.ActivityFinalDecideBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.detail.viewmodel.DecideViewModel
-import com.android.hara.presentation.util.selected
 
 class FinalDecideActivity :
     BindingActivity<ActivityFinalDecideBinding>(R.layout.activity_final_decide) {
