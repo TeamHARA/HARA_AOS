@@ -18,11 +18,19 @@ class WriteCategoryFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setNavigation(view)
+        onClickNextBtn()
         onClickBackBtn()
     }
 
     private fun setNavigation(view: View) {
         navController = Navigation.findNavController(view)
+    }
+
+    private fun onClickNextBtn() {
+        binding.ibWriteContentNextButtonOff.setOnClickListener {
+            navController.navigate(R.id.action_writeCategoryFragment_to_writeHowFragment)
+            writeViewModel.addProgress()
+        }
     }
 
     private fun onClickBackBtn() {

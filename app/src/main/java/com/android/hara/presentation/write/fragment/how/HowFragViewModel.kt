@@ -1,11 +1,9 @@
-package com.android.hara.presentation.write.fragment.title
+package com.android.hara.presentation.write.fragment.how
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class TitleFragViewModel : ViewModel() {
+class HowFragViewModel : ViewModel() {
     private val _answer = MutableLiveData<String>()
-
-    // 양방향데이터바인딩은 LiveData 사용 불가
     val answer get() = _answer
 }

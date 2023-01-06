@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/write_nav_graph"
-    app:startDestination="@id/writeTitleFragment">
+    app:startDestination="@id/writeWhatFragment">
 
     <fragment
-        android:id="@+id/writeTitleFragment"
-        android:name="com.android.hara.presentation.write.fragment.title.WriteTitleFragment"
-        android:label="WriteTitleFragment"
+        android:id="@+id/writeWhatFragment"
+        android:name="com.android.hara.presentation.write.fragment.what.WriteWhatFragment"
+        android:label="WriteWhatFragment"
         tools:layout="@layout/fragment_write_what">
         <action
-            android:id="@+id/action_writeTitleFragment_to_writeOptionFragment"
+            android:id="@+id/action_writeWhatFragment_to_writeOptionFragment"
             app:destination="@id/writeOptionFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/writeContentFragment"
-        android:name="com.android.hara.presentation.write.fragment.content.WriteContentFragment"
-        android:label="WriteContentFragment"
-        tools:layout="@layout/fragment_write_how"/>
+        android:id="@+id/writeHowFragment"
+        android:name="com.android.hara.presentation.write.fragment.how.WriteHowFragment"
+        android:label="WriteHowFragment"
+        tools:layout="@layout/fragment_write_how" />
 
     <fragment
         android:id="@+id/writeOptionFragment"
@@ -45,10 +45,10 @@
         android:id="@+id/writeCategoryFragment"
         android:name="com.android.hara.presentation.write.fragment.category.WriteCategoryFragment"
         android:label="WriteCategoryFragment"
-        tools:layout="@layout/fragment_write_category" >
+        tools:layout="@layout/fragment_write_category">
         <action
-            android:id="@+id/action_writeCategoryFragment_to_writeContentFragment"
-            app:destination="@id/writeContentFragment" />
+            android:id="@+id/action_writeCategoryFragment_to_writeHowFragment"
+            app:destination="@id/writeHowFragment" />
     </fragment>
 
 </navigation>
