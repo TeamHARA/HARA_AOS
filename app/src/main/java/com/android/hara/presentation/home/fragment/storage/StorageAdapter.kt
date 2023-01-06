@@ -31,6 +31,7 @@ class StorageAdapter(private val itemClickListener: (String) -> Unit)
                 binding.tvTitle.text = curItem.title
                 binding.tvDate.text = curItem.date
                 binding.xmlIng = curItem.flag
+
                 if (curItem.flag) binding.tvFlag.text = "고민중"
                 else binding.tvFlag.text = "고민완료"
             }

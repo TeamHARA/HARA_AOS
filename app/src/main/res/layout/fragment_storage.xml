@@ -112,51 +112,18 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_storage_align"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_rectangle_blue3_stroke_1_30"
-            android:drawableStart="@drawable/ic_change"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:paddingStart="4dp"
-            android:paddingEnd="8dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:drawablePadding="2dp"
-            android:text="@string/storage_filter_ing"
-            android:textColor="@color/blue_1"
-            app:layout_constraintStart_toStartOf="@+id/tl_storage_tab"
-            app:layout_constraintTop_toBottomOf="@+id/tl_storage_tab"
-            android:textAppearance="@style/hara_sub2_m12"
-            android:padding="0dp"
-            android:layout_marginTop="12dp"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="편집"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_storage_align"
-            app:layout_constraintEnd_toEndOf="@+id/cv_btn_onesec"
-            app:layout_constraintTop_toTopOf="@id/btn_storage_align"
-            android:minHeight="0dp"
-            android:minWidth="0dp"
-            android:background="@android:color/transparent"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_posts"
-            android:layout_width="match_parent"
+        <!-- ViewPager2: 이 위치에 Fragment들이 노출된다. -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/btn_storage_align"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/tl_storage_tab"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="12dp"
-            tools:listitem="@layout/item_storage"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
