@@ -31,7 +31,7 @@ object DataSourceModule {
 
     @Singleton
     @Provides
-    fun provideSoptRetrofit(okHttpClient: OkHttpClient): Retrofit =
+    fun provideHARARetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL) //TODO add local.properties
             .client(okHttpClient)
@@ -39,5 +39,5 @@ object DataSourceModule {
             .build()
 
     @Qualifier
-    annotation class HaraRetrofit
+    annotation class HARARetrofit
 }
