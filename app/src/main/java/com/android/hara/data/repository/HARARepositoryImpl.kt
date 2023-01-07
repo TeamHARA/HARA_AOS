@@ -6,9 +6,10 @@ import com.android.hara.data.model.response.ResponseVoteDTO
 import com.android.hara.domain.repository.HARARepository
 import javax.inject.Inject
 
-class HARARepositoryImpl @Inject constructor(private val HARAService: HARAService) :
-    HARARepository {
+class HARARepositoryImpl @Inject constructor(
+    private val HARAService: HARAService
+) : HARARepository {
     override suspend fun postVote(request: RequestVoteDTO): ResponseVoteDTO {
-        HARAService.vote(request)
+        return HARAService.vote(request)
     }
 }
