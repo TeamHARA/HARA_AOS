@@ -12,7 +12,9 @@ import com.android.hara.databinding.DialogDecisionBinding
 import com.android.hara.presentation.custom.model.DialogData
 import com.android.hara.presentation.util.dpToPx
 import com.android.hara.presentation.util.setOnSingleClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DecisionDialog(
     val context: Context,
     val data: DialogData,

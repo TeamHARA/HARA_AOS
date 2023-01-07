@@ -6,7 +6,9 @@ import android.view.View
 import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragment_together) {
 
     private val category: Array<String>
