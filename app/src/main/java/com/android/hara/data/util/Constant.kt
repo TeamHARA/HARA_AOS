@@ -8,4 +8,6 @@ object Constant {
     const val PREF_ID = "ID"
     const val PREF_PW = "PW"
     const val PREF_NAME = "NAME"
+
+    const val REQRES_BASE_URL =  "https://reqres.in/"
 }
