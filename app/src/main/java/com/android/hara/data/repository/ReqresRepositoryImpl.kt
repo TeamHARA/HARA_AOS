@@ -1,6 +1,5 @@
 package com.android.hara.data.repository
 
-import com.android.hara.data.datasource.HARAService
 import com.android.hara.data.datasource.ReqresApi
 import com.android.hara.data.model.request.RequestReqresUserDTO
 import com.android.hara.data.model.response.ReqresUserDTO
@@ -11,7 +10,7 @@ import javax.inject.Inject
 
 class ReqresRepositoryImpl @Inject constructor(
     private val ReqresApi: ReqresApi
-) :ReqresRepository{
+) : ReqresRepository {
     override suspend fun postReqres(request: RequestReqresUserDTO): Response<ReqresUserDTO> {
         return ReqresApi.postReqresUser(request)
     }

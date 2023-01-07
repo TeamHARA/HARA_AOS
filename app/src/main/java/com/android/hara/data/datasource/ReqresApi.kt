@@ -4,6 +4,7 @@ import com.android.hara.data.model.request.RequestReqresUserDTO
 import com.android.hara.data.model.response.ReqresUserDTO
 import com.android.hara.data.model.response.ResponseReqresListDTO
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -13,5 +14,5 @@ interface ReqresApi { //서버통신 전반적일 테스트를 위한 Reqres API
     suspend fun getReqresList(@Query("page") page: Int = 2): Response<ResponseReqresListDTO>
 
     @POST("api/users")
-    suspend fun postReqresUser(requset: RequestReqresUserDTO): Response<ReqresUserDTO>
+    suspend fun postReqresUser(@Body requset: RequestReqresUserDTO): Response<ReqresUserDTO>
 }
