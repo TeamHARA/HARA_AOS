@@ -1,6 +1,6 @@
 package com.android.hara.di
 
-import com.android.hara.data.datasource.HaraService
+import com.android.hara.data.datasource.HARAService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,8 +14,8 @@ object ServiceModule {
 
     @Singleton
     @Provides
-    fun provideLoginService(@DataSourceModule.HaraRetrofit authService: Retrofit): HaraService {
-        return authService.create(HaraService::class.java)
+    fun provideHARAService(@DataSourceModule.HARARetrofit authService: Retrofit): HARAService {
+        return authService.create(HARAService::class.java)
     }
 
 }
