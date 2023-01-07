@@ -38,6 +38,18 @@ object DataSourceModule {
             .addConverterFactory(Json.asConverterFactory(Constant.APPLICATION_JSON.toMediaType()))
             .build()
 
+    @Singleton
+    @Provides
+    fun provideReqresRetrofit(okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(Constant.REQRES_BASE_URL) //TODO add local.properties
+            .client(okHttpClient)
+            .addConverterFactory(Json.asConverterFactory(Constant.APPLICATION_JSON.toMediaType()))
+            .build()
+
     @Qualifier
     annotation class HARARetrofit
+
+    @Qualifier
+    annotation class ReQresRetrofit
 }
