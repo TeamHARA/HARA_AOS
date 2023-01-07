@@ -19,6 +19,7 @@ object ServiceModule {
         return haraService.create(HARAService::class.java)
     }
 
+    //TODO 삭제예정
     @Singleton
     @Provides
     fun provideReqresService(@DataSourceModule.ReQresRetrofit reqresService: Retrofit): ReqresApi {

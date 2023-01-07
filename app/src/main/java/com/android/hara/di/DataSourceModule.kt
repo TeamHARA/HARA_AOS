@@ -39,6 +39,7 @@ object DataSourceModule {
             .addConverterFactory(Json.asConverterFactory(Constant.APPLICATION_JSON.toMediaType()))
             .build()
 
+    //TODO 삭제예정
     @Singleton
     @Provides
     @ReQresRetrofit
@@ -52,6 +53,7 @@ object DataSourceModule {
     @Qualifier
     annotation class HARARetrofit
 
+    //TODO 삭제예정
     @Qualifier
     annotation class ReQresRetrofit
 }

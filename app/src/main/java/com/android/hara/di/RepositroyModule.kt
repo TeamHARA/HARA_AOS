@@ -17,6 +17,7 @@ abstract class RepositoryModule {
     @Singleton
     abstract fun bindToHARARepository(HARARepositoryImpl: HARARepositoryImpl): HARARepository
 
+    //TODO 삭제예정
     @Binds
     @Singleton
     abstract fun bindToReqresRepository(ReqresRepository: ReqresRepositoryImpl): ReqresRepository

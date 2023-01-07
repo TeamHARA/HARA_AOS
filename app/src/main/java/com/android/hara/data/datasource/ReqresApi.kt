@@ -10,6 +10,7 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface ReqresApi { //서버통신 전반적일 테스트를 위한 Reqres API
+    //TODO 삭제예정
     @GET("api/users?")
     suspend fun getReqresList(@Query("page") page: Int = 2): Response<ResponseReqresListDTO>
 
