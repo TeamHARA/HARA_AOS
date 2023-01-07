@@ -12,6 +12,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -37,5 +38,6 @@ object DataSourceModule {
             .addConverterFactory(Json.asConverterFactory(Constant.APPLICATION_JSON.toMediaType()))
             .build()
 
-
+    @Qualifier
+    annotation class HaraRetrofit
 }
