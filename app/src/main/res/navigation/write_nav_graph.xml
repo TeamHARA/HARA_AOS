@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/write_nav_graph"
+    app:startDestination="@id/writeWhatFragment">
+
+    <fragment
+        android:id="@+id/writeWhatFragment"
+        android:name="com.android.hara.presentation.write.fragment.what.WriteWhatFragment"
+        android:label="WriteWhatFragment"
+        tools:layout="@layout/fragment_write_what">
+        <action
+            android:id="@+id/action_writeWhatFragment_to_writeOptionFragment"
+            app:destination="@id/writeOptionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/writeHowFragment"
+        android:name="com.android.hara.presentation.write.fragment.how.WriteHowFragment"
+        android:label="WriteHowFragment"
+        tools:layout="@layout/fragment_write_how" />
+
+    <fragment
+        android:id="@+id/writeOptionFragment"
+        android:name="com.android.hara.presentation.write.fragment.option.WriteOptionFragment"
+        android:label="WriteOptionFragment"
+        tools:layout="@layout/fragment_write_option">
+        <action
+            android:id="@+id/action_writeOptionFragment_to_writeProsconsFragment"
+            app:destination="@id/writeProsconsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/writeProsconsFragment"
+        android:name="com.android.hara.presentation.write.fragment.proscons.WriteProsconsFragment"
+        android:label="WriteProsconsFragment"
+        tools:layout="@layout/fragment_write_proscons">
+        <action
+            android:id="@+id/action_writeProsconsFragment_to_writeCategoryFragment"
+            app:destination="@id/writeCategoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/writeCategoryFragment"
+        android:name="com.android.hara.presentation.write.fragment.category.WriteCategoryFragment"
+        android:label="WriteCategoryFragment"
+        tools:layout="@layout/fragment_write_category">
+        <action
+            android:id="@+id/action_writeCategoryFragment_to_writeHowFragment"
+            app:destination="@id/writeHowFragment" />
+    </fragment>
+
+</navigation>

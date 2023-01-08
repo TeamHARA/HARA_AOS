@@ -3,27 +3,17 @@ package com.android.hara.presentation.home.fragment.together
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.databinding.ItemCategoryBinding
+import com.android.hara.presentation.util.GlobalDiffCallBack
 
 // private val itemClickListener: (String) -> Unit : ?
-class CategoryAdapter(context: Context, private val itemClickListener: (String) -> Unit) : ListAdapter<String, RecyclerView.ViewHolder>(
-    TestDiffCallback()) {
+class CategoryAdapter(context: Context, private val itemClickListener: (String) -> Unit) :
+    ListAdapter<String, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
     // notifyDatasetChange대신 submitlist 리스트를 넣는다
 
     private val inflater by lazy { LayoutInflater.from(context) }
-
-    class TestDiffCallback : DiffUtil.ItemCallback<String>() {
-        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
-            return oldItem == newItem
-        }
-    }
 
     class ItemViewHolder(val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root)
 
