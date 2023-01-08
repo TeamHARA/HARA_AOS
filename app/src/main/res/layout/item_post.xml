@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/shape_rectangle_blue3_stroke_1_8"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="16dp">
+
+    <!-- 카테고리 -->
+    <TextView
+        android:id="@+id/tv_post_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="일상"
+        android:textAppearance="@style/hara_sub1_sb12"
+        android:textColor="@color/blue_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 날짜 -->
+    <TextView
+        android:id="@+id/tv_post_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2022.12.25"
+        android:textAppearance="@style/hara_sub3_r12"
+        android:textColor="@color/blue_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 제목 -->
+    <TextView
+        android:id="@+id/tv_post_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="글자수 제한은 공백 포함 28자 글자수 제한은 공백"
+        android:textAppearance="@style/hara_heading1_sb16"
+        app:layout_constraintStart_toStartOf="@id/tv_post_category"
+        app:layout_constraintTop_toBottomOf="@id/tv_post_category" />
+
+    <!-- 본문 -->
+    <TextView
+        android:id="@+id/tv_post_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:lineHeight="22.4sp"
+        android:text="1. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세 2. 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세 3. 가을 하늘 공활한데 ..."
+        android:textAppearance="@style/hara_body2_m14"
+        app:layout_constraintStart_toStartOf="@id/tv_post_category"
+        app:layout_constraintTop_toBottomOf="@id/tv_post_title" />
+
+    <!-- image flow -->
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow_post_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:constraint_referenced_ids="iv_post_img1,iv_post_img2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_content" />
+
+    <!-- image 1 -->
+    <ImageView
+        android:id="@+id/iv_post_img1"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/ic_bell" />
+
+    <!-- image 2 -->
+    <ImageView
+        android:id="@+id/iv_post_img2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/ic_bell" />
+
+    <!-- option 1 -->
+    <include
+        android:id="@+id/layout_post_opt1"
+        layout="@layout/layout_post_option"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flow_post_img" />
+
+    <!-- option 2 -->
+    <include
+        android:id="@+id/layout_post_opt2"
+        layout="@layout/layout_post_option"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_post_opt1" />
+
+    <!-- option 3 -->
+    <include
+        android:id="@+id/layout_post_opt3"
+        layout="@layout/layout_post_option"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_post_opt2" />
+
+    <!-- option 4 -->
+    <include
+        android:id="@+id/layout_post_opt4"
+        layout="@layout/layout_post_option"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_post_opt3" />
+
+    <!-- 투표하기 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_post_vote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_rectangle_white_orange3"
+        android:minHeight="0dp"
+        android:paddingVertical="12dp"
+        android:stateListAnimator="@null"
+        android:text="@string/vote"
+        android:textAppearance="@style/hara_body1_sb14"
+        android:textColor="@color/orange_1"
+        app:layout_constraintTop_toBottomOf="@+id/layout_post_opt4"
+        tools:layout_editor_absoluteX="12dp" />
+
+    <!-- 댓글 수 표시 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_post_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17.3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_post_vote">
+
+        <ImageView
+            android:id="@+id/iv_post_comment_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_chat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_post_comment_num"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_post_comment_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="10"
+            android:textAppearance="@style/hara_sub3_r12"
+            android:textColor="@color/gray_3"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_post_comment_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_post_comment_img" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
