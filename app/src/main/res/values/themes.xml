@@ -109,4 +109,11 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
+    <style name="numberPickerCustomSize">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/pretendard_medium</item>
+        <item name="android:colorControlNormal">@color/gray_2</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
+
 </resources>
