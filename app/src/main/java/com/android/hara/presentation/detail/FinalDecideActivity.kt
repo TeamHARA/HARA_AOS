@@ -8,7 +8,9 @@ import com.android.hara.R
 import com.android.hara.databinding.ActivityFinalDecideBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.detail.viewmodel.DecideViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FinalDecideActivity :
     BindingActivity<ActivityFinalDecideBinding>(R.layout.activity_final_decide) {
     // FinalDecideFragment에서 버튼을 다스릴 애가 local임.
