@@ -9,6 +9,7 @@ import com.android.hara.presentation.custom.DecisionDialog
 import com.android.hara.presentation.custom.model.DialogData
 import com.android.hara.presentation.detail.viewmodel.DecideViewModel
 import com.android.hara.presentation.detail.viewmodel.DetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
