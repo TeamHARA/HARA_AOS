@@ -44,7 +44,7 @@ class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragmen
         TabLayoutMediator(tabLayout, viewPager, {tab, position -> tab.text = tabTitles[position]}).attach()
 
         // 버튼 클릭 시 '1초만에 해결하기' 액티비티로 연결
-        binding.cvBtnOnesec.setOnClickListener {
+        binding.cvStorageBtnOnesec.setOnClickListener {
             val intent = Intent(activity, OneSecActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION) // 이거 지워도 되나..
             startActivity(intent)
