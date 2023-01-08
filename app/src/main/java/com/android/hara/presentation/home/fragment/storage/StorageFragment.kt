@@ -10,8 +10,9 @@ import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.onesec.OneSecActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragment_storage) {
     // FinalDecideFragment에서 버튼을 다스릴 애가 local임.
     // local이 data binding으로 연결된 fragment_final_decide.xml에 있는 selected라는 변수로 전달됨.
