@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="detailVm"
+            type="com.android.hara.presentation.detail.viewmodel.DetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
-                    android:text="@string/vote"
+                    android:text="일상"
                     android:textAppearance="@style/hara_sub2_m12"
                     android:textColor="@color/blue_1"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_detail_data"
@@ -104,6 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/appbase_margin_space"
                     android:layout_marginTop="@dimen/appbase_margin_space"
+                    android:lineHeight="22.4sp"
                     android:text="아니 제가 어쩌고 저쩌고 해서 저쩌고 한데 저쩌고하거든요 그래서 진짜로 어쩌고 저쩌고 해요 강아지 멍멍 고양이 야옹야옹후하후하후하 "
                     android:textAppearance="@style/hara_body3_r14"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +118,7 @@
                     android:id="@+id/flow_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="16dp"
                     app:constraint_referenced_ids="iv_vote1,iv_vote2"
                     app:layout_constraintBottom_toTopOf="@+id/rcv_detail_vote"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -139,23 +143,78 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/appbase_margin_space"
                     android:layout_marginTop="16dp"
-                    tools:listitem="@layout/item_write_proscons"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/flow_image" />
+                    app:layout_constraintTop_toBottomOf="@+id/flow_image"
+                    tools:listitem="@layout/item_write_proscons" />
 
+                <include
+                    android:id="@+id/layout_option1"
+                    layout="@layout/layout_detail_option"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/flow_image"
+                    app:optSel="@{detailVm.SNum == 1 ? true : false}" />
+
+                <include
+                    android:id="@+id/layout_option2"
+                    layout="@layout/layout_detail_option"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_option1"
+                    app:optSel="@{detailVm.SNum == 2 ? true : false}" />
+
+                <include
+                    android:id="@+id/layout_option3"
+                    layout="@layout/layout_detail_option"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_option2"
+                    app:optSel="@{detailVm.SNum == 3 ? true : false}" />
+
+                <include
+                    android:id="@+id/layout_option4"
+                    layout="@layout/layout_detail_option"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_option3"
+                    app:optSel="@{detailVm.SNum == 4 ? true : false}" />
+
+                <!-- button -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_vote"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginHorizontal="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="14dp"
+                    android:background="@{detailVm.SNum == 0 ? @drawable/shape_rectangle_orange2_stroke_1_8 : @drawable/shape_rectangle_orange3_fill_8}"
+                    android:enabled="@{detailVm.SNum == 0 ? false : true}"
+                    android:stateListAnimator="@null"
                     android:text="@string/vote"
                     android:textAppearance="@style/hara_heading1_sb16"
-                    app:layout_constraintTop_toBottomOf="@+id/rcv_detail_vote" />
+                    android:textColor="@color/orange_1"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_option4" />
 
+                <!-- 투표하기 버튼 아래 회색 선 -->
                 <View
-                    android:id="@+id/divder_detail"
+                    android:id="@+id/divider_detail"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="14dp"
@@ -171,7 +230,7 @@
                     android:text="@string/comment"
                     android:textAppearance="@style/hara_sub3_r12"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divder_detail" />
+                    app:layout_constraintTop_toBottomOf="@+id/divider_detail" />
 
                 <TextView
                     android:id="@+id/tv_detail_comment_count"
@@ -193,12 +252,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <View
-            android:id="@+id/divder_detail2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray_5"
-            app:layout_constraintBottom_toTopOf="@id/cl_comment" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_comment"

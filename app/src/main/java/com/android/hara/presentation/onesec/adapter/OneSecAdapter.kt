@@ -29,6 +29,4 @@ class OneSecAdapter() :
             binding.setVariable(BR.worrydata, getItem(position) as WorryData)
         }
     }
-
-
 }
