@@ -1,89 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/gradient_background">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/tv_write_option_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="126dp"
-        android:text="@string/write_option_question"
-        android:textAppearance="@style/hara_modal1_m24"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_write_worry_option"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="45dp"
-        tools:itemCount="4"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/tv_write_option_question"
-        tools:listitem="@layout/item_write_option" />
+        <variable
+            name="vm"
+            type="com.android.hara.presentation.write.fragment.option.OptionFragViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btn_option_add_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:background="@drawable/shape_rectangle_blue3_stroke_1_8"
-        android:paddingVertical="12dp"
-        android:stateListAnimator="@null"
-        app:layout_constraintTop_toBottomOf="@+id/rv_write_worry_option">
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background">
 
-        <ImageView
+        <TextView
+            android:id="@+id/tv_write_option_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_worry_add"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_option_add_button"
-            app:layout_constraintEnd_toEndOf="@+id/btn_option_add_button"
-            app:layout_constraintStart_toStartOf="@+id/btn_option_add_button"
-            app:layout_constraintTop_toTopOf="@+id/btn_option_add_button" />
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="64dp"
+            android:text="@string/write_option_question"
+            android:textAppearance="@style/hara_modal1_m24"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linear_option_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="54dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/tv_write_option_question">
+
+            <include
+                android:id="@+id/option1"
+                layout="@layout/item_write_option"
+                app:vm="@{vm}"
+                app:inputText="@{vm.string1}" />
+
+            <include
+                android:id="@+id/option2"
+                layout="@layout/item_write_option"
+                app:vm="@{vm}"
+                app:inputText="@{vm.string2}" />
+
+            <include
+                android:id="@+id/option3"
+                layout="@layout/item_write_option"
+                android:visibility="gone"
+                app:vm="@{vm}"
+                app:inputText="@{vm.string3}" />
+
+            <include
+                android:id="@+id/option4"
+                layout="@layout/item_write_option"
+                android:visibility="gone"
+                app:vm="@{vm}"
+                app:inputText="@{vm.string4}" />
+        </LinearLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_option_add_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:background="@drawable/shape_rectangle_white_fill_blue3_stroke_1_8"
+            android:onClick="@{() -> vm.addOption()}"
+            android:paddingVertical="12dp"
+            android:stateListAnimator="@null"
+            app:layout_constraintTop_toBottomOf="@+id/linear_option_layout">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_worry_add"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_option_add_button"
+                app:layout_constraintEnd_toEndOf="@+id/btn_option_add_button"
+                app:layout_constraintStart_toStartOf="@+id/btn_option_add_button"
+                app:layout_constraintTop_toTopOf="@+id/btn_option_add_button" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ib_write_option_upload_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/shape_rectangle_blue3_stroke_1_1000"
+            android:paddingHorizontal="70dp"
+            android:paddingVertical="14dp"
+            android:text="@string/write_upload_button"
+            android:textAppearance="@style/hara_heading1_sb16"
+            android:textColor="@color/blue_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/ib_write_option_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_back_on"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_write_option_upload_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ib_write_option_upload_button" />
+
+        <ImageButton
+            android:id="@+id/ib_write_option_next_button_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_next_on"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_write_option_upload_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ib_write_option_upload_button" />
+
+        <ImageButton
+            android:id="@+id/ib_write_option_next_button_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_next_off"
+            app:layout_constraintBottom_toBottomOf="@+id/ib_write_option_upload_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ib_write_option_upload_button" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ib_write_option_upload_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:background="@drawable/shape_rectangle_blue3_stroke_1_1000"
-        android:paddingHorizontal="70dp"
-        android:paddingVertical="14dp"
-        android:text="@string/write_upload_button"
-        android:textAppearance="@style/hara_heading1_sb16"
-        android:textColor="@color/blue_3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/ib_write_option_back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_back_on"
-        app:layout_constraintBottom_toBottomOf="@+id/ib_write_option_upload_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ib_write_option_upload_button" />
-
-    <ImageButton
-        android:id="@+id/ib_write_option_next_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:background="@android:color/transparent"
-        android:src="@drawable/ic_next_off"
-        app:layout_constraintBottom_toBottomOf="@+id/ib_write_option_upload_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ib_write_option_upload_button" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
