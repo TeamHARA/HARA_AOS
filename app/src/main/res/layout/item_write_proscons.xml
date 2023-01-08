@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp">
+    android:layout_marginBottom="14dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_write_option_layout"
