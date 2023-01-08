@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/home_appbar"
+            android:id="@+id/home_appbar_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_appbar_height"
             android:elevation="0dp"
@@ -20,6 +20,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/home_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
@@ -39,7 +40,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_appbar"
+            app:layout_constraintTop_toBottomOf="@+id/home_appbar_layout"
             app:navGraph="@navigation/bottom_nav_graph" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
