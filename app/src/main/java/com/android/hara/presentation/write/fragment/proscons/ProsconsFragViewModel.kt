@@ -1,3 +1,5 @@
 package com.android.hara.presentation.write.fragment.proscons
 
-class ProsconsFragViewModel
+import androidx.lifecycle.ViewModel
+
+class ProsconsFragViewModel : ViewModel()

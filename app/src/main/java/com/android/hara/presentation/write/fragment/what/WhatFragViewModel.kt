@@ -13,7 +13,7 @@ class WhatFragViewModel : ViewModel() {
     private val _enabled = MutableLiveData<Boolean>()
     val enabled get() = _enabled
 
-    fun setNextBtn() {
+    fun setEnabled() {
         _enabled.value = !_title.value.isNullOrEmpty() && !_content.value.isNullOrEmpty()
     }
 }

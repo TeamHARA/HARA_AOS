@@ -58,17 +58,17 @@ class WriteWhatFragment :
 
     private fun addObserve() {
         whatViewModel.title.observe(viewLifecycleOwner) {
-            setNextButton()
+            setNextBtn()
             setTitleLength()
         }
         whatViewModel.content.observe(viewLifecycleOwner) {
-            setNextButton()
+            setNextBtn()
             setContentLength()
         }
     }
 
-    private fun setNextButton() {
-        whatViewModel.setNextBtn()
+    private fun setNextBtn() {
+        whatViewModel.setEnabled()
         if (whatViewModel.enabled.value!!) {
             binding.ibWriteNextButtonOn.visibility = View.VISIBLE
             binding.ibWriteNextButtonOff.visibility = View.INVISIBLE

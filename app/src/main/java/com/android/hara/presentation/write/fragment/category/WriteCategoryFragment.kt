@@ -27,7 +27,7 @@ class WriteCategoryFragment :
     }
 
     private fun onClickNextBtn() {
-        binding.ibWriteContentNextButtonOff.setOnClickListener {
+        binding.ibWriteCategoryNextButtonOn.setOnClickListener {
             navController.navigate(R.id.action_writeCategoryFragment_to_writeHowFragment)
             writeViewModel.addProgress()
         }
