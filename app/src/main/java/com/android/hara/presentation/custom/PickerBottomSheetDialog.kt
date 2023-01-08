@@ -21,17 +21,20 @@ class PickerBottomSheetDialog :
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
+        setOnClickListener()
+    }
+
+    private fun init() {
         binding.pickerCategory.displayedValues = categoryList.toTypedArray()
         binding.pickerCategory.minValue = 0
         binding.pickerCategory.maxValue = categoryList.size - 1
         binding.pickerCategory.displayedValues = categoryList.toTypedArray()
         binding.pickerCategory.wrapSelectorWheel = true //
+    }
 
+    private fun setOnClickListener() {
         binding.pickerCategory.setOnValueChangedListener { picker, xoldVal, newVal ->
-            Timber.e(picker.toString())
-            Timber.e(xoldVal.toString())
-            Timber.e(newVal.toString())
-            //binding.pickerCategory.textColor = R.color.black
             count = newVal
         }
 
@@ -42,5 +45,4 @@ class PickerBottomSheetDialog :
             Timber.e(count.toString())
         }
     }
-
 }
