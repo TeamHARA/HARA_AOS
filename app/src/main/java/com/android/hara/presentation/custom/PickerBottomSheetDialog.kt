@@ -26,11 +26,13 @@ class PickerBottomSheetDialog :
     }
 
     private fun init() {
-        binding.pickerCategory.displayedValues = categoryList.toTypedArray()
-        binding.pickerCategory.minValue = 0
-        binding.pickerCategory.maxValue = categoryList.size - 1
-        binding.pickerCategory.displayedValues = categoryList.toTypedArray()
-        binding.pickerCategory.wrapSelectorWheel = true //
+        with(binding.pickerCategory) {
+            displayedValues = categoryList.toTypedArray()
+            minValue = 0
+            maxValue = categoryList.size - 1
+            displayedValues = categoryList.toTypedArray()
+            wrapSelectorWheel = true //
+        }
     }
 
     private fun setOnClickListener() {
@@ -42,6 +44,7 @@ class PickerBottomSheetDialog :
             dismiss()
         }
         binding.btnComplete.setOnClickListener {
+            //TODO setViewModel
             Timber.e(count.toString())
         }
     }
