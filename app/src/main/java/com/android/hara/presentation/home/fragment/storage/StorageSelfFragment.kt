@@ -7,7 +7,9 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentStorageSelfBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.home.fragment.storage.model.StorageData
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StorageSelfFragment : BindingFragment<FragmentStorageSelfBinding>(R.layout.fragment_storage_self) {
 
     private val dummyList = listOf<StorageData>(

@@ -9,7 +9,9 @@ import com.android.hara.presentation.onesec.adapter.OneSecAdapter
 import com.android.hara.presentation.onesec.model.WorryData
 import com.android.hara.presentation.onesec.viewmodel.OneSecViewModel
 import com.android.hara.presentation.util.setOnSingleClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OneSecActivity : BindingActivity<ActivityOneSecBinding>(R.layout.activity_one_sec) {
 
     private val onesecViewModel: OneSecViewModel by viewModels()

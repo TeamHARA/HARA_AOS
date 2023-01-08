@@ -11,6 +11,7 @@ import com.android.hara.presentation.detail.viewmodel.DecideViewModel
 import com.android.hara.presentation.detail.viewmodel.DetailViewModel
 import timber.log.Timber
 
+@AndroidEntryPoint
 class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_detail) {
     //TODO [고민글 상세보기] 부분입니다. 추후 네이밍 변경 예정
 
