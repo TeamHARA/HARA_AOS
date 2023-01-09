@@ -1,14 +1,16 @@
 package com.android.hara.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.android.hara.R
 import com.android.hara.databinding.ActivityHomeBinding
 import com.android.hara.presentation.base.BindingActivity
-import com.android.hara.presentation.custom.PickerBottomSheetDialog
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
+import com.android.hara.presentation.write.WriteActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,9 +24,8 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         setNavigation()
 
         binding.fabHome.setOnClickListener {
-//            val intent = Intent(this, WriteActivity::class.java)
-//            startActivity(intent)
-            PickerBottomSheetDialog().show(supportFragmentManager, "picker")
+            val intent = Intent(this, WriteActivity::class.java)
+            startActivity(intent)
         }
         homeViewModel
     }
@@ -40,8 +41,14 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.homeToolbar.menu.clear()
             when (destination.id) {
-                R.id.fragment_together -> binding.homeToolbar.inflateMenu(R.menu.top_community_menu)
-                R.id.fragment_storage -> binding.homeToolbar.inflateMenu(R.menu.top_stroage_menu)
+                R.id.fragment_together -> {
+                    binding.ivHomeNoti.visibility = View.GONE
+                    binding.ivHomeSearch.visibility = View.VISIBLE
+                }
+                R.id.fragment_storage -> {
+                    binding.ivHomeNoti.visibility = View.VISIBLE
+                    binding.ivHomeSearch.visibility = View.GONE
+                }
                 else -> throw IllegalAccessException("Error.NavController")
             }
         }
