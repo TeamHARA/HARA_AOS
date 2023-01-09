@@ -10,7 +10,8 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteOptionBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.write.WriteViewModel
-import timber.log.Timber
+import com.android.hara.presentation.write.fragment.option.adapter.WriteOptionAdapter
+import com.android.hara.presentation.write.fragment.option.model.OptionData
 
 class WriteOptionFragment :
     BindingFragment<FragmentWriteOptionBinding>(R.layout.fragment_write_option) {
@@ -20,6 +21,15 @@ class WriteOptionFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val list = mutableListOf<OptionData>(
+            OptionData("asdf", "sadf", true),
+            OptionData("asdf", "sadf", true),
+            OptionData("asdf", "sadf", false)
+        )
+        val adapter = WriteOptionAdapter()
+        binding.rcvOptions.adapter = adapter
+        adapter.submitList(list)
+
         setNavigation(view)
         setViewModel()
         //setOptionVisibility()

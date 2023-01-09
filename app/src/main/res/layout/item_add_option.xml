@@ -10,7 +10,6 @@
         android:id="@+id/btn_option_add_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
         android:background="@drawable/shape_rectangle_white_fill_blue3_stroke_1_8"
         android:paddingVertical="12dp"
         android:stateListAnimator="@null"
