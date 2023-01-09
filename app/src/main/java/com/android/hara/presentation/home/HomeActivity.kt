@@ -2,6 +2,7 @@ package com.android.hara.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -16,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home) {
     // TODO 바텀 네비게이션 및 [함께해라], [보관함] 프래그먼트가 들어갈 HomeAcitity
 
-    private val homeViewModel : HomeViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,5 +37,20 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         val navGraph = navController.navInflater.inflate(R.navigation.bottom_nav_graph)
         navController.graph = navGraph
         binding.bottomNavHome.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.homeToolbar.menu.clear()
+            when (destination.id) {
+                R.id.fragment_together -> {
+                    binding.ivHomeNoti.visibility = View.GONE
+                    binding.ivHomeSearch.visibility = View.VISIBLE
+                }
+                R.id.fragment_storage -> {
+                    binding.ivHomeNoti.visibility = View.VISIBLE
+                    binding.ivHomeSearch.visibility = View.GONE
+                }
+                else -> throw IllegalAccessException("Error.NavController")
+            }
+        }
     }
 }
