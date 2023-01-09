@@ -42,25 +42,29 @@ class PostAdapter(private val itemClickListener: (TogetherPostData,Int) -> Unit)
             binding.layoutPostOpt4.tvPostOptTitle.text = curItem.opt4 // 옵션4 text
 
             binding.layoutPostOpt1.clPostOpt.setOnClickListener {
-                if (binding.optSelNum == 1) binding.optSelNum = 0
-                else binding.optSelNum = 1
-                itemClickListener(curItem ,1)
+                changeXmlOptSelNum(binding, 1)
+                //itemClickListener(curItem ,1)
             }
 
             binding.layoutPostOpt2.clPostOpt.setOnClickListener {
-                binding.optSelNum = 2
-                itemClickListener(curItem ,2)
+                changeXmlOptSelNum(binding, 2)
+                //itemClickListener(curItem ,2)
             }
 
             binding.layoutPostOpt3.clPostOpt.setOnClickListener {
-                binding.optSelNum = 3
-                itemClickListener(curItem ,3)
+                changeXmlOptSelNum(binding, 3)
+                //itemClickListener(curItem ,3)
             }
 
             binding.layoutPostOpt4.clPostOpt.setOnClickListener {
-                binding.optSelNum = 4
-                itemClickListener(curItem ,4)
+                changeXmlOptSelNum(binding, 4)
+                //itemClickListener(curItem ,4)
             }
         }
+    }
+
+    fun changeXmlOptSelNum(binding: ItemPostBinding, n: Int) {
+        if (binding.optSelNum == n) binding.optSelNum = 0
+        else binding.optSelNum = n
     }
 } // class PostAdapter
