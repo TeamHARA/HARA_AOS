@@ -3,11 +3,13 @@ package com.android.hara.presentation.home.fragment.together
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.fragment.app.viewModels
 import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.home.fragment.together.model.TogetherPostData
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragment_together) {
@@ -49,10 +51,21 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         categoryAdapter.submitList(category.toList()) // 데이터를 넣어준다 (업데이트할 때에도)
 
         // [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
-        val postAdapter = PostAdapter() {
-            Log.d("TEST", it)
+        val postAdapter = PostAdapter { togetherPostData, int ->
+
         }
+
         binding.rvTogetherPost.adapter = postAdapter
         postAdapter.submitList(tempList)
     }
+
+    /*
+    // n번째 옵션이 선택되면 PostViewModel 안의 sNum의 value가 n으로 바뀐다
+    private fun changeVmSnum(n: Int) { // n이 선택된 상태
+        // 1) n이 클릭되면: n만 비활성화돼야 해
+        if (postVm.sNum.value == n) postVm.sNum.value = 0
+        // 2) n이 클릭되면: n만 활성화돼야 해
+        else postVm.sNum.value = n
+    }
+    */
 }
