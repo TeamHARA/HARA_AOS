@@ -34,6 +34,7 @@
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="53dp"
             android:orientation="vertical"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/ib_write_option_upload_button"
             app:layout_constraintEnd_toEndOf="parent"
