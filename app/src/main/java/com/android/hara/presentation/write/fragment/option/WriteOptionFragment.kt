@@ -22,14 +22,14 @@ class WriteOptionFragment :
         super.onViewCreated(view, savedInstanceState)
         setNavigation(view)
         setViewModel()
-        setOptionVisibility()
+        //setOptionVisibility()
         addObserve()
         onClickNextBtn()
         onClickBackBtn()
 
-        binding.option3.ibOptionDeleteButton.setOnClickListener {
-            binding.option3.root.visibility
-        }
+//        binding.option3.ibOptionDeleteButton.setOnClickListener {
+//            binding.option3.root.visibility
+//        }
     }
 
     private fun setViewModel() {
@@ -37,58 +37,58 @@ class WriteOptionFragment :
     }
 
     private fun addObserve() {
-        optionFragViewModel.optionNum.observe(viewLifecycleOwner) { optionNum ->
-            setOptionLayout(optionNum)
-            setNextBtn()
-        }
-        optionFragViewModel.string1.observe(viewLifecycleOwner) { string1 ->
-            setNextBtn()
-            Timber.e(string1)
-        }
-        optionFragViewModel.string2.observe(viewLifecycleOwner) { string2 ->
-            setNextBtn()
-            Timber.e(string2)
-        }
-        optionFragViewModel.string3.observe(viewLifecycleOwner) { string3 ->
-            setNextBtn()
-            Timber.e(string3)
-        }
-        optionFragViewModel.string4.observe(viewLifecycleOwner) { string4 ->
-            setNextBtn()
-            Timber.e(string4)
-        }
+//        optionFragViewModel.optionNum.observe(viewLifecycleOwner) { optionNum ->
+//            setOptionLayout(optionNum)
+//            setNextBtn()
+//        }
+//        optionFragViewModel.string1.observe(viewLifecycleOwner) { string1 ->
+//            setNextBtn()
+//            Timber.e(string1)
+//        }
+//        optionFragViewModel.string2.observe(viewLifecycleOwner) { string2 ->
+//            setNextBtn()
+//            Timber.e(string2)
+//        }
+//        optionFragViewModel.string3.observe(viewLifecycleOwner) { string3 ->
+//            setNextBtn()
+//            Timber.e(string3)
+//        }
+//        optionFragViewModel.string4.observe(viewLifecycleOwner) { string4 ->
+//            setNextBtn()
+//            Timber.e(string4)
+//        }
     }
 
-    private fun setOptionVisibility() {
-        with(binding) {
-            option3.ibOptionDeleteButton.visibility = View.VISIBLE
-            option4.ibOptionDeleteButton.visibility = View.VISIBLE
-        }
-    }
-
-    private fun setOptionLayout(optionNum: Int?) {
-        when (optionNum) {
-            2 -> {
-                with(binding) {
-                    option3.root.visibility = View.GONE
-                    option4.root.visibility = View.GONE
-                }
-            }
-            3 -> {
-                with(binding) { // 여기가 문제
-                    option3.root.visibility = View.VISIBLE
-                    option4.root.visibility = View.GONE
-                    btnOptionAddButton.visibility = View.VISIBLE
-                }
-            }
-            4 -> {
-                with(binding) {
-                    option4.root.visibility = View.VISIBLE
-                    btnOptionAddButton.visibility = View.GONE
-                }
-            }
-        }
-    }
+//    private fun setOptionVisibility() {
+//        with(binding) {
+//            option3.ibOptionDeleteButton.visibility = View.VISIBLE
+//            option4.ibOptionDeleteButton.visibility = View.VISIBLE
+//        }
+//    }
+//
+//    private fun setOptionLayout(optionNum: Int?) {
+//        when (optionNum) {
+//            2 -> {
+//                with(binding) {
+//                    option3.root.visibility = View.GONE
+//                    option4.root.visibility = View.GONE
+//                }
+//            }
+//            3 -> {
+//                with(binding) { // 여기가 문제
+//                    option3.root.visibility = View.VISIBLE
+//                    option4.root.visibility = View.GONE
+//                    btnOptionAddButton.visibility = View.VISIBLE
+//                }
+//            }
+//            4 -> {
+//                with(binding) {
+//                    option4.root.visibility = View.VISIBLE
+//                    btnOptionAddButton.visibility = View.GONE
+//                }
+//            }
+//        }
+//    }
 
     private fun setNextBtn() {
         optionFragViewModel.setEnable()
