@@ -6,30 +6,38 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.selection.SelectionTracker
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteOptionBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.write.WriteViewModel
 import com.android.hara.presentation.write.fragment.option.adapter.WriteOptionAdapter
 import com.android.hara.presentation.write.fragment.option.model.OptionData
+import timber.log.Timber
 
 class WriteOptionFragment :
     BindingFragment<FragmentWriteOptionBinding>(R.layout.fragment_write_option) {
+
     lateinit var navController: NavController
     private val writeViewModel: WriteViewModel by activityViewModels()
     private val optionFragViewModel: OptionFragViewModel by viewModels()
+    private var list = mutableListOf<OptionData>(
+        OptionData("asdf", "sadf", true),
+        OptionData("asdf", "sadf", true),
+        OptionData("asdf", "sadf", false)
+    )
+
+    private lateinit var adapter: WriteOptionAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val list = mutableListOf<OptionData>(
-            OptionData("asdf", "sadf", true),
-            OptionData("asdf", "sadf", true),
-            OptionData("asdf", "sadf", false)
-        )
-        val adapter = WriteOptionAdapter()
+
+        adapter = WriteOptionAdapter() {
+            addItem()
+        }
         binding.rcvOptions.adapter = adapter
         adapter.submitList(list)
-
+        //binding.rcvOptions.animation =
         setNavigation(view)
         setViewModel()
         //setOptionVisibility()
@@ -40,6 +48,12 @@ class WriteOptionFragment :
 //        binding.option3.ibOptionDeleteButton.setOnClickListener {
 //            binding.option3.root.visibility
 //        }
+    }
+
+    private fun addItem() {
+        val newList = adapter.currentList.toMutableList()
+        newList.add(OptionData("asdf", "asdf", true))
+        adapter.submitList(newList.sortedBy { !it.veiwType }.toList())
     }
 
     private fun setViewModel() {
