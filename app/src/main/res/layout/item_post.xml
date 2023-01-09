@@ -68,18 +68,27 @@
     <!-- image 1 -->
     <ImageView
         android:id="@+id/iv_post_img1"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/ic_bell" />
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/ic_bell"
+        app:layout_constraintTop_toTopOf="@id/flow_post_img"
+        app:layout_constraintBottom_toBottomOf="@id/flow_post_img"
+        app:layout_constraintStart_toStartOf="@id/flow_post_img"
+        app:layout_constraintEnd_toStartOf="@id/iv_post_img2"/>
 
     <!-- image 2 -->
     <ImageView
         android:id="@+id/iv_post_img2"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="150dp"
+        app:layout_constraintDimensionRatio="1:1"
         android:layout_marginStart="12dp"
-        android:background="@drawable/ic_bell" />
+        android:background="@drawable/ic_bell"
+        app:layout_constraintTop_toTopOf="@id/flow_post_img"
+        app:layout_constraintBottom_toBottomOf="@id/flow_post_img"
+        app:layout_constraintStart_toEndOf="@id/iv_post_img1"
+        app:layout_constraintEnd_toEndOf="@id/flow_post_img"/>
 
     <!-- option 1 -->
     <include

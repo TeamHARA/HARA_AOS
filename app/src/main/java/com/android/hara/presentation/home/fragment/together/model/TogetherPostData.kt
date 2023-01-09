@@ -5,5 +5,9 @@ data class TogetherPostData(
     val date: String,
     val title: String,
     val content: String,
-    val commentNum: Int
+    val commentNum: Int,
+    val opt1: String,
+    val opt2: String,
+    val opt3: String,
+    val opt4: String
 )
