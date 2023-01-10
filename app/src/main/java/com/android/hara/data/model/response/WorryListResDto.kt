@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AloneListResDto(
+data class WorryListResDto(
     @SerialName("data")
     val data: List<Data>,
     @SerialName("message")
@@ -23,7 +23,7 @@ data class AloneListResDto(
         @SerialName("createdAt")
         val createdAt: String, // 2023-01-05T03:47:25.584Z
         @SerialName("finalOption")
-        val finalOption: Int, // 8
+        val finalOption: Int?, // 8
         @SerialName("id")
         val id: Int // 24
     )
