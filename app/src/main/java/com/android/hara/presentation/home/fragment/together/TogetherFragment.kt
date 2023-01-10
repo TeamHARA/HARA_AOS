@@ -8,6 +8,7 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.home.fragment.together.model.TogetherPostData
+import com.android.hara.presentation.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -18,6 +19,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         get() = resources.getStringArray(R.array.category_array)
     private var list = arrayListOf<SimpleModel>()
 
+    // 더미 데이터 - 서버 통신 성공 시 삭제 예정
     private val tempList = listOf<TogetherPostData>(
         TogetherPostData("일상", "2022.11.17", "여기는 제목입니다",
             "여기는 본문을 쓰는 곳입니다 근데 이게 맞아요?", 20,
@@ -41,6 +43,8 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         ),
     )
 
+    private val homeVm by viewModels<HomeViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -62,13 +66,14 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         binding.rvTogetherCategory.itemAnimator = null
 
         // [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
-        val postAdapter = PostAdapter { togetherPostData, int ->
+        val postAdapter = PostAdapter { allPostResDto, int -> }
 
+        homeVm.catAllPostResult.observe(viewLifecycleOwner) {
+            binding.rvTogetherPost.adapter = postAdapter
+            postAdapter.submitList(it.data)
         }
 
-        binding.rvTogetherPost.adapter = postAdapter
-        postAdapter.submitList(tempList)
-    }
+    } // fun onViewCreated()
 }
 
     /*
