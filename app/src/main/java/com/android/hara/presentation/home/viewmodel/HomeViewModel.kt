@@ -16,6 +16,14 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val HARARepository: HARARepository) : ViewModel() {
 
+    /* [홈화면: 고민글 목록 전체조회] selected category number */
+    private val _selCat: MutableLiveData<Int> = MutableLiveData()
+    val selCat: LiveData<Int> = _selCat
+
+    fun changeSelCatNum(n: Int) {
+        _selCat.value = n
+    }
+
     /* 1) 서버통신의 결과인 response를 담는다 */
 
     // [홈화면: 고민글 목록 전체조회] category 별 모든 글 목록
@@ -23,10 +31,31 @@ class HomeViewModel @Inject constructor(private val HARARepository: HARAReposito
     val catAllPostResult: LiveData<AllPostResDto> = _catAllPostResult
 
     /* 2) 서버통신 성공/실패 시 어떤 작업을 해야 하는지 정의한다 */
+
     init {
         viewModelScope.launch {
             runCatching {
                 HARARepository.getAllPost(0)
+            }.onSuccess {
+                if (it.isSuccessful) { // 내부 코드의 응답코드 200~299
+                    Timber.e("Success")
+                    _catAllPostResult.value = it.body()
+                }
+                else { // 응답코드 400~599
+                    Timber.e("서버통신 응답코드 이상")
+                }
+            }.onFailure { // 서버통신 자체가 실패했다
+                Timber.e(it)
+                Timber.e("서버통신 실패", it)
+            }
+        }
+    }
+
+    // [홈화면: 고민글 목록 전체조회] category id를 쿼리로 보내는 get 통신
+    fun homeVmGetAllPost(n: Int) {
+        viewModelScope.launch {
+            runCatching {
+                HARARepository.getAllPost(n)
             }.onSuccess {
                 if (it.isSuccessful) { // 내부 코드의 응답코드 200~299
                     Timber.e("Success")

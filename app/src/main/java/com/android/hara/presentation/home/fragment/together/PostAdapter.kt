@@ -1,6 +1,7 @@
 package com.android.hara.presentation.home.fragment.together
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +38,7 @@ class PostAdapter(private val itemClickListener: (AllPostResDto.Data,Int) -> Uni
             // TODO: 이미지가 있다면, 몇 개 있는지(최대 2개?)를 알고 그걸 보여줘야 함
 
             // TODO: 옵션이 몇 개인지 세고 그 개수만큼 보여줘야 함
+
             // [옵션 1]
             binding.layoutPostOpt1.tvPostOptTitle.text = curItem.option.get(0).title // text
 
@@ -47,10 +49,16 @@ class PostAdapter(private val itemClickListener: (AllPostResDto.Data,Int) -> Uni
             if (curItem.option.size >= 3) {
                 binding.layoutPostOpt3.tvPostOptTitle.text = curItem.option.get(2).title // text
             }
+            else {
+                binding.layoutPostOpt3.clPostOpt.visibility = View.GONE
+            }
 
             // [옵션 4]
             if (curItem.option.size >= 4) {
                 binding.layoutPostOpt4.tvPostOptTitle.text = curItem.option.get(3).title // text
+            }
+            else {
+                binding.layoutPostOpt4.clPostOpt.visibility = View.GONE
             }
 
             /* 옵션 클릭 시 옵션/투표 버튼 스타일이 바뀌는 로직 */
@@ -77,4 +85,5 @@ class PostAdapter(private val itemClickListener: (AllPostResDto.Data,Int) -> Uni
         if (binding.optSelNum == n) binding.optSelNum = 0
         else binding.optSelNum = n
     }
+
 } // class PostAdapter
