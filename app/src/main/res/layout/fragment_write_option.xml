@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="vm"
-            type="com.android.hara.presentation.write.fragment.option.OptionFragViewModel" />
+            name="enabled"
+            type="boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

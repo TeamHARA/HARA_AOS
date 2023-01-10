@@ -6,7 +6,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.selection.SelectionTracker
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteOptionBinding
 import com.android.hara.presentation.base.BindingFragment
@@ -22,9 +21,9 @@ class WriteOptionFragment :
     private val writeViewModel: WriteViewModel by activityViewModels()
     private val optionFragViewModel: OptionFragViewModel by viewModels()
     private var list = mutableListOf<OptionData>(
-        OptionData("asdf", "sadf", true),
-        OptionData("asdf", "sadf", true),
-        OptionData("asdf", "sadf", false)
+        OptionData(1, true),
+        OptionData(2, true),
+        OptionData(99, false)
     )
 
     private lateinit var adapter: WriteOptionAdapter
@@ -32,9 +31,16 @@ class WriteOptionFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = WriteOptionAdapter() {
-            addItem()
-        }
+        adapter = WriteOptionAdapter({ addItem() }, {
+            Timber.e(it.toString())
+            if (it) {
+                binding.ibWriteOptionNextButtonOff.visibility = View.GONE
+                binding.ibWriteOptionNextButtonOn.visibility = View.VISIBLE
+            } else {
+                binding.ibWriteOptionNextButtonOff.visibility = View.VISIBLE
+                binding.ibWriteOptionNextButtonOn.visibility = View.GONE
+            }
+        })
         binding.rcvOptions.adapter = adapter
         adapter.submitList(list)
         //binding.rcvOptions.animation =
@@ -51,13 +57,13 @@ class WriteOptionFragment :
     }
 
     private fun addItem() {
+        // 리싸이클러뷰 아이템 추가하는 함수
         val newList = adapter.currentList.toMutableList()
-        newList.add(OptionData("asdf", "asdf", true))
+        newList.add(OptionData(adapter.currentList.size,  true))
         adapter.submitList(newList.sortedBy { !it.veiwType }.toList())
     }
 
     private fun setViewModel() {
-        binding.vm = optionFragViewModel
     }
 
     private fun addObserve() {

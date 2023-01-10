@@ -16,11 +16,14 @@ import com.android.hara.presentation.write.fragment.option.model.OptionData
 import timber.log.Timber
 
 
-class WriteOptionAdapter(private val itemClickListener: (OptionData) -> Unit) :
-    ListAdapter<OptionData, RecyclerView.ViewHolder>(IngredientDiffCallBack) {
+class WriteOptionAdapter(
+    private val itemClickListener: (OptionData) -> Unit,
+    private val checkEnableListener: (Boolean) -> Unit
+) : ListAdapter<OptionData, RecyclerView.ViewHolder>(IngredientDiffCallBack) {
 
     private lateinit var inflater: LayoutInflater
     private val titleList = mutableListOf<String?>("", "", "", "")
+    // 각각 EditText의 입력값을 저장
 
 
     init {
@@ -51,18 +54,16 @@ class WriteOptionAdapter(private val itemClickListener: (OptionData) -> Unit) :
         }
     }
 
-    override fun onBindViewHolder(
-        holder: RecyclerView.ViewHolder,
-        @SuppressLint("RecyclerView") position: Int
-    ) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         //positoin은 0 부터
         val currentItem = getItem(position)
 
         Timber.e(position.toString())
         when (holder.itemViewType) {
+
             OPTION -> {
                 with(holder as ItemOptionViewHolder) {
-                    binding.inputText = titleList[position]
+                    binding.inputText = titleList[absoluteAdapterPosition]
                     binding.etWriteOptionInput.addTextChangedListener(object : TextWatcher {
                         override fun beforeTextChanged(
                             charSequence: CharSequence, i: Int, i1: Int, i2: Int
@@ -72,13 +73,14 @@ class WriteOptionAdapter(private val itemClickListener: (OptionData) -> Unit) :
                         override fun onTextChanged(
                             charSequence: CharSequence, i: Int, i1: Int, i2: Int
                         ) {
-                            Timber.e(charSequence.toString())
+                            Timber.e(titleList.toString())
+                            checkEnableListener(titleList.all { it != "" }) // 모든 에딧텍스트에 입력이 되었는가 검사
                             titleList[position] = charSequence.toString()
                         }
 
                         override fun afterTextChanged(editable: Editable) {}
                     })
-                    if (position >= 2) {
+                    if (position >= 2) { // - 버튼은 3번 선택지 부터 활성화
                         binding.ibOptionDeleteButton.visibility = View.VISIBLE
                     }
 
@@ -90,6 +92,8 @@ class WriteOptionAdapter(private val itemClickListener: (OptionData) -> Unit) :
             ADD -> {
                 with(holder as ItemAddOptionViewHolder) {
                     if (currentList.size == 5) {
+                        // 마지막아이템은 무조건 + 버튼이고
+                        //현재 리스트가 5 == 선택지 4개이면 마지막 항목인 +는 보여지면 안된다
                         binding.root.visibility = View.GONE
                     } else {
                         binding.root.visibility = View.VISIBLE
@@ -108,15 +112,10 @@ class WriteOptionAdapter(private val itemClickListener: (OptionData) -> Unit) :
     }
 
     private fun removeItem(position: Int) {
-        if (position == 2) {
-            titleList[2] = titleList[3]
-            titleList[3] = ""
-        } else {
-            titleList[3] = ""
-        }
         val newList = currentList.toMutableList()
         newList.removeAt(position)
         submitList(newList)
+        //notifyItemRemoved(position)
     }
 
     companion object {
@@ -125,19 +124,16 @@ class WriteOptionAdapter(private val itemClickListener: (OptionData) -> Unit) :
 
         private object IngredientDiffCallBack : DiffUtil.ItemCallback<OptionData>() {
             override fun areItemsTheSame(
-                oldItem: OptionData,
-                newItem: OptionData
+                oldItem: OptionData, newItem: OptionData
             ): Boolean {
-                return oldItem.title == newItem.title
+                return false
             }
 
             override fun areContentsTheSame(
-                oldItem: OptionData,
-                newItem: OptionData
+                oldItem: OptionData, newItem: OptionData
             ): Boolean {
-                return oldItem.title == newItem.title
+                return false
             }
         }
-
     }
 }
