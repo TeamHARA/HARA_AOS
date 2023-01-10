@@ -68,7 +68,7 @@ class WriteOptionFragment :
         // 리싸이클러뷰 아이템 추가하는 함수
         val newList = adapter.currentList.toMutableList()
         newList.add(OptionData(adapter.currentList.size - 1, "", "".toUri(), true))
-        adapter.submitList(newList.sortedBy { !it.veiwType }.toList())
+        adapter.submitList(newList.sortedBy { !it.veiwType }.toList()) //+ 버튼이 무조건 마지막으로 갈수 있도록
     }
 
     private fun setViewModel() {

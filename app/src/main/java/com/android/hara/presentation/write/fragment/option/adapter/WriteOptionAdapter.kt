@@ -70,25 +70,11 @@ class WriteOptionAdapter(
                     binding.inputText = titleList[position]
                     binding.etWriteOptionInput.doOnTextChanged { charSequence: CharSequence?, i: Int, i1: Int, i2: Int ->
                         Timber.e(titleList.toString())
-                        checkEnableListener(titleList.all { it != "" }) // 모든 에딧텍스트에 입력이 되었는가 검사
                         titleList[position] = charSequence.toString()
+                        checkEnableListener(
+                            titleList.subList(0, currentList.size - 1)
+                                .all { it != "" }) // 모든 에딧텍스트에 입력이 되었는가 검사`
                     }
-//                    binding.etWriteOptionInput.addTextChangedListener(object : TextWatcher {
-//                        override fun beforeTextChanged(
-//                            charSequence: CharSequence, i: Int, i1: Int, i2: Int
-//                        ) {
-//                        }
-//
-//                        override fun onTextChanged(
-//                            charSequence: CharSequence, i: Int, i1: Int, i2: Int
-//                        ) {
-//                            Timber.e(titleList.toString())
-//                            checkEnableListener(titleList.all { it != "" }) // 모든 에딧텍스트에 입력이 되었는가 검사
-//                            titleList[position] = charSequence.toString()
-//                        }
-//
-//                        override fun afterTextChanged(editable: Editable) {}
-//                    })
                     if (position >= 2) { // - 버튼은 3번 선택지 부터 활성화
                         binding.ibOptionDeleteButton.visibility = View.VISIBLE
                     }
@@ -109,6 +95,10 @@ class WriteOptionAdapter(
                     }
                     binding.root.setOnSingleClickListener {
                         itemClickListener(currentItem)
+                        //아이템 추가할때도 어댑터 갱신하고 다시 enabled 검사
+                        checkEnableListener(
+                            titleList.subList(0, currentList.size)
+                                .all { it != "" })
                     }
                 }
             }
@@ -127,11 +117,11 @@ class WriteOptionAdapter(
                 newList.removeAt(3)
                 titleList[2] = titleList[3]
                 titleList[3] = ""
-            }else{
+            } else {
                 newList.removeAt(3)
                 titleList[3] = ""
             }
-        }else{
+        } else {
             newList.removeAt(2)
             titleList[2] = ""
         }
