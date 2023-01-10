@@ -4,6 +4,9 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.BindingAdapter
 import com.android.hara.R
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.util.*
 
 @BindingAdapter("app:decide_selected")
 fun AppCompatButton.selected(sel: Boolean) {
@@ -31,4 +34,12 @@ fun TextView.xmlIng(still: Boolean) { // still = xmlIng
 @BindingAdapter("app:category_id")
 fun TextView.setCategory(categoryId: Int) {
     this.text = resources.getStringArray(R.array.category_array)[categoryId]
+}
+
+@BindingAdapter("app:date_text")
+fun TextView.setDate(dateText: String) {
+    this.text = SimpleDateFormat(
+        "yyyy.MM.dd",
+        Locale("ko", "KR")
+    ).format(Date.from(Instant.parse(dateText)))
 }

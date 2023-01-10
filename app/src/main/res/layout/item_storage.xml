@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/hara_sub3_r12"
             android:textColor="@color/gray_2"
-            android:text="@{worry.createdAt.toString()}"
+            app:date_text="@{worry.createdAt.toString()}"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="12dp"
             android:layout_marginTop="10dp"
