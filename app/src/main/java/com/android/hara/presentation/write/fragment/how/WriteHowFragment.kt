@@ -32,7 +32,16 @@ class WriteHowFragment :
             13,
             requireContext().getString(R.string.write_how_question)
         )
+        Timber.e(writeViewModel.title)
+        Timber.e(writeViewModel.content)
+        Timber.e(writeViewModel.titleList.toString())
         Timber.e(writeViewModel.pronsList.toString())
+        Timber.e(writeViewModel.categoty)
+        if (howFragViewModel.isWithSelected.value == true) {
+            //TODO 함께고민 API호출
+        } else {
+            //TODO 혼자고민 API호출
+        }
     }
 
     private fun setWorryBtn() {

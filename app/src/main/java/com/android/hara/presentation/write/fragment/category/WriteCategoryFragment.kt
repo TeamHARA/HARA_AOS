@@ -53,6 +53,7 @@ class WriteCategoryFragment :
         categoryViewModel.category.observe(viewLifecycleOwner) {
             with(binding) {
                 category = it
+                writeViewModel.categoty = it // ViewModel에 set 해주기
                 tvSelectedCategory.visibility = View.VISIBLE
                 clCategorySelectLayout.visibility = View.GONE
                 ibWriteCategoryNextButtonOn.visibility = View.VISIBLE
