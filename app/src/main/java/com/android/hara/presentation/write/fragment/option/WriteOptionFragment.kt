@@ -2,6 +2,7 @@ package com.android.hara.presentation.write.fragment.option
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -22,9 +23,9 @@ class WriteOptionFragment :
     private val writeViewModel: WriteViewModel by activityViewModels()
     private val optionFragViewModel: OptionFragViewModel by viewModels()
     private var list = mutableListOf<OptionData>(
-        OptionData(1, true),
-        OptionData(2, true),
-        OptionData(99, false)
+        OptionData(0, "", "".toUri(), true),
+        OptionData(1, "", "".toUri(), true),
+        OptionData(99, "", "".toUri(), false)
     )
 
     private lateinit var adapter: WriteOptionAdapter
@@ -66,7 +67,7 @@ class WriteOptionFragment :
     private fun addItem() {
         // 리싸이클러뷰 아이템 추가하는 함수
         val newList = adapter.currentList.toMutableList()
-        newList.add(OptionData(adapter.currentList.size, true))
+        newList.add(OptionData(adapter.currentList.size - 1, "", "".toUri(), true))
         adapter.submitList(newList.sortedBy { !it.veiwType }.toList())
     }
 
