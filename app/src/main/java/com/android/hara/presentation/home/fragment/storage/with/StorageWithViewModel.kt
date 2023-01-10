@@ -17,10 +17,11 @@ class StorageWithViewModel @Inject constructor(private val haraRepository: HARAR
     private val _withData = MutableLiveData<List<WorryListResDto.Data>>()
     val withData: LiveData<List<WorryListResDto.Data>> = _withData
 
-    private val _isSolved = MutableLiveData<Int>(0)
-    val isSolved: LiveData<Int> = _isSolved
+    private val _isSolved = MutableLiveData<Int>(0) // 0 -> 고민중, 1 -> 고민완료
+    val isSolved get() = _isSolved // -> LiveData: 읽기전용이라 get으로 변경
 
-    fun getWithList(isSolved: Int) {
+    fun getWithList() {
+        Timber.e(_isSolved.value.toString())
         viewModelScope.launch {
             runCatching {
                 haraRepository.getWithList(_isSolved.value!!)

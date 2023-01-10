@@ -23,10 +23,28 @@ class StorageWithFragment :
             Log.d("TEST", it)
         }
         binding.rvPosts.adapter = storageAdapter
-        storageWithViewModel.getWithList(0)
+        storageWithViewModel.getWithList()
+
+        addObserve(storageAdapter)
+        onClickToggleBtn()
+    }
+
+    private fun addObserve(storageAdapter: StorageAdapter) {
         storageWithViewModel.withData.observe(viewLifecycleOwner) { dataList ->
             storageAdapter.submitList(dataList)
             Timber.e(dataList.toString())
+        }
+        storageWithViewModel.isSolved.observe(viewLifecycleOwner) {
+            storageWithViewModel.getWithList()
+        }
+    }
+
+    private fun onClickToggleBtn() {
+        binding.tbToggle.setOnClickListener {
+            if (binding.tbToggle.isChecked) { // 고민중이면
+                storageWithViewModel.isSolved.value = 0
+            } else storageWithViewModel.isSolved.value = 1
+            Timber.e(storageWithViewModel.isSolved.value.toString())
         }
     }
 }

@@ -18,9 +18,9 @@ class StorageAloneViewModel @Inject constructor(private val haraRepository: HARA
     val aloneData: LiveData<List<WorryListResDto.Data>> = _aloneData
 
     private val _isSolved = MutableLiveData<Int>(0)
-    val isSolved: LiveData<Int> = _isSolved
+    val isSolved get() = _isSolved
 
-    fun getAloneList(isSolved: Int) {
+    fun getAloneList() {
         viewModelScope.launch {
             runCatching {
                 haraRepository.getAloneList(_isSolved.value!!)
