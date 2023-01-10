@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="category"
+            type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,24 +28,41 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_selected_category"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/shape_rectangle_blue3_stroke_1_8"
+            android:gravity="center"
+            android:text="@={category}"
+            android:textAppearance="@style/hara_heading2_m16"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_write_category_question"
+            tools:text="@string/hara" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_category_select_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="150dp"
+            android:clickable="true"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_write_category_question">
 
-            <EditText
+            <TextView
                 android:id="@+id/tv_category_option_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/write_category_answer_hint"
                 android:textAppearance="@style/hara_heading2_m16"
                 android:textColor="@color/gray_3"
-                android:background="@android:color/transparent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,9 +70,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_arrow_down"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_category_option_question"
                 app:layout_constraintEnd_toEndOf="@+id/tv_category_option_question"
-                app:layout_constraintTop_toTopOf="@+id/tv_category_option_question"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_category_option_question"/>
+                app:layout_constraintTop_toTopOf="@+id/tv_category_option_question" />
 
             <View
                 android:id="@+id/view_title_divider"
@@ -99,6 +120,7 @@
             android:layout_marginEnd="12dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_next_off"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/ib_write_upload_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ib_write_upload_button" />
@@ -110,6 +132,7 @@
             android:layout_marginEnd="12dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_next_on"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/ib_write_upload_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ib_write_upload_button" />
