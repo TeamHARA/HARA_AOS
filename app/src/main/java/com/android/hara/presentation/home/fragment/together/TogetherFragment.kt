@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
@@ -25,7 +26,9 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        postAdapter = PostAdapter() { allPostResDto, int -> }
+        postAdapter = PostAdapter({ postId, optId ->
+            homeVm.changeSelPostAndOptId(postId, optId)
+        }, { homeVm.changeBtnVal() })
         binding.rvTogetherPost.adapter = postAdapter
 
         // [1] recycler view - adapter 연결: 상단 카테고리 목록 [by 유진]
@@ -52,6 +55,12 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         // [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
         homeVm.catAllPostResult.observe(viewLifecycleOwner) {
             postAdapter.submitList(it.data)
+        }
+
+        // [2] homeVm의 btn이 변하는지 관찰
+        homeVm.btnSel.observe(viewLifecycleOwner) {
+            Timber.e("hello", homeVm.getPostId(), homeVm.getOptId())
+            homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
         }
 
         binding.rvTogetherCategory.adapter = categoryAdapter

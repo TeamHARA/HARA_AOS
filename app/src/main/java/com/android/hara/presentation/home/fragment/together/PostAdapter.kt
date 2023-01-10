@@ -10,8 +10,10 @@ import com.android.hara.databinding.ItemPostBinding
 import com.android.hara.presentation.home.fragment.together.model.TogetherPostData
 import com.android.hara.presentation.util.GlobalDiffCallBack
 
-class PostAdapter(private val itemClickListener: (AllPostResDto.Data,Int) -> Unit) :
-    ListAdapter<AllPostResDto.Data, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
+class PostAdapter(
+    private val optSelListener: (postId: Int, optId: Int) -> Unit,
+    private val btnSelListener: () -> Unit
+) : ListAdapter<AllPostResDto.Data, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
 
     private lateinit var inflater: LayoutInflater // 뷰를 그려준다
 
@@ -61,22 +63,28 @@ class PostAdapter(private val itemClickListener: (AllPostResDto.Data,Int) -> Uni
                 binding.layoutPostOpt4.clPostOpt.visibility = View.GONE
             }
 
-            /* 옵션 클릭 시 옵션/투표 버튼 스타일이 바뀌는 로직 */
+            /* 옵션 클릭 시: 옵션/투표 버튼 스타일이 바뀌는 로직 */
             binding.layoutPostOpt1.clPostOpt.setOnClickListener {
                 changeXmlOptSelNum(binding, 1)
-                //itemClickListener(curItem ,1)
+
+                // [수현] 옵션이 클릭되면, 어댑터에 파라미터로 온 함수에, 그 글의 id와 그 옵션의 id를 넘겨준다
+                optSelListener(curItem.worryId, curItem.option[0].id)
             }
             binding.layoutPostOpt2.clPostOpt.setOnClickListener {
                 changeXmlOptSelNum(binding, 2)
-                //itemClickListener(curItem ,2)
+                optSelListener(curItem.worryId, curItem.option[1].id)
             }
             binding.layoutPostOpt3.clPostOpt.setOnClickListener {
                 changeXmlOptSelNum(binding, 3)
-                //itemClickListener(curItem ,3)
+                optSelListener(curItem.worryId, curItem.option[2].id)
             }
             binding.layoutPostOpt4.clPostOpt.setOnClickListener {
                 changeXmlOptSelNum(binding, 4)
-                //itemClickListener(curItem ,4)
+                optSelListener(curItem.worryId, curItem.option[3].id)
+            }
+
+            binding.btnPostVote.setOnClickListener {
+                btnSelListener()
             }
         }
     }
