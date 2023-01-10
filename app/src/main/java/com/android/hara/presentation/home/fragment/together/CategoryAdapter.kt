@@ -3,32 +3,69 @@ package com.android.hara.presentation.home.fragment.together
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.databinding.ItemCategoryBinding
-import com.android.hara.presentation.util.GlobalDiffCallBack
 
-// private val itemClickListener: (String) -> Unit : ?
-class CategoryAdapter(context: Context, private val itemClickListener: (String) -> Unit) :
-    ListAdapter<String, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
-    // notifyDatasetChange대신 submitlist 리스트를 넣는다
+class CategoryAdapter(
+    private val context: Context,
+    private val list: ArrayList<SimpleModel>
+) : RecyclerView.Adapter<CategoryAdapter.SelectSingleItemViewHolder>() {
 
-    private val inflater by lazy { LayoutInflater.from(context) }
+    private lateinit var binding: ItemCategoryBinding
+    private var onItemClickListener: OnItemClickListener? = null
 
-    class ItemViewHolder(val binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root)
+    private var selectedPosition = 0
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ItemViewHolder(ItemCategoryBinding.inflate(inflater, parent, false))
+    interface OnItemClickListener {
+        fun onItemClick(item: SimpleModel, position: Int)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val currentItem = getItem(position)
-        with(holder as ItemViewHolder) {
-            binding.btnCategoryButton.text = currentItem
-            binding.btnCategoryButton.setOnClickListener {
-                itemClickListener(currentItem)
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.onItemClickListener = listener
+    }
+
+    inner class SelectSingleItemViewHolder(
+        private val binding: ItemCategoryBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: SimpleModel) {
+            binding.model = item
+
+            if (selectedPosition == absoluteAdapterPosition) {
+                list[absoluteAdapterPosition].isSelected = true
+//                binding.setChecked()
                 binding.btnCategoryButton.isSelected = true
+            } else {
+                list[absoluteAdapterPosition].isSelected = false
+//                binding.setUnchecked()
+                binding.btnCategoryButton.isSelected = false
+            }
+
+            if (onItemClickListener != null) {
+                binding.btnCategoryButton.setOnClickListener {
+                    onItemClickListener?.onItemClick(item, absoluteAdapterPosition)
+                    if (selectedPosition != absoluteAdapterPosition) {
+//                        binding.setChecked()
+                        binding.btnCategoryButton.isSelected = true
+                        notifyItemChanged(selectedPosition)
+                        selectedPosition = absoluteAdapterPosition
+                    }
+                }
             }
         }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectSingleItemViewHolder {
+        binding = ItemCategoryBinding.inflate(LayoutInflater.from(context), parent, false)
+        return SelectSingleItemViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: SelectSingleItemViewHolder, position: Int) {
+        val item = list[position]
+        holder.bind(item)
+    }
+
+    override fun getItemCount(): Int = list.size
+
+//    private fun ItemCategoryBinding.setChecked() = binding.btnCategoryButton.selected(true)
+//    private fun ItemCategoryBinding.setUnchecked() = binding.btnCategoryButton.selected(false)
 }

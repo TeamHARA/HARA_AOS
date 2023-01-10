@@ -16,6 +16,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
 
     private val category: Array<String>
         get() = resources.getStringArray(R.array.category_array)
+    private var list = arrayListOf<SimpleModel>()
 
     private val tempList = listOf<TogetherPostData>(
         TogetherPostData("일상", "2022.11.17", "여기는 제목입니다",
@@ -43,12 +44,22 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // [1] recycler view - adapter 연결: 상단 카테고리 목록 [by 유진?]
-        val categoryAdapter = CategoryAdapter(requireContext()) {
-            Log.d("TEST", it)
+        // [1] recycler view - adapter 연결: 상단 카테고리 목록 [by 유진]
+        for (i in 0..7) {
+            list.add(SimpleModel(title = category[i], isSelected = false))
+        }
+
+        val categoryAdapter = CategoryAdapter(requireContext(), list).apply {
+            setOnItemClickListener(object : CategoryAdapter.OnItemClickListener {
+                override fun onItemClick(item: SimpleModel, position: Int) {
+                    Timber.e(item.title)
+                }
+            })
         }
         binding.rvTogetherCategory.adapter = categoryAdapter
-        categoryAdapter.submitList(category.toList()) // 데이터를 넣어준다 (업데이트할 때에도)
+//        categoryAdapter.submitList(category.toList()) // 데이터를 넣어준다 (업데이트할 때에도)
+        binding.rvTogetherCategory.setHasFixedSize(true)
+        binding.rvTogetherCategory.itemAnimator = null
 
         // [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
         val postAdapter = PostAdapter { togetherPostData, int ->
@@ -58,6 +69,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         binding.rvTogetherPost.adapter = postAdapter
         postAdapter.submitList(tempList)
     }
+}
 
     /*
     // n번째 옵션이 선택되면 PostViewModel 안의 sNum의 value가 n으로 바뀐다
