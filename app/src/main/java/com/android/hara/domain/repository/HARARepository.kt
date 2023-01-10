@@ -9,4 +9,6 @@ interface HARARepository {
     suspend fun postVote(request: RequestVoteDTO): ResponseVoteDTO
 
     suspend fun getAloneList(isSolved: Int): Response<WorryListResDto>
+
+    suspend fun getWithList(isSolved: Int): Response<WorryListResDto>
 }
