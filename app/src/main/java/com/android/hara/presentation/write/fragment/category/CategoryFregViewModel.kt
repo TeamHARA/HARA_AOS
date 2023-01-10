@@ -9,4 +9,8 @@ import javax.inject.Inject
 class CategoryFregViewModel @Inject constructor() : ViewModel() {
     private val _category = MutableLiveData<String>()
     val category get() = _category
+
+    fun setCategory(category:String){
+        _category.value = category
+    }
 }
