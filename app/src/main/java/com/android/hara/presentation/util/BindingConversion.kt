@@ -20,7 +20,7 @@ fun AppCompatButton.selected(sel: Boolean) {
 }
 
 @BindingAdapter("app:storage_flag")
-fun TextView.xmlIng(still: Boolean) { // still = xmlIng
+fun TextView.xmlIng(still: Boolean) {
     if (still) {
         this.background = this.context.getDrawable(R.drawable.shape_rectangle_orange2_stroke_1_4)
         this.setTextColor(this.context.getColor(R.color.orange_2))
