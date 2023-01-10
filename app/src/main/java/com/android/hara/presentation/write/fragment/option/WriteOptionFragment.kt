@@ -45,7 +45,6 @@ class WriteOptionFragment :
         })
         binding.rcvOptions.adapter = adapter
         adapter.submitList(list)
-        //binding.rcvOptions.animation =
         setNavigation(view)
         setViewModel()
         //setOptionVisibility()
@@ -147,6 +146,7 @@ class WriteOptionFragment :
         binding.ibWriteOptionNextButtonOn.setOnClickListener {
             navController.navigate(R.id.action_writeOptionFragment_to_writeProsconsFragment)
             writeViewModel.addProgress()
+            writeViewModel.titleList.addAll(WriteOptionAdapter.titleList.toMutableList())
         }
     }
 

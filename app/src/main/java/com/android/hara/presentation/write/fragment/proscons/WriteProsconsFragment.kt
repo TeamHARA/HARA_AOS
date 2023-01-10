@@ -27,6 +27,13 @@ class WriteProsconsFragment :
             8,
             requireContext().getString(R.string.write_proscons_question)
         )
+        val list =
+            listOf(binding.proscons1, binding.proscons2, binding.proscons3, binding.proscons4)
+        writeViewModel.titleList.forEachIndexed { index, s ->
+            list[index].visible = s == ""
+            list[index].title = s
+        }
+
     }
 
     private fun setNavigation(view: View) {

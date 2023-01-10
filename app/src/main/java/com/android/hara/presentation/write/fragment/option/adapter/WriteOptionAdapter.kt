@@ -1,6 +1,7 @@
 package com.android.hara.presentation.write.fragment.option.adapter
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,8 @@ class WriteOptionAdapter(
 ) : ListAdapter<OptionData, RecyclerView.ViewHolder>(IngredientDiffCallBack) {
 
     private lateinit var inflater: LayoutInflater
-    private val titleList = mutableListOf<String?>("", "", "", "")
+
+
     // 각각 EditText의 입력값을 저장
 
 
@@ -70,6 +72,7 @@ class WriteOptionAdapter(
                     binding.inputText = titleList[position]
                     binding.etWriteOptionInput.doOnTextChanged { charSequence: CharSequence?, i: Int, i1: Int, i2: Int ->
                         Timber.e(titleList.toString())
+
                         titleList[position] = charSequence.toString()
                         checkEnableListener(
                             titleList.subList(0, currentList.size - 1)
@@ -151,5 +154,8 @@ class WriteOptionAdapter(
                 return false
             }
         }
+
+        val titleList = mutableListOf<String?>("", "", "", "")
+        val imgList = mutableListOf<Uri>()
     }
 }

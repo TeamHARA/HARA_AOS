@@ -3,10 +3,19 @@ package com.android.hara.presentation.write
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.android.hara.presentation.write.fragment.option.model.OptionData
 
 class WriteViewModel : ViewModel() {
     private val _progress = MutableLiveData<Int>()
     val progress: LiveData<Int> = _progress
+
+    private val _title = ""
+    val title get() = _title
+    private val _content = ""
+    val content get() = _content
+    private val _titleList = mutableListOf<String?>()
+    val titleList get() = _titleList
+
 
     init {
         _progress.value = 1
