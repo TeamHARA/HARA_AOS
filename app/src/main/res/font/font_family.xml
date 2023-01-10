@@ -14,6 +14,11 @@
         android:font="@font/pretendard_semibold"
         android:fontStyle="normal"
         android:fontWeight="600" />
+    <!-- font/pretendard_semibold.xml -->
+    <font
+        android:font="@font/pretendard_bold"
+        android:fontStyle="normal"
+        android:fontWeight="700" />
     <!-- cafe24_ssurround.xml -->
     <font
         android:font="@font/cafe24_ssurround"
