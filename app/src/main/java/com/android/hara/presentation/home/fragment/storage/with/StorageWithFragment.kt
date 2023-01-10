@@ -1,4 +1,4 @@
-package com.android.hara.presentation.home.fragment.storage
+package com.android.hara.presentation.home.fragment.storage.with
 
 import android.os.Bundle
 import android.util.Log
@@ -6,11 +6,12 @@ import android.view.View
 import com.android.hara.R
 import com.android.hara.databinding.FragmentStorageTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.home.fragment.storage.StorageAdapter
 import com.android.hara.presentation.home.fragment.storage.model.StorageData
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class StorageTogetherFragment : BindingFragment<FragmentStorageTogetherBinding>(R.layout.fragment_storage_together) {
+class StorageWithFragment : BindingFragment<FragmentStorageTogetherBinding>(R.layout.fragment_storage_together) {
 
     private val dummyList = listOf<StorageData>(
         StorageData("일상", "우리집에 왜왔니 왜왔니 왜왔니", "2023.12.25", true),
@@ -30,6 +31,6 @@ class StorageTogetherFragment : BindingFragment<FragmentStorageTogetherBinding>(
             Log.d("TEST", it)
         }
         binding.rvPosts.adapter = storageAdapter
-        storageAdapter.submitList(dummyList)
+//        storageAdapter.submitList(dummyList)
     }
 }
