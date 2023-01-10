@@ -74,13 +74,11 @@
 
                 <include
                     android:id="@+id/proscons3"
-                    layout="@layout/item_write_proscons"
-                    android:visibility="gone" />
+                    layout="@layout/item_write_proscons" />
 
                 <include
                     android:id="@+id/proscons4"
-                    layout="@layout/item_write_proscons"
-                    android:visibility="gone" />
+                    layout="@layout/item_write_proscons" />
             </LinearLayout>
         </ScrollView>
 
