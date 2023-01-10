@@ -80,4 +80,3 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         else postVm.sNum.value = n
     }
     */
-}
