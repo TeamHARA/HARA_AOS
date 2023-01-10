@@ -10,6 +10,7 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteCategoryBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.custom.PickerBottomSheetDialog
+import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 
@@ -27,6 +28,12 @@ class WriteCategoryFragment :
         onClickBackBtn()
         setClickListener()
         addObserve()
+        binding.tvWriteCategoryQuestion.setBold(
+            requireContext(),
+            4,
+            8,
+            requireContext().getString(R.string.write_category_question)
+        )
     }
 
     private fun setNavigation(view: View) {

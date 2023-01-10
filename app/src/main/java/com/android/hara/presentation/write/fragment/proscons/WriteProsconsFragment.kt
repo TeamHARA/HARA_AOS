@@ -8,6 +8,7 @@ import androidx.navigation.Navigation
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteProsconsBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.write.WriteViewModel
 
 class WriteProsconsFragment :
@@ -20,6 +21,12 @@ class WriteProsconsFragment :
         setNavigation(view)
         onClickNextBtn()
         onClickBackBtn()
+        binding.tvWriteProsconsQuestion.setBold(
+            requireContext(),
+            5,
+            8,
+            requireContext().getString(R.string.write_proscons_question)
+        )
     }
 
     private fun setNavigation(view: View) {

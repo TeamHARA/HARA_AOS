@@ -9,6 +9,7 @@ import androidx.navigation.Navigation
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteOptionBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.write.WriteViewModel
 import com.android.hara.presentation.write.fragment.option.adapter.WriteOptionAdapter
 import com.android.hara.presentation.write.fragment.option.model.OptionData
@@ -50,6 +51,12 @@ class WriteOptionFragment :
         addObserve()
         onClickNextBtn()
         onClickBackBtn()
+        binding.tvWriteOptionQuestion.setBold(
+            requireContext(),
+            0,
+            8,
+            requireContext().getString(R.string.write_option_question)
+        )
 
 //        binding.option3.ibOptionDeleteButton.setOnClickListener {
 //            binding.option3.root.visibility
@@ -59,7 +66,7 @@ class WriteOptionFragment :
     private fun addItem() {
         // 리싸이클러뷰 아이템 추가하는 함수
         val newList = adapter.currentList.toMutableList()
-        newList.add(OptionData(adapter.currentList.size,  true))
+        newList.add(OptionData(adapter.currentList.size, true))
         adapter.submitList(newList.sortedBy { !it.veiwType }.toList())
     }
 

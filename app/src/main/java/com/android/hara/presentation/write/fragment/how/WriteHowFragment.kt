@@ -9,6 +9,7 @@ import androidx.navigation.Navigation
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteHowBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.write.WriteViewModel
 
 class WriteHowFragment :
@@ -22,9 +23,14 @@ class WriteHowFragment :
         setNavigation(view)
         onClickBackBtn()
         setViewModel()
-
         setWorryBtn()
         setWithBtn()
+        binding.tvWriteContentQuestion.setBold(
+            requireContext(),
+            10,
+            13,
+            requireContext().getString(R.string.write_how_question)
+        )
     }
 
     private fun setWorryBtn() {
@@ -44,7 +50,8 @@ class WriteHowFragment :
     }
 
     private fun setUploadBtn() {
-        howFragViewModel.enabled.value = howFragViewModel.isWithSelected.value!! || howFragViewModel.isAloneSelected.value!!
+        howFragViewModel.enabled.value =
+            howFragViewModel.isWithSelected.value!! || howFragViewModel.isAloneSelected.value!!
     }
 
     private fun setViewModel() {

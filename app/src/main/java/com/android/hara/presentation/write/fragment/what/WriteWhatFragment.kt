@@ -9,6 +9,7 @@ import androidx.navigation.Navigation
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteWhatBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.write.WriteViewModel
 
 class WriteWhatFragment :
@@ -23,22 +24,14 @@ class WriteWhatFragment :
         setNavigation(view)
         onClickNextBtn()
         addObserve()
+        binding.tvWriteWhatQuestion.setBold(
+            requireContext(),
+            0,
+            2,
+            this.getString(R.string.write_title_question)
+        )
 
-        // 함수 분리
-//        val myTypeface = Typeface.create(
-//            ResourcesCompat.getFont(requireContext(), R.font.pretendard_medium),
-//            Typeface.NORMAL
-//        )
-//        val cafeTypeface = Typeface.create(
-//            ResourcesCompat.getFont(requireContext(), R.font.cafe24_ssurround),
-//            //Bold Type font로 나중에 받아서 넣어줄것
-//            Typeface.NORMAL
-//        )
-//        val string = SpannableString(R.string.write_title_question.toString())
-//        string.setSpan(TypefaceSpan(cafeTypeface), 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-//        string.setSpan(TypefaceSpan(myTypeface), 3, string.length-1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-//        //각각 인덱스 계산해서 넣어줄 것
-//        binding.tvWriteWhatQuestion.text = string
+
     }
 
     private fun setViewModel() {
