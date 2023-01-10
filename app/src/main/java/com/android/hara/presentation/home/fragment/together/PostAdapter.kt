@@ -18,6 +18,7 @@ class PostAdapter(private val itemClickListener: (TogetherPostData,Int) -> Unit)
     // view holder 객체를 생성한다
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (!::inflater.isInitialized) {
+// parent : adapter가 호출된 activity나 fragment
             inflater = LayoutInflater.from(parent.context)
         }
         return ItemPostViewHolder(ItemPostBinding.inflate(inflater, parent, false))
