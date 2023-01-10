@@ -18,4 +18,7 @@ interface HARAService {
 
     @GET("/worry/alone/list/{isSolved}")
     suspend fun getAloneList(@Path("isSolved") isSolved: Int): Response<WorryListResDto>
+
+    @GET("/worry/with/list/{isSolved}")
+    suspend fun getWithList(@Path("isSolved") isSolved: Int): Response<WorryListResDto>
 }
