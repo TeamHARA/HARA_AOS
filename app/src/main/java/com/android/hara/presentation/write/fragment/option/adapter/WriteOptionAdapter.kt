@@ -1,11 +1,10 @@
 package com.android.hara.presentation.write.fragment.option.adapter
 
 import android.annotation.SuppressLint
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -54,7 +53,10 @@ class WriteOptionAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, @SuppressLint("RecyclerView") position: Int) {
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        @SuppressLint("RecyclerView") position: Int
+    ) {
         //positoin은 0 부터
         val currentItem = getItem(position)
 
@@ -63,23 +65,30 @@ class WriteOptionAdapter(
 
             OPTION -> {
                 with(holder as ItemOptionViewHolder) {
-                    binding.inputText = titleList[absoluteAdapterPosition]
-                    binding.etWriteOptionInput.addTextChangedListener(object : TextWatcher {
-                        override fun beforeTextChanged(
-                            charSequence: CharSequence, i: Int, i1: Int, i2: Int
-                        ) {
-                        }
-
-                        override fun onTextChanged(
-                            charSequence: CharSequence, i: Int, i1: Int, i2: Int
-                        ) {
-                            Timber.e(titleList.toString())
-                            checkEnableListener(titleList.all { it != "" }) // 모든 에딧텍스트에 입력이 되었는가 검사
-                            titleList[position] = charSequence.toString()
-                        }
-
-                        override fun afterTextChanged(editable: Editable) {}
-                    })
+                    Timber.e(currentList.toString())
+                    Timber.e(titleList.toString())
+                    binding.inputText = titleList[position]
+                    binding.etWriteOptionInput.doOnTextChanged { charSequence: CharSequence?, i: Int, i1: Int, i2: Int ->
+                        Timber.e(titleList.toString())
+                        checkEnableListener(titleList.all { it != "" }) // 모든 에딧텍스트에 입력이 되었는가 검사
+                        titleList[position] = charSequence.toString()
+                    }
+//                    binding.etWriteOptionInput.addTextChangedListener(object : TextWatcher {
+//                        override fun beforeTextChanged(
+//                            charSequence: CharSequence, i: Int, i1: Int, i2: Int
+//                        ) {
+//                        }
+//
+//                        override fun onTextChanged(
+//                            charSequence: CharSequence, i: Int, i1: Int, i2: Int
+//                        ) {
+//                            Timber.e(titleList.toString())
+//                            checkEnableListener(titleList.all { it != "" }) // 모든 에딧텍스트에 입력이 되었는가 검사
+//                            titleList[position] = charSequence.toString()
+//                        }
+//
+//                        override fun afterTextChanged(editable: Editable) {}
+//                    })
                     if (position >= 2) { // - 버튼은 3번 선택지 부터 활성화
                         binding.ibOptionDeleteButton.visibility = View.VISIBLE
                     }
@@ -113,9 +122,26 @@ class WriteOptionAdapter(
 
     private fun removeItem(position: Int) {
         val newList = currentList.toMutableList()
-        newList.removeAt(position)
+        if (currentList.size == 5) {
+            if (position == 2) {
+                newList.removeAt(3)
+                titleList[2] = titleList[3]
+                titleList[3] = ""
+            }else{
+                newList.removeAt(3)
+                titleList[3] = ""
+            }
+        }else{
+            newList.removeAt(2)
+            titleList[2] = ""
+        }
+//        currentList.forEach {
+//            if (it.id == position)
+//                newList.remove(getItem(position))
+//        }
         submitList(newList)
-        //notifyItemRemoved(position)
+        Timber.e(currentList.toString())
+        Timber.e(titleList.toString())
     }
 
     companion object {
