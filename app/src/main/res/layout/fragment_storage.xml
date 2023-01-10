@@ -13,7 +13,7 @@
         tools:context=".presentation.home.fragment.storage.StorageFragment">
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cv_btn_onesec"
+            android:id="@+id/cv_storage_btn_onesec"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:orientation="vertical"
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cv_btn_onesec"
+            app:layout_constraintTop_toBottomOf="@id/cv_storage_btn_onesec"
             android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"
@@ -112,7 +112,7 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-        <!-- ViewPager2: 이 위치에 Fragment들이 노출된다. -->
+        <!-- ViewPager2: 이 위치에 Fragment들이 노출된다 -->
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager"
             android:layout_width="0dp"
@@ -122,8 +122,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

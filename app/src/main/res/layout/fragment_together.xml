@@ -7,10 +7,12 @@
 
     </data>
 
+    <!-- home fragment : 함께해라 부분 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- 상단 리사이클러뷰 1 : 카테고리 -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_together_category"
             android:layout_width="0dp"
@@ -26,13 +28,18 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_category" />
 
+        <!-- 리사이클러뷰 2 : 게시글 목록 -->
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_together_post"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="12dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@+id/rv_together_category"
-            tools:listitem="@layout/item_worry" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:listitem="@layout/item_post" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

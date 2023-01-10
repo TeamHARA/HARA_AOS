@@ -25,13 +25,13 @@ class StorageAdapter(private val itemClickListener: (String) -> Unit)
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             val curItem = getItem(position)
             with(holder as ItemStorageViewHolder) {
-                binding.tvCategory.text = curItem.category
-                binding.tvTitle.text = curItem.title
-                binding.tvDate.text = curItem.date
+                binding.tvStorageCategory.text = curItem.category
+                binding.tvStorageTitle.text = curItem.title
+                binding.tvStorageDate.text = curItem.date
                 binding.xmlIng = curItem.flag
 
-                if (curItem.flag) binding.tvFlag.text = "고민중"
-                else binding.tvFlag.text = "고민완료"
+                if (curItem.flag) binding.tvStorageFlag.text = "고민중"
+                else binding.tvStorageFlag.text = "고민완료"
             }
         }
 
