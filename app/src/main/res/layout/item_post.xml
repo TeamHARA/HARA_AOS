@@ -5,8 +5,19 @@
 
     <data>
         <variable
+            name="myPost"
+            type="boolean" />
+        <variable
             name="optSelNum"
             type="int" />
+        <variable
+            name="postShowCheck"
+            type="boolean" />
+        <variable
+            name="postItemClickable"
+            type="boolean" />
+
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -108,7 +119,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/flow_post_img"
-            app:optSel="@{optSelNum == 1 ? true : false}"/>
+            app:optSel="@{optSelNum == 1 ? true : false}"
+            app:postItemShowCheck="@{postShowCheck}"
+            app:postItemLayoutClickable="@{postItemClickable}" />
 
         <!-- option 2 -->
         <include
@@ -120,7 +133,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_post_opt1"
-            app:optSel="@{optSelNum == 2 ? true : false}"/>
+            app:optSel="@{optSelNum == 2 ? true : false}"
+            app:postItemShowCheck="@{postShowCheck}"
+            app:postItemLayoutClickable="@{postItemClickable}" />
 
         <!-- option 3 -->
         <include
@@ -132,7 +147,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_post_opt2"
-            app:optSel="@{optSelNum == 3 ? true : false}"/>
+            app:optSel="@{optSelNum == 3 ? true : false}"
+            app:postItemShowCheck="@{postShowCheck}"
+            app:postItemLayoutClickable="@{postItemClickable}" />
 
         <!-- option 4 -->
         <include
@@ -144,22 +161,41 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_post_opt3"
-            app:optSel="@{optSelNum == 4 ? true : false}" />
+            app:optSel="@{optSelNum == 4 ? true : false}"
+            app:postItemShowCheck="@{postShowCheck}"
+            app:postItemLayoutClickable="@{postItemClickable}" />
 
-        <!-- 투표하기 버튼 -->
+        <!-- [내가 쓴 글일 때] 최종결정 하러 가기 버튼 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_post_go_decide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rectangle_orange3_fill_8"
+            android:minHeight="0dp"
+            android:paddingVertical="12dp"
+            android:stateListAnimator="@null"
+            android:text="최종결정 하러 가기"
+            android:textAppearance="@style/hara_body1_sb14"
+            android:textColor="@color/orange_1"
+            app:layout_constraintTop_toBottomOf="@+id/layout_post_opt4"
+            android:visibility="@{myPost ? View.VISIBLE : View.INVISIBLE}" />
+
+        <!-- [남이 쓴 글일 때] 투표하기 버튼 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_post_vote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@{optSelNum == 0 ? @drawable/shape_rectangle_orange2_stroke_1_8 : @drawable/shape_rectangle_orange3_fill_8}"
             android:minHeight="0dp"
             android:paddingVertical="12dp"
             android:stateListAnimator="@null"
             android:text="@string/vote"
             android:textAppearance="@style/hara_body1_sb14"
             android:textColor="@color/orange_1"
-            app:layout_constraintTop_toBottomOf="@+id/layout_post_opt4" />
+            app:layout_constraintTop_toBottomOf="@+id/layout_post_opt4"
+            app:your_post_vote="@{optSelNum}"
+            android:visibility="@{myPost ? View.INVISIBLE : View.VISIBLE}" />
 
         <!-- 댓글 수 표시 -->
         <androidx.constraintlayout.widget.ConstraintLayout

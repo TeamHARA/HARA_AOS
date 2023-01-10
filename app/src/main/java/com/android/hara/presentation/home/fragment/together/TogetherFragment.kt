@@ -1,14 +1,14 @@
 package com.android.hara.presentation.home.fragment.together
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
-import com.android.hara.presentation.home.fragment.together.model.TogetherPostData
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -26,9 +26,12 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        postAdapter = PostAdapter({ postId, optId ->
-            homeVm.changeSelPostAndOptId(postId, optId)
-        }, { homeVm.changeBtnVal() })
+        postAdapter = PostAdapter(
+            { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
+            { homeVm.changeBtnVal() },
+            { requireContext().getDrawable(R.drawable.shape_rectangle_gray3_fill_8)!! },
+            { requireContext().getColor(R.color.white) }
+        )
         binding.rvTogetherPost.adapter = postAdapter
 
         // [1] recycler view - adapter 연결: 상단 카테고리 목록 [by 유진]

@@ -55,6 +55,11 @@ class HomeViewModel @Inject constructor(private val HARARepository: HARAReposito
     private val _catAllPostResult: MutableLiveData<AllPostResDto> = MutableLiveData()
     val catAllPostResult: LiveData<AllPostResDto> = _catAllPostResult
 
+    // [홈화면: 고민글 목록 전체조회] 내가 쓴 글 목록
+    private lateinit var myPostResult: List<AllPostResDto.Data>
+    // [홈화면: 고민글 목록 전체조회] 남이 쓴 글 목록
+    private lateinit var otherPostResult: List<AllPostResDto.Data>
+
     // [홈화면: 투표] post 통신 결과
     private val _voteResult: MutableLiveData<VoteResDto> = MutableLiveData()
     val voteResult: LiveData<VoteResDto> = _voteResult
@@ -71,6 +76,18 @@ class HomeViewModel @Inject constructor(private val HARARepository: HARAReposito
                 if (it.isSuccessful) { // 내부 코드의 응답코드 200~299
                     Timber.e("Success")
                     _catAllPostResult.value = it.body()
+
+                    /*
+                    // [홈화면: 고민글 목록 전체조회] 내가 쓴 글 목록 (필터링)
+                    myPostResult = _catAllPostResult.value!!.data.filter {
+                        it.isAuthor
+                    }
+
+                    // [홈화면: 고민글 목록 전체조회] 남이 쓴 글 목록 (필터링)
+                    otherPostResult = _catAllPostResult.value!!.data.filter {
+                        !it.isAuthor
+                    }
+                    */
                 }
                 else { // 응답코드 400~599
                     Timber.e("서버통신 응답코드 이상")
