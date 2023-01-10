@@ -27,7 +27,7 @@ class StorageAloneViewModel @Inject constructor(private val haraRepository: HARA
             }.onSuccess {
                 if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
-                    _aloneData.value = it.body()!!.data
+                    _aloneData.value = it.body()?.data // null로 터지는 걸 막아준다.
                 } else { // 응답코드 400~599
                     Timber.e("Failure")
                 }
