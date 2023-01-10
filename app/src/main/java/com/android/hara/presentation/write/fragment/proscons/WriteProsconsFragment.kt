@@ -7,14 +7,17 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteProsconsBinding
+import com.android.hara.databinding.ItemWriteProsconsBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.write.WriteViewModel
+import com.android.hara.presentation.write.fragment.proscons.model.PronsData
 
 class WriteProsconsFragment :
     BindingFragment<FragmentWriteProsconsBinding>(R.layout.fragment_write_proscons) {
     lateinit var navController: NavController
     private val writeViewModel: WriteViewModel by activityViewModels()
+    private lateinit var prosList :List<ItemWriteProsconsBinding>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,11 +30,16 @@ class WriteProsconsFragment :
             8,
             requireContext().getString(R.string.write_proscons_question)
         )
-        val list =
-            listOf(binding.proscons1, binding.proscons2, binding.proscons3, binding.proscons4)
+        prosList =  listOf(
+            binding.proscons1,
+            binding.proscons2,
+            binding.proscons3,
+            binding.proscons4
+        )
+
         writeViewModel.titleList.forEachIndexed { index, s ->
-            list[index].visible = s == ""
-            list[index].title = s
+            prosList[index].visible = s == ""
+            prosList[index].title = s
         }
 
     }
@@ -42,8 +50,20 @@ class WriteProsconsFragment :
 
     private fun onClickNextBtn() {
         binding.ibWriteProsconsNextButton.setOnClickListener {
+            val newList = mutableListOf<PronsData>()
+            prosList.forEachIndexed { index, itemWriteProsconsBinding ->
+                newList.add(
+                    PronsData(
+                        itemWriteProsconsBinding.etWriteProsAnswer.text.toString(),
+                        itemWriteProsconsBinding.etWriteConsAnswer.text.toString()
+                    )
+                )
+            }
+            writeViewModel.pronsList.addAll(newList)
+            //시점 유의
             navController.navigate(R.id.action_writeProsconsFragment_to_writeCategoryFragment)
             writeViewModel.addProgress()
+
         }
     }
 

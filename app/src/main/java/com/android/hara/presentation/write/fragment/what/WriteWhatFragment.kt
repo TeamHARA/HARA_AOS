@@ -46,6 +46,8 @@ class WriteWhatFragment :
         binding.ibWriteNextButtonOn.setOnClickListener {
             navController.navigate(R.id.action_writeWhatFragment_to_writeOptionFragment)
             writeViewModel.addProgress()
+            writeViewModel.title = binding.etWriteWhatAnswer.text.toString()
+            writeViewModel.content = binding.etWriteContentAnswer.text.toString()
         }
     }
 

@@ -11,6 +11,7 @@ import com.android.hara.databinding.FragmentWriteHowBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.write.WriteViewModel
+import timber.log.Timber
 
 class WriteHowFragment :
     BindingFragment<FragmentWriteHowBinding>(R.layout.fragment_write_how) {
@@ -31,6 +32,7 @@ class WriteHowFragment :
             13,
             requireContext().getString(R.string.write_how_question)
         )
+        Timber.e(writeViewModel.pronsList.toString())
     }
 
     private fun setWorryBtn() {

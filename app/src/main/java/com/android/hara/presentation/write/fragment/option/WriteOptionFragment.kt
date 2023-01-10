@@ -32,7 +32,8 @@ class WriteOptionFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Timber.e(writeViewModel.title.toString())
+        Timber.e(writeViewModel.content.toString())
         adapter = WriteOptionAdapter({ addItem() }, {
             Timber.e(it.toString())
             if (it) {
