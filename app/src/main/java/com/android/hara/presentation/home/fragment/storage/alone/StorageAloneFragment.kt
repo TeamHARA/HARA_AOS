@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.R
 import com.android.hara.databinding.FragmentStorageSelfBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.home.fragment.storage.StorageAdapter
+import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -43,7 +43,7 @@ class StorageAloneFragment :
     }
 
     private fun onClickToggleBtn() {
-        binding.tbToggle.setOnClickListener {
+        binding.tbToggle.setOnSingleClickListener {
             if (binding.tbToggle.isChecked) { // 고민중이면
                 storageAloneViewModel.isSolved.value = 0
             } else storageAloneViewModel.isSolved.value = 1

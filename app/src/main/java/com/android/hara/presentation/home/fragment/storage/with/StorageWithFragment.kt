@@ -8,6 +8,7 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentStorageTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.home.fragment.storage.StorageAdapter
+import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -33,6 +34,7 @@ class StorageWithFragment :
         storageWithViewModel.withData.observe(viewLifecycleOwner) { dataList ->
             storageAdapter.submitList(dataList)
             Timber.e(dataList.toString())
+            binding.rvPosts.smoothScrollToPosition(0) // TODO: 광클방지
         }
         storageWithViewModel.isSolved.observe(viewLifecycleOwner) {
             storageWithViewModel.getWithList()
@@ -40,7 +42,7 @@ class StorageWithFragment :
     }
 
     private fun onClickToggleBtn() {
-        binding.tbToggle.setOnClickListener {
+        binding.tbToggle.setOnSingleClickListener {
             if (binding.tbToggle.isChecked) { // 고민중이면
                 storageWithViewModel.isSolved.value = 0
             } else storageWithViewModel.isSolved.value = 1
