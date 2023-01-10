@@ -8,7 +8,6 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentStorageSelfBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.home.fragment.storage.StorageAdapter
-import com.android.hara.presentation.home.fragment.storage.alone.StorageAloneViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
