@@ -48,25 +48,23 @@ class PostAdapter(
 
             // 1) 내가 쓴 글이면: '최종 결정하러 가기' 버튼
             if (curItem.isAuthor) {
-                // check 버튼 안 보이게
-                binding.postShowCheck = false
-                // '최종 결정하러 가기' 버튼
-                binding.myPost = true
+                binding.itOptClickable = false // 옵션 clickable = false
+                binding.itMyPost = true // 옵션에 check 표시 안 보임, '최종결정 하러가기' 버튼이 보임
             }
 
-            // 2) 내가 쓴 글이 아니면(남이 쓴 글이면): '투표하기' 버튼
+            // 2) 내가 쓴 글이 아니면(남이 쓴 글이면): 투표 버튼
             else {
-                binding.myPost = false
+                binding.itMyPost = false // 옵션에 check 표시 보임, '투표하기' 버튼이 보임
 
-                // 2-a) 투표를 이미 했으면: '투표완료' 버튼
+                // 2-a) 투표를 이미 했으면: '투표 완료!' 버튼, 옵션 스타일
                 if (curItem.isVoted) {
-                    binding.postShowCheck = false
-                    binding.optSelNum = -1
+                    binding.itOptClickable = false // 옵션 clickable = false
+                    binding.itOptSelNum = -1 // 옵션에 check src, 투표 버튼 disable
                 }
                 // 2-b) 투표를 아직 안 했으면: '투표하기' 버튼 - 선택하면 바꿔야 됨
                 else {
-                    binding.postShowCheck = true
-                    binding.optSelNum = 0
+                    binding.itOptClickable = true // 옵션 clickable = true
+                    binding.itOptSelNum = 0 // 옵션에 check src, 투표 버튼 enable
 
                     // 옵션 클릭 시 : 옵션/투표 버튼 스타일이 바뀌는 로직
                     binding.layoutPostOpt1.clPostOpt.setOnClickListener {
@@ -89,15 +87,8 @@ class PostAdapter(
 
                     binding.btnPostVote.setOnClickListener {
                         btnSelListener()
-                        //binding.btnPostVote.background = getDrawable()
-                        //binding.btnPostVote.setTextColor(getColor())
-                        //binding.btnPostVote.text = "투표 완료!"
-                        //binding.btnPostVote.isEnabled = false
-
-                        binding.optSelNum = -1
-                        binding.postShowCheck = false
-
-                        binding.postItemClickable = false
+                        binding.itOptClickable = false // 옵션 clickable = false
+                        binding.itOptSelNum = -1 // 옵션에 check src, 투표 버튼 disable
                     }
                 }
             }
@@ -105,11 +96,10 @@ class PostAdapter(
         }
     }
 
-    // binding.optSelNum이 0 : (다른 유저의 글임) 옵션 선택 안 된 상태
-    // binding.optSelNum이 1~ : (다른 유저의 글임) 옵션 선택이 된 상태
     private fun changeXmlOptSelNum(binding: ItemPostBinding, n: Int) {
-        if (binding.optSelNum == n) binding.optSelNum = 0
-        else binding.optSelNum = n
+        // 옵션에 check src, 투표 버튼 enable/disable
+        if (binding.itOptSelNum == n) binding.itOptSelNum = 0
+        else binding.itOptSelNum = n
     }
 
     private fun setOptTitle(binding: ItemPostBinding, curItem: AllPostResDto.Data) {

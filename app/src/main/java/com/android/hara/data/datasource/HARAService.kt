@@ -20,6 +20,7 @@ interface HARAService {
     @GET("/worry/{categoryId}")
     suspend fun showAllPost(@Path("categoryId") categoryId: Int) : Response<AllPostResDto>
 
+    // TODO: Headers를 제거해도 post 요청이 제대로 가는지 확인
     @Headers("Content-Type: application/json")
     @POST("/worry")
     suspend fun vote(@Body request: VoteReqDto) : Response<VoteResDto>

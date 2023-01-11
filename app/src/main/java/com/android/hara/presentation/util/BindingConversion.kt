@@ -34,26 +34,45 @@ fun TextView.xmlIng(still: Boolean) {
     }
 }
 
-@BindingAdapter("app:your_post_vote")
-fun AppCompatButton.optSelNum(n: Int) {
+// [홈화면/item_post.xml] optSelNum의 값에 따라 '투표하기' 버튼의 스타일이 바뀐다
+@BindingAdapter("app:vote_btn_style")
+fun AppCompatButton.itOptSelNum(n: Int) {
     when (n) {
         -1 -> { // [투표 완] 이미 투표 완료 상태
+            this.isEnabled = false
             this.background = this.context.getDrawable(R.drawable.shape_rectangle_gray3_fill_8)
             this.setTextColor(this.context.getColor(R.color.white))
             this.text = "투표 완료!"
-            this.isEnabled = false
         }
-        0 -> { // [투표 미완] 옵션이 아직 선택되지 않음
+        0 -> { // [투표 미완] 사용자가 옵션을 선택 안 함
+            this.isEnabled = true
             this.background = this.context.getDrawable(R.drawable.shape_rectangle_orange2_stroke_1_8)
             this.setTextColor(this.context.getColor(R.color.orange_1))
             this.text = "투표하기"
-            this.isEnabled = true
         }
-        else -> { // [투표 미완] 옵션이 선택된 상태
+        else -> { // [투표 미완] 사용자가 옵션을 선택함
+            this.isEnabled = true
             this.background = this.context.getDrawable(R.drawable.shape_rectangle_orange3_fill_8)
             this.setTextColor(this.context.getColor(R.color.orange_1))
             this.text = "투표하기"
-            this.isEnabled = true
+        }
+    }
+}
+
+// [홈화면/item_post.xml] optSelNum의 값에 따라 '옵션'의 체크버튼 스타일이 바뀐다
+@BindingAdapter(value = ["app:layOptSelNum", "app:layOptSel"], requireAll = true)
+fun optionCheckBtn(imageView: ImageView, n: Int, b: Boolean) {
+    when (n) {
+        -1 -> { // [투표 완] 그냥 체크 표시
+            if (b) imageView.setImageResource(R.drawable.ic_check)
+            else imageView.visibility = View.GONE
+        }
+        0 -> { // [투표 미완] 사용자가 옵션을 선택 안했으니 check off 표시
+            imageView.setImageResource(R.drawable.ic_checkcircle_off)
+        }
+        else -> { // [투표 미완] 사용자가 옵션을 선택했으니 check on 표시
+            if (b) imageView.setImageResource(R.drawable.ic_checkcircle_on)
+            else imageView.setImageResource(R.drawable.ic_checkcircle_off)
         }
     }
 }
