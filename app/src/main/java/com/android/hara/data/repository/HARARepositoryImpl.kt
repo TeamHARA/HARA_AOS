@@ -3,6 +3,7 @@ package com.android.hara.data.repository
 import com.android.hara.data.datasource.HARAService
 import com.android.hara.data.model.request.RequestVoteDTO
 import com.android.hara.data.model.response.OnesecResDto
+import com.android.hara.data.model.response.RandomListResDto
 import com.android.hara.data.model.response.ResponseVoteDTO
 import com.android.hara.data.model.response.WorryListResDto
 import com.android.hara.domain.repository.HARARepository
@@ -26,5 +27,9 @@ class HARARepositoryImpl @Inject constructor(
 
     override suspend fun getRandom(): Response<OnesecResDto> {
         return HARAService.getRandom()
+    }
+
+    override suspend fun getLastWorry(): Response<RandomListResDto> {
+        return HARAService.getLastWorry()
     }
 }
