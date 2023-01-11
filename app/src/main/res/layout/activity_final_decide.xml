@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="selected"
             type="boolean" />
@@ -11,17 +12,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_final_decide_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_close"
-            android:layout_marginTop="13dp"
             android:layout_marginLeft="12dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:layout_marginTop="13dp"
+            android:background="@drawable/ic_close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_final_decide_title"
@@ -37,9 +39,9 @@
             android:id="@+id/tv_final_decide_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="12dp"
+            android:layout_marginTop="16dp"
+            android:textAppearance="@style/hara_heading1_sb16"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_final_decide_title"
@@ -51,22 +53,22 @@
             android:layout_height="0dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_final_decide_title"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            tools:listitem="@layout/item_final_decide_img"/>
+            tools:listitem="@layout/item_final_decide_img" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_options"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_final_decide_img"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="30dp">
+            app:layout_constraintTop_toBottomOf="@+id/rv_final_decide_img">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_opt1"
@@ -84,24 +86,24 @@
                     android:layout_marginLeft="14dp"
                     android:layout_marginTop="13dp"
                     android:layout_marginBottom="12dp"
+                    android:text="안녕하세용 나 오늘 머리 안 깜았어요"
                     android:textAppearance="@style/hara_modal2_m18"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="안녕하세용 나 오늘 머리 안 깜았어요" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_opt1_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="14dp"
+                    android:text="20%"
                     android:textAppearance="@style/hara_heading2_m16"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_opt1_content"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_opt1_content"
-                    android:text="20%" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_opt1_content" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -122,24 +124,24 @@
                     android:layout_marginLeft="14dp"
                     android:layout_marginTop="13dp"
                     android:layout_marginBottom="12dp"
+                    android:text="안녕하세용 나 오늘 머리 안 깜았어요"
                     android:textAppearance="@style/hara_modal2_m18"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="안녕하세용 나 오늘 머리 안 깜았어요" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_opt2_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="14dp"
+                    android:text="20%"
                     android:textAppearance="@style/hara_heading2_m16"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_opt2_content"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_opt2_content"
-                    android:text="20%" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_opt2_content" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -160,24 +162,24 @@
                     android:layout_marginLeft="14dp"
                     android:layout_marginTop="13dp"
                     android:layout_marginBottom="12dp"
+                    android:text="안녕하세용 나 오늘 머리 안 깜았어요"
                     android:textAppearance="@style/hara_modal2_m18"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="안녕하세용 나 오늘 머리 안 깜았어요" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_opt3_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="14dp"
+                    android:text="20%"
                     android:textAppearance="@style/hara_heading2_m16"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_opt3_content"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_opt3_content"
-                    android:text="20%" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_opt3_content" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -198,24 +200,24 @@
                     android:layout_marginLeft="14dp"
                     android:layout_marginTop="13dp"
                     android:layout_marginBottom="12dp"
+                    android:text="안녕하세용 나 오늘 머리 안 깜았어요"
                     android:textAppearance="@style/hara_modal2_m18"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="안녕하세용 나 오늘 머리 안 깜았어요" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_opt4_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="14dp"
+                    android:text="20%"
                     android:textAppearance="@style/hara_heading2_m16"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_opt4_content"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_opt4_content"
-                    android:text="20%" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_opt4_content" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -226,15 +228,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            app:decide_selected="@{selected}"
-            android:textAppearance="@style/hara_heading1_sb16"
             android:layout_marginBottom="24dp"
             android:background="@drawable/shape_rectangle_orange1_fill_30"
+            android:enabled="false"
+            android:paddingHorizontal="16dp"
             android:text="고민 해결하기"
+            android:textAppearance="@style/hara_heading1_sb16"
+            app:decide_selected="@{selected}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:enabled="false"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
