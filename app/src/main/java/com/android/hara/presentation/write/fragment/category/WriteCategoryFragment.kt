@@ -69,14 +69,14 @@ class WriteCategoryFragment :
     }
 
     private fun onClickNextBtn() {
-        binding.ibWriteCategoryNextButtonOn.setOnClickListener {
+        binding.ibWriteCategoryNextButtonOn.setOnSingleClickListener {
             navController.navigate(R.id.action_writeCategoryFragment_to_writeHowFragment)
             writeViewModel.addProgress()
         }
     }
 
     private fun onClickBackBtn() {
-        binding.ibWriteCategoryBackButton.setOnClickListener {
+        binding.ibWriteCategoryBackButton.setOnSingleClickListener {
             navController.navigateUp()
             writeViewModel.subProgress()
         }

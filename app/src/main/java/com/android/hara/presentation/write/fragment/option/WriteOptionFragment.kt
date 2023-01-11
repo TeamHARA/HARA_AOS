@@ -10,6 +10,7 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteOptionBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.util.setBold
+import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 import com.android.hara.presentation.write.fragment.option.adapter.WriteOptionAdapter
 import com.android.hara.presentation.write.fragment.option.model.OptionData
@@ -34,7 +35,6 @@ class WriteOptionFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setNavigation(view)
         initAdapter()
         onClickNextBtn()
@@ -56,6 +56,13 @@ class WriteOptionFragment :
         이로인해서 발생되었던 앱 종료현상도 같이 개선
         문제점 : Companion Object가 사용되었고 일부 예외 처리 코드가 일부 있음
          */
+
+        adapter = WriteOptionAdapter({ addItem() }, {
+            binding.ibWriteOptionNextButtonOff.isVisible = !it
+            binding.ibWriteOptionNextButtonOn.isVisible = it
+            // 버튼 활성화 로직 고차함수 넘겨줌
+        }) // 먼저 생성해주어야 앱 크래쉬 방지
+
         WriteOptionAdapter.setAdapterTitleList(writeViewModel.titleList)
         // 현재 어댑터의 리스트를 뷰모델 리스트와 동기화 시켜줌
         val tempList = mutableListOf<OptionData>(
@@ -68,12 +75,6 @@ class WriteOptionFragment :
             tempList.add(OptionData(0, true))
             tempList.add(OptionData(1, true))
         }
-
-        adapter = WriteOptionAdapter({ addItem() }, {
-            binding.ibWriteOptionNextButtonOff.isVisible = !it
-            binding.ibWriteOptionNextButtonOn.isVisible = it
-            // 버튼 활성화 로직 고차함수 넘겨줌
-        })
         binding.rcvOptions.adapter = adapter
         adapter.submitList(tempList.sortedBy { !it.veiwType }.toList()) //+ 버튼이 무조건 마지막으로 갈수 있도록 정렬
     }
@@ -90,7 +91,7 @@ class WriteOptionFragment :
     }
 
     private fun onClickNextBtn() {
-        binding.ibWriteOptionNextButtonOn.setOnClickListener {
+        binding.ibWriteOptionNextButtonOn.setOnSingleClickListener {
             navController.navigate(R.id.action_writeOptionFragment_to_writeProsconsFragment)
             writeViewModel.addProgress()
             writeViewModel.titleList.clear()
@@ -99,7 +100,7 @@ class WriteOptionFragment :
     }
 
     private fun onClickBackBtn() {
-        binding.ibWriteOptionBackButton.setOnClickListener {
+        binding.ibWriteOptionBackButton.setOnSingleClickListener {
             navController.navigateUp()
             writeViewModel.subProgress()
         }

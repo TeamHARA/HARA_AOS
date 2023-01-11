@@ -2,6 +2,7 @@ package com.android.hara.presentation.write.fragment.what
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -10,6 +11,7 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteWhatBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.util.setBold
+import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 
 class WriteWhatFragment :
@@ -41,7 +43,7 @@ class WriteWhatFragment :
     }
 
     private fun onClickNextBtn() {
-        binding.ibWriteNextButtonOn.setOnClickListener {
+        binding.ibWriteNextButtonOn.setOnSingleClickListener {
             navController.navigate(R.id.action_writeWhatFragment_to_writeOptionFragment)
             writeViewModel.addProgress()
             writeViewModel.title = binding.etWriteWhatAnswer.text.toString()
@@ -62,13 +64,8 @@ class WriteWhatFragment :
 
     private fun setNextBtn() {
         whatViewModel.setEnabled()
-        if (whatViewModel.enabled.value!!) {
-            binding.ibWriteNextButtonOn.visibility = View.VISIBLE
-            binding.ibWriteNextButtonOff.visibility = View.INVISIBLE
-        } else {
-            binding.ibWriteNextButtonOn.visibility = View.INVISIBLE
-            binding.ibWriteNextButtonOff.visibility = View.VISIBLE
-        }
+        binding.ibWriteNextButtonOn.isVisible = whatViewModel.enabled.value!!
+        binding.ibWriteNextButtonOff.isVisible = !(whatViewModel.enabled.value!!)
     }
 
     private fun setTitleLength() {
