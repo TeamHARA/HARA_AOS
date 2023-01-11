@@ -30,6 +30,7 @@ class WriteHowFragment :
         setWorryBtn()
         setWithBtn()
         binding.btnWriteContentUploadButton.setOnSingleClickListener {
+            writeViewModel.isWith = howFragViewModel.isWithSelected.value!!
             DecisionDialog(
                 requireContext(), DialogData(
                     "고민글을 게시하겠습까?",

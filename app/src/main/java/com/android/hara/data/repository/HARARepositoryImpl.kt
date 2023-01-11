@@ -32,12 +32,11 @@ class HARARepositoryImpl @Inject constructor(
         return HARAService.getLastWorry()
     }
 
-    override suspend fun postWorryAlone(request: WorryAloneRequestDto): Response<WorryAloneResponseDto> {
-        return HARAService.postAloneWith(request)
-    }
-
     override suspend fun postWorryWith(request: WorryWithRequestDto): Response<WorryWithResponseDto> {
         return HARAService.postWorryWith(request)
     }
 
+    override suspend fun postWorryAlone(request: WorryAloneRequestDto): Response<WorryAloneResponseDto> {
+        return HARAService.postWorryAlone(request)
+    }
 }

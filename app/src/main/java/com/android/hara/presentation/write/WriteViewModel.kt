@@ -26,7 +26,7 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
     private val _pronsList = mutableListOf<PronsData>() // 장단점 리스트 3번
     val pronsList get() = _pronsList
     var categoty = -1 // 카테고리 4번
-    private var isWith = false // 혼자고민 함께고민 True면 함께 false면 혼자
+    var isWith = false // 혼자고민 함께고민 True면 함께 false면 혼자
     private val optionList = mutableListOf<Option>()
 
     init {
@@ -36,25 +36,28 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
 
     fun postWorry() {
         setOptionsList()
-        if (isWith)
+        //comment on 과 img 필드들이 false 이거나 ""과 같은 빈 문자열일때 안보내준다
+        if (isWith){
             viewModelScope.launch {
                 kotlin.runCatching {
                     haraRepository.postWorryWith(
                         WorryWithRequestDto(
                             categoryId = categoty,
-                            commentOn = false,
                             content = content,
+                            commentOn = true,
                             options = optionList,
                             title = title
                         )
                     )
                 }.onSuccess {
-                    if (it.isSuccessful) Timber.e("success")
-                    else Timber.e("failure")
+                    if (it.isSuccessful) Timber.e("with success")
+                    else Timber.e("with failure")
                 }.onFailure {
                     Timber.e(it)
                 }
-            } else {
+            }
+        }
+        else {
             viewModelScope.launch {
                 kotlin.runCatching {
                     haraRepository.postWorryAlone(
@@ -75,15 +78,15 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
         }
     }
 
-    fun setOptionsList() { // 서버통신 하기전 데이터를 세팅
+    private fun setOptionsList() { // 서버통신 하기전 데이터를 세팅
         titleList.forEachIndexed { index, s ->
             if (s != "") { // 유효한 선택지 만큼 optionData를 생성
                 optionList.add(
                     Option(
                         pronsList[index].advantage,
                         pronsList[index].disadvantage,
-                        false,
-                        "",
+                        true,
+                        "img",
                         titleList[index]
                     )
                 )

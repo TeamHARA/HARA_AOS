@@ -56,7 +56,7 @@ class DecisionDialog(
             dialog.cancel()
         }
         binding.btnDialogAction.setOnSingleClickListener {
-            itemActionListener
+            itemActionListener()
             dialog.cancel()
         }
     }
