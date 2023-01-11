@@ -48,6 +48,9 @@ class CategoryAdapter(
                         binding.btnCategoryButton.isSelected = true
                         notifyItemChanged(selectedPosition)
                         selectedPosition = absoluteAdapterPosition
+                        TogetherFragment.setScroll()
+                    } else {
+                        TogetherFragment.setScroll()
                     }
                 }
             }
