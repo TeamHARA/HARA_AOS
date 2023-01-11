@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_write_what">
         <action
             android:id="@+id/action_writeWhatFragment_to_writeOptionFragment"
-            app:destination="@id/writeOptionFragment" />
+            app:destination="@id/writeOptionFragment"
+            app:enterAnim="@anim/animation_slide_from_right"
+            app:exitAnim="@anim/animation_slide_to_left" />
     </fragment>
 
     <fragment
@@ -28,7 +30,9 @@
         tools:layout="@layout/fragment_write_option">
         <action
             android:id="@+id/action_writeOptionFragment_to_writeProsconsFragment"
-            app:destination="@id/writeProsconsFragment" />
+            app:destination="@id/writeProsconsFragment"
+            app:enterAnim="@anim/animation_slide_from_right"
+            app:exitAnim="@anim/animation_slide_to_left" />
     </fragment>
 
     <fragment
@@ -38,7 +42,9 @@
         tools:layout="@layout/fragment_write_proscons">
         <action
             android:id="@+id/action_writeProsconsFragment_to_writeCategoryFragment"
-            app:destination="@id/writeCategoryFragment" />
+            app:destination="@id/writeCategoryFragment"
+            app:enterAnim="@anim/animation_slide_from_right"
+            app:exitAnim="@anim/animation_slide_to_left" />
     </fragment>
 
     <fragment
@@ -48,7 +54,9 @@
         tools:layout="@layout/fragment_write_category">
         <action
             android:id="@+id/action_writeCategoryFragment_to_writeHowFragment"
-            app:destination="@id/writeHowFragment" />
+            app:destination="@id/writeHowFragment"
+            app:enterAnim="@anim/animation_slide_from_right"
+            app:exitAnim="@anim/animation_slide_to_left" />
     </fragment>
 
 </navigation>
