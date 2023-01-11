@@ -30,9 +30,9 @@ interface HARAService {
     suspend fun getLastWorry(): Response<RandomListResDto>
 
     @POST("/worry/with")
-    suspend fun postWorryWith(requset: WorryWithRequestDto): Response<WorryWithResponseDto>
+    suspend fun postWorryWith(@Body requset: WorryWithRequestDto): Response<WorryWithResponseDto>
 
     @POST("/worry/alone")
-    suspend fun postAloneWith(requset: WorryAloneRequestDto): Response<WorryAloneResponseDto>
+    suspend fun postAloneWith(@Body requset: WorryAloneRequestDto): Response<WorryAloneResponseDto>
 
 }
