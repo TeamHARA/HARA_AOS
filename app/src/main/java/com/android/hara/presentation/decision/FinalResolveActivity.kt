@@ -1,4 +1,4 @@
-package com.android.hara.presentation.detail
+package com.android.hara.presentation.decision
 
 import android.os.Bundle
 import com.android.hara.R

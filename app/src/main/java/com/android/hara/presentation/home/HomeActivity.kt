@@ -9,7 +9,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.hara.R
 import com.android.hara.databinding.ActivityHomeBinding
 import com.android.hara.presentation.base.BindingActivity
+import com.android.hara.presentation.decision.FinalDecideActivity
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
+import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +30,11 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             startActivity(intent)
         }
         homeViewModel
+
+        //TEST FINAL
+        binding.ivHomeSetting.setOnSingleClickListener {
+            startActivity(Intent(this, FinalDecideActivity::class.java))
+        }
     }
 
     private fun setNavigation() {

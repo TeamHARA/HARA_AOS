@@ -2,6 +2,10 @@ package com.android.hara.data.datasource
 
 import com.android.hara.data.model.request.VoteReqDto
 import com.android.hara.data.model.response.*
+import com.android.hara.data.model.request.DecideAloneReqDto
+import com.android.hara.data.model.request.DecideWithReqDto
+import com.android.hara.data.model.request.RequestVoteDTO
+import com.android.hara.data.model.response.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -37,4 +41,10 @@ interface HARAService {
 
     @GET("/random/list")
     suspend fun getLastWorry(): Response<RandomListResDto>
+
+    @PATCH("/worry/alone")
+    suspend fun patchAloneDecision(@Body decision: DecideAloneReqDto): Response<DecisionResDto>
+
+    @PATCH("/worry/with")
+    suspend fun patchWithDecision(@Body decision: DecideWithReqDto): Response<DecisionResDto>
 }

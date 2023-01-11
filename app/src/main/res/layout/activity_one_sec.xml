@@ -99,7 +99,7 @@
             android:enabled="false"
             android:text="@string/one_sec_pick"
             android:textAppearance="@style/hara_heading1_sb16"
-            android:textColor="@drawable/selector_text_gray2_orange3"
+            android:textColor="@drawable/selector_text_gray3_orange3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_solved_card" />

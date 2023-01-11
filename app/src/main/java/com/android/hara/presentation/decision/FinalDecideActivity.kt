@@ -1,4 +1,4 @@
-package com.android.hara.presentation.detail
+package com.android.hara.presentation.decision
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import com.android.hara.R
 import com.android.hara.databinding.ActivityFinalDecideBinding
 import com.android.hara.presentation.base.BindingActivity
-import com.android.hara.presentation.detail.viewmodel.DecideViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,15 +55,21 @@ class FinalDecideActivity :
         // [observer] 뷰모델 내 selectedN의 값이 바뀌었는지 감지한다
         observeSelected(decisionViewModel)
 
-        binding.btnFinalDecideLetssolve.setOnClickListener {
-            val intent = Intent(this, FinalResolveActivity::class.java)
-            startActivity(intent)
-        }
+        onClickSolveBtn()
 
         binding.btnFinalDecideClose.setOnClickListener {
             finish()
         }
 
+    }
+
+    private fun onClickSolveBtn() {
+        binding.btnFinalDecideLetssolve.setOnClickListener {
+            // 통신 -> viewModel
+            decisionViewModel
+            val intent = Intent(this, FinalResolveActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun checkAndSetSelected(vm: DecideViewModel, n: Int) { // n+1번째 옵션이 선택됐다

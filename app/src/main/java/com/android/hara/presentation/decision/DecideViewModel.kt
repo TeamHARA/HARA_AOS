@@ -1,4 +1,4 @@
-package com.android.hara.presentation.detail.viewmodel
+package com.android.hara.presentation.decision
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,6 +1,8 @@
 package com.android.hara.domain.repository
 
-import com.android.hara.data.model.request.VoteReqDto
+import com.android.hara.data.model.request.DecideAloneReqDto
+import com.android.hara.data.model.request.DecideWithReqDto
+import com.android.hara.data.model.request.RequestVoteDTO
 import com.android.hara.data.model.response.*
 import retrofit2.Response
 
@@ -12,4 +14,8 @@ interface HARARepository {
     suspend fun getLastWorry(): Response<RandomListResDto>
     suspend fun getAllPost(categoryId: Int): Response<AllPostResDto>
     suspend fun postVote(request: VoteReqDto): Response<VoteResDto>
+
+    suspend fun patchDecideWith(decision: DecideWithReqDto): Response<DecisionResDto>
+
+    suspend fun patchDecideAlone(decision: DecideAloneReqDto): Response<DecisionResDto>
 }
