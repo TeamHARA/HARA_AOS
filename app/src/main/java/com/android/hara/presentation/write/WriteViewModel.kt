@@ -16,6 +16,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WriteViewModel @Inject constructor(private val haraRepository: HARARepository) : ViewModel() {
+
+    private val _success = MutableLiveData<Boolean>()
+    val success get() = _success
+
     private val _progress = MutableLiveData<Int>()
     val progress: LiveData<Int> = _progress
 
@@ -31,33 +35,31 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
 
     init {
         _progress.value = 1
-
     }
 
     fun postWorry() {
         setOptionsList()
         //comment on 과 img 필드들이 false 이거나 ""과 같은 빈 문자열일때 안보내준다
-        if (isWith){
+        if (isWith) {
             viewModelScope.launch {
                 kotlin.runCatching {
                     haraRepository.postWorryWith(
                         WorryWithRequestDto(
                             categoryId = categoty,
                             content = content,
-                            commentOn = true,
+                            commentOn = false,
                             options = optionList,
                             title = title
                         )
                     )
                 }.onSuccess {
-                    if (it.isSuccessful) Timber.e("with success")
-                    else Timber.e("with failure")
+                    success.value = it.isSuccessful
                 }.onFailure {
                     Timber.e(it)
+                    success.value = false
                 }
             }
-        }
-        else {
+        } else {
             viewModelScope.launch {
                 kotlin.runCatching {
                     haraRepository.postWorryAlone(
@@ -69,10 +71,9 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
                         )
                     )
                 }.onSuccess {
-                    if (it.isSuccessful) Timber.e("success")
-                    else Timber.e("failure")
+                    success.value = it.isSuccessful
                 }.onFailure {
-                    Timber.e(it)
+                    success.value = false
                 }
             }
         }
@@ -85,8 +86,8 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
                     Option(
                         pronsList[index].advantage,
                         pronsList[index].disadvantage,
-                        true,
-                        "img",
+                        false,
+                        "",
                         titleList[index]
                     )
                 )

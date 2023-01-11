@@ -6,6 +6,8 @@ import androidx.navigation.fragment.NavHostFragment
 import com.android.hara.R
 import com.android.hara.databinding.ActivityWriteBinding
 import com.android.hara.presentation.base.BindingActivity
+import com.android.hara.presentation.util.makeSnackbar
+import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,6 +16,7 @@ class WriteActivity : BindingActivity<ActivityWriteBinding>(R.layout.activity_wr
     private val writeViewModel by viewModels<WriteViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        init()
 //        setViewModel() -> 뷰모델 사용하면 애니메이션이 안 됨
         setNavigation()
         setProgress()
@@ -21,6 +24,18 @@ class WriteActivity : BindingActivity<ActivityWriteBinding>(R.layout.activity_wr
 //    private fun setViewModel() {
 //        binding.writeViewModel = writeViewModel
 //    }
+
+    private fun init() {
+        binding.ibWriteCloseButton.setOnSingleClickListener {
+            finish()
+        }
+
+        writeViewModel.success.observe(this) {
+            // 성공하면 꺼지고 실패하면 메세지
+            if (it) finish()
+            else binding.root.makeSnackbar("서버통신에 실패하였어요!")
+        }
+    }
 
     private fun setProgress() {
         writeViewModel.progress.observe(this) {
