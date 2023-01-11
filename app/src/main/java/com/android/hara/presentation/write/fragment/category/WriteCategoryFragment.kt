@@ -10,7 +10,6 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteCategoryBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.custom.PickerBottomSheetDialog
-import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 
@@ -70,7 +69,7 @@ class WriteCategoryFragment :
 
     private fun onClickBackBtn() {
         binding.ibWriteCategoryBackButton.setOnSingleClickListener {
-            navController.navigateUp()
+            navController.navigate(R.id.action_writeCategoryFragment_to_writeProsconsFragment)
             writeViewModel.subProgress()
         }
     }

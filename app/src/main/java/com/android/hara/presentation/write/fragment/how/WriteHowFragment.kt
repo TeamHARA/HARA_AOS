@@ -9,7 +9,6 @@ import androidx.navigation.Navigation
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteHowBinding
 import com.android.hara.presentation.base.BindingFragment
-import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.write.WriteViewModel
 import timber.log.Timber
 
@@ -70,7 +69,7 @@ class WriteHowFragment :
 
     private fun onClickBackBtn() {
         binding.ibWriteContentBackButton.setOnClickListener {
-            navController.navigateUp()
+            navController.navigate(R.id.action_writeHowFragment_to_writeCategoryFragment)
             writeViewModel.subProgress()
         }
     }

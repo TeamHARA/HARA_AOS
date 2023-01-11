@@ -95,7 +95,7 @@ class WriteOptionFragment :
 
     private fun onClickBackBtn() {
         binding.ibWriteOptionBackButton.setOnSingleClickListener {
-            navController.navigateUp()
+            navController.navigate(R.id.action_writeOptionFragment_to_writeWhatFragment)
             writeViewModel.subProgress()
         }
     }
