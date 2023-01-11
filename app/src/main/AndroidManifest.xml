@@ -28,8 +28,7 @@
         <activity
             android:name=".presentation.detail.DetailActivity"
             android:exported="true"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".presentation.decision.FinalDecideActivity"
             android:exported="true"
@@ -41,15 +40,17 @@
         <activity
             android:name=".presentation.write.WriteActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.home.HomeActivity"
             android:exported="true"
-            android:screenOrientation="portrait"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

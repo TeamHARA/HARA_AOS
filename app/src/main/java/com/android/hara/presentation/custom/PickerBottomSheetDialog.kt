@@ -9,10 +9,9 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentBottomsheetPickerBinding
 import com.android.hara.presentation.base.BindingNotDraggableBottomSheet
 import com.android.hara.presentation.util.HARAobjcet.categoryList
-import timber.log.Timber
 
 
-class PickerBottomSheetDialog :
+class PickerBottomSheetDialog(private val addListener: (String) -> Unit) :
     BindingNotDraggableBottomSheet<FragmentBottomsheetPickerBinding>(R.layout.fragment_bottomsheet_picker) {
 
     private var count = 0
@@ -44,8 +43,8 @@ class PickerBottomSheetDialog :
             dismiss()
         }
         binding.btnComplete.setOnClickListener {
-            //TODO setViewModel
-            Timber.e(count.toString())
+            addListener(categoryList[count])
+            dismiss()
         }
     }
 }
