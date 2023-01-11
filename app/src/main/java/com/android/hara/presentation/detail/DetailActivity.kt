@@ -3,17 +3,15 @@ package com.android.hara.presentation.detail
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.android.hara.R
-import com.android.hara.databinding.ActivityDetailBinding
+import com.android.hara.databinding.ActivityDetailWithBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.custom.DecisionDialog
 import com.android.hara.presentation.custom.model.DialogData
-import com.android.hara.presentation.detail.viewmodel.DecideViewModel
 import com.android.hara.presentation.detail.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
-class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_detail) {
+class DetailActivity : BindingActivity<ActivityDetailWithBinding>(R.layout.activity_detail_alone) {
     //TODO [고민글 상세보기] 부분입니다. 추후 네이밍 변경 예정
 
     private val detailVm by viewModels<DetailViewModel>()

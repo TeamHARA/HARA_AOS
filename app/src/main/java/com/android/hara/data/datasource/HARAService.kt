@@ -1,15 +1,11 @@
 package com.android.hara.data.datasource
 
+import com.android.hara.data.model.request.DecideAloneReqDto
+import com.android.hara.data.model.request.DecideWithReqDto
 import com.android.hara.data.model.request.RequestVoteDTO
-import com.android.hara.data.model.response.OnesecResDto
-import com.android.hara.data.model.response.RandomListResDto
-import com.android.hara.data.model.response.ResponseVoteDTO
-import com.android.hara.data.model.response.WorryListResDto
+import com.android.hara.data.model.response.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface HARAService {
     // 어떠한 액션을 취할건지 가장 먼저 작성해야합니다.
@@ -29,4 +25,10 @@ interface HARAService {
 
     @GET("/random/list")
     suspend fun getLastWorry(): Response<RandomListResDto>
+
+    @PATCH("/worry/alone")
+    suspend fun patchAloneDecision(@Body decision: DecideAloneReqDto): Response<DecisionResDto>
+
+    @PATCH("/worry/with")
+    suspend fun patchWithDecision(@Body decision: DecideWithReqDto): Response<DecisionResDto>
 }

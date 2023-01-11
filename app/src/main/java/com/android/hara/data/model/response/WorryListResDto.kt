@@ -19,7 +19,7 @@ data class WorryListResDto(
         @SerialName("categoryId")
         val categoryId: Int, // 1
         @SerialName("content")
-        val content: String, // 진로 그거 어떻게 정하는건데..!
+        val content: String?, // 진로 그거 어떻게 정하는건데..! TODO: title로 변경 & null(X)
         @SerialName("createdAt")
         val createdAt: String, // 2023-01-05T03:47:25.584Z
         @SerialName("finalOption")

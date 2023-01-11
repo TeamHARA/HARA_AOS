@@ -1,10 +1,9 @@
 package com.android.hara.domain.repository
 
+import com.android.hara.data.model.request.DecideAloneReqDto
+import com.android.hara.data.model.request.DecideWithReqDto
 import com.android.hara.data.model.request.RequestVoteDTO
-import com.android.hara.data.model.response.OnesecResDto
-import com.android.hara.data.model.response.RandomListResDto
-import com.android.hara.data.model.response.ResponseVoteDTO
-import com.android.hara.data.model.response.WorryListResDto
+import com.android.hara.data.model.response.*
 import retrofit2.Response
 
 interface HARARepository {
@@ -17,4 +16,8 @@ interface HARARepository {
     suspend fun getRandom(): Response<OnesecResDto>
 
     suspend fun getLastWorry(): Response<RandomListResDto>
+
+    suspend fun patchDecideWith(decision: DecideWithReqDto): Response<DecisionResDto>
+
+    suspend fun patchDecideAlone(decision: DecideAloneReqDto): Response<DecisionResDto>
 }
