@@ -9,6 +9,9 @@ import androidx.navigation.Navigation
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteHowBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.custom.DecisionDialog
+import com.android.hara.presentation.custom.model.DialogData
+import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 import timber.log.Timber
 
@@ -25,16 +28,13 @@ class WriteHowFragment :
         setViewModel()
         setWorryBtn()
         setWithBtn()
-
-        Timber.e(writeViewModel.title)
-        Timber.e(writeViewModel.content)
-        Timber.e(writeViewModel.titleList.toString())
-        Timber.e(writeViewModel.pronsList.toString())
-        Timber.e(writeViewModel.categoty.toString())
-        if (howFragViewModel.isWithSelected.value == true) {
-            //TODO 함께고민 API호출
-        } else {
-            //TODO 혼자고민 API호출
+        binding.btnWriteContentUploadButton.setOnSingleClickListener {
+            DecisionDialog(requireContext(), DialogData(
+                "고민글을 게시하겠습까?",
+                "게시된 고민글은 수정이 불가능해요.",
+                "취소",
+                "업로드"
+            )){writeViewModel.postWorry()}.showDialog()
         }
     }
 
