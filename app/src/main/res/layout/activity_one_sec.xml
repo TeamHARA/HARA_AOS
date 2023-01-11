@@ -90,17 +90,16 @@
             app:layout_constraintTop_toTopOf="@+id/iv_solved_card"
             tools:text="ㅅㅎ에\n 물어보거라" />
 
-        <!-- shape 바꿔주기 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_pick_solve"
             android:layout_width="153dp"
             android:layout_height="40dp"
             android:layout_marginTop="14dp"
-            android:background="@drawable/selector_rectangle_blue3_blue1"
+            android:background="@drawable/selector_rectangle_white_orange1_stroke_orange3"
             android:enabled="false"
             android:text="@string/one_sec_pick"
             android:textAppearance="@style/hara_heading1_sb16"
-            android:textColor="@color/gray_2"
+            android:textColor="@drawable/selector_text_gray2_orange3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_solved_card" />

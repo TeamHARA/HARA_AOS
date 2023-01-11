@@ -13,10 +13,11 @@
 
         <ToggleButton
             android:id="@+id/tb_toggle"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/shape_rectangle_blue3_stroke_1_30"
             android:checked="true"
             android:drawableStart="@drawable/ic_change"
@@ -27,38 +28,39 @@
             android:paddingTop="5dp"
             android:paddingEnd="8dp"
             android:paddingBottom="5dp"
+            android:textAppearance="@style/hara_sub2_m12"
             android:textColor="@color/blue_1"
             android:textOff="고민해결"
             android:textOn="고민중"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textAppearance="@style/hara_sub2_m12"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:background="@android:color/transparent"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
             android:text="편집"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/tb_toggle"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tb_toggle"
-            android:layout_marginRight="16dp"
-            android:minHeight="0dp"
-            android:minWidth="0dp"
-            android:background="@android:color/transparent"/>
+            app:layout_constraintTop_toTopOf="@id/tb_toggle" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_posts"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/tb_toggle"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"
-            tools:listitem="@layout/item_storage"
             android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"/>
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb_toggle"
+            tools:listitem="@layout/item_storage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

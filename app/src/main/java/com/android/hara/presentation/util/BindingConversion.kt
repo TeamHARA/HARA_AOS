@@ -9,6 +9,9 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.android.hara.R
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.util.*
 
 @BindingAdapter("app:decide_selected")
 fun AppCompatButton.selected(sel: Boolean) {
@@ -27,11 +30,26 @@ fun TextView.xmlIng(still: Boolean) {
         this.background = this.context.getDrawable(R.drawable.shape_rectangle_orange2_stroke_1_4)
         this.setTextColor(this.context.getColor(R.color.orange_2))
         // 고민중이라는 문구
-    } else {
+    }
+    else {
         this.background = this.context.getDrawable(R.drawable.shape_rectanle_orange1_fill_4)
         this.setTextColor(this.context.getColor(R.color.white))
     }
 }
+
+@BindingAdapter("app:category_id")
+fun TextView.setCategory(categoryId: Int) {
+    this.text = resources.getStringArray(R.array.category_array)[categoryId]
+}
+
+@BindingAdapter("app:date_text")
+fun TextView.setDate(dateText: String) {
+    this.text = SimpleDateFormat(
+        "yyyy.MM.dd",
+        Locale("ko", "KR")
+    ).format(Date.from(Instant.parse(dateText)))
+}
+
 
 /*
 파라미터 두개 이상 넘기고 싶은 경우 확장함수가 아닌 이런 방식으로 사용

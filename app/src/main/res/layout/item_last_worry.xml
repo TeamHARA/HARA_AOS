@@ -7,7 +7,7 @@
 
         <variable
             name="worrydata"
-            type="com.android.hara.presentation.onesec.model.WorryData" />
+            type="com.android.hara.data.model.response.RandomListResDto.Data" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="@{worrydata.date}"
+            android:text="@{worrydata.createdAt.toString()}"
             android:textAppearance="@style/hara_body3_r14"
             android:textColor="@color/gray_2"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:gravity="center"
-            android:text="@{worrydata.content}"
+            android:text="@{worrydata.title}"
             android:textAppearance="@style/hara_body2_m14"
             android:textColor="@color/blue_1"
             app:layout_constraintStart_toStartOf="@+id/tv_one_sec_date"
