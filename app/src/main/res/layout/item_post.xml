@@ -120,9 +120,9 @@
             app:layout_constraintTop_toBottomOf="@id/flow_post_img"
             app:layOptSelNum="@{itOptSelNum}"
             app:layOptClickable="@{itOptClickable}"
-            app:layMyPost="@{itMyPost}"
             app:layOptSel="@{itOptSelNum == 1 ? true : false}"
-            app:layVoteOptSel="@{itVoteOptSel == 1 ? true : false}"/>
+            app:layVoteOptSel="@{itVoteOptSel == 1 ? true : false}"
+            app:layMyPost="@{itMyPost}"/>
 
         <!-- option 2 -->
         <include
@@ -136,9 +136,9 @@
             app:layout_constraintTop_toBottomOf="@id/layout_post_opt1"
             app:layOptSelNum="@{itOptSelNum}"
             app:layOptClickable="@{itOptClickable}"
-            app:layMyPost="@{itMyPost}"
             app:layOptSel="@{itOptSelNum == 2 ? true : false}"
-            app:layVoteOptSel="@{itVoteOptSel == 2 ? true : false}"/>
+            app:layVoteOptSel="@{itVoteOptSel == 2 ? true : false}"
+            app:layMyPost="@{itMyPost}"/>
 
         <!-- option 3 -->
         <include
@@ -152,9 +152,9 @@
             app:layout_constraintTop_toBottomOf="@id/layout_post_opt2"
             app:layOptSelNum="@{itOptSelNum}"
             app:layOptClickable="@{itOptClickable}"
-            app:layMyPost="@{itMyPost}"
             app:layOptSel="@{itOptSelNum == 3 ? true : false}"
-            app:layVoteOptSel="@{itVoteOptSel == 3 ? true : false}"/>
+            app:layVoteOptSel="@{itVoteOptSel == 3 ? true : false}"
+            app:layMyPost="@{itMyPost}"/>
 
         <!-- option 4 -->
         <include
@@ -168,9 +168,9 @@
             app:layout_constraintTop_toBottomOf="@id/layout_post_opt3"
             app:layOptSelNum="@{itOptSelNum}"
             app:layOptClickable="@{itOptClickable}"
-            app:layMyPost="@{itMyPost}"
             app:layOptSel="@{itOptSelNum == 4 ? true : false}"
-            app:layVoteOptSel="@{itVoteOptSel == 4 ? true : false}"/>
+            app:layVoteOptSel="@{itVoteOptSel == 4 ? true : false}"
+            app:layMyPost="@{itMyPost}"/>
 
         <!-- [내가 쓴 글일 때] 최종결정 하러 가기 버튼 -->
         <androidx.appcompat.widget.AppCompatButton

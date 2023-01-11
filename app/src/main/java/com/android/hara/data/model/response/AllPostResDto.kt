@@ -33,6 +33,8 @@ data class AllPostResDto(
         val isAuthor: Boolean, // true
         @SerialName("isVoted")
         val isVoted: Boolean, // true
+        @SerialName("loginUserVoteId")
+        val loginUserVoteId: Int?, // 0
         @SerialName("option")
         val option: List<Option>,
         @SerialName("title")

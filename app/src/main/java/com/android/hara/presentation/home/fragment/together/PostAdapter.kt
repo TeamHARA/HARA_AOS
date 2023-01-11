@@ -59,12 +59,22 @@ class PostAdapter(
 
             // 2) 내가 쓴 글이 아니면(남이 쓴 글이면): 투표 버튼
             else {
-                binding.itMyPost = false // 옵션에 check 표시 보임, '투표하기' 버튼이 보임
+                binding.itMyPost = false // '투표하기' 버튼이 보임
 
                 // 2-a) 투표를 이미 했으면: '투표 완료!' 버튼, 옵션 스타일
                 if (curItem.isVoted) {
                     binding.itOptClickable = false // 옵션 clickable = false
                     binding.itOptSelNum = -1 // 옵션에 check src, 투표 버튼 disable
+
+                    if (curItem.loginUserVoteId == curItem.option[0].id)
+                        binding.itVoteOptSel = 1
+                    else if (curItem.loginUserVoteId == curItem.option[1].id)
+                        binding.itVoteOptSel = 2
+                    else if (curItem.loginUserVoteId == curItem.option[2].id)
+                        binding.itVoteOptSel = 3
+                    else if (curItem.loginUserVoteId == curItem.option[3].id)
+                        binding.itVoteOptSel = 4
+
                 }
                 // 2-b) 투표를 아직 안 했으면: '투표하기' 버튼 - 선택하면 바꿔야 됨
                 else {
@@ -115,9 +125,11 @@ class PostAdapter(
 
     private fun setOptTitle(binding: ItemPostBinding, curItem: AllPostResDto.Data) {
         // [옵션 1]
-        binding.layoutPostOpt1.tvPostOptTitle.text = curItem.option.get(0).title // text
+        if (curItem.option.size >= 1)
+            binding.layoutPostOpt1.tvPostOptTitle.text = curItem.option.get(0).title // text
         // [옵션 2]
-        binding.layoutPostOpt2.tvPostOptTitle.text = curItem.option.get(1).title // text
+        if (curItem.option.size >= 2)
+            binding.layoutPostOpt2.tvPostOptTitle.text = curItem.option.get(1).title // text
 
         // [옵션 3]
         if (curItem.option.size >= 3)

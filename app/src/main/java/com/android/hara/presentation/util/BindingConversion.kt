@@ -67,20 +67,66 @@ fun AppCompatButton.itOptSelNum(n: Int) {
     }
 }
 
-// [홈화면/item_post.xml] optSelNum의 값에 따라 '옵션'의 체크버튼 스타일이 바뀐다
+// [홈화면/item_post.xml] optSelNum의 값에 따라 '옵션'의 체크버튼 스타일(visibility & src)이 바뀐다
+@BindingAdapter(value = ["app:layMyPost", "app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"], requireAll = true)
+fun optionCheckBtn(iv: ImageView, myPost: Boolean, optSelNum: Int, optSel: Boolean, voteOptSel: Boolean) {
+    if (myPost) iv.visibility = View.GONE
+    else {
+        when (optSelNum) {
+            -1 -> { // [투표 완] 그냥 체크 표시
+                if (voteOptSel) { // 선택된 옵션
+                    iv.visibility = View.VISIBLE
+                    iv.setImageResource(R.drawable.ic_check)
+                } else iv.visibility = View.GONE // 안 선택된 옵션
+            }
+            0 -> { // [투표 미완] 사용자가 옵션을 선택 안했으니 check off 표시
+                iv.visibility = View.VISIBLE
+                iv.setImageResource(R.drawable.ic_checkcircle_off)
+            }
+            else -> { // [투표 미완] 사용자가 옵션을 선택했으니 check on 표시
+                iv.visibility = View.VISIBLE
+                if (optSel) iv.setImageResource(R.drawable.ic_checkcircle_on)
+                else iv.setImageResource(R.drawable.ic_checkcircle_off)
+            }
+        }
+    }
+}
+
+// itOptSelNum == layOptSelNum == -1이면 투표 완료
+// layOptSel = itOptSelNum에 따라 자기(옵션 뷰)가 선택됐으면 true
+// layVoteOptSel = itVoteOptSel에 따라 자기 뷰(옵션 뷰)가 선택됐으면 true
 @BindingAdapter(value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"], requireAll = true)
-fun optionCheckBtn(imageView: ImageView, n: Int, b: Boolean, voteBool: Boolean) {
-    when (n) {
-        -1 -> { // [투표 완] 그냥 체크 표시
-            if (voteBool) imageView.setImageResource(R.drawable.ic_check)
-            else imageView.visibility = View.GONE
+fun votedOptBackground(cl: ConstraintLayout, optSelNum: Int, optSel: Boolean, voteOptSel: Boolean) {
+    if (optSelNum == -1) { // [투표 이미 완료]
+        if (voteOptSel) // 선택된 옵션
+            cl.background = cl.context.getDrawable(R.drawable.shape_rectangle_blue1_stroke_1_8)
+        else // 선택 안 된 옵션
+            cl.background = cl.context.getDrawable(R.drawable.shape_rectangle_gray4_stroke_1_8)
+    }
+    else { // [투표 아직 안 함]
+        if (optSel) { // 선택된 옵션
+            cl.background = cl.context.getDrawable(R.drawable.shape_rectangle_blue1_stroke_1_8)
         }
-        0 -> { // [투표 미완] 사용자가 옵션을 선택 안했으니 check off 표시
-            imageView.setImageResource(R.drawable.ic_checkcircle_off)
+        else { // 선택 안 된 옵션
+            cl.background = cl.context.getDrawable(R.drawable.shape_rectangle_gray4_stroke_1_8)
         }
-        else -> { // [투표 미완] 사용자가 옵션을 선택했으니 check on 표시
-            if (b) imageView.setImageResource(R.drawable.ic_checkcircle_on)
-            else imageView.setImageResource(R.drawable.ic_checkcircle_off)
+    }
+}
+
+@BindingAdapter(value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"], requireAll = true)
+fun votedOptTextColor(tv: TextView, optSelNum: Int, optSel: Boolean, voteOptSel: Boolean) {
+    if (optSelNum == -1) { // [투표 이미 완료] 선택된 옵션
+        if (voteOptSel) // 선택된 옵션
+            tv.setTextColor(tv.context.getColor(R.color.blue_1))
+        else // 선택 안 된 옵션
+            tv.setTextColor(tv.context.getColor(R.color.gray_2))
+    }
+    else { // [투표 아직 안 함]
+        if (optSel) { // 선택된 옵션
+            tv.setTextColor(tv.context.getColor(R.color.blue_1))
+        }
+        else { // 선택 안 된 옵션
+            tv.setTextColor(tv.context.getColor(R.color.black))
         }
     }
 }
