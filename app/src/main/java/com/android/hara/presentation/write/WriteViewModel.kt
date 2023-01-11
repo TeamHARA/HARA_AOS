@@ -11,7 +11,7 @@ class WriteViewModel : ViewModel() {
 
     var title = "" // 제목 1번
     var content = "" // 내용 1번
-    private val _titleList = mutableListOf<String?>() // 선택지 2번
+    private val _titleList = mutableListOf<String>("", "", "", "") // 선택지 2번
     val titleList get() = _titleList
     private val _pronsList = mutableListOf<PronsData>() // 장단점 리스트 3번
     val pronsList get() = _pronsList

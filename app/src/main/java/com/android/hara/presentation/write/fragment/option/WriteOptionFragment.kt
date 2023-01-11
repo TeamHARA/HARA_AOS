@@ -28,7 +28,7 @@ class WriteOptionFragment :
     //
     // 지금당장은 아이템 개수 대응만 해보자
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     private val writeViewModel: WriteViewModel by activityViewModels()
     private lateinit var adapter: WriteOptionAdapter
 
@@ -37,8 +37,6 @@ class WriteOptionFragment :
 
         setNavigation(view)
         initAdapter()
-        setViewModel()
-        addObserve()
         onClickNextBtn()
         onClickBackBtn()
         binding.tvWriteOptionQuestion.setBold(
@@ -86,13 +84,6 @@ class WriteOptionFragment :
         newList.add(OptionData(adapter.currentList.size - 1, true))
         adapter.submitList(newList.sortedBy { !it.veiwType }.toList()) //+ 버튼이 무조건 마지막으로 갈수 있도록 정렬
     }
-
-    private fun setViewModel() {
-    }
-
-    private fun addObserve() {
-    }
-
 
     private fun setNavigation(view: View) {
         navController = Navigation.findNavController(view)
