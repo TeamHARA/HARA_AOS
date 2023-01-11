@@ -47,6 +47,12 @@ class WriteCategoryFragment :
                 "picker"
             )
         }
+        binding.tvSelectedCategory.setOnSingleClickListener {
+            PickerBottomSheetDialog() { categoryViewModel.setCategory(it) }.show(
+                childFragmentManager,
+                "picker"
+            )
+        }
     }
 
     private fun addObserve() {

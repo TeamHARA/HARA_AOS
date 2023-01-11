@@ -119,7 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="@string/write_pros"
+                    android:text="@string/write_cons"
                     android:textAppearance="@style/hara_body2_m14"
                     android:textColor="@color/red"
                     app:layout_constraintBottom_toBottomOf="parent"
