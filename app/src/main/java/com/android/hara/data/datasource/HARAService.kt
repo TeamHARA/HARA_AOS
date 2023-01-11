@@ -1,10 +1,9 @@
 package com.android.hara.data.datasource
 
 import com.android.hara.data.model.request.RequestVoteDTO
-import com.android.hara.data.model.response.OnesecResDto
-import com.android.hara.data.model.response.RandomListResDto
-import com.android.hara.data.model.response.ResponseVoteDTO
-import com.android.hara.data.model.response.WorryListResDto
+import com.android.hara.data.model.request.WorryAloneRequestDto
+import com.android.hara.data.model.request.WorryWithRequestDto
+import com.android.hara.data.model.response.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -29,4 +28,11 @@ interface HARAService {
 
     @GET("/random/list")
     suspend fun getLastWorry(): Response<RandomListResDto>
+
+    @POST("/worry/with")
+    suspend fun postWorryWith(requset: WorryWithRequestDto): Response<WorryWithResponseDto>
+
+    @POST("/worry/alone")
+    suspend fun postAloneWith(requset: WorryAloneRequestDto): Response<WorryAloneResponseDto>
+
 }

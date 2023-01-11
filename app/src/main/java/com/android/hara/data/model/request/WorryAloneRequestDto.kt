@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class WorryWithRequest(
+data class WorryAloneRequestDto(
     @SerialName("categoryId")
     val categoryId: Int, // 1
     @SerialName("content")

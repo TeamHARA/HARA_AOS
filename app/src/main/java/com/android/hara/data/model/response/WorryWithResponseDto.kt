@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class WorryWithResponse(
+data class WorryWithResponseDto(
     @SerialName("message")
     val message: String, // 고민글 작성 성공
     @SerialName("status")
