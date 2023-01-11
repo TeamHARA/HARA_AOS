@@ -63,7 +63,7 @@
     <string name="write_how_with_explanation">투표로 다른 사람들의\n의견도 들어볼 수 있어요</string>
     <string name="write_comment_option">댓글 켜기</string>
     <string name="write_upload_button">업로드하기</string>
-    <string name="write_title_length">%d/20</string>
+    <string name="write_title_length">%d/25</string>
     <string name="write_content_length">%d/300</string>
 
     <!--  dialog  -->

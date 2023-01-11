@@ -30,8 +30,6 @@ class WriteWhatFragment :
             2,
             this.getString(R.string.write_title_question)
         )
-
-
     }
 
     private fun setViewModel() {

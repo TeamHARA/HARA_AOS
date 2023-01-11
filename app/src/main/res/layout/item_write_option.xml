@@ -7,10 +7,6 @@
         <variable
             name="inputText"
             type="String" />
-
-        <variable
-            name="vm"
-            type="com.android.hara.presentation.write.fragment.option.OptionFragViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:hint="@string/hara"
+                android:maxLength="20"
                 android:paddingTop="15dp"
                 android:paddingBottom="14dp"
                 android:text="@{inputText}"
