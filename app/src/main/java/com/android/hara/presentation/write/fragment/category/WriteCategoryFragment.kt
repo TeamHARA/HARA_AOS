@@ -16,8 +16,7 @@ import com.android.hara.presentation.write.WriteViewModel
 
 class WriteCategoryFragment :
     BindingFragment<FragmentWriteCategoryBinding>(R.layout.fragment_write_category) {
-    lateinit var navController: NavController
-
+    private lateinit var navController: NavController
     private val categoryViewModel: CategoryFregViewModel by viewModels() // 프래그먼트 단일 뷰모델
     private val writeViewModel: WriteViewModel by activityViewModels()
 

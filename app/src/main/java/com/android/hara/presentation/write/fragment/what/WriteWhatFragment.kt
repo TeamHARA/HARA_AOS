@@ -16,7 +16,7 @@ import com.android.hara.presentation.write.WriteViewModel
 
 class WriteWhatFragment :
     BindingFragment<FragmentWriteWhatBinding>(R.layout.fragment_write_what) {
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     private val writeViewModel: WriteViewModel by activityViewModels()
     private val whatViewModel: WhatFragViewModel by viewModels()
 

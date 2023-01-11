@@ -15,7 +15,7 @@ import timber.log.Timber
 
 class WriteHowFragment :
     BindingFragment<FragmentWriteHowBinding>(R.layout.fragment_write_how) {
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     private val writeViewModel: WriteViewModel by activityViewModels()
     private val howFragViewModel: HowFragViewModel by viewModels()
 

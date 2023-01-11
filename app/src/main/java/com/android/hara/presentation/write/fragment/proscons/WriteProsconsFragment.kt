@@ -16,7 +16,7 @@ import com.android.hara.presentation.write.fragment.proscons.model.PronsData
 
 class WriteProsconsFragment :
     BindingFragment<FragmentWriteProsconsBinding>(R.layout.fragment_write_proscons) {
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     private val writeViewModel: WriteViewModel by activityViewModels()
     private lateinit var prosList: List<ItemWriteProsconsBinding>
 
