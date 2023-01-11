@@ -14,18 +14,4 @@ data class WorryAloneRequestDto(
     val options: List<Option>,
     @SerialName("title")
     val title: String // 진로를 결정하고 싶어요 흑흑
-) {
-    @Serializable
-    data class Option(
-        @SerialName("advantage")
-        val advantage: String, // 장점의 이유
-        @SerialName("disadvantage")
-        val disadvantage: String, // 단점의 이유
-        @SerialName("hasImage")
-        val hasImage: Boolean = false, // false
-        @SerialName("image")
-        val image: String = "",
-        @SerialName("title")
-        val title: String // 선택지 제목
-    )
-}
+)
