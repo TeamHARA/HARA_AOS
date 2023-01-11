@@ -22,6 +22,7 @@
     <string name="one_sec_notice">최근 10개의 고민까지만 저장되고 오래된 순으로 자동 삭제돼요!</string>
     <string name="one_sec_pick">해결 카드 뽑기</string>
     <string name="one_sec_retry">다시뽑기</string>
+    <string name="write_option_hint">선택지를 입력해주세 (20자 이내)</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
