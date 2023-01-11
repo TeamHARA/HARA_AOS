@@ -1,8 +1,9 @@
 package com.android.hara.domain.repository
 
 import com.android.hara.data.model.request.RequestVoteDTO
-import com.android.hara.data.model.response.WorryListResDto
+import com.android.hara.data.model.response.OnesecResDto
 import com.android.hara.data.model.response.ResponseVoteDTO
+import com.android.hara.data.model.response.WorryListResDto
 import retrofit2.Response
 
 interface HARARepository {
@@ -11,4 +12,6 @@ interface HARARepository {
     suspend fun getAloneList(isSolved: Int): Response<WorryListResDto>
 
     suspend fun getWithList(isSolved: Int): Response<WorryListResDto>
+
+    suspend fun getRandom(): Response<OnesecResDto>
 }

@@ -28,8 +28,6 @@ class OneSecActivity : BindingActivity<ActivityOneSecBinding>(R.layout.activity_
         WorryData("2022.12.20", "asdfsdfasdfsdaf"),
         WorryData("2022.12.21", "asdfsdfasdfsdaf")
     )
-    private val solvedList =
-        listOf("가", "나", "다", "라", "마", "바", "사", "아", "자", "차", "카", "타", "파", "하")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +47,8 @@ class OneSecActivity : BindingActivity<ActivityOneSecBinding>(R.layout.activity_
             finish()
         }
         binding.btnPickSolve.setOnSingleClickListener {
+            onesecViewModel.getRandom()
             binding.ivSolvedCard.setImageResource(R.drawable.img_card_result)
-            onesecViewModel.solution.value = solvedList[(solvedList.indices).random()]
         }
     }
 
