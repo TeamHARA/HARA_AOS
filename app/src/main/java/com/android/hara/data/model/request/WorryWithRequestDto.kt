@@ -22,9 +22,9 @@ data class WorryWithRequestDto(
         @SerialName("disadvantage")
         val disadvantage: String, // 단점의 이유
         @SerialName("hasImage")
-        val hasImage: Boolean, // false
+        val hasImage: Boolean = false, // false
         @SerialName("image")
-        val image: String,
+        val image: String = "",
         @SerialName("title")
         val title: String // 선택지 제목
     )
