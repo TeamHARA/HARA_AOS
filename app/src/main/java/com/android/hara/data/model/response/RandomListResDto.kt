@@ -1,13 +1,12 @@
 package com.android.hara.data.model.response
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class RandomListResDto(
     @SerialName("data")
-    val `data`: List<Data>,
+    val data: List<Data>,
     @SerialName("message")
     val message: String, // 과거고민 목록 조회 실패
     @SerialName("status")

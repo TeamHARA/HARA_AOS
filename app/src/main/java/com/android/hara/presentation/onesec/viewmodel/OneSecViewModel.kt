@@ -3,6 +3,7 @@ package com.android.hara.presentation.onesec.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.hara.data.model.response.RandomListResDto
 import com.android.hara.domain.repository.HARARepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,6 +19,9 @@ class OneSecViewModel @Inject constructor(private val haraRepository: HARAReposi
     private val _worry = MutableLiveData<String>()
     val worry get() = _worry
 
+    private val _lastWorryList = MutableLiveData<List<RandomListResDto.Data>>()
+    val lastWorryList get() = _lastWorryList
+
     fun getRandom() {
         viewModelScope.launch {
             runCatching {
@@ -26,6 +30,23 @@ class OneSecViewModel @Inject constructor(private val haraRepository: HARAReposi
                 if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
                     _solution.value = it.body()?.data?.content
+                } else { // 응답코드 400~599
+                    Timber.e("Failure")
+                }
+            }.onFailure {
+                Timber.e(it)
+            }
+        }
+    }
+
+    fun getLastWorry() {
+        viewModelScope.launch {
+            runCatching {
+                haraRepository.getLastWorry()
+            }.onSuccess {
+                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                    Timber.e("Success")
+                    _lastWorryList.value = it.body()?.data
                 } else { // 응답코드 400~599
                     Timber.e("Failure")
                 }
