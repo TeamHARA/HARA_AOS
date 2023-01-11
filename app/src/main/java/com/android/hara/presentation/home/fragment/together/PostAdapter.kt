@@ -2,6 +2,7 @@ package com.android.hara.presentation.home.fragment.together
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,9 @@ import com.android.hara.R
 import com.android.hara.data.model.response.AllPostResDto
 import com.android.hara.databinding.ItemPostBinding
 import com.android.hara.presentation.util.GlobalDiffCallBack
+import com.android.hara.presentation.util.setOnSingleClickListener
+import timber.log.Timber
+import timber.log.Timber.Forest.e
 
 class PostAdapter(
     private val optSelListener: (postId: Int, optId: Int) -> Unit,
@@ -50,6 +54,7 @@ class PostAdapter(
             if (curItem.isAuthor) {
                 binding.itOptClickable = false // 옵션 clickable = false
                 binding.itMyPost = true // 옵션에 check 표시 안 보임, '최종결정 하러가기' 버튼이 보임
+                binding.itOptSelNum = 0 // 이런 식으로 값을 안 주면 뷰가 재사용 될 때 itOptSelNum 값이 초기화가 안 돼서 옵션이 선택된 것처럼 나올 수도
             }
 
             // 2) 내가 쓴 글이 아니면(남이 쓴 글이면): 투표 버튼
@@ -65,6 +70,8 @@ class PostAdapter(
                 else {
                     binding.itOptClickable = true // 옵션 clickable = true
                     binding.itOptSelNum = 0 // 옵션에 check src, 투표 버튼 enable
+
+                    binding.itVoteOptSel = 0 // 아직 투표 안 했으니까 투표한 옵션# = (임의값)0
 
                     // 옵션 클릭 시 : 옵션/투표 버튼 스타일이 바뀌는 로직
                     binding.layoutPostOpt1.clPostOpt.setOnClickListener {
@@ -85,9 +92,13 @@ class PostAdapter(
                         optSelListener(curItem.worryId, curItem.option[3].id)
                     }
 
-                    binding.btnPostVote.setOnClickListener {
+                    binding.btnPostVote.setOnSingleClickListener {
                         btnSelListener()
                         binding.itOptClickable = false // 옵션 clickable = false
+
+                        binding.itVoteOptSel = binding.itOptSelNum
+                        Timber.e(binding.itVoteOptSel.toString())
+
                         binding.itOptSelNum = -1 // 옵션에 check src, 투표 버튼 disable
                     }
                 }

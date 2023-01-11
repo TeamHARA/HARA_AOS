@@ -60,11 +60,11 @@ fun AppCompatButton.itOptSelNum(n: Int) {
 }
 
 // [홈화면/item_post.xml] optSelNum의 값에 따라 '옵션'의 체크버튼 스타일이 바뀐다
-@BindingAdapter(value = ["app:layOptSelNum", "app:layOptSel"], requireAll = true)
-fun optionCheckBtn(imageView: ImageView, n: Int, b: Boolean) {
+@BindingAdapter(value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"], requireAll = true)
+fun optionCheckBtn(imageView: ImageView, n: Int, b: Boolean, voteBool: Boolean) {
     when (n) {
         -1 -> { // [투표 완] 그냥 체크 표시
-            if (b) imageView.setImageResource(R.drawable.ic_check)
+            if (voteBool) imageView.setImageResource(R.drawable.ic_check)
             else imageView.visibility = View.GONE
         }
         0 -> { // [투표 미완] 사용자가 옵션을 선택 안했으니 check off 표시

@@ -13,6 +13,9 @@
         <variable
             name="itOptSelNum"
             type="int" />
+        <variable
+            name="itVoteOptSel"
+            type="int" />
         <import type="android.view.View"/>
     </data>
 
@@ -118,7 +121,8 @@
             app:layOptSelNum="@{itOptSelNum}"
             app:layOptClickable="@{itOptClickable}"
             app:layMyPost="@{itMyPost}"
-            app:layOptSel="@{itOptSelNum == 1 ? true : false}" />
+            app:layOptSel="@{itOptSelNum == 1 ? true : false}"
+            app:layVoteOptSel="@{itVoteOptSel == 1 ? true : false}"/>
 
         <!-- option 2 -->
         <include
@@ -133,7 +137,8 @@
             app:layOptSelNum="@{itOptSelNum}"
             app:layOptClickable="@{itOptClickable}"
             app:layMyPost="@{itMyPost}"
-            app:layOptSel="@{itOptSelNum == 2 ? true : false}" />
+            app:layOptSel="@{itOptSelNum == 2 ? true : false}"
+            app:layVoteOptSel="@{itVoteOptSel == 2 ? true : false}"/>
 
         <!-- option 3 -->
         <include
@@ -148,7 +153,8 @@
             app:layOptSelNum="@{itOptSelNum}"
             app:layOptClickable="@{itOptClickable}"
             app:layMyPost="@{itMyPost}"
-            app:layOptSel="@{itOptSelNum == 3 ? true : false}" />
+            app:layOptSel="@{itOptSelNum == 3 ? true : false}"
+            app:layVoteOptSel="@{itVoteOptSel == 3 ? true : false}"/>
 
         <!-- option 4 -->
         <include
@@ -163,7 +169,8 @@
             app:layOptSelNum="@{itOptSelNum}"
             app:layOptClickable="@{itOptClickable}"
             app:layMyPost="@{itMyPost}"
-            app:layOptSel="@{itOptSelNum == 4 ? true : false}" />
+            app:layOptSel="@{itOptSelNum == 4 ? true : false}"
+            app:layVoteOptSel="@{itVoteOptSel == 4 ? true : false}"/>
 
         <!-- [내가 쓴 글일 때] 최종결정 하러 가기 버튼 -->
         <androidx.appcompat.widget.AppCompatButton

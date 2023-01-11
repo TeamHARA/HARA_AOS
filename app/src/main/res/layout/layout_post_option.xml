@@ -15,6 +15,9 @@
         <variable
             name="layOptSel"
             type="boolean" />
+        <variable
+            name="layVoteOptSel"
+            type="boolean" />
         <import type="android.view.View"/>
     </data>
 
@@ -37,7 +40,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:visibility="@{layMyPost ? View.GONE : View.VISIBLE}"
             app:layOptSelNum="@{layOptSelNum}"
-            app:layOptSel="@{layOptSel}" />
+            app:layOptSel="@{layOptSel}"
+            app:layVoteOptSel="@{layVoteOptSel}" />
 
         <TextView
             android:id="@+id/tv_post_opt_title"
