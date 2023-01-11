@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -20,11 +21,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="64dp"
-            android:text="@string/write_title_question"
             android:textAppearance="@style/hara_modal1_m24"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:title_bold="@{@string/write_title_question}"
+            app:title_bold_end="@{2}"
+            app:title_bold_start="@{0}"
+            tools:text="@string/write_title_question" />
 
         <EditText
             android:id="@+id/et_write_what_answer"
@@ -35,7 +39,7 @@
             android:background="@null"
             android:hint="@string/write_title_answer_hint"
             android:inputType="text"
-            android:maxLength="20"
+            android:maxLength="25"
             android:text="@={vm.title}"
             android:textAppearance="@style/hara_modal2_m18"
             android:textColor="@color/black"
@@ -60,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="0/20"
+            android:text="0/25"
             android:textAppearance="@style/hara_body3_r14"
             android:textColor="@color/gray_3"
             app:layout_constraintEnd_toEndOf="@+id/view_title_divider"

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_option_add_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rectangle_white_fill_blue3_stroke_1_8"
+        android:paddingVertical="12dp"
+        android:stateListAnimator="@null"
+        app:layout_constraintTop_toBottomOf="@+id/linear_option_layout">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_worry_add"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_option_add_button"
+            app:layout_constraintEnd_toEndOf="@+id/btn_option_add_button"
+            app:layout_constraintStart_toStartOf="@+id/btn_option_add_button"
+            app:layout_constraintTop_toTopOf="@+id/btn_option_add_button" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

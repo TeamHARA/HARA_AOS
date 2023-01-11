@@ -1,7 +1,12 @@
 package com.android.hara.presentation.util
 
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.TypefaceSpan
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.android.hara.R
 import java.text.SimpleDateFormat
@@ -25,7 +30,8 @@ fun TextView.xmlIng(still: Boolean) {
         this.background = this.context.getDrawable(R.drawable.shape_rectangle_orange2_stroke_1_4)
         this.setTextColor(this.context.getColor(R.color.orange_2))
         // 고민중이라는 문구
-    } else {
+    }
+    else {
         this.background = this.context.getDrawable(R.drawable.shape_rectanle_orange1_fill_4)
         this.setTextColor(this.context.getColor(R.color.white))
     }
@@ -42,4 +48,22 @@ fun TextView.setDate(dateText: String) {
         "yyyy.MM.dd",
         Locale("ko", "KR")
     ).format(Date.from(Instant.parse(dateText)))
+}
+
+
+/*
+파라미터 두개 이상 넘기고 싶은 경우 확장함수가 아닌 이런 방식으로 사용
+ */
+@BindingAdapter(
+    value = ["app:title_bold", "app:title_bold_start", "app:title_bold_end"],
+    requireAll = true
+)
+fun setSpannableBold(textView: TextView, tilte: String, start: Int, end: Int) {
+    val boldTypeface = Typeface.create(
+        ResourcesCompat.getFont(textView.context, R.font.pretendard_bold),
+        Typeface.NORMAL
+    )
+    val string = SpannableString(tilte)
+    string.setSpan(TypefaceSpan(boldTypeface), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+    textView.text = string
 }

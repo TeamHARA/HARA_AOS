@@ -10,10 +10,11 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteHowBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.write.WriteViewModel
+import timber.log.Timber
 
 class WriteHowFragment :
     BindingFragment<FragmentWriteHowBinding>(R.layout.fragment_write_how) {
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     private val writeViewModel: WriteViewModel by activityViewModels()
     private val howFragViewModel: HowFragViewModel by viewModels()
 
@@ -22,9 +23,19 @@ class WriteHowFragment :
         setNavigation(view)
         onClickBackBtn()
         setViewModel()
-
         setWorryBtn()
         setWithBtn()
+
+        Timber.e(writeViewModel.title)
+        Timber.e(writeViewModel.content)
+        Timber.e(writeViewModel.titleList.toString())
+        Timber.e(writeViewModel.pronsList.toString())
+        Timber.e(writeViewModel.categoty)
+        if (howFragViewModel.isWithSelected.value == true) {
+            //TODO 함께고민 API호출
+        } else {
+            //TODO 혼자고민 API호출
+        }
     }
 
     private fun setWorryBtn() {
@@ -44,7 +55,8 @@ class WriteHowFragment :
     }
 
     private fun setUploadBtn() {
-        howFragViewModel.enabled.value = howFragViewModel.isWithSelected.value!! || howFragViewModel.isAloneSelected.value!!
+        howFragViewModel.enabled.value =
+            howFragViewModel.isWithSelected.value!! || howFragViewModel.isAloneSelected.value!!
     }
 
     private fun setViewModel() {
@@ -57,7 +69,7 @@ class WriteHowFragment :
 
     private fun onClickBackBtn() {
         binding.ibWriteContentBackButton.setOnClickListener {
-            navController.navigateUp()
+            navController.navigate(R.id.action_writeHowFragment_to_writeCategoryFragment)
             writeViewModel.subProgress()
         }
     }
