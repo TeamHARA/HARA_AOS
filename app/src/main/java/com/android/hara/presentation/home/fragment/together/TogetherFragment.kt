@@ -60,6 +60,9 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         list.clear() // (없으면 카테고리 무한 증식) 나중에 무조건 수정하기
+        setCategoryRecycler()
+        setPostRecycler()
+
         binding.swipeRefreash.setOnRefreshListener { /* swipe 시 진행할 동작 */
             //TODO get 서버통신
             /* 업데이트가 끝났음을 알림 */
@@ -73,6 +76,10 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             if (it) binding.swipeRefreash.isRefreshing = false
         }
 
+
+    }
+
+    private fun setCategoryRecycler() {
         // [1] recycler view - adapter 연결: 상단 카테고리 목록 [by 유진]
         for (i in 0..7) {
             list.add(SimpleModel(title = category[i], isSelected = false))
@@ -81,20 +88,24 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         val categoryAdapter = CategoryAdapter(requireContext(), list).apply {
             setOnItemClickListener(object : CategoryAdapter.OnItemClickListener {
                 override fun onItemClick(item: SimpleModel, position: Int) {
-                    Timber.e(item.title)
                 }
             })
         }
-        binding.rvTogetherCategory.adapter = categoryAdapter
+        with(binding.rvTogetherCategory) {
+            adapter = categoryAdapter
+            setHasFixedSize(true)
+            itemAnimator = null
+        }
 //        categoryAdapter.submitList(category.toList()) // 데이터를 넣어준다 (업데이트할 때에도)
-        binding.rvTogetherCategory.setHasFixedSize(true)
-        binding.rvTogetherCategory.itemAnimator = null
+    }
 
-        // [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
+    /*
+        [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
+     */
+    private fun setPostRecycler() {
         val postAdapter = PostAdapter { togetherPostData, int ->
 
         }
-
         binding.rvTogetherPost.adapter = postAdapter
         postAdapter.submitList(tempList)
     }

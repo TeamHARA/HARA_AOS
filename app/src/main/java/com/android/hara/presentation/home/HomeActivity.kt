@@ -13,7 +13,6 @@ import com.android.hara.presentation.home.fragment.together.TogetherFragment
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
 import com.android.hara.presentation.write.WriteActivity
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home) {
@@ -24,7 +23,10 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setNavigation()
+        setListener()
+    }
 
+    private fun setListener() {
         binding.fabHome.setOnClickListener {
             val intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
@@ -32,12 +34,10 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         binding.bottomNavHome.setOnItemSelectedListener {
             if (it.itemId == R.id.fragment_together) {
                 TogetherFragment.setScroll()
-                Timber.e("hi")
                 return@setOnItemSelectedListener true
             }
             return@setOnItemSelectedListener true
         }
-
     }
 
     private fun setNavigation() {
