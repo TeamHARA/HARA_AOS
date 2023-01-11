@@ -2,8 +2,11 @@ package com.android.hara.presentation.write.fragment.what
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class WhatFragViewModel : ViewModel() {
+@HiltViewModel
+class WhatFragViewModel @Inject constructor(): ViewModel() {
     private val _title = MutableLiveData<String>()
     val title get() = _title
 

@@ -14,7 +14,9 @@ import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 import com.android.hara.presentation.write.fragment.option.adapter.WriteOptionAdapter
 import com.android.hara.presentation.write.fragment.option.model.OptionData
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteOptionFragment :
     BindingFragment<FragmentWriteOptionBinding>(R.layout.fragment_write_option) {
 

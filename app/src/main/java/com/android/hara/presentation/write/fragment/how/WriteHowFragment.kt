@@ -13,8 +13,9 @@ import com.android.hara.presentation.custom.DecisionDialog
 import com.android.hara.presentation.custom.model.DialogData
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
-import timber.log.Timber
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteHowFragment :
     BindingFragment<FragmentWriteHowBinding>(R.layout.fragment_write_how) {
     private lateinit var navController: NavController
@@ -29,12 +30,14 @@ class WriteHowFragment :
         setWorryBtn()
         setWithBtn()
         binding.btnWriteContentUploadButton.setOnSingleClickListener {
-            DecisionDialog(requireContext(), DialogData(
-                "고민글을 게시하겠습까?",
-                "게시된 고민글은 수정이 불가능해요.",
-                "취소",
-                "업로드"
-            )){writeViewModel.postWorry()}.showDialog()
+            DecisionDialog(
+                requireContext(), DialogData(
+                    "고민글을 게시하겠습까?",
+                    "게시된 고민글은 수정이 불가능해요.",
+                    "취소",
+                    "업로드"
+                )
+            ) { writeViewModel.postWorry() }.showDialog()
         }
     }
 

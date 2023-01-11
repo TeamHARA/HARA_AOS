@@ -6,7 +6,9 @@ import androidx.navigation.fragment.NavHostFragment
 import com.android.hara.R
 import com.android.hara.databinding.ActivityWriteBinding
 import com.android.hara.presentation.base.BindingActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteActivity : BindingActivity<ActivityWriteBinding>(R.layout.activity_write) {
     // TODO [고민글쓰기] 부분 패키지 추후 네이밍은 변경예정
     private val writeViewModel by viewModels<WriteViewModel>()

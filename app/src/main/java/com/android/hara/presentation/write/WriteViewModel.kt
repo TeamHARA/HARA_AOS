@@ -19,7 +19,6 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
     private val _progress = MutableLiveData<Int>()
     val progress: LiveData<Int> = _progress
 
-
     var title = "" // 제목 1번
     var content = "" // 내용 1번
     private val _titleList = mutableListOf<String>("", "", "", "") // 선택지 2번
@@ -32,22 +31,11 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
 
     init {
         _progress.value = 1
-        titleList.forEachIndexed { index, s ->
-            if (s != "") { // 유효한 선택지 만큼 optionData를 생성
-                optionList.add(
-                    Option(
-                        pronsList[index].advantage,
-                        pronsList[index].disadvantage,
-                        false,
-                        "",
-                        titleList[index]
-                    )
-                )
-            }
-        }
+
     }
 
     fun postWorry() {
+        setOptionsList()
         if (isWith)
             viewModelScope.launch {
                 kotlin.runCatching {
@@ -61,7 +49,8 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
                         )
                     )
                 }.onSuccess {
-
+                    if (it.isSuccessful) Timber.e("success")
+                    else Timber.e("failure")
                 }.onFailure {
                     Timber.e(it)
                 }
@@ -77,10 +66,27 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
                         )
                     )
                 }.onSuccess {
-
+                    if (it.isSuccessful) Timber.e("success")
+                    else Timber.e("failure")
                 }.onFailure {
                     Timber.e(it)
                 }
+            }
+        }
+    }
+
+    fun setOptionsList() { // 서버통신 하기전 데이터를 세팅
+        titleList.forEachIndexed { index, s ->
+            if (s != "") { // 유효한 선택지 만큼 optionData를 생성
+                optionList.add(
+                    Option(
+                        pronsList[index].advantage,
+                        pronsList[index].disadvantage,
+                        false,
+                        "",
+                        titleList[index]
+                    )
+                )
             }
         }
     }

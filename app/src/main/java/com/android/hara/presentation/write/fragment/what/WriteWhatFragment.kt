@@ -13,7 +13,9 @@ import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteWhatFragment :
     BindingFragment<FragmentWriteWhatBinding>(R.layout.fragment_write_what) {
     private lateinit var navController: NavController

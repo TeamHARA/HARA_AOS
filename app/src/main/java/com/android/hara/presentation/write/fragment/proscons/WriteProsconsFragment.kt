@@ -13,7 +13,9 @@ import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 import com.android.hara.presentation.write.fragment.proscons.model.PronsData
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteProsconsFragment :
     BindingFragment<FragmentWriteProsconsBinding>(R.layout.fragment_write_proscons) {
     private lateinit var navController: NavController

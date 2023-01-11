@@ -5,9 +5,6 @@
 
     <data>
 
-        <variable
-            name="vm"
-            type="com.android.hara.presentation.write.fragment.proscons.ProsconsFragViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

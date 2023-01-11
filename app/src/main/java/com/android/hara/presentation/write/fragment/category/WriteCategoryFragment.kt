@@ -13,7 +13,9 @@ import com.android.hara.presentation.custom.PickerBottomSheetDialog
 import com.android.hara.presentation.util.HARAobjcet.categoryList
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteCategoryFragment :
     BindingFragment<FragmentWriteCategoryBinding>(R.layout.fragment_write_category) {
     private lateinit var navController: NavController

@@ -2,11 +2,11 @@ package com.android.hara.presentation.write.fragment.how
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class HowFragViewModel : ViewModel() {
-    private val _answer = MutableLiveData<String>()
-    val answer get() = _answer
-
+@HiltViewModel
+class HowFragViewModel @Inject constructor(): ViewModel() {
     private val _isAloneSelected = MutableLiveData<Boolean>()
     val isAloneSelected get() = _isAloneSelected
 
