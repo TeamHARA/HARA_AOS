@@ -3,6 +3,7 @@ package com.android.hara.presentation.home.fragment.together
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
@@ -14,6 +15,15 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragment_together) {
+
+    companion object {
+        private lateinit var recyclerView: RecyclerView
+
+        fun setScroll() {
+            recyclerView.scrollToPosition(0)
+        }
+
+    }
 
     private val category: Array<String>
         get() = resources.getStringArray(R.array.category_array)
@@ -56,6 +66,8 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             Timber.e("ho")
             togetherViewModle.success.value = true
         }
+
+        recyclerView = binding.rvTogetherPost
 
         togetherViewModle.success.observe(viewLifecycleOwner) {
             if (it) binding.swipeRefreash.isRefreshing = false

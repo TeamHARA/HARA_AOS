@@ -9,9 +9,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.hara.R
 import com.android.hara.databinding.ActivityHomeBinding
 import com.android.hara.presentation.base.BindingActivity
+import com.android.hara.presentation.home.fragment.together.TogetherFragment
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
 import com.android.hara.presentation.write.WriteActivity
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home) {
@@ -27,7 +29,15 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             val intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
         }
-        homeViewModel
+        binding.bottomNavHome.setOnItemSelectedListener {
+            if (it.itemId == R.id.fragment_together) {
+                TogetherFragment.setScroll()
+                Timber.e("hi")
+                return@setOnItemSelectedListener true
+            }
+            return@setOnItemSelectedListener true
+        }
+
     }
 
     private fun setNavigation() {
