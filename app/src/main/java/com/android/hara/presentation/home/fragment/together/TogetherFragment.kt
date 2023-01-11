@@ -25,6 +25,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        list.clear() // (없으면 카테고리 무한 증식) 나중에 무조건 수정하기
 
         postAdapter = PostAdapter(
             { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },

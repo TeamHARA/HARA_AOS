@@ -3,11 +3,19 @@ package com.android.hara.presentation.util
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.TypefaceSpan
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.android.hara.R
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.util.*
 
 @BindingAdapter("app:decide_selected")
 fun AppCompatButton.selected(sel: Boolean) {
@@ -75,4 +83,35 @@ fun optionCheckBtn(imageView: ImageView, n: Int, b: Boolean, voteBool: Boolean) 
             else imageView.setImageResource(R.drawable.ic_checkcircle_off)
         }
     }
+}
+
+@BindingAdapter("app:category_id")
+fun TextView.setCategory(categoryId: Int) {
+    this.text = resources.getStringArray(R.array.category_array)[categoryId]
+}
+
+@BindingAdapter("app:date_text")
+fun TextView.setDate(dateText: String) {
+    this.text = SimpleDateFormat(
+        "yyyy.MM.dd",
+        Locale("ko", "KR")
+    ).format(Date.from(Instant.parse(dateText)))
+}
+
+
+/*
+파라미터 두개 이상 넘기고 싶은 경우 확장함수가 아닌 이런 방식으로 사용
+ */
+@BindingAdapter(
+    value = ["app:title_bold", "app:title_bold_start", "app:title_bold_end"],
+    requireAll = true
+)
+fun setSpannableBold(textView: TextView, tilte: String, start: Int, end: Int) {
+    val boldTypeface = Typeface.create(
+        ResourcesCompat.getFont(textView.context, R.font.pretendard_bold),
+        Typeface.NORMAL
+    )
+    val string = SpannableString(tilte)
+    string.setSpan(TypefaceSpan(boldTypeface), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+    textView.text = string
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -20,11 +21,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="64dp"
-            android:text="@string/write_proscons_question"
             android:textAppearance="@style/hara_modal1_m24"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:title_bold="@{@string/write_proscons_question}"
+            app:title_bold_end="@{8}"
+            app:title_bold_start="@{5}"
+            tools:text="@string/write_proscons_question" />
 
         <TextView
             android:id="@+id/tv_write_proscons_explanation"
@@ -37,18 +41,6 @@
             android:textColor="@color/gray_2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_write_proscons_question" />
-
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/rv_write_proscons_option"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            android:layout_marginHorizontal="12dp"-->
-        <!--            android:layout_marginTop="21dp"-->
-        <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/tv_write_proscons_explanation"-->
-        <!--            app:layout_constraintBottom_toTopOf="@+id/ib_write_proscons_upload_button"-->
-        <!--            tools:itemCount="4"-->
-        <!--            tools:listitem="@layout/item_write_proscons" />-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -74,13 +66,11 @@
 
                 <include
                     android:id="@+id/proscons3"
-                    layout="@layout/item_write_proscons"
-                    android:visibility="gone" />
+                    layout="@layout/item_write_proscons" />
 
                 <include
                     android:id="@+id/proscons4"
-                    layout="@layout/item_write_proscons"
-                    android:visibility="gone" />
+                    layout="@layout/item_write_proscons" />
             </LinearLayout>
         </ScrollView>
 
