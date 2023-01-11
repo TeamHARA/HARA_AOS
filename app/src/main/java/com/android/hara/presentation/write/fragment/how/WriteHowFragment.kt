@@ -30,7 +30,7 @@ class WriteHowFragment :
         Timber.e(writeViewModel.content)
         Timber.e(writeViewModel.titleList.toString())
         Timber.e(writeViewModel.pronsList.toString())
-        Timber.e(writeViewModel.categoty)
+        Timber.e(writeViewModel.categoty.toString())
         if (howFragViewModel.isWithSelected.value == true) {
             //TODO 함께고민 API호출
         } else {

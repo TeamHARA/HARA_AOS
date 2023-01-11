@@ -10,6 +10,7 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteCategoryBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.custom.PickerBottomSheetDialog
+import com.android.hara.presentation.util.HARAobjcet.categoryList
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 
@@ -50,7 +51,7 @@ class WriteCategoryFragment :
     private fun addObserve() {
         categoryViewModel.category.observe(viewLifecycleOwner) {
             with(binding) {
-                category = it
+                category = categoryList[it]
                 writeViewModel.categoty = it // ViewModel에 set 해주기
                 tvSelectedCategory.visibility = View.VISIBLE
                 clCategorySelectLayout.visibility = View.GONE
