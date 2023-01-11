@@ -28,12 +28,6 @@ class WriteCategoryFragment :
         onClickBackBtn()
         setClickListener()
         addObserve()
-        binding.tvWriteCategoryQuestion.setBold(
-            requireContext(),
-            4,
-            8,
-            requireContext().getString(R.string.write_category_question)
-        )
     }
 
     private fun setNavigation(view: View) {

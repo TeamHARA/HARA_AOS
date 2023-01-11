@@ -26,12 +26,6 @@ class WriteWhatFragment :
         setNavigation(view)
         onClickNextBtn()
         addObserve()
-        binding.tvWriteWhatQuestion.setBold(
-            requireContext(),
-            0,
-            2,
-            this.getString(R.string.write_title_question)
-        )
     }
 
     private fun setViewModel() {

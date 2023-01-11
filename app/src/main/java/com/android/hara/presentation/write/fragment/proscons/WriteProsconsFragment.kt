@@ -29,13 +29,6 @@ class WriteProsconsFragment :
     }
 
     private fun init() {
-        binding.tvWriteProsconsQuestion.setBold(
-            requireContext(),
-            5,
-            8,
-            requireContext().getString(R.string.write_proscons_question)
-        )
-
         prosList = listOf(
             binding.proscons1,
             binding.proscons2,

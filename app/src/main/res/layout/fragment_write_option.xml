@@ -21,11 +21,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="64dp"
-            android:text="@string/write_option_question"
             android:textAppearance="@style/hara_modal1_m24"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:title_bold="@{@string/write_option_question}"
+            app:title_bold_end="@{8}"
+            app:title_bold_start="@{0}"
+            tools:text="@string/write_option_question" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_options"

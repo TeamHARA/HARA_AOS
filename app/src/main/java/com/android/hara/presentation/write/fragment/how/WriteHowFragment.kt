@@ -26,12 +26,7 @@ class WriteHowFragment :
         setViewModel()
         setWorryBtn()
         setWithBtn()
-        binding.tvWriteContentQuestion.setBold(
-            requireContext(),
-            10,
-            13,
-            requireContext().getString(R.string.write_how_question)
-        )
+
         Timber.e(writeViewModel.title)
         Timber.e(writeViewModel.content)
         Timber.e(writeViewModel.titleList.toString())

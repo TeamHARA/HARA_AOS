@@ -22,11 +22,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="64dp"
-            android:text="@string/write_category_question"
             android:textAppearance="@style/hara_modal1_m24"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:title_bold="@{@string/write_category_question}"
+            app:title_bold_end="@{8}"
+            app:title_bold_start="@{4}"
+            tools:text="@string/write_category_question" />
 
         <TextView
             android:id="@+id/tv_selected_category"

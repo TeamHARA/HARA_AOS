@@ -39,12 +39,6 @@ class WriteOptionFragment :
         initAdapter()
         onClickNextBtn()
         onClickBackBtn()
-        binding.tvWriteOptionQuestion.setBold(
-            requireContext(),
-            0,
-            8,
-            requireContext().getString(R.string.write_option_question)
-        )
     }
 
     private fun initAdapter() {
