@@ -69,6 +69,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cv_final_resolve_img" />
 
         <TextView
+            android:id="@+id/btn_final_go_storage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="보관함으로 이동하기>"
