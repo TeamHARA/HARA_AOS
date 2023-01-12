@@ -36,7 +36,7 @@ class PickerBottomSheetDialog(private val addListener: (Int) -> Unit) :
 
     private fun setOnClickListener() {
         binding.pickerCategory.setOnValueChangedListener { picker, xoldVal, newVal ->
-            count = newVal
+            count = newVal + 1
         }
 
         binding.btnCancel.setOnClickListener {

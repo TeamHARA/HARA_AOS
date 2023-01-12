@@ -1,4 +1,4 @@
-package com.android.hara.presentation.home.fragment.together
+package com.android.hara.presentation.home.fragment.together.model
 
 data class SimpleModel(
     val title: String,

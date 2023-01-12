@@ -5,12 +5,15 @@
 
     <data>
 
+        <variable
+            name="comment"
+            type="com.android.hara.data.model.response.DetailWithResDto.Data.Comment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:paddingVertical="13dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingVertical="13dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -26,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:text="@{comment.userNickName}"
             android:textAppearance="@style/hara_sub3_r12"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView"
@@ -36,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
+            android:text="@{comment.createdAt}"
             android:textAppearance="@style/hara_sub3_r12"
             android:textColor="@color/gray_2"
             app:layout_constraintBottom_toBottomOf="@+id/tv_commnet_nickname"
@@ -48,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:text="@{comment.content}"
             android:textAppearance="@style/hara_body2_m14"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintStart_toEndOf="@+id/imageView"

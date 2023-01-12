@@ -1,5 +1,6 @@
 package com.android.hara.presentation.home.fragment.together
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.android.hara.presentation.util.setOnSingleClickListener
 import timber.log.Timber
 
 class PostAdapter(
+    private val detailListener: (Int) -> Unit,
     private val optSelListener: (postId: Int, optId: Int) -> Unit,
     private val btnSelListener: () -> Unit,
     private val getOptVoteRate: () -> List<VoteResDto.Data.Option>?
@@ -44,7 +46,13 @@ class PostAdapter(
             binding.tvPostTitle.text = curItem.title // 글 제목
             binding.tvPostContent.text = curItem.content // 글 본문
             binding.tvPostCommentNum.text = curItem.commentCount.toString() // 댓글 수 카운트
-
+            binding.root.setOnClickListener { //전체 아이템 누르면 상세화면 이동
+                detailListener(curItem.worryId)
+            }
+            // [최종결정 하러가기] 버튼
+            binding.btnPostGoDecide.setOnSingleClickListener {
+                // TODO 최종결정 하러 activity 이동
+            }
             // 각 옵션 뷰에, 서버통신으로 받은 데이터(옵션)를 넣어준다
             setOptTitle(binding, curItem)
 

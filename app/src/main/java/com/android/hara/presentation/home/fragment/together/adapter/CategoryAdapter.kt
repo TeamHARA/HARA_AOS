@@ -1,11 +1,12 @@
-package com.android.hara.presentation.home.fragment.together
+package com.android.hara.presentation.home.fragment.together.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.databinding.ItemCategoryBinding
-import java.util.prefs.NodeChangeListener
+import com.android.hara.presentation.home.fragment.together.model.SimpleModel
+import com.android.hara.presentation.home.fragment.together.TogetherFragment
 
 class CategoryAdapter(
     private val context: Context,
