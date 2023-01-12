@@ -28,13 +28,6 @@ class WriteProsconsFragment :
         setNavigation(view)
         onClickNextBtn()
         onClickBackBtn()
-
-        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                navController.popBackStack()
-                writeViewModel.subProgress()
-            }
-        })
     }
 
     private fun init() {

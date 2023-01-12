@@ -1,6 +1,5 @@
 package com.android.hara.presentation.write.fragment.option
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -41,14 +40,7 @@ class WriteOptionFragment :
         setNavigation(view)
         initAdapter()
         onClickNextBtn()
-        onClickBackBtn()
-
-        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                navController.popBackStack()
-                writeViewModel.subProgress()
-            }
-        })
+        onClickBack()
     }
 
     private fun initAdapter() {
@@ -103,10 +95,19 @@ class WriteOptionFragment :
         }
     }
 
-    private fun onClickBackBtn() {
+    private fun onClickBack() {
         binding.ibWriteOptionBackButton.setOnSingleClickListener {
             navController.popBackStack()
             writeViewModel.subProgress()
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // 두번째 프래그먼트에서부터는 그래프 pop / seek bar 숫자 줄이는 동작
+                // 즉, 뒤로가기 버튼과 동작과 동일하게 하도록
+                navController.popBackStack()
+                writeViewModel.subProgress()
+            }
+        })
     }
 }

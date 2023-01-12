@@ -31,10 +31,10 @@ class WriteWhatFragment :
 
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                // 첫번째 프래그먼트에서는 호스트 액티비티 종료로직
                 requireActivity().finish()
             }
         })
-
     }
 
 
