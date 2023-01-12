@@ -11,7 +11,8 @@ import com.android.hara.presentation.detail.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailActivity : BindingActivity<ActivityDetailWithBinding>(R.layout.activity_detail_alone) {
+class DetailWithActivity :
+    BindingActivity<ActivityDetailWithBinding>(R.layout.activity_detail_with) {
     //TODO [고민글 상세보기] 부분입니다. 추후 네이밍 변경 예정
 
     private val detailVm by viewModels<DetailViewModel>()
@@ -46,7 +47,7 @@ class DetailActivity : BindingActivity<ActivityDetailWithBinding>(R.layout.activ
             changeVmSnum(4)
         }
 
-        detailVm.sNum.observe(this){
+        detailVm.sNum.observe(this) {
             binding.detailVm = detailVm
         }
     }
