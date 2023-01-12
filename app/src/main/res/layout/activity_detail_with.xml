@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="detailVm"
             type="com.android.hara.presentation.detail.viewmodel.DetailViewModel" />
@@ -18,6 +19,7 @@
             android:id="@+id/appbar_layout_detail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/home_appbar_height"
+            app:elevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,7 +31,16 @@
                 android:background="@color/white"
                 app:navigationIcon="@drawable/ic_close"
                 app:title="@string/worring"
-                app:titleTextAppearance="@style/hara_heading1_sb16" />
+                app:titleTextAppearance="@style/hara_heading1_sb16">
+
+                <ImageView
+                    android:id="@+id/img_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/ic_delete_post" />
+            </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
