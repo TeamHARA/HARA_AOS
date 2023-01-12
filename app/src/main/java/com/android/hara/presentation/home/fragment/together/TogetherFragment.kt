@@ -51,7 +51,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         recyclerView = binding.rvTogetherPost
 
         binding.swipeRefreash.setOnRefreshListener { /* swipe 시 진행할 동작 */
-            recyclerView.scrollToPosition(0)
+            recyclerView.smoothScrollToPosition(0)
             homeVm.homeVmGetAllPost(homeVm.selCat.value ?: 0)
         }
     }
@@ -68,7 +68,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             setOnItemClickListener(object : CategoryAdapter.OnItemClickListener {
                 override fun onItemClick(item: SimpleModel, position: Int) {
                     Timber.e(item.title) // 카테고리가 클릭되면 '전체', '일상' 등이 찍힌다
-                    recyclerView.scrollToPosition(0)
+                    //recyclerView.scrollToPosition(0)
                 }
             })
         }
