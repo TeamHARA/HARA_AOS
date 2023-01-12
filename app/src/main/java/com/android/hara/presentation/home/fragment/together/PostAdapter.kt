@@ -115,7 +115,9 @@ class PostAdapter(
                     // 유저가 투표한 옵션의 id를 binding.itVoteOptSel에 넘긴다
                     assignVoteOptNum(curItem, binding)
 
+                    // 이미지가 달린 옵션이 선택됐다면 해당 이미지만 활성화해야 한다
                     activateSelOptImage(binding, curItem, binding.itVoteOptSel - 1, imgToOpt)
+
                     // 투표율을 보여준다
                     bindTurnout(binding, curItem.option)
                 }
@@ -203,12 +205,7 @@ class PostAdapter(
                             bindTurnout(binding, voteRes)
 
                             // 이미지
-                            activateSelOptImage(
-                                binding,
-                                curItem,
-                                binding.itVoteOptSel - 1,
-                                imgToOpt
-                            )
+                            activateSelOptImage(binding, curItem, binding.itVoteOptSel - 1, imgToOpt)
                         } else {
                             Timber.e("이 글에 대해 옵션을 선택해주시라요!")
                         }
