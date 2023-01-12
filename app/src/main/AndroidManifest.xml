@@ -19,20 +19,20 @@
         tools:targetApi="33">
         <activity
             android:name=".presentation.onesec.OneSecActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"></activity>
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.setting.SettingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.detail.DetailActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"></activity>
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.decision.FinalDecideActivity"
-            android:exported="true"
-            android:screenOrientation="portrait"></activity>
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.decision.FinalResolveActivity"
             android:exported="false"

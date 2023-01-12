@@ -96,6 +96,7 @@
             android:layout_marginBottom="6dp"
             android:background="@drawable/selector_rectangle_blue3_blue1"
             android:enabled="false"
+            android:stateListAnimator="@null"
             android:paddingHorizontal="70dp"
             android:paddingVertical="14dp"
             android:text="@string/write_upload_button"
