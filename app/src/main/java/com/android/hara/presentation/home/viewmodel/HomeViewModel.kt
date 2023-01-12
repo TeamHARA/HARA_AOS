@@ -54,7 +54,6 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
             }.onSuccess {
                 if (it.isSuccessful) { // 내부 코드의 응답코드 200~299
                     Timber.e("Success")
-                    _success.value = true
                     _catAllPostResult.value = it.body()
                     /*
                     // [홈화면: 고민글 목록 전체조회] 내가 쓴 글 목록 (필터링)
@@ -69,11 +68,9 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
                     */
                 } else { // 응답코드 400~599
                     Timber.e("서버통신 응답코드 이상")
-                    _success.value = false
                 }
             }.onFailure { // 서버통신 자체가 실패했다
                 Timber.e(it)
-                _success.value = false
                 Timber.e("서버통신 실패", it)
             }
         }
@@ -117,12 +114,15 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
             }.onSuccess {
                 if (it.isSuccessful) { // 내부 코드의 응답코드 200~299
                     Timber.e("Success")
+                    _success.value = true
                     _catAllPostResult.value = it.body()
                 } else { // 응답코드 400~599
+                    _success.value = false
                     Timber.e("서버통신 응답코드 이상")
                 }
             }.onFailure { // 서버통신 자체가 실패했다
                 Timber.e(it)
+                _success.value = false
                 Timber.e("서버통신 실패", it)
             }
         }
