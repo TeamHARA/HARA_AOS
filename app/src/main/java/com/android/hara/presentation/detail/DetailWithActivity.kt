@@ -42,10 +42,10 @@ class DetailWithActivity :
                     bindingList[index].root.visibility = View.VISIBLE // 선택지 갯수 만큼 visibilty 조절
                     //if (option.hasImage) binding.flowImage.vi // 하나라도 이미지 있다면 Flag발동
                 }
-                if (detailVm.detailDto.value!!.data.comments.isNotEmpty()) {
+                if (detailVm.detailDto.value!!.data.commentCount > 0) {
                     commentAdapter = CommentAdapter()
                     binding.rcvComment.adapter = commentAdapter
-                    binding.count = detailVm.detailDto.value!!.data.comments.size
+                    binding.count = detailVm.detailDto.value!!.data.commentCount
                     commentAdapter.submitList(detailVm.detailDto.value!!.data.comments)
                 } else {
                     //TODO 엠티뷰
