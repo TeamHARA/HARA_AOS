@@ -75,4 +75,11 @@
     <string name="dialog_upload_warn">게시된 고민글은 수정이 불가능해요.</string>
     <string name="dialog_category">카테고리</string>
     <string name="dialog_finish">완료</string>
+
+    <string name="search_input">검색어 입력</string>
+    <string name="search">검색</string>
+    <string name="search_hint">어떤 고민을 찾으시나요?</string>
+    <string name="search_type">검색어 입력</string>
+    <string name="search_empty">찾으시는 고민이 없어요</string>
+    <string name="search_count">%d개의 고민글</string>
 </resources>

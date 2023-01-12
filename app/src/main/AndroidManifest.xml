@@ -18,6 +18,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
         <activity
+            android:name=".presentation.search.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.onesec.OneSecActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
