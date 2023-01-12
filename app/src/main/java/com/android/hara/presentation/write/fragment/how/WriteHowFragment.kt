@@ -2,6 +2,8 @@ package com.android.hara.presentation.write.fragment.how
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -29,6 +31,13 @@ class WriteHowFragment :
         setViewModel()
         setWorryBtn()
         setWithBtn()
+
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                navController.popBackStack()
+                writeViewModel.subProgress()            }
+        })
+
         binding.btnWriteContentUploadButton.setOnSingleClickListener {
             writeViewModel.isWith = howFragViewModel.isWithSelected.value!!
             DecisionDialog(
@@ -73,7 +82,7 @@ class WriteHowFragment :
 
     private fun onClickBackBtn() {
         binding.ibWriteContentBackButton.setOnClickListener {
-            navController.navigate(R.id.action_writeHowFragment_to_writeCategoryFragment)
+            navController.popBackStack()
             writeViewModel.subProgress()
         }
     }

@@ -10,7 +10,6 @@ import androidx.navigation.Navigation
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteWhatBinding
 import com.android.hara.presentation.base.BindingFragment
-import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +28,7 @@ class WriteWhatFragment :
         onClickNextBtn()
         addObserve()
     }
+
 
     private fun setViewModel() {
         binding.vm = whatViewModel

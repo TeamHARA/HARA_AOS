@@ -2,6 +2,7 @@ package com.android.hara.presentation.write.fragment.proscons
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -9,7 +10,6 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteProsconsBinding
 import com.android.hara.databinding.ItemWriteProsconsBinding
 import com.android.hara.presentation.base.BindingFragment
-import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 import com.android.hara.presentation.write.fragment.proscons.model.PronsData
@@ -28,6 +28,13 @@ class WriteProsconsFragment :
         setNavigation(view)
         onClickNextBtn()
         onClickBackBtn()
+
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                navController.popBackStack()
+                writeViewModel.subProgress()
+            }
+        })
     }
 
     private fun init() {
@@ -68,7 +75,7 @@ class WriteProsconsFragment :
 
     private fun onClickBackBtn() {
         binding.ibWriteProsconsBackButton.setOnSingleClickListener {
-            navController.navigate(R.id.action_writeProsconsFragment_to_writeOptionFragment)
+            navController.popBackStack()
             writeViewModel.subProgress()
         }
     }

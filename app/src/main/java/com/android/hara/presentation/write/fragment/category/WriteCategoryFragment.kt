@@ -72,7 +72,7 @@ class WriteCategoryFragment :
 
     private fun onClickBackBtn() {
         binding.ibWriteCategoryBackButton.setOnSingleClickListener {
-            navController.navigate(R.id.action_writeCategoryFragment_to_writeProsconsFragment)
+            navController.popBackStack()
             writeViewModel.subProgress()
         }
     }
