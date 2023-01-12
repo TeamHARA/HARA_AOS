@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="selected"
             type="boolean" />
@@ -33,8 +35,8 @@
             android:id="@+id/iv_final_decide_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="82dp"
             android:background="@drawable/img_decide_text"
+            app:layoutMarginTop="@{decideData.includeImg ? @dimen/include_image_decide : @dimen/not_include_image_decide}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,29 +53,51 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_final_decide_title"
             tools:text="@{decideData.worryTitle}" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_final_decide_img"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginLeft="12dp"
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/rv_final_decide_img"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_marginLeft="12dp"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:visibility="@{decideData.includeImg ? View.VISIBLE : View.GONE}"-->
+        <!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/tv_final_decide_title"-->
+        <!--            tools:listitem="@layout/item_final_decide_img" />-->
+
+        <include
+            android:id="@+id/img_final_decide_1"
+            layout="@layout/item_final_decide_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="@{decideData.includeImg ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toStartOf="@+id/img_final_decide_2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_final_decide_title"
-            tools:listitem="@layout/item_final_decide_img" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_final_decide_title" />
+
+        <include
+            android:id="@+id/img_final_decide_2"
+            layout="@layout/item_final_decide_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:visibility="@{decideData.includeImg ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_final_decide_1"
+            app:layout_constraintTop_toBottomOf="@+id/tv_final_decide_title" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_options"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="60dp"
+            app:layoutMarginTop="@{decideData.includeImg ? @dimen/include_image_decide_option : @dimen/not_include_image_decide_option}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_final_decide_img">
+            app:layout_constraintTop_toBottomOf="@+id/img_final_decide_1">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_opt1"
@@ -237,6 +261,7 @@
             android:background="@drawable/shape_rectangle_orange1_fill_30"
             android:enabled="false"
             android:paddingHorizontal="16dp"
+            android:stateListAnimator="@null"
             android:text="고민 해결하기"
             android:textAppearance="@style/hara_heading1_sb16"
             app:decide_selected="@{selected}"

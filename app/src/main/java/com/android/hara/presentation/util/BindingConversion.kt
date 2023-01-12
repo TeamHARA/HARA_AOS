@@ -1,16 +1,17 @@
 package com.android.hara.presentation.util
 
-import android.graphics.drawable.Drawable
-import android.view.View
-import android.widget.ImageView
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.TypefaceSpan
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.updateLayoutParams
 import androidx.databinding.BindingAdapter
 import com.android.hara.R
 import java.text.SimpleDateFormat
@@ -20,10 +21,9 @@ import java.util.*
 @BindingAdapter("app:decide_selected")
 fun AppCompatButton.selected(sel: Boolean) {
     if (sel) {
-    this.background = this.context.getDrawable(R.drawable.shape_rectangle_orange1_fill_30)
-    this.setTextColor(this.context.getColor(R.color.white))
-    }
-    else {
+        this.background = this.context.getDrawable(R.drawable.shape_rectangle_orange1_fill_30)
+        this.setTextColor(this.context.getColor(R.color.white))
+    } else {
         this.background = this.context.getDrawable(R.drawable.shape_rectangle_blue3_stroke_1_30)
         this.setTextColor(this.context.getColor(R.color.gray_2))
     }
@@ -35,8 +35,7 @@ fun TextView.xmlIng(still: Boolean) {
         this.background = this.context.getDrawable(R.drawable.shape_rectangle_orange2_stroke_1_4)
         this.setTextColor(this.context.getColor(R.color.orange_2))
         // 고민중이라는 문구
-    }
-    else {
+    } else {
         this.background = this.context.getDrawable(R.drawable.shape_rectanle_orange1_fill_4)
         this.setTextColor(this.context.getColor(R.color.white))
     }
@@ -54,7 +53,8 @@ fun AppCompatButton.itOptSelNum(n: Int) {
         }
         0 -> { // [투표 미완] 사용자가 옵션을 선택 안 함
             this.isEnabled = true
-            this.background = this.context.getDrawable(R.drawable.shape_rectangle_orange2_stroke_1_8)
+            this.background =
+                this.context.getDrawable(R.drawable.shape_rectangle_orange2_stroke_1_8)
             this.setTextColor(this.context.getColor(R.color.orange_1))
             this.text = "투표하기"
         }
@@ -68,8 +68,17 @@ fun AppCompatButton.itOptSelNum(n: Int) {
 }
 
 // [홈화면/item_post.xml] optSelNum의 값에 따라 '옵션'의 체크버튼 스타일(visibility & src)이 바뀐다
-@BindingAdapter(value = ["app:layMyPost", "app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"], requireAll = true)
-fun optionCheckBtn(iv: ImageView, myPost: Boolean, optSelNum: Int, optSel: Boolean, voteOptSel: Boolean) {
+@BindingAdapter(
+    value = ["app:layMyPost", "app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"],
+    requireAll = true
+)
+fun optionCheckBtn(
+    iv: ImageView,
+    myPost: Boolean,
+    optSelNum: Int,
+    optSel: Boolean,
+    voteOptSel: Boolean
+) {
     if (myPost) iv.visibility = View.GONE
     else {
         when (optSelNum) {
@@ -95,37 +104,41 @@ fun optionCheckBtn(iv: ImageView, myPost: Boolean, optSelNum: Int, optSel: Boole
 // itOptSelNum == layOptSelNum == -1이면 투표 완료
 // layOptSel = itOptSelNum에 따라 자기(옵션 뷰)가 선택됐으면 true
 // layVoteOptSel = itVoteOptSel에 따라 자기 뷰(옵션 뷰)가 선택됐으면 true
-@BindingAdapter(value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"], requireAll = true)
+@BindingAdapter(
+    value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"],
+    requireAll = true
+)
 fun votedOptBackground(cl: ConstraintLayout, optSelNum: Int, optSel: Boolean, voteOptSel: Boolean) {
     if (optSelNum == -1) { // [투표 이미 완료]
-        if (voteOptSel) // 선택된 옵션
+        if (voteOptSel) { // 선택된 옵션
             cl.background = cl.context.getDrawable(R.drawable.shape_rectangle_blue1_stroke_1_8)
-        else // 선택 안 된 옵션
+        } else { // 선택 안 된 옵션
             cl.background = cl.context.getDrawable(R.drawable.shape_rectangle_gray4_stroke_1_8)
-    }
-    else { // [투표 아직 안 함]
+        }
+    } else { // [투표 아직 안 함]
         if (optSel) { // 선택된 옵션
             cl.background = cl.context.getDrawable(R.drawable.shape_rectangle_blue1_stroke_1_8)
-        }
-        else { // 선택 안 된 옵션
+        } else { // 선택 안 된 옵션
             cl.background = cl.context.getDrawable(R.drawable.shape_rectangle_gray4_stroke_1_8)
         }
     }
 }
 
-@BindingAdapter(value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"], requireAll = true)
+@BindingAdapter(
+    value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"],
+    requireAll = true
+)
 fun votedOptTextColor(tv: TextView, optSelNum: Int, optSel: Boolean, voteOptSel: Boolean) {
     if (optSelNum == -1) { // [투표 이미 완료] 선택된 옵션
-        if (voteOptSel) // 선택된 옵션
+        if (voteOptSel) { // 선택된 옵션
             tv.setTextColor(tv.context.getColor(R.color.blue_1))
-        else // 선택 안 된 옵션
+        } else { // 선택 안 된 옵션
             tv.setTextColor(tv.context.getColor(R.color.gray_2))
-    }
-    else { // [투표 아직 안 함]
+        }
+    } else { // [투표 아직 안 함]
         if (optSel) { // 선택된 옵션
             tv.setTextColor(tv.context.getColor(R.color.blue_1))
-        }
-        else { // 선택 안 된 옵션
+        } else { // 선택 안 된 옵션
             tv.setTextColor(tv.context.getColor(R.color.black))
         }
     }
@@ -135,15 +148,6 @@ fun votedOptTextColor(tv: TextView, optSelNum: Int, optSel: Boolean, voteOptSel:
 fun TextView.setCategory(categoryId: Int) {
     this.text = resources.getStringArray(R.array.category_array)[categoryId]
 }
-
-@BindingAdapter("app:date_text")
-fun TextView.setDate(dateText: String) {
-    this.text = SimpleDateFormat(
-        "yyyy.MM.dd",
-        Locale("ko", "KR")
-    ).format(Date.from(Instant.parse(dateText)))
-}
-
 
 /*
 파라미터 두개 이상 넘기고 싶은 경우 확장함수가 아닌 이런 방식으로 사용
@@ -160,4 +164,11 @@ fun setSpannableBold(textView: TextView, tilte: String, start: Int, end: Int) {
     val string = SpannableString(tilte)
     string.setSpan(TypefaceSpan(boldTypeface), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
     textView.text = string
+}
+
+@BindingAdapter("layoutMarginTop")
+fun setLayoutMarginTop(view: View, dimen: Float) {
+    view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+        topMargin = dimen.toInt()
+    }
 }
