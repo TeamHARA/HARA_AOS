@@ -1,5 +1,6 @@
 package com.android.hara.presentation.home.fragment.storage.with
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -7,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.android.hara.R
 import com.android.hara.databinding.FragmentStorageTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.detail.DetailWithActivity
 import com.android.hara.presentation.home.fragment.storage.StorageAdapter
 import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +23,9 @@ class StorageWithFragment :
         super.onViewCreated(view, savedInstanceState)
 
         val storageAdapter = StorageAdapter() {
-            Log.d("TEST", it)
+            val intent = Intent(requireContext(), DetailWithActivity::class.java)
+            intent.putExtra("worryId", it)
+            startActivity(intent)
         }
         binding.rvPosts.adapter = storageAdapter
         storageWithViewModel.getWithList()

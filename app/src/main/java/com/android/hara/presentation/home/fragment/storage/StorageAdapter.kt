@@ -8,7 +8,7 @@ import com.android.hara.data.model.response.WorryListResDto
 import com.android.hara.databinding.ItemStorageBinding
 import com.android.hara.presentation.util.GlobalDiffCallBack
 
-class StorageAdapter(private val itemClickListener: (String) -> Unit) :
+class StorageAdapter(private val itemClickListener: (Int) -> Unit) :
     ListAdapter<WorryListResDto.Data, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
 
     private lateinit var inflater: LayoutInflater // 뷰 그려줄려고
@@ -29,6 +29,9 @@ class StorageAdapter(private val itemClickListener: (String) -> Unit) :
         with(holder as ItemStorageViewHolder) {
             binding.worry = curItem
             binding.xmlIng = ing
+            binding.root.setOnClickListener {
+                curItem.id
+            }
             if (ing) binding.tvStorageFlag.text = "고민중"
             else binding.tvStorageFlag.text = "고민완료"
         }
