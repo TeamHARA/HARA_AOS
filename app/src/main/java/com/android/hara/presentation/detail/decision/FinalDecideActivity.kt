@@ -28,7 +28,7 @@ class FinalDecideActivity :
     private val decisionViewModel by viewModels<DecideViewModel>()
 
     private var selectListBool = mutableListOf<Boolean>(false, false, false, false)
-    private var selOptId: Int? = null
+    private var selOptId: Int? = null // 프론트 기준 - 선택된 option Num
 
     // 1, 2, 3, 4번째 옵션 뷰가 선택(클릭)됐는지를 저장. n+1번째 옵션 뷰가 선택됐으면 [n]이 true
     private lateinit var decideData: DecideData
@@ -44,7 +44,6 @@ class FinalDecideActivity :
                     DecideData::class.java
                 )!!
                 else intent.getParcelableExtra("decideData")!!
-            Timber.e(decideData.toString())
             // 옵션 개수에 따라 그 개수의 옵션 뷰가 보이게
             setOptionListView()
         } else Timber.e("전달된 intent가 없습니다.")
@@ -157,6 +156,7 @@ class FinalDecideActivity :
                     putExtra("worryTitle", decideData.worryTitle)
                     putExtra("selOptTitle", decideData.optionTitle[selOptId!!])
                     putExtra("includeImg", decideData.includeImg)
+                    putExtra("optionNum", selOptId!!)
                 }
                 startActivity(intent)
             }
@@ -165,27 +165,31 @@ class FinalDecideActivity :
 
     // 옵션 뷰 배경/텍스트컬러를 바꿔준다
     private fun changeOptStyle(n: Int, b: Boolean) {
-        if (b) { // n+1번째 옵션 뷰의 배경/글자색 등을 'selected' 스타일로 바꿔준다
+        if (b) { // n+1번째 옵션 뷰의 배경/글자changeOptStyle색 등을 'selected' 스타일로 바꿔준다
             when (n) {
                 0 -> {
                     binding.clOpt1.background = getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
                     binding.tvOpt1Content.setTextColor(getColor(R.color.white))
                     binding.tvOpt1Num.visibility = View.GONE
+                    setOption1Img()
                 }
                 1 -> {
                     binding.clOpt2.background = getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
                     binding.tvOpt2Content.setTextColor(getColor(R.color.white))
                     binding.tvOpt2Num.visibility = View.GONE
+                    setOption2Img()
                 }
                 2 -> {
                     binding.clOpt3.background = getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
                     binding.tvOpt3Content.setTextColor(getColor(R.color.white))
                     binding.tvOpt3Num.visibility = View.GONE
+                    setNothing()
                 }
                 3 -> {
                     binding.clOpt4.background = getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
                     binding.tvOpt4Content.setTextColor(getColor(R.color.white))
                     binding.tvOpt4Num.visibility = View.GONE
+                    setNothing()
                 }
             }
         } else { // n+1번째 옵션 뷰의 배경/글자색 등을 'not selected' 스타일로 바꿔준다
@@ -215,6 +219,22 @@ class FinalDecideActivity :
                     binding.tvOpt4Num.visibility = View.VISIBLE
                 }
             }
+            setNothing()
         }
+    }
+
+    private fun setNothing() {
+        binding.imgFinalDecide1.root.alpha = 0.3F
+        binding.imgFinalDecide2.root.alpha = 0.3F
+    }
+
+    private fun setOption1Img() {
+        binding.imgFinalDecide1.root.alpha = 1F
+        binding.imgFinalDecide2.root.alpha = 0.3F
+    }
+
+    private fun setOption2Img() {
+        binding.imgFinalDecide2.root.alpha = 1F
+        binding.imgFinalDecide1.root.alpha = 0.3F
     }
 }

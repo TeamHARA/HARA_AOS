@@ -14,9 +14,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.updateLayoutParams
 import androidx.databinding.BindingAdapter
 import com.android.hara.R
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.util.*
 
 @BindingAdapter("app:decide_selected")
 fun AppCompatButton.selected(sel: Boolean) {
@@ -170,5 +167,12 @@ fun setSpannableBold(textView: TextView, tilte: String, start: Int, end: Int) {
 fun setLayoutMarginTop(view: View, dimen: Float) {
     view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
         topMargin = dimen.toInt()
+    }
+}
+
+@BindingAdapter("app:perInt")
+fun TextView.setPer(perInt: String?) {
+    if (perInt != null) {
+        this.text = "$perInt%"
     }
 }

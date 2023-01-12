@@ -17,6 +17,17 @@ class FinalResolveActivity :
             binding.title = intent.getStringExtra("worryTitle")
             binding.option = intent.getStringExtra("selOptTitle")
             binding.includeImg = intent.getBooleanExtra("includeImg", false)
+            when (intent.getIntExtra("optionNum", 2)) {
+                0 -> {
+                    binding.ivFinalResolveImg.setImageResource(R.drawable.img_one_sec)
+                }
+                1 -> {
+                    binding.ivFinalResolveImg.setImageResource(R.drawable.img_title_logo)
+                }
+                else -> {
+                    binding.includeImg = false
+                }
+            }
         }
 
         binding.btnFinalGoStorage.setOnClickListener {

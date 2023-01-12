@@ -14,6 +14,10 @@
         <variable
             name="decideData"
             type="com.android.hara.presentation.detail.model.DecideData" />
+
+        <variable
+            name="perInt"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -127,7 +131,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="14dp"
-                    android:text="@{decideData.optionPer[0].toString()}"
+                    app:perInt="@{decideData.optionPer[0].toString()}"
                     android:textAppearance="@style/hara_heading2_m16"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_opt1_content"
@@ -165,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="14dp"
-                    android:text="@{decideData.optionPer[1].toString()}"
+                    app:perInt="@{decideData.optionPer[1].toString()}"
                     android:textAppearance="@style/hara_heading2_m16"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_opt2_content"
@@ -203,7 +207,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="14dp"
-                    android:text="@{decideData.optionPer[2].toString()}"
+                    app:perInt="@{decideData.optionPer[2].toString()}"
                     android:textAppearance="@style/hara_heading2_m16"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_opt3_content"
@@ -241,7 +245,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="14dp"
-                    android:text="@{decideData.optionPer[3].toString()}"
+                    app:perInt="@{decideData.optionPer[3].toString()}"
                     android:textAppearance="@style/hara_heading2_m16"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_opt4_content"
@@ -268,7 +272,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
