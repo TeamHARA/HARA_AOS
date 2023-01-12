@@ -1,4 +1,4 @@
-package com.android.hara.presentation.decision
+package com.android.hara.presentation.detail.decision
 
 import android.os.Bundle
 import com.android.hara.R
@@ -7,8 +7,13 @@ import com.android.hara.presentation.base.BindingActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FinalResolveActivity :BindingActivity<ActivityFinalResolveBinding>(R.layout.activity_final_resolve) {
+class FinalResolveActivity :
+    BindingActivity<ActivityFinalResolveBinding>(R.layout.activity_final_resolve) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding.btnFinalGoStorage.setOnClickListener {
+            // TODO: 보관함으로 이동 어떻게 하지?
+        }
     }
 }
