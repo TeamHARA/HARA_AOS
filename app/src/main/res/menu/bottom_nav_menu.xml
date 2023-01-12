@@ -7,7 +7,7 @@
         android:title="@string/together_hara" />
 
     <item
-        android:id="@+id/placeholder"
+        android:id="@+id/fragment_write"
         android:title="" />
 
     <item
