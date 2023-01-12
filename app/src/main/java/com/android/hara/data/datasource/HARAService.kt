@@ -54,4 +54,7 @@ interface HARAService {
     @GET("/worry/with/{worryId}")
     suspend fun getDetailWith(@Path("worryId") worryId: Int): Response<DetailWithResDto>
 
+    @GET("/worry/alone/{worryId}")
+    suspend fun getDetailAlone(@Path("worryId") worryId: Int): Response<DetailAloneResDto>
+
 }
