@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?><!-- [option 1] title  -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="optSel"
             type="boolean" />
+
+        <variable
+            name="disadvantage"
+            type="String" />
+
+        <variable
+            name="advantage"
+            type="String" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="precentage"
+            type="int" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,24 +60,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:text="선택지 글자수 제한은 공백 포함 20"
+                android:text="@{title}"
                 android:textAppearance="@style/hara_body3_r14"
                 android:textColor="@{optSel ? @color/blue_1 : @color/black}"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_opt_check"
                 app:layout_constraintStart_toEndOf="@+id/iv_opt_check"
-                app:layout_constraintTop_toTopOf="@+id/iv_opt_check" />
+                app:layout_constraintTop_toTopOf="@+id/iv_opt_check"
+                tools:text="선택지 글자수 제한은 공백 포함 20" />
 
             <TextView
                 android:id="@+id/tv_opt_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="20%"
+                android:text="@{precentage}"
                 android:textAppearance="@style/hara_body3_r14"
                 android:textColor="@{optSel ? @color/blue_1 : @color/black}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_opt_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_opt_content" />
+                app:layout_constraintTop_toTopOf="@id/tv_opt_content"
+                tools:text="20%" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -72,7 +91,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:gravity="center"
-            android:text="장점"
+            android:text="@string/write_pros"
             android:textAppearance="@style/hara_body2_m14"
             android:textColor="@color/blue_1"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,12 +103,13 @@
             android:layout_height="22dp"
             android:layout_marginStart="6dp"
             android:gravity="center"
-            android:text="안녕하세요 반가워요 잘있어요 다시 만나요"
+            android:text="@{advantage}"
             android:textAppearance="@style/hara_body2_m14"
             android:textColor="@color/gray_2"
             app:layout_constraintBottom_toBottomOf="@id/tv_opt_pro_title"
             app:layout_constraintStart_toEndOf="@+id/tv_opt_pro_title"
-            app:layout_constraintTop_toTopOf="@+id/tv_opt_pro_title" />
+            app:layout_constraintTop_toTopOf="@+id/tv_opt_pro_title"
+            tools:text="안녕하세요 반가워요 잘있어요 다시 만나요" />
 
         <!-- [option] con -->
         <TextView
@@ -100,7 +120,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginBottom="12dp"
             android:gravity="center"
-            android:text="단점"
+            android:text="@string/write_cons"
             android:textAppearance="@style/hara_body2_m14"
             android:textColor="@color/red"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -113,13 +133,14 @@
             android:layout_height="22dp"
             android:layout_marginStart="6dp"
             android:gravity="center"
-            android:text="안녕하세요 반가워요 잘있어요 다시 만나요"
+            android:text="@{disadvantage}"
             android:textAppearance="@style/hara_body2_m14"
             android:textColor="@color/gray_2"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_opt_con_title"
             app:layout_constraintStart_toEndOf="@+id/tv_opt_con_title"
-            app:layout_constraintTop_toTopOf="@+id/tv_opt_con_title" />
+            app:layout_constraintTop_toTopOf="@+id/tv_opt_con_title"
+            tools:text="안녕하세요 반가워요 잘있어요 다시 만나요" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

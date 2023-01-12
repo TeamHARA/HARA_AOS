@@ -8,6 +8,7 @@
     <string name="nickname">닉네임</string>
     <string name="dummy_date">2022.12.25</string>
     <string name="comment">댓글</string>
+    <string name="percentage">%d%</string>
     <string name="comment_count">댓글 %d</string>
     <string name="anonymity">익명</string>
     <string name="cancel">취소</string>
