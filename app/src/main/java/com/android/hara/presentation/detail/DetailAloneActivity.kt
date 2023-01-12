@@ -6,7 +6,9 @@ import androidx.activity.viewModels
 import com.android.hara.R
 import com.android.hara.databinding.ActivityDetailAloneBinding
 import com.android.hara.presentation.base.BindingActivity
+import com.android.hara.presentation.custom.EditBottomSheetDialog
 import com.android.hara.presentation.detail.viewmodel.DetailAloneViewModel
+import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,6 +55,9 @@ class DetailAloneActivity :
 
         binding.appbarDetail.setNavigationOnClickListener {
             finish()
+        }
+        binding.ivEdit.setOnSingleClickListener {
+            EditBottomSheetDialog().show(supportFragmentManager, "edit")
         }
         // n번째 옵션 클릭 시 옵션과 버튼 스타일 변하는 로직
         binding.layoutOption1.clOptBox.setOnClickListener {
