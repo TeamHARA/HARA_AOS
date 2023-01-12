@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="160dp"
+    android:layout_width="160dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp"
+    android:layout_marginEnd="16dp">
+
+    <ImageView
         android:id="@+id/iv_item_final_decide_img"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_marginRight="8dp"
         android:alpha="0.3"
-        android:background="@drawable/ic_launcher_background"/>
+        android:background="@drawable/ic_launcher_background" />
+</androidx.cardview.widget.CardView>

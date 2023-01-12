@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.databinding.ItemCategoryBinding
+import java.util.prefs.NodeChangeListener
 
 class CategoryAdapter(
     private val context: Context,
-    private val list: ArrayList<SimpleModel>
+    private val list: ArrayList<SimpleModel>,
+    private val changeListener: (Int) -> Unit
 ) : RecyclerView.Adapter<CategoryAdapter.SelectSingleItemViewHolder>() {
 
     private lateinit var binding: ItemCategoryBinding
     private var onItemClickListener: OnItemClickListener? = null
-
     private var selectedPosition = 0
 
     interface OnItemClickListener {
@@ -32,11 +33,9 @@ class CategoryAdapter(
 
             if (selectedPosition == absoluteAdapterPosition) {
                 list[absoluteAdapterPosition].isSelected = true
-//                binding.setChecked()
                 binding.btnCategoryButton.isSelected = true
             } else {
                 list[absoluteAdapterPosition].isSelected = false
-//                binding.setUnchecked()
                 binding.btnCategoryButton.isSelected = false
             }
 
@@ -44,10 +43,12 @@ class CategoryAdapter(
                 binding.btnCategoryButton.setOnClickListener {
                     onItemClickListener?.onItemClick(item, absoluteAdapterPosition)
                     if (selectedPosition != absoluteAdapterPosition) {
-//                        binding.setChecked()
                         binding.btnCategoryButton.isSelected = true
                         notifyItemChanged(selectedPosition)
                         selectedPosition = absoluteAdapterPosition
+
+                        // [수현] 카테고리 item이 클릭되면, 어댑터에 파라미터로 온 함수에, selectedPosition을 넘겨준다
+                        changeListener(selectedPosition)
                         TogetherFragment.setScroll()
                     } else {
                         TogetherFragment.setScroll()
@@ -68,7 +69,4 @@ class CategoryAdapter(
     }
 
     override fun getItemCount(): Int = list.size
-
-//    private fun ItemCategoryBinding.setChecked() = binding.btnCategoryButton.selected(true)
-//    private fun ItemCategoryBinding.setUnchecked() = binding.btnCategoryButton.selected(false)
 }

@@ -9,8 +9,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.hara.R
 import com.android.hara.databinding.ActivityHomeBinding
 import com.android.hara.presentation.base.BindingActivity
+import com.android.hara.presentation.decision.FinalDecideActivity
 import com.android.hara.presentation.home.fragment.together.TogetherFragment
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
+import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,6 +32,12 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         binding.fabHome.setOnClickListener {
             val intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
+        }
+        homeViewModel
+
+        //TEST FINAL
+        binding.ivHomeSetting.setOnSingleClickListener {
+            startActivity(Intent(this, FinalDecideActivity::class.java))
         }
         binding.bottomNavHome.setOnItemSelectedListener {
             if (it.itemId == R.id.fragment_together) {
