@@ -80,4 +80,5 @@
     <string name="search_hint">어떤 고민을 찾으시나요?</string>
     <string name="search_type">검색어 입력</string>
     <string name="search_empty">찾으시는 고민이 없어요</string>
+    <string name="search_count">%d개의 고민글</string>
 </resources>
