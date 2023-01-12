@@ -32,7 +32,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
     private var list = arrayListOf<SimpleModel>()
     private val homeVm by viewModels<HomeViewModel>()
     private lateinit var postAdapter: PostAdapter
-    private val togetherViewModle: TogetherFragmentViewModel by viewModels()
+    private val togetherViewModel: TogetherFragmentViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -107,7 +107,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             binding.swipeRefreash.isRefreshing = false // 서버통신 완료시 리프레시 중단
             if (!it) {
                 binding.root.makeSnackbar(getString(R.string.server_connet_fail))
-                // 실패시 스낵바 성공시에는 리스트 value가 갱신되므로 위쪽 observer에서 자동갱신
+                //실패 시 스낵바, 성공 시 게시물 목록 value 갱신 -> 위의 observer에서 자동 갱신
             }
         }
     }
