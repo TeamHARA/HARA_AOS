@@ -33,7 +33,7 @@ class WriteActivity : BindingActivity<ActivityWriteBinding>(R.layout.activity_wr
         writeViewModel.success.observe(this) {
             // 성공하면 꺼지고 실패하면 메세지
             if (it) finish() //TODO 상세화면 이동
-            else binding.root.makeSnackbar("서버통신에 실패하였어요!")
+            else binding.root.makeSnackbar(getString(R.string.server_connet_fail))
         }
     }
 

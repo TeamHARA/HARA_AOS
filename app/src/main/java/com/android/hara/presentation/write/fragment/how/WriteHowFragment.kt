@@ -2,8 +2,6 @@ package com.android.hara.presentation.write.fragment.how
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -27,25 +25,22 @@ class WriteHowFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setNavigation(view)
+        showDialog()
         onClickBackBtn()
         setViewModel()
         setWorryBtn()
         setWithBtn()
+    }
 
-        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                navController.popBackStack()
-                writeViewModel.subProgress()            }
-        })
-
+    private fun showDialog() {
         binding.btnWriteContentUploadButton.setOnSingleClickListener {
             writeViewModel.isWith = howFragViewModel.isWithSelected.value!!
             DecisionDialog(
                 requireContext(), DialogData(
-                    "고민글을 게시하겠습까?",
-                    "게시된 고민글은 수정이 불가능해요.",
-                    "취소",
-                    "업로드"
+                    getString(R.string.dialog_upload_title),
+                    getString(R.string.dialog_upload_warn),
+                    getString(R.string.cancel),
+                    getString(R.string.dialog_upload)
                 )
             ) { writeViewModel.postWorry() }.showDialog()
         }

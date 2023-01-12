@@ -106,7 +106,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             Timber.e("refresh")
             binding.swipeRefreash.isRefreshing = false // 서버통신 완료시 리프레시 중단
             if (!it) {
-                binding.root.makeSnackbar("서버통신에 실패하였어요!")
+                binding.root.makeSnackbar(getString(R.string.server_connet_fail))
                 // 실패시 스낵바 성공시에는 리스트 value가 갱신되므로 위쪽 observer에서 자동갱신
             }
         }
