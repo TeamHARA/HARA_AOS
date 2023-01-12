@@ -83,4 +83,7 @@
     <string name="search_type">검색어 입력</string>
     <string name="search_empty">찾으시는 고민이 없어요</string>
     <string name="search_count">%d개의 고민글</string>
+
+    <string name="editing">수정하기</string>
+    <string name="deleting">삭제하기</string>
 </resources>
