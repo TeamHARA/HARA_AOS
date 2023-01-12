@@ -4,12 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.hara.data.model.request.RequestReqresUserDTO
 import com.android.hara.data.model.request.VoteReqDto
 import com.android.hara.data.model.response.AllPostResDto
 import com.android.hara.data.model.response.VoteResDto
 import com.android.hara.domain.repository.HARARepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -68,7 +69,7 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
     init {
         viewModelScope.launch {
             runCatching {
-                HARARepository.getAllPost(0)
+                haraRepository.getAllPost(0)
             }.onSuccess {
                 if (it.isSuccessful) { // 내부 코드의 응답코드 200~299
                     Timber.e("Success")
@@ -100,7 +101,7 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
     fun homeVmGetAllPost(n: Int) {
         viewModelScope.launch {
             runCatching {
-                HARARepository.getAllPost(n)
+                haraRepository.getAllPost(n)
             }.onSuccess {
                 if (it.isSuccessful) { // 내부 코드의 응답코드 200~299
                     Timber.e("Success")
@@ -120,7 +121,7 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
     fun homeVmPostVote(postId: Int, optId: Int) {
         viewModelScope.launch {
             runCatching {
-                HARARepository.postVote(VoteReqDto(postId, optId))
+                haraRepository.postVote(VoteReqDto(postId, optId))
             }.onSuccess {
                 if (it.isSuccessful) { // 내부 코드의 응답코드 200~299
                     _voteResult.value = it.body()

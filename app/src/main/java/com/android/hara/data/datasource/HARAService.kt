@@ -4,7 +4,6 @@ import com.android.hara.data.model.request.DecideAloneReqDto
 import com.android.hara.data.model.request.DecideWithReqDto
 import com.android.hara.data.model.request.VoteReqDto
 import com.android.hara.data.model.response.*
-import com.android.hara.data.model.request.RequestVoteDTO
 import com.android.hara.data.model.request.WorryAloneRequestDto
 import com.android.hara.data.model.request.WorryWithRequestDto
 import com.android.hara.data.model.response.*

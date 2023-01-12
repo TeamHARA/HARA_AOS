@@ -1,16 +1,13 @@
 package com.android.hara.presentation.home.fragment.together
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
-import com.android.hara.presentation.home.fragment.together.model.TogetherPostData
+import com.android.hara.presentation.home.fragment.together.viewmodel.TogetherFragmentViewModel
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -40,7 +37,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         super.onViewCreated(view, savedInstanceState)
         list.clear() // (없으면 카테고리 무한 증식) 나중에 무조건 수정하기
         setCategoryRecycler()
-        setPostRecycler()
+        recyclerView = binding.rvTogetherPost
 
         binding.swipeRefreash.setOnRefreshListener { /* swipe 시 진행할 동작 */
             //TODO get 서버통신
@@ -57,35 +54,11 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         )
         binding.rvTogetherPost.adapter = postAdapter
 
-        recyclerView = binding.rvTogetherPost
 
         togetherViewModle.success.observe(viewLifecycleOwner) {
             if (it) binding.swipeRefreash.isRefreshing = false
         }
 
-
-    }
-
-    private fun setCategoryRecycler() {
-        // [1] recycler view - adapter 연결: 상단 카테고리 목록 [by 유진]
-        for (i in 0..7) {
-            list.add(SimpleModel(title = category[i], isSelected = false))
-        }
-
-        val categoryAdapter = CategoryAdapter(requireContext(), list).apply {
-            setOnItemClickListener(object : CategoryAdapter.OnItemClickListener {
-                override fun onItemClick(item: SimpleModel, position: Int) {
-                    Timber.e(item.title) // 카테고리가 클릭되면 '전체', '일상' 등이 찍힌다
-                }
-            })
-        }
-        with(binding.rvTogetherCategory) {
-            adapter = categoryAdapter
-            setHasFixedSize(true)
-            itemAnimator = null
-        }
-//        categoryAdapter.submitList(category.toList()) // 데이터를 넣어준다 (업데이트할 때에도)
-    }
 
         // [1] homeVm의 selected category number 값이 변하는지 관찰
         homeVm.selCat.observe(viewLifecycleOwner) {
@@ -103,23 +76,37 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             Timber.e("hello", homeVm.getPostId(), homeVm.getOptId())
             homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
         }
+    }
 
-        binding.rvTogetherCategory.adapter = categoryAdapter
-        binding.rvTogetherCategory.setHasFixedSize(true)
-        binding.rvTogetherCategory.itemAnimator = null
+    private fun setCategoryRecycler() {
+        // [1] recycler view - adapter 연결: 상단 카테고리 목록 [by 유진]
+        for (i in 0..7) {
+            list.add(SimpleModel(title = category[i], isSelected = false))
+        }
+
+        val categoryAdapter = CategoryAdapter(requireContext(), list) { num ->
+            homeVm.changeSelCatNum(num)
+        }.apply {
+            setOnItemClickListener(object : CategoryAdapter.OnItemClickListener {
+                override fun onItemClick(item: SimpleModel, position: Int) {
+                    Timber.e(item.title) // 카테고리가 클릭되면 '전체', '일상' 등이 찍힌다
+                }
+            })
+        }
+        with(binding.rvTogetherCategory) {
+            adapter = categoryAdapter
+            setHasFixedSize(true)
+            itemAnimator = null
+        }
+//        categoryAdapter.submitList(category.toList()) // 데이터를 넣어준다 (업데이트할 때에도)
+    }
 
     /*
         [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
      */
-    private fun setPostRecycler() {
-        val postAdapter = PostAdapter { togetherPostData, int ->
 
-        }
-        binding.rvTogetherPost.adapter = postAdapter
-        postAdapter.submitList(tempList)
-    }
 }
-    } // fun onViewCreated()
+// fun onViewCreated()
 
 /*
 // n번째 옵션이 선택되면 PostViewModel 안의 sNum의 value가 n으로 바뀐다
@@ -130,5 +117,3 @@ private fun changeVmSnum(n: Int) { // n이 선택된 상태
     else postVm.sNum.value = n
 }
 */
-
-}
