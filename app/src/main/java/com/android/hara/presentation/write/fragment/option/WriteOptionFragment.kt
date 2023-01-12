@@ -2,6 +2,7 @@ package com.android.hara.presentation.write.fragment.option
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -9,12 +10,13 @@ import androidx.navigation.Navigation
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteOptionBinding
 import com.android.hara.presentation.base.BindingFragment
-import com.android.hara.presentation.util.setBold
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
 import com.android.hara.presentation.write.fragment.option.adapter.WriteOptionAdapter
 import com.android.hara.presentation.write.fragment.option.model.OptionData
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteOptionFragment :
     BindingFragment<FragmentWriteOptionBinding>(R.layout.fragment_write_option) {
 
@@ -38,7 +40,7 @@ class WriteOptionFragment :
         setNavigation(view)
         initAdapter()
         onClickNextBtn()
-        onClickBackBtn()
+        onClickBack()
     }
 
     private fun initAdapter() {
@@ -93,10 +95,19 @@ class WriteOptionFragment :
         }
     }
 
-    private fun onClickBackBtn() {
+    private fun onClickBack() {
         binding.ibWriteOptionBackButton.setOnSingleClickListener {
-            navController.navigate(R.id.action_writeOptionFragment_to_writeWhatFragment)
+            navController.popBackStack()
             writeViewModel.subProgress()
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // 두번째 프래그먼트에서부터는 그래프 pop / seek bar 숫자 줄이는 동작
+                // 즉, 뒤로가기 버튼과 동작과 동일하게 하도록
+                navController.popBackStack()
+                writeViewModel.subProgress()
+            }
+        })
     }
 }

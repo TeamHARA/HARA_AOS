@@ -49,6 +49,9 @@ class CategoryAdapter(
 
                         // [수현] 카테고리 item이 클릭되면, 어댑터에 파라미터로 온 함수에, selectedPosition을 넘겨준다
                         changeListener(selectedPosition)
+                        TogetherFragment.setScroll()
+                    } else {
+                        TogetherFragment.setScroll()
                     }
                 }
             }

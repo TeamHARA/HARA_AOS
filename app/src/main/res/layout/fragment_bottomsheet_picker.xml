@@ -18,10 +18,11 @@
             android:background="@android:color/transparent"
             android:text="@string/cancel"
             android:textAppearance="@style/hara_body1_sb14"
-            android:textColor="@color/black"
+            android:textColor="@color/blue_1"
             app:layout_constraintBottom_toBottomOf="@+id/tv_title_bottom"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_title_bottom" />
+            app:layout_constraintTop_toTopOf="@+id/tv_title_bottom"
+            app:layout_constraintVertical_bias="0.481" />
 
         <TextView
             android:id="@+id/tv_title_bottom"
@@ -30,7 +31,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/category"
             android:textAppearance="@style/hara_game_sb18"
-            android:textColor="@color/blue_1"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -43,6 +44,7 @@
             android:background="@android:color/transparent"
             android:text="@string/complete"
             android:textAppearance="@style/hara_body1_sb14"
+            android:textColor="@color/blue_1"
             app:layout_constraintBottom_toBottomOf="@+id/tv_title_bottom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_title_bottom" />

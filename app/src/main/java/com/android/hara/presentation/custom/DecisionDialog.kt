@@ -12,14 +12,12 @@ import com.android.hara.databinding.DialogDecisionBinding
 import com.android.hara.presentation.custom.model.DialogData
 import com.android.hara.presentation.util.dpToPx
 import com.android.hara.presentation.util.setOnSingleClickListener
-import dagger.hilt.android.AndroidEntryPoint
 
 class DecisionDialog(
     val context: Context,
     val data: DialogData,
-    private val itemActionListener: (String) -> Unit
+    private val itemActionListener: () -> Unit
 ) {
-
     private val inflater by lazy { LayoutInflater.from(context) }
     private val binding: DialogDecisionBinding = DialogDecisionBinding.inflate(inflater)
     private lateinit var dialog: Dialog
@@ -49,12 +47,16 @@ class DecisionDialog(
             } // 레이아웃 속성 재 적용
             dialog.window!!.attributes = params
         }
-        setListener(itemActionListener)
+        setListener()
         dialog.show()
     }
 
-    private fun setListener(itemAddListener: (String) -> Unit) {
+    private fun setListener() {
         binding.btnDialogCancle.setOnSingleClickListener {
+            dialog.cancel()
+        }
+        binding.btnDialogAction.setOnSingleClickListener {
+            itemActionListener()
             dialog.cancel()
         }
     }

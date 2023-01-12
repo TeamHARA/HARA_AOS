@@ -5,9 +5,6 @@
 
     <data>
 
-        <variable
-            name="vm"
-            type="com.android.hara.presentation.write.fragment.proscons.ProsconsFragViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,9 +76,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
-            android:background="@drawable/shape_rectangle_blue3_stroke_1_1000"
+            android:background="@drawable/shape_rectangle_white_blue3_stroke_1_1000"
             android:paddingHorizontal="70dp"
             android:paddingVertical="14dp"
+            android:stateListAnimator="@null"
             android:text="@string/write_upload_button"
             android:textAppearance="@style/hara_heading1_sb16"
             android:textColor="@color/blue_3"
