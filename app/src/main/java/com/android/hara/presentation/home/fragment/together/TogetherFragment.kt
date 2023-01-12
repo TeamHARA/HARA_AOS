@@ -43,13 +43,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         addObserve()
     }// fun onViewCreated()
 
-        postAdapter = PostAdapter(requireContext(),
-            { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
-            { homeVm.changeBtnVal() },
-            { requireContext().getDrawable(R.drawable.shape_rectangle_gray3_fill_8)!! },
-            { requireContext().getColor(R.color.white) }
-        )
-        binding.rvTogetherPost.adapter = postAdapter
+
     private fun init() {
         recyclerView = binding.rvTogetherPost
 
@@ -84,9 +78,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
     private fun setPostAdapter() {
         postAdapter = PostAdapter(
             { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
-            { homeVm.changeBtnVal() },
-            { requireContext().getDrawable(R.drawable.shape_rectangle_gray3_fill_8)!! },
-            { requireContext().getColor(R.color.white) }
+            { homeVm.changeBtnVal() }
         )
         binding.rvTogetherPost.adapter = postAdapter
     }
@@ -119,9 +111,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         }
     }
 
-    } // fun onViewCreated()
-
-}
+} // fun onViewCreated()
 
 
 /*

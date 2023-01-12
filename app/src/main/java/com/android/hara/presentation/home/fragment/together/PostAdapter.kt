@@ -17,11 +17,8 @@ import com.android.hara.presentation.util.setOnSingleClickListener
 import timber.log.Timber
 
 class PostAdapter(
-    private val context:Context,
     private val optSelListener: (postId: Int, optId: Int) -> Unit,
-    private val btnSelListener: () -> Unit,
-    private val getDrawable: () -> Drawable,
-    private val getColor: () -> Int
+    private val btnSelListener: () -> Unit
 ) : ListAdapter<AllPostResDto.Data, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
 
     private lateinit var inflater: LayoutInflater // 뷰를 그려준다
