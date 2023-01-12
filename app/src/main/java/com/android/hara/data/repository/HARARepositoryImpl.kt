@@ -5,6 +5,7 @@ import com.android.hara.data.model.request.*
 import com.android.hara.data.model.response.*
 import com.android.hara.domain.repository.HARARepository
 import retrofit2.Response
+import timber.log.Timber
 import javax.inject.Inject
 
 // [서버통신 4] HARARepository에서 선언한 interface를 실제로 구현한다
@@ -49,10 +50,15 @@ class HARARepositoryImpl @Inject constructor(
     }
 
     override suspend fun postWorryWith(request: WorryWithRequestDto): Response<WorryWithResponseDto> {
+        Timber.e(request.toString())
         return HARAService.postWorryWith(request)
     }
 
     override suspend fun postWorryAlone(request: WorryAloneRequestDto): Response<WorryAloneResponseDto> {
         return HARAService.postWorryAlone(request)
+    }
+
+    override suspend fun getDetailWith(worryId: Int): Response<DetailWithResDto> {
+        return HARAService.getDetailWith(worryId)
     }
 }
