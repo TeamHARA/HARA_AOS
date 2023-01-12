@@ -1,4 +1,4 @@
-package com.android.hara.presentation.decision
+package com.android.hara.presentation.detail.decision
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,9 @@ import androidx.activity.viewModels
 import com.android.hara.R
 import com.android.hara.databinding.ActivityFinalDecideBinding
 import com.android.hara.presentation.base.BindingActivity
+import com.android.hara.presentation.detail.model.DecideData
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class FinalDecideActivity :
@@ -22,45 +24,69 @@ class FinalDecideActivity :
     // [결론] Fragment의 local = .xml의 selected = BindingConversion.kt의 sel
 
     private val decisionViewModel by viewModels<DecideViewModel>()
-    private var count = 4 //TODO 서버통신 시 옵션 몇 개인지 세기
 
     private var selectListBool = mutableListOf<Boolean>(false, false, false, false)
+
     // 1, 2, 3, 4번째 옵션 뷰가 선택(클릭)됐는지를 저장. n+1번째 옵션 뷰가 선택됐으면 [n]이 true
+    private lateinit var decideData: DecideData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // data class 받아오기
+        // worryId, worryTitle, optionId, optionTitle, isAlone(commentCount 있으면 false)
+        if (intent.hasExtra("decideData")) {
+            decideData =
+                if (android.os.Build.VERSION.SDK_INT >= 33) intent.getParcelableExtra(
+                    "decideData",
+                    DecideData::class.java
+                )!!
+                else intent.getParcelableExtra("decideData")!!
+            Timber.e(decideData.toString())
+            // 옵션 개수에 따라 그 개수의 옵션 뷰가 보이게
+            setOptionListView()
+        } else Timber.e("전달된 intent가 없습니다.")
 
-        // 옵션 개수에 따라 그 개수의 옵션 뷰가 보이게  
-        if (count == 2) {
-            binding.clOpt3.visibility = View.VISIBLE
-            binding.clOpt4.visibility = View.VISIBLE
-        } else if (count == 3) {
-            binding.clOpt4.visibility = View.VISIBLE
-        }
-
-        // [버튼 클릭] 옵션 버튼이 클릭되면 뷰모델 내 selectedN의 값을 true로 바꾼다
-        binding.clOpt1.setOnClickListener {
-            checkAndSetSelected(decisionViewModel, 0)
-        }
-        binding.clOpt2.setOnClickListener {
-            checkAndSetSelected(decisionViewModel, 1)
-        }
-        binding.clOpt3.setOnClickListener {
-            checkAndSetSelected(decisionViewModel, 2)
-        }
-        binding.clOpt4.setOnClickListener {
-            checkAndSetSelected(decisionViewModel, 3)
-        }
+        binding.decideData = decideData
 
         // [observer] 뷰모델 내 selectedN의 값이 바뀌었는지 감지한다
-        observeSelected(decisionViewModel)
-
+        addObserve()
+        onClickOptionBtn()
         onClickSolveBtn()
+        onClickCloseBtn()
+    }
 
+    private fun setOptionListView() {
+        when (decideData.optionId.size) {
+            2 -> {
+                binding.clOpt3.visibility = View.INVISIBLE
+                binding.clOpt4.visibility = View.INVISIBLE
+            }
+            3 -> {
+                binding.clOpt4.visibility = View.INVISIBLE
+            }
+        }
+    }
+
+    private fun onClickCloseBtn() {
         binding.btnFinalDecideClose.setOnClickListener {
             finish()
         }
+    }
 
+    private fun onClickOptionBtn() {
+        // [버튼 클릭] 옵션 버튼이 클릭되면 뷰모델 내 selectedN의 값을 true로 바꾼다
+        binding.clOpt1.setOnClickListener {
+            checkAndSetSelected(0)
+        }
+        binding.clOpt2.setOnClickListener {
+            checkAndSetSelected(1)
+        }
+        binding.clOpt3.setOnClickListener {
+            checkAndSetSelected(2)
+        }
+        binding.clOpt4.setOnClickListener {
+            checkAndSetSelected(3)
+        }
     }
 
     private fun onClickSolveBtn() {
@@ -72,7 +98,7 @@ class FinalDecideActivity :
         }
     }
 
-    private fun checkAndSetSelected(vm: DecideViewModel, n: Int) { // n+1번째 옵션이 선택됐다
+    private fun checkAndSetSelected(n: Int) { // n+1번째 옵션이 선택됐다
         // 1) 옵션이 하나라도 true라면
         if (selectListBool.contains(true)) {
             // 1-1) 그 옵션이 이미 true였다면 false로 바꿔줘야 한다
@@ -82,11 +108,11 @@ class FinalDecideActivity :
                 changeOptStyle(n, false) // n+1번째 옵션 뷰를 'selected 스타일'로 바꿔준다
             }
             // 1-2) 어떤 옵션이 true인데, 또다른 옵션(n+1번째)을 선택한 거라면,
-            // 그 옵션 뷰의 스타일이 그 옵션 뷰가 선택된 것처럼 바뀌어야 한다 
+            // 그 옵션 뷰의 스타일이 그 옵션 뷰가 선택된 것처럼 바뀌어야 한다
             else {
                 selectListBool.replaceAll { false } // 모든 옵션에 대해 일단 false로 바꿔준다
                 selectListBool.forEachIndexed { index, _ ->
-                    changeOptStyle(index,false)
+                    changeOptStyle(index, false)
                 } // 역시 모든 옵션 뷰에 대해 스타일을 안 선택된 것처럼 바꿔준다
                 selectListBool[n] = true // n+1번째 옵션이 선택된 것이니 그것을 true로 바꿔준다
                 decisionViewModel.enabled.value = true // 버튼은 활성화가 돼야 한다
@@ -101,10 +127,10 @@ class FinalDecideActivity :
         }
     }
 
-    private fun observeSelected(vm: DecideViewModel) {
+    private fun addObserve() {
         // 뷰모델 내 enabled가 true가 되면
         // (데이터 바인딩된) .xml 내 selected 변수를 true로 설정하고 버튼을 활성화시킨다
-        decisionViewModel.enabled.observe(this){
+        decisionViewModel.enabled.observe(this) {
             // it: 뷰모델 내 enabled의 값
             binding.selected = it
             binding.btnFinalDecideLetssolve.isEnabled = it
@@ -140,8 +166,7 @@ class FinalDecideActivity :
                     binding.tvOpt4Num.visibility = View.GONE
                 }
             }
-        }
-        else { // n+1번째 옵션 뷰의 배경/글자색 등을 'not selected' 스타일로 바꿔준다
+        } else { // n+1번째 옵션 뷰의 배경/글자색 등을 'not selected' 스타일로 바꿔준다
             when (n) {
                 0 -> {
                     binding.clOpt1.background =
