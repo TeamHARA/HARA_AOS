@@ -9,6 +9,7 @@ import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.home.fragment.together.viewmodel.TogetherFragmentViewModel
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
+import com.android.hara.presentation.util.makeSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -46,10 +47,8 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         recyclerView = binding.rvTogetherPost
 
         binding.swipeRefreash.setOnRefreshListener { /* swipe 시 진행할 동작 */
-            //TODO get 서버통신
-            /* 업데이트가 끝났음을 알림 */
-            Timber.e("ho")
-            togetherViewModle.success.value = true
+            homeVm.homeVmGetAllPost(homeVm.selCat.value ?: 0)
+            binding.swipeRefreash.isRefreshing = false
         }
     }
 
@@ -105,8 +104,8 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         }
 
         togetherViewModle.success.observe(viewLifecycleOwner) {
-            if (it) {
-                binding.swipeRefreash.isRefreshing = false
+            if (!it) {
+                binding.root.makeSnackbar("서버통신에 실패하였어요!")
             }
         }
     }
