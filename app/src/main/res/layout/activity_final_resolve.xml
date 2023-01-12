@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="option"
+            type="String" />
+
+        <variable
+            name="includeImg"
+            type="Boolean" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,8 +29,8 @@
             android:id="@+id/iv_final_resolve_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="104dp"
             android:background="@drawable/img_decide_text_result"
+            app:layoutMarginTop="@{includeImg ? @dimen/include_image_resolve : @dimen/not_include_image_resolve}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,46 +40,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="32dp"
-            android:text="글자수 제한은 공백 포함 28자 글자수 제한은 공백"
+            android:layout_marginTop="30dp"
+            android:text="@{title}"
             android:textAppearance="@style/hara_heading1_sb16"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_final_resolve_title" />
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_final_resolve_img"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_marginTop="24dp"
+            android:background="@android:color/transparent"
+            android:visibility="@{includeImg ? View.VISIBLE : View.GONE}"
             app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_final_resolve_title">
 
             <ImageView
                 android:id="@+id/iv_final_resolve_img"
-                android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:background="@color/gray_2" />
-        </androidx.cardview.widget.CardView>
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_title_logo" />
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/shape_rectangle_black_fill_8"
-            android:paddingStart="14dp"
+            android:gravity="center"
             android:paddingTop="13dp"
             android:paddingBottom="12dp"
-            android:text="선택지 글자수 제한 공백 포함 20자"
+            android:text="@{option}"
             android:textAppearance="@style/hara_modal2_m18"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_final_resolve_img" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_final_resolve_img"
+            tools:text="최종 결정된 옵션" />
+
+        <TextView
+            android:id="@+id/btn_final_go_storage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:text="보관함으로 이동하기>"
+            android:textAppearance="@style/hara_body2_m14"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

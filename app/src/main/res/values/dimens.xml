@@ -8,5 +8,11 @@
     <dimen name="dialog_button_height">36dp</dimen>
     <dimen name="dialog_button_width">124dp</dimen>
     <dimen name="vote_image">150dp</dimen>
+    <dimen name="include_image_decide">82dp</dimen>
+    <dimen name="not_include_image_decide">136dp</dimen>
+    <dimen name="include_image_decide_option">30dp</dimen>
+    <dimen name="not_include_image_decide_option">60dp</dimen>
+    <dimen name="include_image_resolve">96dp</dimen>
+    <dimen name="not_include_image_resolve">219dp</dimen>
 
 </resources>

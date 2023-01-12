@@ -37,11 +37,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.decision.FinalDecideActivity"
+            android:name=".presentation.detail.decision.FinalDecideActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.decision.FinalResolveActivity"
+            android:name=".presentation.detail.decision.FinalResolveActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

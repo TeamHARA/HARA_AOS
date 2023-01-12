@@ -57,7 +57,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="12dp"
-            android:text="@{worry.content}"
+            android:text="@{worry.title}"
             android:textAppearance="@style/hara_body2_m14"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
             android:layout_marginBottom="12dp"
             android:textAppearance="@style/hara_sub3_r12"
             android:textColor="@color/gray_2"
-            app:date_text="@{worry.createdAt.toString()}"
+            android:text="@{worry.createdAt}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_storage_title" />

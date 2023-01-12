@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="op"
+            name="decideData"
             type="com.android.hara.presentation.detail.model.DecideData" />
     </data>
 
@@ -27,8 +27,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/gray_2"
             android:textAppearance="@style/hara_modal2_m18"
-            android:text="@{op.content}"
-            tools:text="안녕하세용 나 오늘 머리 안 깜았어요"/>
+            android:text="@{decideData.optionTitle[0]}"
+            tools:text="안녕하세용 수현이 오늘 머리 안 깜았어요"/>
 
         <TextView
             android:id="@+id/tv_opt1_num"
@@ -40,7 +40,7 @@
             app:layout_constraintTop_toTopOf="@+id/tv_opt_content"
             android:textColor="@color/gray_2"
             android:textAppearance="@style/hara_heading2_m16"
-            android:text="@{op.number}"
+            android:text="@{decideData.optionPer[0].toString()}"
             tools:text="20%"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
