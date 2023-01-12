@@ -22,7 +22,7 @@
             type="String" />
 
         <variable
-            name="precentage"
+            name="percentage"
             type="int" />
     </data>
 
@@ -73,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="@{precentage}"
+                android:text="@{@string/percentage(percentage)}"
                 android:textAppearance="@style/hara_body3_r14"
                 android:textColor="@{optSel ? @color/blue_1 : @color/black}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_opt_content"

@@ -82,12 +82,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:text="@{detailVm}"
-                    tools:text="@string/dummy_date"
+                    android:text="@{detailVm.detailDto.data.createdAt}"
                     android:textAppearance="@style/hara_sub3_r12"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_detail_profile"
-                    app:layout_constraintStart_toEndOf="@+id/iv_detail_profile" />
+                    app:layout_constraintStart_toEndOf="@+id/iv_detail_profile"
+                    tools:text="@string/dummy_date" />
 
                 <TextView
                     android:id="@+id/tv_detail_category"
@@ -107,10 +107,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="17dp"
-                    android:text="글자수 제한은 공백 포함 28자 글자수 제한은 공백"
+                    android:text="@{detailVm.detailDto.data.worryTitle}"
                     android:textAppearance="@style/hara_heading1_sb16"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_data" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_data"
+                    tools:text="글자수 제한은 공백 포함 28자 글자수 제한은 공백" />
 
                 <TextView
                     android:id="@+id/tv_detail_worry_content"
@@ -119,17 +120,19 @@
                     android:layout_marginHorizontal="@dimen/appbase_margin_space"
                     android:layout_marginTop="@dimen/appbase_margin_space"
                     android:lineHeight="22.4sp"
-                    android:text="아니 제가 어쩌고 저쩌고 해서 저쩌고 한데 저쩌고하거든요 그래서 진짜로 어쩌고 저쩌고 해요 강아지 멍멍 고양이 야옹야옹후하후하후하 "
+                    android:text="@{detailVm.detailDto.data.worryContent}"
                     android:textAppearance="@style/hara_body3_r14"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_worry_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_worry_title"
+                    tools:text="아니 제가 어쩌고 저쩌고 해서 저쩌고 한데 저쩌고하거든요 그래서 진짜로 어쩌고 저쩌고 해요 강아지 멍멍 고양이 야옹야옹후하후하후하 " />
 
                 <androidx.constraintlayout.helper.widget.Flow
                     android:id="@+id/flow_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:visibility="gone"
                     app:constraint_referenced_ids="iv_vote1,iv_vote2"
                     app:layout_constraintBottom_toTopOf="@+id/rcv_detail_vote"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -167,10 +170,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="16dp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_image"
-                    app:optSel="@{detailVm.SNum == 1 ? true : false}" />
+                    app:optSel="@{detailVm.SNum == 1 ? true : false}"
+                    tools:visibility="visible" />
 
                 <include
                     android:id="@+id/layout_option2"
@@ -179,10 +184,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="12dp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_option1"
-                    app:optSel="@{detailVm.SNum == 2 ? true : false}" />
+                    app:optSel="@{detailVm.SNum == 2 ? true : false}"
+                    tools:visibility="visible" />
 
                 <include
                     android:id="@+id/layout_option3"
@@ -191,10 +198,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="12dp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_option2"
-                    app:optSel="@{detailVm.SNum == 3 ? true : false}" />
+                    app:optSel="@{detailVm.SNum == 3 ? true : false}"
+                    tools:visibility="visible" />
 
                 <include
                     android:id="@+id/layout_option4"
@@ -203,10 +212,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="12dp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_option3"
-                    app:optSel="@{detailVm.SNum == 4 ? true : false}" />
+                    app:optSel="@{detailVm.SNum == 4 ? true : false}"
+                    tools:visibility="visible" />
 
                 <!-- button -->
                 <androidx.appcompat.widget.AppCompatButton
@@ -215,6 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
                     android:background="@{detailVm.SNum == 0 ? @drawable/shape_rectangle_orange2_stroke_1_8 : @drawable/shape_rectangle_orange3_fill_8}"
                     android:enabled="@{detailVm.SNum == 0 ? false : true}"
                     android:stateListAnimator="@null"
