@@ -1,16 +1,14 @@
 package com.android.hara.presentation.home.fragment.together
 
-import android.content.ClipData.Item
-import android.content.Context
-import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.R
 import com.android.hara.data.model.response.AllPostResDto
+import com.android.hara.data.model.response.VoteResDto
 import com.android.hara.databinding.ItemPostBinding
 import com.android.hara.presentation.util.GlobalDiffCallBack
 import com.android.hara.presentation.util.setOnSingleClickListener
@@ -18,7 +16,8 @@ import timber.log.Timber
 
 class PostAdapter(
     private val optSelListener: (postId: Int, optId: Int) -> Unit,
-    private val btnSelListener: () -> Unit
+    private val btnSelListener: () -> Unit,
+    private val getOptVoteRate: () -> List<VoteResDto.Data.Option>?
 ) : ListAdapter<AllPostResDto.Data, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
 
     private lateinit var inflater: LayoutInflater // 뷰를 그려준다
@@ -69,6 +68,8 @@ class PostAdapter(
             if (imgToOpt[0] == -1) binding.ivPostImg1.visibility = View.GONE
             if (imgToOpt[1] == -1) binding.ivPostImg2.visibility = View.GONE
 
+            binding.itVoteOptSel = 0
+
             // 1) 내가 쓴 글이면: '최종결정 하러가기' 버튼
             if (curItem.isAuthor) {
                 binding.itOptClickable = false // 옵션 clickable = false
@@ -79,6 +80,20 @@ class PostAdapter(
                 // 이미지를 갖는 옵션이 있는지, 어떤 옵션이 몇 번째 이미지 뷰를 갖는지 체크하는 로직은 없음
                 binding.itImgSel1 = 1
                 binding.itImgSel2 = 1
+
+                bindTurnout(binding, curItem.option)
+                // 내가 쓴 글에서, 가장 높은 투표율의 옵션을 파란색으로 보여주는 로직 - 삭제
+                /*
+                var temp = curItem.option[0].percentage ?: 0
+                var maxOptNum = 0 // 옵션1(1~4)에 담긴 %값
+                curItem.option.forEachIndexed { index, opt ->
+                    if (temp < (opt.percentage ?: 0)) {
+                        temp = opt.percentage ?: 0
+                        maxOptNum = index
+                    }
+                }
+                binding.itVoteOptSel = maxOptNum + 1
+                 */
 
                 // [최종결정 하러가기] 버튼
                 binding.btnPostGoDecide.setOnSingleClickListener {
@@ -97,6 +112,8 @@ class PostAdapter(
 
                     // 유저가 투표한 옵션#를 binding.itVoteOptSel에 넘긴다
                     assignVoteOptNum(curItem, binding)
+
+                    activateSelOptImage(binding, curItem, binding.itVoteOptSel-1, imgToOpt)
 
                     // 투표율을 보여준다
                     bindTurnout(binding, curItem.option)
@@ -145,12 +162,29 @@ class PostAdapter(
                         binding.itOptClickable = false // 옵션 clickable = false
 
                         binding.itVoteOptSel = binding.itOptSelNum
-                        Timber.e(binding.itVoteOptSel.toString())
 
                         binding.itOptSelNum = -1 // 옵션에 check src, 투표 버튼 disable
 
                         // 투표율을 보여준다
-                        bindTurnout(binding, curItem.option)
+                        // getOptVoteRate() -> AllPostResDto.Option 타입으로 바꿔야 됨
+                        var voteRes = mutableListOf<AllPostResDto.Data.Option>()
+                        getOptVoteRate()?.forEachIndexed{ index, opt ->
+                            voteRes.add(
+                                AllPostResDto.Data.Option(
+                                    opt.hasImage,
+                                    opt.id,
+                                    opt.image,
+                                    opt.percentage,
+                                    opt.title,
+                                    opt.worryWithId
+                                ))
+                            Timber.e(voteRes.toString())
+                        }
+
+                        bindTurnout(binding, voteRes)
+
+                        // 이미지
+                        activateSelOptImage(binding, curItem, binding.itVoteOptSel-1, imgToOpt)
                     }
                 }
             }
@@ -194,12 +228,35 @@ class PostAdapter(
         curItem: AllPostResDto.Data,
         binding: ItemPostBinding
     ){
-        var i: Int = 1
-        for (i in 1..curItem.option.size) {
+        for (i in 0..curItem.option.size - 1) {
             if (curItem.loginUserVoteId == curItem.option[i].id) {
                 binding.itVoteOptSel = i+1
                 break
             }
+        }
+
+        // TODO? 여기서 젤 높은 숫자 보여줘야 되나?
+    }
+
+    private fun activateSelOptImage(
+        binding: ItemPostBinding,
+        curItem: AllPostResDto.Data,
+        optSelNum: Int,
+        imgToOpt: List<Int>
+    ){
+        if (curItem.option[optSelNum].hasImage) { // 투표한 옵션이 연결된 이미지가 있음
+            if (curItem.option[optSelNum].id == imgToOpt[0]) { // 투표한 옵션이 img1과 연결됨
+                binding.itImgSel1 = 1
+                binding.itImgSel2 = 0
+            }
+            else if (curItem.option[optSelNum].id == imgToOpt[1]) { // 투표한 옵션이 img2와 연결됨
+                binding.itImgSel1 = 0
+                binding.itImgSel2 = 1
+            }
+        }
+        else { // 투표한 옵션이 이미지와 연결되지 않음
+            binding.itImgSel1 = 0
+            binding.itImgSel2 = 0
         }
     }
 
@@ -235,25 +292,25 @@ class PostAdapter(
     ) {
         // [옵션 1]
         if (curOptList.size >= 1) {
-            binding.layoutPostOpt1.tvPostOptTurnout.text = curOptList[0].percentage.toString() + "%"
+            binding.layoutPostOpt1.tvPostOptTurnout.text = (curOptList[0].percentage?.toString() ?: 0f.toString()) + "%"
             binding.layoutPostOpt1.pbTurnout.progress = curOptList[0].percentage?.toFloat() ?: 0f
         }
 
         // [옵션 2]
         if (curOptList.size >= 2) {
-            binding.layoutPostOpt2.tvPostOptTurnout.text = curOptList[1].percentage.toString() + "%"
+            binding.layoutPostOpt2.tvPostOptTurnout.text = (curOptList[1].percentage?.toString() ?: 0f.toString()) + "%"
             binding.layoutPostOpt2.pbTurnout.progress = curOptList[1].percentage?.toFloat() ?: 0f
         }
 
         // [옵션 3]
         if (curOptList.size >= 3) {
-            binding.layoutPostOpt3.tvPostOptTurnout.text = curOptList[2].percentage.toString() + "%"
+            binding.layoutPostOpt3.tvPostOptTurnout.text = (curOptList[2].percentage?.toString() ?: 0f.toString()) + "%"
             binding.layoutPostOpt3.pbTurnout.progress = curOptList[2].percentage?.toFloat() ?: 0f
         }
 
         // [옵션 4]
         if (curOptList.size >= 4) {
-            binding.layoutPostOpt4.tvPostOptTurnout.text = curOptList[3].percentage.toString() + "%"
+            binding.layoutPostOpt4.tvPostOptTurnout.text = (curOptList[3].percentage?.toString() ?: 0f.toString()) + "%"
             binding.layoutPostOpt4.pbTurnout.progress = curOptList[3].percentage?.toFloat() ?: 0f
         }
     }

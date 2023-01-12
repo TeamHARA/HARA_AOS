@@ -78,9 +78,13 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
     private fun setPostAdapter() {
         postAdapter = PostAdapter(
             { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
-            { homeVm.changeBtnVal() }
+            { homeVm.changeBtnVal() },
+            { homeVm.getOptVoteRate() }
         )
         binding.rvTogetherPost.adapter = postAdapter
+
+        // private val voteResult: h
+        // { homeVm.voteResult.value },
     }
 
     private fun addObserve() {
@@ -99,6 +103,10 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         homeVm.btnSel.observe(viewLifecycleOwner) {
             Timber.e("hello", homeVm.getPostId(), homeVm.getOptId())
             homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
+        }
+
+        homeVm.voteResult.observe(viewLifecycleOwner) {
+
         }
 
         homeVm.suceess.observe(viewLifecycleOwner) {

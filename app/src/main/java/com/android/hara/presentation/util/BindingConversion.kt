@@ -132,6 +132,7 @@ fun votedOptTextColor(tv: TextView, optSelNum: Int, optSel: Boolean, voteOptSel:
     }
 }
 
+// 투표율 색깔 변경
 @BindingAdapter(value = ["app:layOptSelNum", "app:layVoteOptSel"], requireAll = true)
 fun optTurnoutColor(pv: ProgressView, optSelNum: Int, voteOptSel: Boolean) {
     if (optSelNum == -1) { // [투표 이미 완료]

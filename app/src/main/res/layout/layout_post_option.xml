@@ -43,7 +43,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:progressView_colorBackground="@color/white"
             app:progressView_colorProgress="@color/gray_4"
-            app:progressView_autoAnimate="true"
+            app:progressView_autoAnimate="false"
+            app:progressView_progress="0"
             app:progressView_radius="8dp"
             app:progressView_padding="0dp"
             app:progressView_labelSize="0sp"
@@ -104,7 +105,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="99%" />
+                tools:text="0%" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
