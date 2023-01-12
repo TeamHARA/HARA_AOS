@@ -1,18 +1,19 @@
 package com.android.hara.presentation.util
 
-import android.graphics.drawable.Drawable
-import android.view.View
-import android.widget.ImageView
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.TypefaceSpan
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.android.hara.R
+import com.skydoves.progressview.ProgressView
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.*
@@ -115,10 +116,10 @@ fun votedOptBackground(cl: ConstraintLayout, optSelNum: Int, optSel: Boolean, vo
 
 @BindingAdapter(value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"], requireAll = true)
 fun votedOptTextColor(tv: TextView, optSelNum: Int, optSel: Boolean, voteOptSel: Boolean) {
-    if (optSelNum == -1) { // [투표 이미 완료] 선택된 옵션
-        if (voteOptSel) // 선택된 옵션
+    if (optSelNum == -1) { // [투표 이미 완료]
+        if (voteOptSel) // 투표한 옵션
             tv.setTextColor(tv.context.getColor(R.color.blue_1))
-        else // 선택 안 된 옵션
+        else // 투표 안 한 옵션
             tv.setTextColor(tv.context.getColor(R.color.gray_2))
     }
     else { // [투표 아직 안 함]
@@ -128,6 +129,16 @@ fun votedOptTextColor(tv: TextView, optSelNum: Int, optSel: Boolean, voteOptSel:
         else { // 선택 안 된 옵션
             tv.setTextColor(tv.context.getColor(R.color.black))
         }
+    }
+}
+
+@BindingAdapter(value = ["app:layOptSelNum", "app:layVoteOptSel"], requireAll = true)
+fun optTurnoutColor(pv: ProgressView, optSelNum: Int, voteOptSel: Boolean) {
+    if (optSelNum == -1) { // [투표 이미 완료]
+        if (voteOptSel) // 투표한 옵션
+            pv.highlightView.color = ContextCompat.getColor(pv.context, R.color.blue_3)
+        else
+            pv.highlightView.color = ContextCompat.getColor(pv.context, R.color.gray_4)
     }
 }
 

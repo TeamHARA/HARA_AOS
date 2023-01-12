@@ -27,7 +27,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         super.onViewCreated(view, savedInstanceState)
         list.clear() // (없으면 카테고리 무한 증식) 나중에 무조건 수정하기
 
-        postAdapter = PostAdapter(
+        postAdapter = PostAdapter(requireContext(),
             { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
             { homeVm.changeBtnVal() },
             { requireContext().getDrawable(R.drawable.shape_rectangle_gray3_fill_8)!! },

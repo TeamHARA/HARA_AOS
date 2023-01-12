@@ -1,10 +1,12 @@
 package com.android.hara.presentation.home.fragment.together
 
 import android.content.ClipData.Item
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.R
@@ -15,6 +17,7 @@ import com.android.hara.presentation.util.setOnSingleClickListener
 import timber.log.Timber
 
 class PostAdapter(
+    private val context:Context,
     private val optSelListener: (postId: Int, optId: Int) -> Unit,
     private val btnSelListener: () -> Unit,
     private val getDrawable: () -> Drawable,
@@ -44,7 +47,7 @@ class PostAdapter(
             binding.tvPostDate.text = curItem.createdAt // 날짜
             binding.tvPostTitle.text = curItem.title // 글 제목
             binding.tvPostContent.text = curItem.content // 글 본문
-            binding.tvPostCommentNum.text = curItem.commentCount.toString() // 댓글 수 카운트
+            binding.tvPostCommentNum.text= curItem.commentCount.toString() // 댓글 수 카운트
 
             // 각 옵션 뷰에, 서버통신으로 받은 데이터(옵션)를 넣어준다
             setOptTitle(binding, curItem)
@@ -73,7 +76,7 @@ class PostAdapter(
             if (curItem.isAuthor) {
                 binding.itOptClickable = false // 옵션 clickable = false
                 binding.itMyPost = true // 옵션에 check 표시 안 보임, '최종결정 하러가기' 버튼이 보임
-                binding.itOptSelNum = 0 // 이런 식으로 값을 안 주면 뷰가 재사용 될 때 itOptSelNum 값이 초기화가 안 돼서 옵션이 선택된 것처럼 나올 수도
+                binding.itOptSelNum = -1 // 이런 식으로 값을 안 주면 뷰가 재사용 될 때 itOptSelNum 값이 초기화가 안 돼서 옵션이 선택된 것처럼 나올 수도
 
                 // 내가 쓴 글은, 이미지가 무조건 선명하게 보이게
                 // 이미지를 갖는 옵션이 있는지, 어떤 옵션이 몇 번째 이미지 뷰를 갖는지 체크하는 로직은 없음
@@ -166,24 +169,28 @@ class PostAdapter(
 
     // 각 item에, curItem의 option에 있는 title을 바인딩한다
     private fun setOptTitle(binding: ItemPostBinding, curItem: AllPostResDto.Data) {
-        if (curItem.option.size >= 1) { // [옵션 1]
+        // [옵션 1]
+        if (curItem.option.size >= 1) {
             binding.layoutPostOpt1.tvPostOptTitle.text = curItem.option.get(0).title // text
-            binding.layoutPostOpt1.clPostOpt.visibility = View.VISIBLE
+            binding.layoutPostOpt1.clPostOptContainer.visibility = View.VISIBLE
         }
-        if (curItem.option.size >= 2) { // [옵션 2]
+        // [옵션 2]
+        if (curItem.option.size >= 2) {
             binding.layoutPostOpt2.tvPostOptTitle.text = curItem.option.get(1).title // text
-            binding.layoutPostOpt2.clPostOpt.visibility = View.VISIBLE
+            binding.layoutPostOpt2.clPostOptContainer.visibility = View.VISIBLE
         }
-        if (curItem.option.size >= 3) { // [옵션 3]
+        // [옵션 3]
+        if (curItem.option.size >= 3) {
             binding.layoutPostOpt3.tvPostOptTitle.text = curItem.option.get(2).title // text
-            binding.layoutPostOpt3.clPostOpt.visibility = View.VISIBLE
+            binding.layoutPostOpt3.clPostOptContainer.visibility = View.VISIBLE
         } else
-            binding.layoutPostOpt3.clPostOpt.visibility = View.GONE
-        if (curItem.option.size >= 4) { // [옵션 4]
+            binding.layoutPostOpt3.clPostOptContainer.visibility = View.GONE
+        // [옵션 4]
+        if (curItem.option.size >= 4) {
             binding.layoutPostOpt4.tvPostOptTitle.text = curItem.option.get(3).title // text
-            binding.layoutPostOpt4.clPostOpt.visibility = View.VISIBLE
+            binding.layoutPostOpt4.clPostOptContainer.visibility = View.VISIBLE
         } else
-            binding.layoutPostOpt4.clPostOpt.visibility = View.GONE
+            binding.layoutPostOpt4.clPostOptContainer.visibility = View.GONE
     }
 
     private fun assignVoteOptNum(
@@ -232,22 +239,25 @@ class PostAdapter(
         // [옵션 1]
         if (curOptList.size >= 1) {
             binding.layoutPostOpt1.tvPostOptTurnout.text = curOptList[0].percentage.toString() + "%"
-            // 라이브러리 쓰면 될 듯
+            binding.layoutPostOpt1.pbTurnout.progress = curOptList[0].percentage?.toFloat() ?: 0f
         }
 
         // [옵션 2]
         if (curOptList.size >= 2) {
             binding.layoutPostOpt2.tvPostOptTurnout.text = curOptList[1].percentage.toString() + "%"
+            binding.layoutPostOpt2.pbTurnout.progress = curOptList[1].percentage?.toFloat() ?: 0f
         }
 
         // [옵션 3]
         if (curOptList.size >= 3) {
             binding.layoutPostOpt3.tvPostOptTurnout.text = curOptList[2].percentage.toString() + "%"
+            binding.layoutPostOpt3.pbTurnout.progress = curOptList[2].percentage?.toFloat() ?: 0f
         }
 
         // [옵션 4]
         if (curOptList.size >= 4) {
             binding.layoutPostOpt4.tvPostOptTurnout.text = curOptList[3].percentage.toString() + "%"
+            binding.layoutPostOpt4.pbTurnout.progress = curOptList[3].percentage?.toFloat() ?: 0f
         }
     }
 
