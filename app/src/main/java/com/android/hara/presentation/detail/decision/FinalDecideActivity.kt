@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.android.hara.R
+import com.android.hara.data.model.request.DecideAloneReqDto
+import com.android.hara.data.model.request.DecideWithReqDto
 import com.android.hara.databinding.ActivityFinalDecideBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.detail.model.DecideData
@@ -26,6 +28,7 @@ class FinalDecideActivity :
     private val decisionViewModel by viewModels<DecideViewModel>()
 
     private var selectListBool = mutableListOf<Boolean>(false, false, false, false)
+    private var selOptId: Int? = null
 
     // 1, 2, 3, 4번째 옵션 뷰가 선택(클릭)됐는지를 저장. n+1번째 옵션 뷰가 선택됐으면 [n]이 true
     private lateinit var decideData: DecideData
@@ -91,10 +94,22 @@ class FinalDecideActivity :
 
     private fun onClickSolveBtn() {
         binding.btnFinalDecideLetssolve.setOnClickListener {
-            // 통신 -> viewModel
-            decisionViewModel
-            val intent = Intent(this, FinalResolveActivity::class.java)
-            startActivity(intent)
+            selOptId = selectListBool.indexOf(true)
+            if (decideData.isAlone) {
+                decisionViewModel.decideAlone(
+                    DecideAloneReqDto(
+                        decideData.worryId,
+                        decideData.optionId[selOptId!!]
+                    )
+                )
+            } else {
+                decisionViewModel.decideWith(
+                    DecideWithReqDto(
+                        decideData.worryId,
+                        decideData.optionId[selOptId!!]
+                    )
+                )
+            }
         }
     }
 
@@ -135,6 +150,17 @@ class FinalDecideActivity :
             binding.selected = it
             binding.btnFinalDecideLetssolve.isEnabled = it
         }
+
+        decisionViewModel.decideSuccess.observe(this) { isSuccess ->
+            if (isSuccess) {
+                val intent = Intent(this, FinalResolveActivity::class.java).apply {
+                    putExtra("worryTitle", decideData.worryTitle)
+                    putExtra("selOptTitle", decideData.optionTitle[selOptId!!])
+                    putExtra("includeImg", decideData.includeImg)
+                }
+                startActivity(intent)
+            }
+        }
     }
 
     // 옵션 뷰 배경/텍스트컬러를 바꿔준다
@@ -142,26 +168,22 @@ class FinalDecideActivity :
         if (b) { // n+1번째 옵션 뷰의 배경/글자색 등을 'selected' 스타일로 바꿔준다
             when (n) {
                 0 -> {
-                    binding.clOpt1.background =
-                        getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
+                    binding.clOpt1.background = getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
                     binding.tvOpt1Content.setTextColor(getColor(R.color.white))
                     binding.tvOpt1Num.visibility = View.GONE
                 }
                 1 -> {
-                    binding.clOpt2.background =
-                        getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
+                    binding.clOpt2.background = getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
                     binding.tvOpt2Content.setTextColor(getColor(R.color.white))
                     binding.tvOpt2Num.visibility = View.GONE
                 }
                 2 -> {
-                    binding.clOpt3.background =
-                        getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
+                    binding.clOpt3.background = getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
                     binding.tvOpt3Content.setTextColor(getColor(R.color.white))
                     binding.tvOpt3Num.visibility = View.GONE
                 }
                 3 -> {
-                    binding.clOpt4.background =
-                        getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
+                    binding.clOpt4.background = getDrawable(R.drawable.shape_rectangle_blue1_fill_8)
                     binding.tvOpt4Content.setTextColor(getColor(R.color.white))
                     binding.tvOpt4Num.visibility = View.GONE
                 }

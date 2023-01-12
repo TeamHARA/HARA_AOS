@@ -10,5 +10,6 @@ data class DecideData(
     val optionId: List<Int>,
     val optionTitle: List<String>,
     val optionPer: List<Int?>,
-    val isAlone: Boolean
+    val isAlone: Boolean,
+    val includeImg: Boolean
 ) : Parcelable
