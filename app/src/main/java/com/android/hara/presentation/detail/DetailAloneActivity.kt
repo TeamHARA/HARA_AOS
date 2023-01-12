@@ -34,6 +34,19 @@ class DetailAloneActivity :
                     bindingList[index].root.visibility = View.VISIBLE // 선택지 갯수 만큼 visibilty 조절
                     if (option.hasImage) binding.flowImage.visibility =
                         View.VISIBLE // 하나라도 이미지 있다면 Flag발동
+                    with(bindingList[index]) {
+                        title = option.title
+                        if (option.advantage == "") {
+                            tvOptProTitle.visibility = View.GONE
+                        } else {
+                            advantage = option.advantage
+                        }
+                        if (option.disadvantage == "") {
+                            tvOptConTitle.visibility = View.GONE
+                        } else {
+                            disadvantage = option.disadvantage
+                        }
+                    }
                 }
             }
         }

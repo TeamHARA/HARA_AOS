@@ -22,7 +22,7 @@ data class DetailWithResDto(
         @SerialName("commentCount")
         val commentCount: Int, // 2
         @SerialName("comments")
-        val comments: List<Comment>,
+        val comments: List<Comment>?,
         @SerialName("createdAt")
         val createdAt: String, // 2023.01.07
         @SerialName("finalOption")
@@ -50,6 +50,10 @@ data class DetailWithResDto(
 
         @Serializable
         data class Option(
+            @SerialName("advantage")
+            val advantage: String? = "",
+            @SerialName("disadvantage")
+            val disadvantage: String? = "", // 단점의 이유
             @SerialName("hasImage")
             val hasImage: Boolean, // false
             @SerialName("id")
