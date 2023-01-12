@@ -11,7 +11,9 @@ import com.android.hara.databinding.ActivityHomeBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.detail.decision.FinalDecideActivity
 import com.android.hara.presentation.detail.model.DecideData
+import com.android.hara.presentation.home.fragment.together.TogetherFragment
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
+import com.android.hara.presentation.search.SearchActivity
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +27,10 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setNavigation()
+        setListener()
+    }
 
+    private fun setListener() {
         binding.fabHome.setOnClickListener {
             val intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
@@ -52,6 +57,17 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
                     .apply { putExtra("decideData", decideData) }
             )
         }
+
+        binding.ivHomeSearch.setOnSingleClickListener {
+            startActivity(Intent(this, SearchActivity::class.java))
+        }
+        binding.bottomNavHome.setOnItemReselectedListener {
+            if (it.itemId == R.id.fragment_together) {
+                TogetherFragment.setScroll()
+                return@setOnItemReselectedListener
+            }
+            return@setOnItemReselectedListener
+        }
     }
 
     private fun setNavigation() {
@@ -61,7 +77,8 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         val navGraph = navController.navInflater.inflate(R.navigation.bottom_nav_graph)
         navController.graph = navGraph
         binding.bottomNavHome.setupWithNavController(navController)
-
+        binding.bottomNavHome.menu.findItem(R.id.fragment_write).isEnabled = false
+        // 가운데는 플로팅 버튼이 있으므로 메뉴는 비활성화
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.homeToolbar.menu.clear()
             when (destination.id) {

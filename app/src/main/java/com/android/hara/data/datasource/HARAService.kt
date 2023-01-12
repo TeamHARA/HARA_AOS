@@ -4,6 +4,9 @@ import com.android.hara.data.model.request.DecideAloneReqDto
 import com.android.hara.data.model.request.DecideWithReqDto
 import com.android.hara.data.model.request.VoteReqDto
 import com.android.hara.data.model.response.*
+import com.android.hara.data.model.request.WorryAloneRequestDto
+import com.android.hara.data.model.request.WorryWithRequestDto
+import com.android.hara.data.model.response.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -45,4 +48,11 @@ interface HARAService {
 
     @PATCH("/worry/with")
     suspend fun patchWithDecision(@Body decision: DecideWithReqDto): Response<DecisionResDto>
+
+    @POST("/worry/with")
+    suspend fun postWorryWith(@Body requset: WorryWithRequestDto): Response<WorryWithResponseDto>
+
+    @POST("/worry/alone")
+    suspend fun postWorryAlone(@Body requset: WorryAloneRequestDto): Response<WorryAloneResponseDto>
+
 }

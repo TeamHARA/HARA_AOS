@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.android.hara.presentation.home.fragment.together.SimpleModel" />
+            type="com.android.hara.presentation.home.fragment.together.model.SimpleModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

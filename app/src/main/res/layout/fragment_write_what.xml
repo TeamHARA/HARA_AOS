@@ -117,15 +117,17 @@
             android:id="@+id/ib_write_upload_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:background="@drawable/shape_rectangle_blue3_stroke_1_1000"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/shape_rectangle_white_blue3_stroke_1_1000"
             android:paddingHorizontal="70dp"
             android:paddingVertical="14dp"
+            android:stateListAnimator="@null"
             android:text="@string/write_upload_button"
             android:textAppearance="@style/hara_heading1_sb16"
             android:textColor="@color/blue_3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton

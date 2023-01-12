@@ -42,7 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="@string/hara"
+                android:hint="@string/write_option_hint"
                 android:maxLength="20"
                 android:paddingTop="15dp"
                 android:paddingBottom="14dp"

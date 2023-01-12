@@ -11,7 +11,7 @@ import com.android.hara.presentation.base.BindingNotDraggableBottomSheet
 import com.android.hara.presentation.util.HARAobjcet.categoryList
 
 
-class PickerBottomSheetDialog(private val addListener: (String) -> Unit) :
+class PickerBottomSheetDialog(private val addListener: (Int) -> Unit) :
     BindingNotDraggableBottomSheet<FragmentBottomsheetPickerBinding>(R.layout.fragment_bottomsheet_picker) {
 
     private var count = 0
@@ -36,14 +36,14 @@ class PickerBottomSheetDialog(private val addListener: (String) -> Unit) :
 
     private fun setOnClickListener() {
         binding.pickerCategory.setOnValueChangedListener { picker, xoldVal, newVal ->
-            count = newVal
+            count = newVal + 1
         }
 
         binding.btnCancel.setOnClickListener {
             dismiss()
         }
         binding.btnComplete.setOnClickListener {
-            addListener(categoryList[count])
+            addListener(count)
             dismiss()
         }
     }

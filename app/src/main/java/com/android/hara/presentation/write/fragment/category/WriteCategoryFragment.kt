@@ -10,9 +10,12 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteCategoryBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.custom.PickerBottomSheetDialog
+import com.android.hara.presentation.util.HARAobjcet.categoryList
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteCategoryFragment :
     BindingFragment<FragmentWriteCategoryBinding>(R.layout.fragment_write_category) {
     private lateinit var navController: NavController
@@ -50,7 +53,7 @@ class WriteCategoryFragment :
     private fun addObserve() {
         categoryViewModel.category.observe(viewLifecycleOwner) {
             with(binding) {
-                category = it
+                category = categoryList[it - 1]
                 writeViewModel.categoty = it // ViewModel에 set 해주기
                 tvSelectedCategory.visibility = View.VISIBLE
                 clCategorySelectLayout.visibility = View.GONE
@@ -69,7 +72,7 @@ class WriteCategoryFragment :
 
     private fun onClickBackBtn() {
         binding.ibWriteCategoryBackButton.setOnSingleClickListener {
-            navController.navigate(R.id.action_writeCategoryFragment_to_writeProsconsFragment)
+            navController.popBackStack()
             writeViewModel.subProgress()
         }
     }

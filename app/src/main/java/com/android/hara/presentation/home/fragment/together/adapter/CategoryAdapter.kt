@@ -1,11 +1,12 @@
-package com.android.hara.presentation.home.fragment.together
+package com.android.hara.presentation.home.fragment.together.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.databinding.ItemCategoryBinding
-import java.util.prefs.NodeChangeListener
+import com.android.hara.presentation.home.fragment.together.model.SimpleModel
+import com.android.hara.presentation.home.fragment.together.TogetherFragment
 
 class CategoryAdapter(
     private val context: Context,
@@ -49,6 +50,9 @@ class CategoryAdapter(
 
                         // [수현] 카테고리 item이 클릭되면, 어댑터에 파라미터로 온 함수에, selectedPosition을 넘겨준다
                         changeListener(selectedPosition)
+                        TogetherFragment.setScroll()
+                    } else {
+                        TogetherFragment.setScroll()
                     }
                 }
             }

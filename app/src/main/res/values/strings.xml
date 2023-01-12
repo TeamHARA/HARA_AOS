@@ -13,6 +13,7 @@
     <string name="cancel">취소</string>
     <string name="complete">완료</string>
     <string name="category">카테고리</string>
+    <string name="server_connet_fail">서버연결에 실패하였습니다.</string>
     <string name="detail_comment_hint">댓글 내용을 입력해주세요</string>
     <string name="dialog_delete">고민글을 삭제하시겠습니까?</string>
     <string name="dialog_delete_warn">작성하신 글을 삭제하습니까?</string>
@@ -22,6 +23,7 @@
     <string name="one_sec_notice">최근 10개의 고민까지만 저장되고 오래된 순으로 자동 삭제돼요!</string>
     <string name="one_sec_pick">해결 카드 뽑기</string>
     <string name="one_sec_retry">다시뽑기</string>
+    <string name="write_option_hint">선택지를 입력해주세요 (20자 이내)</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -69,6 +71,15 @@
     <!--  dialog  -->
     <string name="dialog_cancel">취소</string>
     <string name="dialog_upload">업로드</string>
+    <string name="dialog_upload_title">고민글을 게시하겠습까?</string>
+    <string name="dialog_upload_warn">게시된 고민글은 수정이 불가능해요.</string>
     <string name="dialog_category">카테고리</string>
     <string name="dialog_finish">완료</string>
+
+    <string name="search_input">검색어 입력</string>
+    <string name="search">검색</string>
+    <string name="search_hint">어떤 고민을 찾으시나요?</string>
+    <string name="search_type">검색어 입력</string>
+    <string name="search_empty">찾으시는 고민이 없어요</string>
+    <string name="search_count">%d개의 고민글</string>
 </resources>

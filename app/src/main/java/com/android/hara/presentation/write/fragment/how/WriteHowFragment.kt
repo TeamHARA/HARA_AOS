@@ -9,9 +9,13 @@ import androidx.navigation.Navigation
 import com.android.hara.R
 import com.android.hara.databinding.FragmentWriteHowBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.custom.DecisionDialog
+import com.android.hara.presentation.custom.model.DialogData
+import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteViewModel
-import timber.log.Timber
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WriteHowFragment :
     BindingFragment<FragmentWriteHowBinding>(R.layout.fragment_write_how) {
     private lateinit var navController: NavController
@@ -21,20 +25,24 @@ class WriteHowFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setNavigation(view)
+        showDialog()
         onClickBackBtn()
         setViewModel()
         setWorryBtn()
         setWithBtn()
+    }
 
-        Timber.e(writeViewModel.title)
-        Timber.e(writeViewModel.content)
-        Timber.e(writeViewModel.titleList.toString())
-        Timber.e(writeViewModel.pronsList.toString())
-        Timber.e(writeViewModel.categoty)
-        if (howFragViewModel.isWithSelected.value == true) {
-            //TODO 함께고민 API호출
-        } else {
-            //TODO 혼자고민 API호출
+    private fun showDialog() {
+        binding.btnWriteContentUploadButton.setOnSingleClickListener {
+            writeViewModel.isWith = howFragViewModel.isWithSelected.value!!
+            DecisionDialog(
+                requireContext(), DialogData(
+                    getString(R.string.dialog_upload_title),
+                    getString(R.string.dialog_upload_warn),
+                    getString(R.string.cancel),
+                    getString(R.string.dialog_upload)
+                )
+            ) { writeViewModel.postWorry() }.showDialog()
         }
     }
 
@@ -69,7 +77,7 @@ class WriteHowFragment :
 
     private fun onClickBackBtn() {
         binding.ibWriteContentBackButton.setOnClickListener {
-            navController.navigate(R.id.action_writeHowFragment_to_writeCategoryFragment)
+            navController.popBackStack()
             writeViewModel.subProgress()
         }
     }
