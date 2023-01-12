@@ -26,7 +26,7 @@ data class DetailWithResDto(
         @SerialName("createdAt")
         val createdAt: String, // 2023.01.07
         @SerialName("finalOption")
-        val finalOption: Int, // 2
+        val finalOption: Int?, // 2
         @SerialName("isAuthor")
         val isAuthor: Boolean, // false
         @SerialName("options")
@@ -43,7 +43,9 @@ data class DetailWithResDto(
             @SerialName("createdAt")
             val createdAt: String, // 2023.01.09
             @SerialName("userImage")
-            val userImage: String // 탈퇴했거나 가입하지 않은 유저입니다.
+            val userImage: String, // 탈퇴했거나 가입하지 않은 유저입니다.
+            @SerialName("userNickName")
+            val userNickName: String, // 댓글2
         )
 
         @Serializable
@@ -55,7 +57,7 @@ data class DetailWithResDto(
             @SerialName("image")
             val image: String?, // null
             @SerialName("percentage")
-            val percentage: Int, // 50
+            val percentage: Int?, // 50
             @SerialName("title")
             val title: String, // 글2 의선택지
             @SerialName("worryWithId")
