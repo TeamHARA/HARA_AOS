@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ResponseVoteDTO(
+data class VoteResDto(
     @SerialName("status")
     val status: Int, // 200
     @SerialName("success")

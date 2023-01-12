@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RequestVoteDTO(
+data class VoteReqDto(
     @SerialName("worryWithId")
     val worryWithId: Int, // 2
     @SerialName("optionId")
