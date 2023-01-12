@@ -7,7 +7,7 @@
 
         <variable
             name="detailVm"
-            type="com.android.hara.presentation.detail.viewmodel.DetailViewModel" />
+            type="com.android.hara.presentation.detail.viewmodel.DetailAloneViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -82,7 +82,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:text="@string/dummy_date"
+                    android:text="@{detailVm}"
+                    tools:text="@string/dummy_date"
                     android:textAppearance="@style/hara_sub3_r12"
                     android:textColor="@color/gray_2"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_detail_profile"
