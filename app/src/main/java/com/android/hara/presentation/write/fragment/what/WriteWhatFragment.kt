@@ -2,6 +2,7 @@ package com.android.hara.presentation.write.fragment.what
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -27,6 +28,13 @@ class WriteWhatFragment :
         setNavigation(view)
         onClickNextBtn()
         addObserve()
+
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+            }
+        })
+
     }
 
 
