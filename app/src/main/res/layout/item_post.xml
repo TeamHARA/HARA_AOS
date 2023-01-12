@@ -16,6 +16,12 @@
         <variable
             name="itVoteOptSel"
             type="int" />
+        <variable
+            name="itImgSel1"
+            type="int" />
+        <variable
+            name="itImgSel2"
+            type="int" />
         <import type="android.view.View"/>
     </data>
 
@@ -93,7 +99,8 @@
             app:layout_constraintTop_toTopOf="@id/flow_post_img"
             app:layout_constraintBottom_toBottomOf="@id/flow_post_img"
             app:layout_constraintStart_toStartOf="@id/flow_post_img"
-            app:layout_constraintEnd_toStartOf="@id/iv_post_img2" />
+            app:layout_constraintEnd_toStartOf="@id/iv_post_img2"
+            android:alpha="@{itImgSel1 == 0 ? 0.3F : 1f}"/>
 
         <!-- image 2 -->
         <ImageView
@@ -106,7 +113,8 @@
             app:layout_constraintTop_toTopOf="@id/flow_post_img"
             app:layout_constraintBottom_toBottomOf="@id/flow_post_img"
             app:layout_constraintStart_toEndOf="@id/iv_post_img1"
-            app:layout_constraintEnd_toEndOf="@id/flow_post_img" />
+            app:layout_constraintEnd_toEndOf="@id/flow_post_img"
+            android:alpha="@{itImgSel2 == 0 ? 0.3F : 1f}"/>
 
         <!-- option 1 -->
         <include
