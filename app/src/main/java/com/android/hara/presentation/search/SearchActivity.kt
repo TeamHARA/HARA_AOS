@@ -8,5 +8,12 @@ import com.android.hara.presentation.base.BindingActivity
 class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_search) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding.empty = true
+        binding.count = 4
+        binding.appbarDetail.setNavigationOnClickListener {
+            finish()
+        }
+
     }
 }

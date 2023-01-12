@@ -12,6 +12,7 @@ import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.decision.FinalDecideActivity
 import com.android.hara.presentation.home.fragment.together.TogetherFragment
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
+import com.android.hara.presentation.search.SearchActivity
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +39,9 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         //TEST FINAL
         binding.ivHomeSetting.setOnSingleClickListener {
             startActivity(Intent(this, FinalDecideActivity::class.java))
+        }
+        binding.ivHomeSearch.setOnSingleClickListener {
+            startActivity(Intent(this, SearchActivity::class.java))
         }
         binding.bottomNavHome.setOnItemReselectedListener {
             if (it.itemId == R.id.fragment_together) {
