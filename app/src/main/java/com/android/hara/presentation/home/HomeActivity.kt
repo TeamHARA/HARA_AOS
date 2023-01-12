@@ -35,8 +35,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             val intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
         }
-        homeViewModel
-
         // TODO: TEST코드 -> 추후 상세 보기 및 홈으로 하단 코드 이동
         var decideData = DecideData(
             1,
