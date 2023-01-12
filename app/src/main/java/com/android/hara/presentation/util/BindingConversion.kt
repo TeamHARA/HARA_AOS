@@ -156,10 +156,7 @@ fun TextView.setDate(dateText: String) {
     ).format(Date.from(Instant.parse(dateText)))
 }
 
-
-/*
-파라미터 두개 이상 넘기고 싶은 경우 확장함수가 아닌 이런 방식으로 사용
- */
+/* 파라미터 두개 이상 넘기고 싶은 경우 확장함수가 아닌 이런 방식으로 사용 */
 @BindingAdapter(
     value = ["app:title_bold", "app:title_bold_start", "app:title_bold_end"],
     requireAll = true

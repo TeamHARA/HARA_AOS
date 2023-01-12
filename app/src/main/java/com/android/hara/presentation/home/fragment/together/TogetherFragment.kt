@@ -101,12 +101,8 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
 
         // [2] homeVm의 btn이 변하는지 관찰
         homeVm.btnSel.observe(viewLifecycleOwner) {
-            Timber.e("hello", homeVm.getPostId(), homeVm.getOptId())
+            Timber.e("통신 이 값 보내는디!! " + homeVm.getPostId().toString() + homeVm.getOptId().toString())
             homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
-        }
-
-        homeVm.voteResult.observe(viewLifecycleOwner) {
-
         }
 
         homeVm.suceess.observe(viewLifecycleOwner) {
