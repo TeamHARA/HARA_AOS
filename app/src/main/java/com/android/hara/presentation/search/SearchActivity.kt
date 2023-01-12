@@ -9,7 +9,7 @@ class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.empty = true
+        binding.empty = false //검색어 없는 경우 = false
         binding.count = 4
         binding.appbarDetail.setNavigationOnClickListener {
             finish()
