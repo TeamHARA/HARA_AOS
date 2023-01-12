@@ -14,6 +14,7 @@ import com.android.hara.presentation.util.setOnSingleClickListener
 import timber.log.Timber
 
 class PostAdapter(
+    private val detailListener: (Int) -> Unit,
     private val optSelListener: (postId: Int, optId: Int) -> Unit,
     private val btnSelListener: () -> Unit,
     private val getDrawable: () -> Drawable,
@@ -44,7 +45,13 @@ class PostAdapter(
             binding.tvPostTitle.text = curItem.title // 글 제목
             binding.tvPostContent.text = curItem.content // 글 본문
             binding.tvPostCommentNum.text = curItem.commentCount.toString() // 댓글 수 카운트
-
+            binding.root.setOnClickListener { //전체 아이템 누르면 상세화면 이동
+                detailListener(curItem.worryId)
+            }
+            // [최종결정 하러가기] 버튼
+            binding.btnPostGoDecide.setOnSingleClickListener {
+                // TODO 최종결정 하러 activity 이동
+            }
             // 각 옵션 뷰에, 서버통신으로 받은 데이터(옵션)를 넣어준다
             setOptTitle(binding, curItem)
 
@@ -72,17 +79,15 @@ class PostAdapter(
             if (curItem.isAuthor) {
                 binding.itOptClickable = false // 옵션 clickable = false
                 binding.itMyPost = true // 옵션에 check 표시 안 보임, '최종결정 하러가기' 버튼이 보임
-                binding.itOptSelNum = 0 // 이런 식으로 값을 안 주면 뷰가 재사용 될 때 itOptSelNum 값이 초기화가 안 돼서 옵션이 선택된 것처럼 나올 수도
+                binding.itOptSelNum =
+                    0 // 이런 식으로 값을 안 주면 뷰가 재사용 될 때 itOptSelNum 값이 초기화가 안 돼서 옵션이 선택된 것처럼 나올 수도
 
                 // 내가 쓴 글은, 이미지가 무조건 선명하게 보이게
                 // 이미지를 갖는 옵션이 있는지, 어떤 옵션이 몇 번째 이미지 뷰를 갖는지 체크하는 로직은 없음
                 binding.itImgSel1 = 1
                 binding.itImgSel2 = 1
 
-                // [최종결정 하러가기] 버튼
-                binding.btnPostGoDecide.setOnSingleClickListener {
-                    // TODO 최종결정 하러 activity 이동
-                }
+
             }
 
             // 2) 내가 쓴 글이 아니면(남이 쓴 글이면): 투표 버튼

@@ -20,4 +20,8 @@ interface HARARepository {
     suspend fun postWorryAlone(request: WorryAloneRequestDto): Response<WorryAloneResponseDto>
 
     suspend fun postWorryWith(request: WorryWithRequestDto): Response<WorryWithResponseDto>
+
+    suspend fun getDetailWith(worryId: Int): Response<DetailWithResDto>
+
+    suspend fun getDetailAlone(worryId: Int): Response<DetailAloneResDto>
 }

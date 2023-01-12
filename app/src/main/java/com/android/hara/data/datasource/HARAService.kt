@@ -1,11 +1,6 @@
 package com.android.hara.data.datasource
 
-import com.android.hara.data.model.request.DecideAloneReqDto
-import com.android.hara.data.model.request.DecideWithReqDto
-import com.android.hara.data.model.request.VoteReqDto
-import com.android.hara.data.model.response.*
-import com.android.hara.data.model.request.WorryAloneRequestDto
-import com.android.hara.data.model.request.WorryWithRequestDto
+import com.android.hara.data.model.request.*
 import com.android.hara.data.model.response.*
 import retrofit2.Response
 import retrofit2.http.*
@@ -54,5 +49,12 @@ interface HARAService {
 
     @POST("/worry/alone")
     suspend fun postWorryAlone(@Body requset: WorryAloneRequestDto): Response<WorryAloneResponseDto>
+
+    ///worry/with/:worryId
+    @GET("/worry/with/{worryId}")
+    suspend fun getDetailWith(@Path("worryId") worryId: Int): Response<DetailWithResDto>
+
+    @GET("/worry/alone/{worryId}")
+    suspend fun getDetailAlone(@Path("worryId") worryId: Int): Response<DetailAloneResDto>
 
 }

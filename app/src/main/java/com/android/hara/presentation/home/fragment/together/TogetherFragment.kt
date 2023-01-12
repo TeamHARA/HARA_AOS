@@ -1,5 +1,6 @@
 package com.android.hara.presentation.home.fragment.together
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.detail.DetailWithActivity
 import com.android.hara.presentation.home.fragment.together.adapter.CategoryAdapter
 import com.android.hara.presentation.home.fragment.together.adapter.PostAdapter
 import com.android.hara.presentation.home.fragment.together.model.SimpleModel
@@ -82,6 +84,11 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
 
     private fun setPostAdapter() {
         postAdapter = PostAdapter(
+            {
+                val intent = Intent(requireContext(), DetailWithActivity::class.java)
+                intent.putExtra("worryId", it)
+                startActivity(intent)
+            },
             { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
             { homeVm.changeBtnVal() },
             { requireContext().getDrawable(R.drawable.shape_rectangle_gray3_fill_8)!! },
