@@ -1,4 +1,4 @@
-package com.android.hara.presentation.home.fragment.together
+package com.android.hara.presentation.home.fragment.together.adapter
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -209,6 +209,10 @@ class PostAdapter(
             binding.itImgSel1 = 0
             binding.itImgSel2 = 0
         }
+    }
+
+    companion object{
+
     }
 
 } // class PostAdapter
