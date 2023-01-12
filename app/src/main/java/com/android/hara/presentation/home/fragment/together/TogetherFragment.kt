@@ -36,7 +36,13 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         list.clear() // (없으면 카테고리 무한 증식) 나중에 무조건 수정하기
+        init()
         setCategoryRecycler()
+        setPostAdapter()
+        addObserve()
+    }// fun onViewCreated()
+
+    private fun init() {
         recyclerView = binding.rvTogetherPost
 
         binding.swipeRefreash.setOnRefreshListener { /* swipe 시 진행할 동작 */
@@ -44,37 +50,6 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             /* 업데이트가 끝났음을 알림 */
             Timber.e("ho")
             togetherViewModle.success.value = true
-        }
-
-        postAdapter = PostAdapter(
-            { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
-            { homeVm.changeBtnVal() },
-            { requireContext().getDrawable(R.drawable.shape_rectangle_gray3_fill_8)!! },
-            { requireContext().getColor(R.color.white) }
-        )
-        binding.rvTogetherPost.adapter = postAdapter
-
-
-        togetherViewModle.success.observe(viewLifecycleOwner) {
-            if (it) binding.swipeRefreash.isRefreshing = false
-        }
-
-
-        // [1] homeVm의 selected category number 값이 변하는지 관찰
-        homeVm.selCat.observe(viewLifecycleOwner) {
-            Timber.e(it.toString())
-            homeVm.homeVmGetAllPost(it)
-        }
-
-        // [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
-        homeVm.catAllPostResult.observe(viewLifecycleOwner) {
-            postAdapter.submitList(it.data)
-        }
-
-        // [2] homeVm의 btn이 변하는지 관찰
-        homeVm.btnSel.observe(viewLifecycleOwner) {
-            Timber.e("hello", homeVm.getPostId(), homeVm.getOptId())
-            homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
         }
     }
 
@@ -101,12 +76,44 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
 //        categoryAdapter.submitList(category.toList()) // 데이터를 넣어준다 (업데이트할 때에도)
     }
 
-    /*
-        [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
-     */
+    private fun setPostAdapter() {
+        postAdapter = PostAdapter(
+            { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
+            { homeVm.changeBtnVal() },
+            { requireContext().getDrawable(R.drawable.shape_rectangle_gray3_fill_8)!! },
+            { requireContext().getColor(R.color.white) }
+        )
+        binding.rvTogetherPost.adapter = postAdapter
+    }
+
+    private fun addObserve() {
+        // [1] homeVm의 selected category number 값이 변하는지 관찰
+        homeVm.selCat.observe(viewLifecycleOwner) {
+            Timber.e(it.toString())
+            homeVm.homeVmGetAllPost(it)
+        }
+
+        // [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
+        homeVm.catAllPostResult.observe(viewLifecycleOwner) {
+            postAdapter.submitList(it.data)
+        }
+
+        // [2] homeVm의 btn이 변하는지 관찰
+        homeVm.btnSel.observe(viewLifecycleOwner) {
+            Timber.e("hello", homeVm.getPostId(), homeVm.getOptId())
+            homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
+        }
+
+        togetherViewModle.success.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.swipeRefreash.isRefreshing = false
+            }
+        }
+    }
+
 
 }
-// fun onViewCreated()
+
 
 /*
 // n번째 옵션이 선택되면 PostViewModel 안의 sNum의 value가 n으로 바뀐다
