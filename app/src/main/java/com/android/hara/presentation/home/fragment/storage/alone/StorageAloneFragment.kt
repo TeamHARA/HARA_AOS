@@ -1,12 +1,13 @@
 package com.android.hara.presentation.home.fragment.storage.alone
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.android.hara.R
 import com.android.hara.databinding.FragmentStorageSelfBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.detail.DetailAloneActivity
 import com.android.hara.presentation.home.fragment.storage.StorageAdapter
 import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +23,9 @@ class StorageAloneFragment :
         super.onViewCreated(view, savedInstanceState)
 
         val storageAdapter = StorageAdapter() {
-            Log.d("TEST", it)
+            val intent = Intent(requireContext(), DetailAloneActivity::class.java)
+            intent.putExtra("worryId", it)
+            startActivity(intent)
         }
         binding.rvPosts.adapter = storageAdapter
         storageAloneViewModel.getAloneList()

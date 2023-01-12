@@ -1,6 +1,7 @@
 package com.android.hara.presentation.detail
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import com.android.hara.R
 import com.android.hara.databinding.ActivityDetailAloneBinding
@@ -16,12 +17,30 @@ class DetailAloneActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val worryId = intent.getIntExtra("worryId", 0)
+        detailAloneVm.getDetailAlone(worryId)
 
+        val bindingList = listOf(
+            binding.layoutOption1,
+            binding.layoutOption2,
+            binding.layoutOption3,
+            binding.layoutOption4
+        )
+
+        detailAloneVm.success.observe(this) {
+            if (it) {
+                binding.detailVm = detailAloneVm
+                detailAloneVm.detailDto.value!!.data.options.forEachIndexed { index, option ->
+                    bindingList[index].root.visibility = View.VISIBLE // 선택지 갯수 만큼 visibilty 조절
+                    if (option.hasImage) binding.flowImage.visibility =
+                        View.VISIBLE // 하나라도 이미지 있다면 Flag발동
+                }
+            }
+        }
 
         binding.appbarDetail.setNavigationOnClickListener {
             finish()
         }
-
         // n번째 옵션 클릭 시 옵션과 버튼 스타일 변하는 로직
         binding.layoutOption1.clOptBox.setOnClickListener {
             changeVmSnum(1)

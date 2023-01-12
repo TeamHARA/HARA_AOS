@@ -30,7 +30,7 @@ class StorageAdapter(private val itemClickListener: (Int) -> Unit) :
             binding.worry = curItem
             binding.xmlIng = ing
             binding.root.setOnClickListener {
-                curItem.id
+                itemClickListener(curItem.id)
             }
             if (ing) binding.tvStorageFlag.text = "고민중"
             else binding.tvStorageFlag.text = "고민완료"
