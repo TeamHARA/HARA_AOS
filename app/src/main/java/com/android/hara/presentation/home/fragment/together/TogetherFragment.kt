@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
+import com.android.hara.presentation.home.fragment.together.adapter.CategoryAdapter
+import com.android.hara.presentation.home.fragment.together.adapter.PostAdapter
+import com.android.hara.presentation.home.fragment.together.model.SimpleModel
 import com.android.hara.presentation.home.fragment.together.viewmodel.TogetherFragmentViewModel
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
 import com.android.hara.presentation.util.makeSnackbar
@@ -21,7 +24,8 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         private lateinit var recyclerView: RecyclerView
 
         fun setScroll() {
-            recyclerView.scrollToPosition(0)
+            //recyclerView.scrollToPosition(0)
+            recyclerView.smoothScrollToPosition(0)
         }
 
     }
@@ -47,6 +51,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         recyclerView = binding.rvTogetherPost
 
         binding.swipeRefreash.setOnRefreshListener { /* swipe 시 진행할 동작 */
+            recyclerView.scrollToPosition(0)
             homeVm.homeVmGetAllPost(homeVm.selCat.value ?: 0)
         }
     }
@@ -63,6 +68,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             setOnItemClickListener(object : CategoryAdapter.OnItemClickListener {
                 override fun onItemClick(item: SimpleModel, position: Int) {
                     Timber.e(item.title) // 카테고리가 클릭되면 '전체', '일상' 등이 찍힌다
+                    recyclerView.scrollToPosition(0)
                 }
             })
         }
@@ -93,7 +99,9 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
 
         // [2] recycler view - adapter 연결: 고민글 목록 [by 수현]
         homeVm.catAllPostResult.observe(viewLifecycleOwner) {
-            postAdapter.submitList(it.data)
+            postAdapter.submitList(it.data) {
+                binding.rvTogetherPost.scrollToPosition(0)
+            }
         }
 
         // [2] homeVm의 btn이 변하는지 관찰
