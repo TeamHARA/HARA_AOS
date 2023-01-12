@@ -1,5 +1,6 @@
 package com.android.hara.presentation.home.fragment.together
 
+import android.content.ClipData.Item
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -94,15 +95,11 @@ class PostAdapter(
                     binding.itOptClickable = false // 옵션 clickable = false
                     binding.itOptSelNum = -1 // 옵션에 check src, 투표 버튼 disable
 
-                    if (curItem.loginUserVoteId == curItem.option[0].id)
-                        binding.itVoteOptSel = 1
-                    else if (curItem.loginUserVoteId == curItem.option[1].id)
-                        binding.itVoteOptSel = 2
-                    else if (curItem.loginUserVoteId == curItem.option[2].id)
-                        binding.itVoteOptSel = 3
-                    else if (curItem.loginUserVoteId == curItem.option[3].id)
-                        binding.itVoteOptSel = 4
+                    // 유저가 투표한 옵션#를 binding.itVoteOptSel에 넘긴다
+                    assignVoteOptNum(curItem, binding)
 
+                    // 투표율을 보여준다
+                    bindTurnout(binding, curItem.option)
                 }
                 // 2-b) 투표를 아직 안 했으면: '투표하기' 버튼 - 선택하면 바꿔야 됨
                 else {
@@ -151,6 +148,9 @@ class PostAdapter(
                         Timber.e(binding.itVoteOptSel.toString())
 
                         binding.itOptSelNum = -1 // 옵션에 check src, 투표 버튼 disable
+
+                        // 투표율을 보여준다
+                        bindTurnout(binding, curItem.option)
                     }
                 }
             }
@@ -186,6 +186,19 @@ class PostAdapter(
             binding.layoutPostOpt4.clPostOpt.visibility = View.GONE
     }
 
+    private fun assignVoteOptNum(
+        curItem: AllPostResDto.Data,
+        binding: ItemPostBinding
+    ){
+        var i: Int = 1
+        for (i in 1..curItem.option.size) {
+            if (curItem.loginUserVoteId == curItem.option[i].id) {
+                binding.itVoteOptSel = i+1
+                break
+            }
+        }
+    }
+
     private fun clickImgActivate(
         binding: ItemPostBinding,
         itOptSelNum: Int,
@@ -208,6 +221,33 @@ class PostAdapter(
         } else { // 해당 옵션이 이미지를 갖지 않는다
             binding.itImgSel1 = 0
             binding.itImgSel2 = 0
+        }
+    }
+
+    // 투표율을 보여준다
+    private fun bindTurnout(
+        binding: ItemPostBinding,
+        curOptList: List<AllPostResDto.Data.Option>
+    ) {
+        // [옵션 1]
+        if (curOptList.size >= 1) {
+            binding.layoutPostOpt1.tvPostOptTurnout.text = curOptList[0].percentage.toString() + "%"
+            // 라이브러리 쓰면 될 듯
+        }
+
+        // [옵션 2]
+        if (curOptList.size >= 2) {
+            binding.layoutPostOpt2.tvPostOptTurnout.text = curOptList[1].percentage.toString() + "%"
+        }
+
+        // [옵션 3]
+        if (curOptList.size >= 3) {
+            binding.layoutPostOpt3.tvPostOptTurnout.text = curOptList[2].percentage.toString() + "%"
+        }
+
+        // [옵션 4]
+        if (curOptList.size >= 4) {
+            binding.layoutPostOpt4.tvPostOptTurnout.text = curOptList[3].percentage.toString() + "%"
         }
     }
 
