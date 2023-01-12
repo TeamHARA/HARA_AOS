@@ -62,7 +62,7 @@ class HARARepositoryImpl @Inject constructor(
         return HARAService.getDetailWith(worryId)
     }
 
-    override suspend fun getDetailAloneI(worryId: Int): Response<DetailAloneResDto> {
+    override suspend fun getDetailAlone(worryId: Int): Response<DetailAloneResDto> {
         return HARAService.getDetailAlone(worryId)
     }
 }

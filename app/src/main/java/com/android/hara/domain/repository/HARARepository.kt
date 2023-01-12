@@ -23,5 +23,5 @@ interface HARARepository {
 
     suspend fun getDetailWith(worryId: Int): Response<DetailWithResDto>
 
-    suspend fun getDetailAloneI(worryId: Int): Response<DetailAloneResDto>
+    suspend fun getDetailAlone(worryId: Int): Response<DetailAloneResDto>
 }
