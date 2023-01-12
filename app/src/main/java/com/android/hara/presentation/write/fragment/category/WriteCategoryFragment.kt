@@ -53,7 +53,7 @@ class WriteCategoryFragment :
     private fun addObserve() {
         categoryViewModel.category.observe(viewLifecycleOwner) {
             with(binding) {
-                category = categoryList[it]
+                category = categoryList[it - 1]
                 writeViewModel.categoty = it // ViewModel에 set 해주기
                 tvSelectedCategory.visibility = View.VISIBLE
                 clCategorySelectLayout.visibility = View.GONE
