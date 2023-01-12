@@ -4,7 +4,19 @@
 
     <data>
         <variable
-            name="optSel"
+            name="layOptSelNum"
+            type="int" />
+        <variable
+            name="layOptClickable"
+            type="boolean" />
+        <variable
+            name="layOptSel"
+            type="boolean" />
+        <variable
+            name="layVoteOptSel"
+            type="boolean" />
+        <variable
+            name="layMyPost"
             type="boolean" />
     </data>
 
@@ -12,19 +24,25 @@
         android:id="@+id/cl_post_opt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@{optSel ? @drawable/shape_rectangle_blue1_stroke_1_8 : @drawable/shape_rectangle_gray4_stroke_1_8}"
         android:paddingHorizontal="12dp"
         android:paddingVertical="12dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_post_content">
+        app:layout_constraintTop_toBottomOf="@+id/tv_post_content"
+        android:clickable="@{layOptClickable}"
+        app:layOptSelNum="@{layOptSelNum}"
+        app:layOptSel="@{layOptSel}"
+        app:layVoteOptSel="@{layVoteOptSel}" >
 
         <ImageView
             android:id="@+id/iv_post_opt_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@{optSel ? @drawable/ic_checkcircle_on : @drawable/ic_checkcircle_off}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layOptSelNum="@{layOptSelNum}"
+            app:layOptSel="@{layOptSel}"
+            app:layVoteOptSel="@{layVoteOptSel}"
+            app:layMyPost="@{layMyPost}"/>
 
         <TextView
             android:id="@+id/tv_post_opt_title"
@@ -37,6 +55,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_post_opt_check"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@{optSel ? @color/blue_1 : @color/black }"/>
+            app:layOptSelNum="@{layOptSelNum}"
+            app:layOptSel="@{layOptSel}"
+            app:layVoteOptSel="@{layVoteOptSel}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
