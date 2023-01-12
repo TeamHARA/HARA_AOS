@@ -211,8 +211,5 @@ class PostAdapter(
         }
     }
 
-    companion object{
-
-    }
 
 } // class PostAdapter
