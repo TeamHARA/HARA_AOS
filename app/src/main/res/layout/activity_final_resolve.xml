@@ -63,9 +63,21 @@
             android:text="선택지 글자수 제한 공백 포함 20자"
             android:textAppearance="@style/hara_modal2_m18"
             android:textColor="@color/white"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv_final_resolve_img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="보관함으로 이동하기>"
+            android:textColor="@color/black"
+            android:textAppearance="@style/hara_body2_m14"
+            android:layout_marginBottom="22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
