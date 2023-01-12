@@ -10,7 +10,6 @@ import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.detail.DetailWithActivity
 import com.android.hara.presentation.home.fragment.together.adapter.CategoryAdapter
-import com.android.hara.presentation.home.fragment.together.adapter.PostAdapter
 import com.android.hara.presentation.home.fragment.together.model.SimpleModel
 import com.android.hara.presentation.home.fragment.together.viewmodel.TogetherFragmentViewModel
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
@@ -116,7 +115,9 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
 
         // [2] homeVm의 btn이 변하는지 관찰
         homeVm.btnSel.observe(viewLifecycleOwner) {
-            Timber.e("통신 이 값 보내는디!! " + homeVm.getPostId().toString() + homeVm.getOptId().toString())
+            Timber.e(
+                "통신 이 값 보내는디!! " + homeVm.getPostId().toString() + homeVm.getOptId().toString()
+            )
             homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
         }
 
@@ -125,7 +126,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             binding.swipeRefreash.isRefreshing = false // 서버통신 완료시 리프레시 중단
             if (!it) {
                 binding.root.makeSnackbar(getString(R.string.server_connet_fail))
-                //실패 시 스낵바, 성공 시 게시물 목록 value 갱신 -> 위의 observer에서 자동 갱신
+                // 실패 시 스낵바, 성공 시 게시물 목록 value 갱신 -> 위의 observer에서 자동 갱신
             }
         }
     }

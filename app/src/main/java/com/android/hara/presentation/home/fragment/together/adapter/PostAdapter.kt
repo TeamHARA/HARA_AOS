@@ -1,6 +1,5 @@
 package com.android.hara.presentation.home.fragment.together
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,8 +79,8 @@ class PostAdapter(
             if (curItem.isAuthor) {
                 binding.itOptClickable = false // 옵션 clickable = false
                 binding.itMyPost = true // 옵션에 check 표시 안 보임, '최종결정 하러가기' 버튼이 보임
-                binding.itOptSelNum =
-                    -1 // 이런 식으로 값을 안 주면 뷰가 재사용 될 때 itOptSelNum 값이 초기화가 안 돼서 옵션이 선택된 것처럼 나올 수도
+                binding.itOptSelNum = -1
+                // 이런 식으로 값을 안 주면 뷰가 재사용 될 때 itOptSelNum 값이 초기화가 안 돼서 옵션이 선택된 것처럼 나올 수도
 
                 binding.itVoteOptSel = 0 // 초기화.?
 
@@ -213,7 +212,12 @@ class PostAdapter(
                             bindTurnout(binding, voteRes)
 
                             // 이미지
-                            activateSelOptImage(binding, curItem, binding.itVoteOptSel - 1, imgToOpt)
+                            activateSelOptImage(
+                                binding,
+                                curItem,
+                                binding.itVoteOptSel - 1,
+                                imgToOpt
+                            )
                         } else {
                             Timber.e("이 글에 대해 옵션을 선택해주시라요!")
                         }
