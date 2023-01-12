@@ -68,7 +68,7 @@ class PostAdapter(
             if (imgToOpt[0] == -1) binding.ivPostImg1.visibility = View.GONE
             if (imgToOpt[1] == -1) binding.ivPostImg2.visibility = View.GONE
 
-            // 1) 내가 쓴 글이면: '최종 결정하러 가기' 버튼
+            // 1) 내가 쓴 글이면: '최종결정 하러가기' 버튼
             if (curItem.isAuthor) {
                 binding.itOptClickable = false // 옵션 clickable = false
                 binding.itMyPost = true // 옵션에 check 표시 안 보임, '최종결정 하러가기' 버튼이 보임
@@ -78,6 +78,11 @@ class PostAdapter(
                 // 이미지를 갖는 옵션이 있는지, 어떤 옵션이 몇 번째 이미지 뷰를 갖는지 체크하는 로직은 없음
                 binding.itImgSel1 = 1
                 binding.itImgSel2 = 1
+
+                // [최종결정 하러가기] 버튼
+                binding.btnPostGoDecide.setOnSingleClickListener {
+                    // TODO 최종결정 하러 activity 이동
+                }
             }
 
             // 2) 내가 쓴 글이 아니면(남이 쓴 글이면): 투표 버튼
@@ -106,33 +111,38 @@ class PostAdapter(
 
                     binding.itVoteOptSel = 0 // 아직 투표 안 했으니까 투표한 옵션# = (임의값)0
 
-                    // 옵션 클릭 시 : 옵션/투표 버튼 스타일이 바뀌는 로직
+                    /* 옵션 클릭 시 : 옵션/투표 버튼 스타일이 바뀌는 로직 */
+                    // [옵션 1] 버튼
                     binding.layoutPostOpt1.clPostOpt.setOnClickListener {
                         changeXmlOptSelNum(binding, 1)
 
-                        // [수현] 옵션이 클릭되면, 어댑터에 파라미터로 온 함수에, 그 글의 id와 그 옵션의 id를 넘겨준다
+                        // 옵션이 클릭되면, 어댑터에 파라미터로 온 함수에, 그 글의 id와 그 옵션의 id를 넘겨준다
                         optSelListener(curItem.worryId, curItem.option[0].id)
 
                         // [이미지 뷰] 옵션에 해당하는 이미지가 있었다면, 옵션 클릭 시 해당 이미지도 활성화
                         clickImgActivate(binding, binding.itOptSelNum, curItem.option[0], imgToOpt)
                         Timber.e(binding.itOptSelNum.toString())
                     }
+                    // [옵션 2] 버튼
                     binding.layoutPostOpt2.clPostOpt.setOnClickListener {
                         changeXmlOptSelNum(binding, 2)
                         optSelListener(curItem.worryId, curItem.option[1].id)
                         clickImgActivate(binding, binding.itOptSelNum, curItem.option[1], imgToOpt)
                     }
+                    // [옵션 3] 버튼
                     binding.layoutPostOpt3.clPostOpt.setOnClickListener {
                         changeXmlOptSelNum(binding, 3)
                         optSelListener(curItem.worryId, curItem.option[2].id)
                         clickImgActivate(binding, binding.itOptSelNum, curItem.option[2], imgToOpt)
                     }
+                    // [옵션 4] 버튼
                     binding.layoutPostOpt4.clPostOpt.setOnClickListener {
                         changeXmlOptSelNum(binding, 4)
                         optSelListener(curItem.worryId, curItem.option[3].id)
                         clickImgActivate(binding, binding.itOptSelNum, curItem.option[3], imgToOpt)
                     }
 
+                    // [투표하기] 버튼
                     binding.btnPostVote.setOnSingleClickListener {
                         btnSelListener()
                         binding.itOptClickable = false // 옵션 clickable = false
