@@ -48,21 +48,20 @@ class PostAdapter(
             // 각 옵션 뷰에, 서버통신으로 받은 데이터(옵션)를 넣어준다
             setOptTitle(binding, curItem)
 
-            // 한 item에 대해, option 2~4개에 대해 순환하며
-            // option1에 이미지가 있고 imgToOpt[-1, -1]이라면: imgToOpt[0, -1]
-            // 또 option3에 이미지가 있다면 imgToOpt[0, 2]로 변경 & 이미지 src 바인딩
+            // 예) curItem의 옵션 4개 중 첫 번째(option[0])가 이미지를 가진다면
+            // imgToOpt[0]에 그 옵션의 id를 저장하는 식
             curItem.option.forEachIndexed { index, opt ->
                 if (opt.hasImage) {
                     if (imgToOpt[0] == -1) {
                         imgToOpt[0] = opt.id
                         binding.ivPostImg1.setImageResource(R.drawable.img_card_result)
                         binding.ivPostImg1.visibility = View.VISIBLE
-                        binding.itImgSel1 = 0 // 초기값: 아무 옵션도 선택 안 된 상태, 둘다 제대로 보임
+                        binding.itImgSel1 = 0 // 초기값: 아무 옵션도 선택 안 된 상태, 둘다 선명히 보임
                     } else if (imgToOpt[1] == -1) {
                         imgToOpt[1] = opt.id
                         binding.ivPostImg2.setImageResource(R.drawable.img_card_result)
                         binding.ivPostImg2.visibility = View.VISIBLE
-                        binding.itImgSel2 = 0 // 초기값: 아무 옵션도 선택 안 된 상태, 둘다 제대로 보임
+                        binding.itImgSel2 = 0 // 초기값: 아무 옵션도 선택 안 된 상태, 둘다 선명히 보임
                     }
                 }
             }
