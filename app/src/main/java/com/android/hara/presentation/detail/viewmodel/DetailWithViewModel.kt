@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.response.DetailWithResDto
+import com.android.hara.data.model.response.VoteResDto
 import com.android.hara.domain.repository.HARARepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -42,6 +43,4 @@ class DetailWithViewModel @Inject constructor(private val haraRepository: HARARe
         }
 
     }
-
-
 }

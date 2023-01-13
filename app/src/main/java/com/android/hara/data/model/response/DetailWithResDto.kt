@@ -28,7 +28,7 @@ data class DetailWithResDto(
         @SerialName("finalOption")
         val finalOption: Int?, // 2
         @SerialName("isAuthor")
-        val isAuthor: Boolean, // false
+        val isAuthor: Boolean?, // false
         @SerialName("options")
         val options: List<Option>,
         @SerialName("worryContent")

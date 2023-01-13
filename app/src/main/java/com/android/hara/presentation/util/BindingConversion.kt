@@ -233,8 +233,6 @@ fun ImageView.changeCheckSrc(optSelNum: Int, optSel: Boolean, voteOptSel: Boolea
     }
 }
 
-
-
 // [상세보기] 옵션 선택에 따라 옵션 text color가 달라진다
 @BindingAdapter(value = ["app:layVoteOptSel", "app:layOptSel"], requireAll = true)
 fun changeTextColor(tv: TextView, voteOptSel: Boolean, optSel: Boolean) {

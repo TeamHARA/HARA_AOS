@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import com.android.hara.R
+import com.android.hara.data.model.response.DetailWithResDto
+import com.android.hara.data.model.response.VoteResDto
 import com.android.hara.databinding.ActivityDetailWithBinding
+import com.android.hara.databinding.LayoutDetailOptionBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.detail.adapter.CommentAdapter
 import com.android.hara.presentation.detail.decision.FinalDecideActivity
@@ -50,7 +53,8 @@ class DetailWithActivity :
         detailVm.success.observe(this) {
             if (it) {
                 binding.detailVm = detailVm
-                if (detailVm.detailDto.value!!.data.isAuthor) binding.nickname = "짱윤"
+                if (detailVm.detailDto.value!!.data.isAuthor == true)
+                    binding.nickname = "짱윤"
                 else binding.nickname = HARAobjcet.nicknameList[(0..8).random()]
                 binding.category = detailVm.detailDto.value!!.data.category
                 detailVm.detailDto.value!!.data.options.forEachIndexed { index, option ->
@@ -68,7 +72,7 @@ class DetailWithActivity :
                         title = option.title
 
                         // 장점
-                        if (option.advantage == "") {
+                        if (option.advantage == null || option.advantage == "") {
                             tvOptProTitle.visibility = View.GONE
                             tvOptProContent.visibility = View.GONE
                         } else {
@@ -78,7 +82,7 @@ class DetailWithActivity :
                         }
 
                         // 단점
-                        if (option.disadvantage == "") {
+                        if (option.disadvantage == null || option.disadvantage == "") {
                             tvOptConTitle.visibility = View.GONE
                             tvOptConContent.visibility = View.GONE
                         } else {
@@ -89,8 +93,9 @@ class DetailWithActivity :
 
                         // 투표율
                         if (option.percentage == null) {
-                            tvOptPercent.visibility = View.GONE
-                        } else percentage = option.percentage
+                            //tvOptPercent.visibility = View.GONE
+                            percentage = "0" + "%"
+                        } else percentage = option.percentage.toString() + "%"
                     }
 
                     /* [함께고민] */
@@ -103,7 +108,7 @@ class DetailWithActivity :
                     )
 
                     // 1. [내 글]
-                    if (detailVm.detailDto.value!!.data.isAuthor) {
+                    if (detailVm.detailDto.value!!.data.isAuthor!!) {
                         var maxVal = 0
                         var maxIndex = -1
                         detailVm.detailDto.value!!.data.options.forEachIndexed { i, opt ->
@@ -160,15 +165,19 @@ class DetailWithActivity :
                         // 2-a. [투표 완료]
                         if (detailVm.detailDto.value!!.data.isVoted) {
                             binding.itOptSelNum = -1
-                            // TODO 서버에서 어떤 옵션에 투표했는지에 대한 정보가 와야 됨
+
+                            // 몇 번째 옵션에 투표했는지
                             for (i in 0..(detailVm.detailDto.value!!.data.options.size - 1)) {
                                 if (detailVm.detailDto.value!!.data.selectedOptionId
                                     == detailVm.detailDto.value!!.data.options[i].id
                                 ) {
                                     binding.itVoteOptSelNum = i + 1
-                                } else break
+                                    break
+                                }
                             }
-                            // binding.itVoteOptSelNum = 1 // TODO 일단 무조건 옵션1에 투표했다고 해보자
+                            Timber.e("여기다 투표했던 것이여 " + binding.itVoteOptSelNum)
+
+                            showProgressDetailRes(bindingList, detailVm.detailDto.value?.data?.options!!)
                         }
                         // 2-b. [투표 미완]
                         else {
@@ -225,13 +234,6 @@ class DetailWithActivity :
                                     detailVm.detailDto.value!!.data.options[3].id
                                 )
                             }
-
-                            // 투표하기 버튼이 눌리면
-                            binding.btnDetailVote.setOnSingleClickListener {
-                                // homeVm 안의 btnVal 값을 바꿔줌 -> observe에서 감지, 서버 통신
-                                homeVm.changeBtnVal()
-                                binding.itOptSelNum = -1
-                            }
                         }
                     }
                 }
@@ -251,38 +253,38 @@ class DetailWithActivity :
             finish()
         }
 
+        // [버튼 누르면] 최종결정 하러가기? 투표하기?
         homeVm.btnSel.observe(this) {
-            Timber.e("투표 POST " + homeVm.getPostId() + homeVm.getOptId())
-            homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
-        }
+            if (binding.itMyPost) { // [나의 글] 최종결정 하러가기
 
-        // n번째 옵션 클릭 시 옵션과 버튼 스타일 변하는 로직
-        /*
-        binding.layoutOption1.clOptBox.setOnClickListener {
-            changeVmSnum(1)
-        }
-        binding.layoutOption2.clOptBox.setOnClickListener {
-            changeVmSnum(2)
-        }
-        binding.layoutOption3.clOptBox.setOnClickListener {
-            changeVmSnum(3)
-        }
-        binding.layoutOption4.clOptBox.setOnClickListener {
-            changeVmSnum(4)
-        }
+            }
+            else { // [남의 글] 투표하기
+                binding.itOptSelNum = -1
+                Timber.e("투표 POST " + homeVm.getPostId() + homeVm.getOptId())
 
-        detailVm.sNum.observe(this) {
-            binding.detailVm = detailVm
-        }
-        */
-    }
+                // 1) (detailVm - get해온 옵션 중) 투표한 옵션이 몇 번째인지
+                var i: Int = 0
+                Timber.e(detailVm.detailDto.value?.data?.options?.size!!.toString())
+                while (i < detailVm.detailDto.value?.data?.options?.size!!) {
+                    if (detailVm.detailDto.value?.data?.options!![i].id == homeVm.getOptId()) {
+                        break // i+1번째 옵션에 투표한 것
+                    }
+                    i++
+                }
+                binding.itVoteOptSelNum = i + 1
 
-    // n번째 옵션이 선택되면 DetailViewModel 안의 sNum의 value가 n으로 바뀐다
-    private fun changeVmSnum(n: Int) { // n이 선택된 상태
-        // 1) n이 클릭되면: n만 비활성화돼야 해
-        if (detailVm.sNum.value == n) detailVm.sNum.value = 0
-        // 2) n이 클릭되면: n만 활성화돼야 해
-        else detailVm.sNum.value = n
+                // 2) (homeVm - post) 투표하기
+                homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
+
+                // 3) (homeVm - post의 response로 받은 걸로) progress 갱신
+                var index: Int = 0
+                while (index < homeVm.voteResult.value?.data?.size!!) {
+                    if (homeVm.voteResult.value?.data!![index].worryId == homeVm.getOptId()) break
+                    index++ // data[index]의 option[]에 따라 progress 갱신해야 한다...(dto 구조 참고)
+                }
+                showProgressVoteRes(bindingList, homeVm.voteResult.value?.data!![index].option)
+            }
+        }
     }
 
     private fun changeItOptSelNum(binding: ActivityDetailWithBinding, n: Int) {
@@ -290,5 +292,26 @@ class DetailWithActivity :
         if (binding.itOptSelNum == n) binding.itOptSelNum = 0
         // 2) n이 클릭되면: n만 활성화돼야 해
         else binding.itOptSelNum = n
+    }
+
+    // 각 옵션에 대해: progress 값을 보여준다(갱신한다)
+    private fun showProgressVoteRes(
+        bindList: List<LayoutDetailOptionBinding>,
+        optList: List<VoteResDto.Data.Option>)
+    {
+        bindList.forEachIndexed { i, opt ->
+            opt.tvOptPercent.text = optList[i].percentage.toString()
+            opt.pbDetailTurnout.progress = optList[i].percentage?.toFloat()!!
+        }
+    }
+
+    private fun showProgressDetailRes(
+        bindList: List<LayoutDetailOptionBinding>,
+        optList: List<DetailWithResDto.Data.Option>)
+    {
+        optList.forEachIndexed { i, opt ->
+            bindList[i].tvOptPercent.text = opt.percentage.toString()
+            bindList[i].pbDetailTurnout.progress = opt.percentage?.toFloat()!!
+        }
     }
 }

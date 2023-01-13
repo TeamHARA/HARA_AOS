@@ -28,7 +28,7 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
     val selCat: LiveData<Int> = _selCat
 
     /* [홈화면: 옵션 선택해 투표] 투표하기 버튼 - true면 post 통신을 하자 */
-    private val _btnSel: MutableLiveData<Boolean> = MutableLiveData(false)
+    private val _btnSel: MutableLiveData<Boolean> = MutableLiveData()
     val btnSel: LiveData<Boolean> = _btnSel
 
     // [홈화면: 고민글 목록 전체조회] category 별 모든 글 목록
@@ -101,7 +101,11 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
     }
 
     fun getOptVoteRate(): List<VoteResDto.Data.Option>? {
-        return _voteResult.value?.data?.option
+        for (i in 0..(_voteResult.value?.data?.size?.minus(1) ?: 0)) {
+            if (this.votePostId == _voteResult.value?.data?.get(i)?.worryId)
+                return _voteResult.value?.data?.get(i)?.option
+        }
+        return emptyList()
     }
 
     /*----------------------------------------------------------*/
