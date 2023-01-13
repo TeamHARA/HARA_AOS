@@ -8,6 +8,7 @@ import com.android.hara.databinding.ActivityDetailWithBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.detail.adapter.CommentAdapter
 import com.android.hara.presentation.detail.viewmodel.DetailWithViewModel
+import com.android.hara.presentation.util.HARAobjcet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,6 +36,10 @@ class DetailWithActivity :
         detailVm.success.observe(this) {
             if (it) {
                 binding.detailVm = detailVm
+                if (detailVm.detailDto.value!!.data.isAuthor) binding.nickname = "짱윤"
+                else binding.nickname = HARAobjcet.nicknameList[(0..8).random()]
+                binding.category = detailVm.detailDto.value!!.data.category
+
                 detailVm.detailDto.value!!.data.options.forEachIndexed { index, option ->
                     bindingList[index].root.visibility = View.VISIBLE // 선택지 갯수 만큼 visibilty 조절
                     if (option.hasImage) binding.flowImage.visibility =
