@@ -10,6 +10,7 @@ import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.custom.EditBottomSheetDialog
 import com.android.hara.presentation.detail.viewmodel.DetailAloneViewModel
 import com.android.hara.presentation.home.fragment.together.DetailData
+import com.android.hara.presentation.util.HARAobjcet
 import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,6 +39,8 @@ class DetailAloneActivity :
         detailAloneVm.success.observe(this) {
             if (it) {
                 binding.detailVm = detailAloneVm
+                binding.category = HARAobjcet.categoryList[detailAloneVm.detailDto.value?.data?.category ?: 1] // 카테고리 별도 대응
+
                 if (detailAloneVm.detailDto.value?.data?.finalOption != null) binding.appbarDetail.title =
                     this.getString(R.string.storage_filter_com)
                 detailAloneVm.detailDto.value!!.data.options.forEachIndexed { index, option ->

@@ -11,6 +11,7 @@ import com.android.hara.presentation.detail.adapter.CommentAdapter
 import com.android.hara.presentation.detail.viewmodel.DetailWithViewModel
 import com.android.hara.presentation.home.fragment.together.DetailData
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
+import com.android.hara.presentation.util.HARAobjcet.categoryList
 import com.android.hara.presentation.util.HARAobjcet.nicknameList
 import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +50,8 @@ class DetailWithActivity :
                 binding.detailVm = detailVm
                 if (detailVm.detailDto.value!!.data.isAuthor) binding.nickname = nicknameList[0]
                 else binding.nickname = nicknameList[(0..8).random()]
+                binding.category = categoryList[detailVm.detailDto.value?.data?.category ?: 1]
+
                 if (detailVm.detailDto.value?.data?.finalOption != null) binding.appbarDetail.title =
                     this.getString(R.string.storage_filter_com)
                 detailVm.detailDto.value!!.data.options.forEachIndexed { index, option ->
