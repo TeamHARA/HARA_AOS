@@ -129,8 +129,7 @@ Enjoy, think, solve
 
 ## 실행결과 
 
-![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/70648111/212339173-fbbc4289-6c2b-4188-8346-e067dfb08ce2.gif)
-![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/70648111/212339214-9e0a1173-06dc-4733-958b-dc9ec822ad29.gif)
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/70648111/212339173-fbbc4289-6c2b-4188-8346-e067dfb08ce2.gif) ![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/70648111/212339214-9e0a1173-06dc-4733-958b-dc9ec822ad29.gif)
 
 
 ## Foldering
