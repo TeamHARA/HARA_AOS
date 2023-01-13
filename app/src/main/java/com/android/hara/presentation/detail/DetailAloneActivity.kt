@@ -38,7 +38,8 @@ class DetailAloneActivity :
         detailAloneVm.success.observe(this) {
             if (it) {
                 binding.detailVm = detailAloneVm
-                binding.category = detailAloneVm.detailDto.value!!.data.category
+                if (detailAloneVm.detailDto.value?.data?.finalOption != null) binding.appbarDetail.title =
+                    this.getString(R.string.storage_filter_com)
                 detailAloneVm.detailDto.value!!.data.options.forEachIndexed { index, option ->
                     bindingList[index].root.visibility = View.VISIBLE // 선택지 갯수 만큼 visibilty 조절
                     if (option.hasImage) binding.flowImage.visibility =

@@ -22,7 +22,7 @@ data class DetailAloneResDto(
         @SerialName("createdAt")
         val createdAt: String, // 2023.01.06
         @SerialName("finalOption")
-        val finalOption: Int?, // 86
+        val finalOption: Int?,// 86
         @SerialName("options")
         val options: List<Option>,
         @SerialName("worryContent")
