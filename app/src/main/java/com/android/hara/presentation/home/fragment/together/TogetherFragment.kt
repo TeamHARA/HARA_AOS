@@ -10,6 +10,7 @@ import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.detail.DetailWithActivity
 import com.android.hara.presentation.home.fragment.together.adapter.CategoryAdapter
+import com.android.hara.presentation.home.fragment.together.adapter.PostAdapter
 import com.android.hara.presentation.home.fragment.together.model.SimpleModel
 import com.android.hara.presentation.home.fragment.together.viewmodel.TogetherFragmentViewModel
 import com.android.hara.presentation.home.viewmodel.HomeViewModel

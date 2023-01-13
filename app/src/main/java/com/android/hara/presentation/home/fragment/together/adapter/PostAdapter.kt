@@ -1,6 +1,5 @@
 package com.android.hara.presentation.home.fragment.together.adapter
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,8 @@ import com.android.hara.R
 import com.android.hara.data.model.response.AllPostResDto
 import com.android.hara.data.model.response.VoteResDto
 import com.android.hara.databinding.ItemPostBinding
-import com.android.hara.presentation.util.GlobalFalseDiff
+import com.android.hara.presentation.home.fragment.together.DetailData
+import com.android.hara.presentation.util.GlobalDiffCallBack
 import com.android.hara.presentation.util.setOnSingleClickListener
 import timber.log.Timber
 
