@@ -18,7 +18,7 @@ data class DetailWithResDto(
     @Serializable
     data class Data(
         @SerialName("category")
-        val category: Int, // 일상
+        val category: String, // 일상
         @SerialName("commentCount")
         val commentCount: Int, // 2
         @SerialName("comments")

@@ -50,7 +50,6 @@ class DetailWithActivity :
                 binding.detailVm = detailVm
                 if (detailVm.detailDto.value!!.data.isAuthor) binding.nickname = nicknameList[0]
                 else binding.nickname = nicknameList[(0..8).random()]
-                binding.category = categoryList[detailVm.detailDto.value?.data?.category ?: 1]
 
                 if (detailVm.detailDto.value?.data?.finalOption != null) binding.appbarDetail.title =
                     this.getString(R.string.storage_filter_com)
