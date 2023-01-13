@@ -14,7 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class OneSecActivity : BindingActivity<ActivityOneSecBinding>(R.layout.activity_one_sec) {
 
     private val onesecViewModel: OneSecViewModel by viewModels()
-    private val oneSecAdapter = OneSecAdapter()
+    private val oneSecAdapter = OneSecAdapter() { worryTitle ->
+        binding.etSearch.setText(worryTitle)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
