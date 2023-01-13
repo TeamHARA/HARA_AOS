@@ -49,6 +49,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         addObserve()
     }// fun onViewCreated()
 
+
     private fun init() {
         recyclerView = binding.rvTogetherPost
         binding.swipeRefreash.setOnRefreshListener { /* swipe 시 진행할 동작 */
@@ -85,15 +86,17 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         postAdapter = PostAdapter(
             {
                 val intent = Intent(requireContext(), DetailWithActivity::class.java)
-                intent.putExtra("worryId", it)
+                intent.putExtra("detailData", it)
                 startActivity(intent)
             },
             { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
             { homeVm.changeBtnVal() },
-            { requireContext().getDrawable(R.drawable.shape_rectangle_gray3_fill_8)!! },
-            { requireContext().getColor(R.color.white) }
+            { homeVm.getOptVoteRate() }
         )
         binding.rvTogetherPost.adapter = postAdapter
+
+        // private val voteResult: h
+        // { homeVm.voteResult.value },
     }
 
     private fun addObserve() {
@@ -112,7 +115,9 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
 
         // [2] homeVm의 btn이 변하는지 관찰
         homeVm.btnSel.observe(viewLifecycleOwner) {
-            Timber.e("hello", homeVm.getPostId(), homeVm.getOptId())
+            Timber.e(
+                "통신할 때 이 값 보내 " + homeVm.getPostId() + homeVm.getOptId()
+            )
             homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
         }
 
@@ -121,13 +126,12 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             binding.swipeRefreash.isRefreshing = false // 서버통신 완료시 리프레시 중단
             if (!it) {
                 binding.root.makeSnackbar(getString(R.string.server_connet_fail))
-                //실패 시 스낵바, 성공 시 게시물 목록 value 갱신 -> 위의 observer에서 자동 갱신
+                // 실패 시 스낵바, 성공 시 게시물 목록 value 갱신 -> 위의 observer에서 자동 갱신
             }
         }
     }
 
-
-}
+} // fun onViewCreated()
 
 
 /*

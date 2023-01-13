@@ -41,7 +41,9 @@ class StorageFragment : BindingFragment<FragmentStorageBinding>(R.layout.fragmen
         val tabTitles = listOf<String>("혼자 고민", "함께 고민")
 
         // 2. TabLayout과 ViewPager2를 연결하고, TabItem의 메뉴명을 설정한다.
-        TabLayoutMediator(tabLayout, viewPager) { tab, position -> tab.text = tabTitles[position] }.attach()
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = tabTitles[position]
+        }.attach()
 
         // 버튼 클릭 시 '1초만에 해결하기' 액티비티로 연결
         binding.cvStorageBtnOnesec.setOnClickListener {
