@@ -11,6 +11,7 @@ import com.android.hara.databinding.ActivityHomeBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.detail.decision.FinalDecideActivity
 import com.android.hara.presentation.detail.model.DecideData
+import com.android.hara.presentation.home.fragment.storage.StorageFragment
 import com.android.hara.presentation.home.fragment.together.TogetherFragment
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
 import com.android.hara.presentation.search.SearchActivity
@@ -28,6 +29,10 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
         super.onCreate(savedInstanceState)
         setNavigation()
         setListener()
+
+        if (intent.getBooleanExtra("isNextSolve", false)) {
+            supportFragmentManager.beginTransaction().replace(R.id.nav_container, StorageFragment()).commit()
+        }
     }
 
     private fun setListener() {

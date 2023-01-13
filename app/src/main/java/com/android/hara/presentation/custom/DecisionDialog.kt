@@ -16,7 +16,7 @@ import com.android.hara.presentation.util.setOnSingleClickListener
 class DecisionDialog(
     val context: Context,
     val data: DialogData,
-    private val itemActionListener: () -> Unit
+    private val itemActionListener: () -> Unit,
 ) {
     private val inflater by lazy { LayoutInflater.from(context) }
     private val binding: DialogDecisionBinding = DialogDecisionBinding.inflate(inflater)

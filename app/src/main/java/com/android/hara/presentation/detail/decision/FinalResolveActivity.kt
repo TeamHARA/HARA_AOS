@@ -1,9 +1,11 @@
 package com.android.hara.presentation.detail.decision
 
+import android.content.Intent
 import android.os.Bundle
 import com.android.hara.R
 import com.android.hara.databinding.ActivityFinalResolveBinding
 import com.android.hara.presentation.base.BindingActivity
+import com.android.hara.presentation.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,8 +32,15 @@ class FinalResolveActivity :
             }
         }
 
-        binding.btnFinalGoStorage.setOnClickListener {
-            // TODO: 보관함으로 이동 어떻게 하지?
+        binding.tvFinalGoStorage.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    HomeActivity::class.java
+                ).putExtra("isNextSolve", true)
+            )
+            finishAffinity() // 기존 스택 비우기
+            finish()
         }
     }
 }

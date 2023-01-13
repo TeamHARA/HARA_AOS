@@ -1,5 +1,6 @@
-package com.android.hara.presentation.home.fragment.together
+package com.android.hara.presentation.home.fragment.together.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import com.android.hara.R
 import com.android.hara.data.model.response.AllPostResDto
 import com.android.hara.data.model.response.VoteResDto
 import com.android.hara.databinding.ItemPostBinding
-import com.android.hara.presentation.util.GlobalDiffCallBack
+import com.android.hara.presentation.util.GlobalFalseDiff
 import com.android.hara.presentation.util.setOnSingleClickListener
 import timber.log.Timber
 
@@ -139,7 +140,7 @@ class PostAdapter(
                     binding.itOptClickable = true // 옵션 clickable = true
                     binding.itOptSelNum = 0 // 옵션에 check src, 투표 버튼 enable
 
-                    binding.itVoteOptSel = 0 // 아직 투표 안 했으니까 투표한 옵션# = (임의값)
+                    binding.itVoteOptSel = 0 // 아직 투표 안 했으니까 투표한 옵션# = (임의값)0
 
                     /* 옵션 클릭 시 : 옵션/투표 버튼 스타일이 바뀌는 로직 */
                     // [옵션 1] 버튼
@@ -154,6 +155,7 @@ class PostAdapter(
 
                         // [이미지 뷰] 옵션에 해당하는 이미지가 있었다면, 옵션 클릭 시 해당 이미지도 활성화
                         clickImgActivate(binding, binding.itOptSelNum, curItem.option[0], imgToOpt)
+                        Timber.e(binding.itOptSelNum.toString())
                     }
                     // [옵션 2] 버튼
                     binding.layoutPostOpt2.clPostOpt.setOnClickListener {

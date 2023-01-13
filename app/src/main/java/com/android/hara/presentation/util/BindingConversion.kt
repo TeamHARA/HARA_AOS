@@ -3,6 +3,7 @@ package com.android.hara.presentation.util
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.text.style.TypefaceSpan
 import android.view.View
 import android.view.ViewGroup
@@ -115,7 +116,10 @@ fun votedOptBackground(cl: ConstraintLayout, optSelNum: Int, optSel: Boolean, vo
     }
 }
 
-@BindingAdapter(value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"], requireAll = true)
+@BindingAdapter(
+    value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel"],
+    requireAll = true
+)
 fun votedOptTextColor(tv: TextView, optSelNum: Int, optSel: Boolean, voteOptSel: Boolean) {
     if (optSelNum == -1) { // [투표 이미 완료]
         if (voteOptSel) // 투표한 옵션
@@ -159,15 +163,13 @@ fun TextView.setDate(dateText: String) {
 
 /* 파라미터 두개 이상 넘기고 싶은 경우 확장함수가 아닌 이런 방식으로 사용 */
 @BindingAdapter(
-    value = ["app:title_bold", "app:title_bold_start", "app:title_bold_end"],
-    requireAll = true
+    value = ["app:title_bold", "app:title_bold_start", "app:title_bold_end"], requireAll = true
 )
-fun setSpannableBold(textView: TextView, tilte: String, start: Int, end: Int) {
+fun setSpannableBold(textView: TextView, title: String, start: Int, end: Int) {
     val boldTypeface = Typeface.create(
-        ResourcesCompat.getFont(textView.context, R.font.pretendard_bold),
-        Typeface.NORMAL
+        ResourcesCompat.getFont(textView.context, R.font.pretendard_bold), Typeface.NORMAL
     )
-    val string = SpannableString(tilte)
+    val string = SpannableString(title)
     string.setSpan(TypefaceSpan(boldTypeface), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
     textView.text = string
 }
@@ -184,6 +186,20 @@ fun TextView.setPer(perInt: String?) {
     if (perInt != null) {
         this.text = "$perInt%"
     }
+}
+
+@BindingAdapter(
+    value = ["app:title_blue", "app:title_blue_start", "app:title_blue_end"], requireAll = true
+)
+fun setSpannableBlue(textView: TextView, title: String, start: Int, end: Int) {
+    val string = SpannableString(title)
+    string.setSpan(
+        ForegroundColorSpan(textView.context.getColor(R.color.blue_1)),
+        start,
+        end,
+        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+    textView.text = string
 }
 
 // [상세보기] 옵션 선택에 따라 check btn src가 달라진다
