@@ -210,7 +210,9 @@ class PostAdapter(
                                         opt.image,
                                         opt.percentage,
                                         opt.title,
-                                        opt.worryWithId
+                                        opt.worryWithId,
+                                        "",
+                                        ""
                                     )
                                 )
                             }
@@ -255,12 +257,14 @@ class PostAdapter(
         if (curItem.option.size >= 1) {
             binding.layoutPostOpt1.tvPostOptTitle.text = curItem.option.get(0).title // text
             binding.layoutPostOpt1.clPostOptContainer.visibility = View.VISIBLE
-        }
+        } else
+            binding.layoutPostOpt1.clPostOptContainer.visibility = View.GONE
         // [옵션 2]
         if (curItem.option.size >= 2) {
             binding.layoutPostOpt2.tvPostOptTitle.text = curItem.option.get(1).title // text
             binding.layoutPostOpt2.clPostOptContainer.visibility = View.VISIBLE
-        }
+        } else
+            binding.layoutPostOpt2.clPostOptContainer.visibility = View.GONE
         // [옵션 3]
         if (curItem.option.size >= 3) {
             binding.layoutPostOpt3.tvPostOptTitle.text = curItem.option.get(2).title // text

@@ -60,13 +60,14 @@ class DetailWithActivity :
                         // 제목
                         title = option.title
 
-                        // 장점
-                        if (option.advantage == "") tvOptProTitle.visibility = View.GONE
-                        else advantage = option.advantage
-
-                        // 단점
-                        if (option.disadvantage == "") tvOptConTitle.visibility = View.GONE
-                        else disadvantage = option.disadvantage
+                        // 장점 & 단점
+                        if (option.advantage == "" || option.advantage == "")
+                            clProsandconsContainer.visibility = View.GONE
+                        else {
+                            clProsandconsContainer.visibility = View.VISIBLE
+                            advantage = option.advantage
+                            disadvantage = option.disadvantage
+                        }
 
                         // 투표율
                         if (option.percentage == null) tvOptPercent.visibility = View.GONE
@@ -162,6 +163,7 @@ class DetailWithActivity :
                             binding.btnDetailVote.setOnSingleClickListener {
                                 // homeVm 안의 btnVal 값을 바꿔줌 -> observe에서 감지, 서버 통신
                                 homeVm.changeBtnVal()
+                                binding.itOptSelNum = -1
                             }
                         }
                     }

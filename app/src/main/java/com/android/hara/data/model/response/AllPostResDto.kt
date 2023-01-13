@@ -55,7 +55,11 @@ data class AllPostResDto(
             @SerialName("title")
             val title: String, // 글1의선택지
             @SerialName("worryWithId")
-            val worryWithId: Int // 1
+            val worryWithId: Int, // 1
+            @SerialName("advantage")
+            val advantage: String?,
+            @SerialName("disadvantage")
+            val disadvantage: String?
         )
     }
 }
