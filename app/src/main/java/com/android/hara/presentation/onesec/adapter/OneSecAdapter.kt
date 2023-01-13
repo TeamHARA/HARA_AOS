@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.data.model.response.RandomListResDto
 import com.android.hara.databinding.ItemLastWorryBinding
 import com.android.hara.presentation.util.GlobalDiffCallBack
+import com.android.hara.presentation.util.setOnSingleClickListener
 
-class OneSecAdapter :
+class OneSecAdapter(private val itemClickListener: (String) -> Unit) :
     ListAdapter<RandomListResDto.Data, OneSecAdapter.ItemViewHolder>(GlobalDiffCallBack()) {
 
     private lateinit var inflater: LayoutInflater
@@ -26,6 +27,9 @@ class OneSecAdapter :
         val curItem = getItem(position)
         with(holder as ItemViewHolder) {
             binding.worrydata = curItem
+            binding.root.setOnSingleClickListener {
+                itemClickListener(curItem.title)
+            }
         }
     }
 }
