@@ -52,11 +52,11 @@
             android:id="@+id/tv_comment_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
             android:text="@{comment.content}"
             android:textAppearance="@style/hara_body2_m14"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/tv_commnet_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/tv_commnet_nickname"
             tools:text="우와 어쩌고 저쩌고 휴휴,,하,,,하,,우와아앙,,배고파!" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

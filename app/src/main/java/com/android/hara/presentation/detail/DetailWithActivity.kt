@@ -14,7 +14,7 @@ import com.android.hara.presentation.detail.model.DecideData
 import com.android.hara.presentation.detail.viewmodel.DetailWithViewModel
 import com.android.hara.presentation.home.fragment.together.DetailData
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
-import com.android.hara.presentation.util.HARAobjcet
+import com.android.hara.presentation.util.HARAobjcet.nicknameList
 import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -38,7 +38,7 @@ class DetailWithActivity :
         }
 
         detailVm.getDetailWith(worryData!!.worryId)
-        // detailVm.getDetailWith(12)
+        //detailVm.getDetailWith(12)
 
         val bindingList = listOf(
             binding.layoutOption1,
@@ -50,9 +50,11 @@ class DetailWithActivity :
         detailVm.success.observe(this) {
             if (it) {
                 binding.detailVm = detailVm
-                if (detailVm.detailDto.value!!.data.isAuthor) binding.nickname = "짱윤"
-                else binding.nickname = HARAobjcet.nicknameList[(0..8).random()]
-                binding.category = detailVm.detailDto.value!!.data.category
+                if (detailVm.detailDto.value!!.data.isAuthor) binding.nickname = nicknameList[0]
+                else binding.nickname = nicknameList[(0..8).random()]
+
+                if (detailVm.detailDto.value?.data?.finalOption != null) binding.appbarDetail.title =
+                    this.getString(R.string.storage_filter_com)
                 detailVm.detailDto.value!!.data.options.forEachIndexed { index, option ->
                     // 선택지 갯수 만큼 visibilty 조절
                     bindingList[index].root.visibility = View.VISIBLE
@@ -96,144 +98,143 @@ class DetailWithActivity :
                     /* [함께고민] */
 
                     Timber.e(
-                        "진입 ..." + binding.itOptSelNum +
-                            " " + binding.itVoteOptSelNum +
-                            " " + binding.itMyPost +
-                            " " + detailVm.detailDto.value!!.data.isAuthor
-                    )
+                        "진입 ..." + binding.itOptSelNum
+                                + " " + binding.itVoteOptSelNum
+                                + " " + binding.itMyPost
+                                + " " + detailVm.detailDto.value!!.data.isAuthor)
 
-                    // 1. [내 글]
-                    if (detailVm.detailDto.value!!.data.isAuthor) {
-                        var maxVal = 0
-                        var maxIndex = -1
-                        detailVm.detailDto.value!!.data.options.forEachIndexed { i, opt ->
-                            if (maxVal <= opt.percentage ?: 0) {
-                                maxVal = opt.percentage ?: 0
-                                maxIndex = i
+                        // 1. [내 글]
+                        if (detailVm.detailDto.value!!.data.isAuthor) {
+                            var maxVal = 0
+                            var maxIndex = -1
+                            detailVm.detailDto.value!!.data.options.forEachIndexed { i, opt ->
+                                if (maxVal <= opt.percentage ?: 0) {
+                                    maxVal = opt.percentage ?: 0
+                                    maxIndex = i
+                                }
                             }
-                        }
 
-                        binding.itMyPost = true
-                        binding.itOptSelNum = 0 // 옵션들이 남의글에 대한 투표완료 화면처럼 보여야 됨
-                        binding.itVoteOptSelNum = 0 // 투표한 적 없음
+                            binding.itMyPost = true
+                            binding.itOptSelNum = 0 // 옵션들이 남의글에 대한 투표완료 화면처럼 보여야 됨
+                            binding.itVoteOptSelNum = 0 // 투표한 적 없음
 
-                        Timber.e(
-                            "나의 글 ..." + binding.itOptSelNum +
-                                " " + binding.itVoteOptSelNum +
-                                " " + binding.itMyPost
-                        )
-
-                        binding.btnDetailVote.setOnSingleClickListener {
-                            val res = detailVm.detailDto.value!!.data
-                            var including = false // default: image X=
-                            val optionId = mutableListOf<Int>()
-                            val optionTitle = mutableListOf<String>()
-                            val optionPer = mutableListOf<Int?>()
-
-                            res.options.forEachIndexed { index, option ->
-                                if (option.hasImage) including = true
-                                optionId.add(option.id)
-                                optionTitle.add(option.title)
-                                optionPer.add(option.percentage)
-                            }
-                            val decideData = DecideData(
-                                1,
-                                res.worryTitle,
-                                optionId,
-                                optionTitle,
-                                optionPer,
-                                false,
-                                including
+                            Timber.e(
+                                "나의 글 ..." + binding.itOptSelNum +
+                                        " " + binding.itVoteOptSelNum +
+                                        " " + binding.itMyPost
                             )
 
-                            startActivity(
-                                Intent(
-                                    this,
-                                    FinalDecideActivity::class.java
-                                ).putExtra("decideData", decideData)
-                            )
-                        }
-                    }
-                    // 2. [남의 글]
-                    else {
-                        binding.itMyPost = false
-                        // 2-a. [투표 완료]
-                        if (detailVm.detailDto.value!!.data.isVoted) {
-                            binding.itOptSelNum = -1
-                            // TODO 서버에서 어떤 옵션에 투표했는지에 대한 정보가 와야 됨
-                            for (i in 0..(detailVm.detailDto.value!!.data.options.size - 1)) {
-                                if (detailVm.detailDto.value!!.data.selectedOptionId
-                                    == detailVm.detailDto.value!!.data.options[i].id
-                                ) {
-                                    binding.itVoteOptSelNum = i + 1
-                                } else break
-                            }
-                            // binding.itVoteOptSelNum = 1 // TODO 일단 무조건 옵션1에 투표했다고 해보자
-                        }
-                        // 2-b. [투표 미완]
-                        else {
-                            // 2-b-ㄱ. 옵션 아무 것도 선택 X
-                            // 2-b-ㄴ. 옵션 뭔가 선택
-
-                            binding.itOptSelNum = 0 // 투표할 옵션 선택 중
-
-                            // 옵션 1에 대한 onClickListener
-                            bindingList[0].clOptBox.setOnClickListener {
-                                changeItOptSelNum(binding, 1)
-                                Timber.e(
-                                    "please1..." + binding.itOptSelNum +
-                                        " " + binding.itVoteOptSelNum
-                                )
-                                homeVm.changeSelPostAndOptId(
-                                    detailVm.detailDto.value!!.data.options[0].worryWithId,
-                                    detailVm.detailDto.value!!.data.options[0].id
-                                )
-                            }
-                            // 옵션 2에 대한 onClickListener
-                            bindingList[1].clOptBox.setOnClickListener {
-                                changeItOptSelNum(binding, 2)
-                                Timber.e(
-                                    "please2..." + binding.itOptSelNum +
-                                        " " + binding.itVoteOptSelNum
-                                )
-                                homeVm.changeSelPostAndOptId(
-                                    detailVm.detailDto.value!!.data.options[1].worryWithId,
-                                    detailVm.detailDto.value!!.data.options[1].id
-                                )
-                            }
-                            // 옵션 3에 대한 onClickListener
-                            bindingList[2].clOptBox.setOnClickListener {
-                                changeItOptSelNum(binding, 3)
-                                Timber.e(
-                                    "please3..." + binding.itOptSelNum +
-                                        " " + binding.itVoteOptSelNum
-                                )
-                                homeVm.changeSelPostAndOptId(
-                                    detailVm.detailDto.value!!.data.options[2].worryWithId,
-                                    detailVm.detailDto.value!!.data.options[2].id
-                                )
-                            }
-                            // 옵션 4에 대한 onClickListener
-                            bindingList[3].clOptBox.setOnClickListener {
-                                changeItOptSelNum(binding, 4)
-                                Timber.e(
-                                    "please4..." + binding.itOptSelNum +
-                                        " " + binding.itVoteOptSelNum
-                                )
-                                homeVm.changeSelPostAndOptId(
-                                    detailVm.detailDto.value!!.data.options[3].worryWithId,
-                                    detailVm.detailDto.value!!.data.options[3].id
-                                )
-                            }
-
-                            // 투표하기 버튼이 눌리면
                             binding.btnDetailVote.setOnSingleClickListener {
-                                // homeVm 안의 btnVal 값을 바꿔줌 -> observe에서 감지, 서버 통신
-                                homeVm.changeBtnVal()
-                                binding.itOptSelNum = -1
+                                val res = detailVm.detailDto.value!!.data
+                                var including = false // default: image X=
+                                val optionId = mutableListOf<Int>()
+                                val optionTitle = mutableListOf<String>()
+                                val optionPer = mutableListOf<Int?>()
+
+                                res.options.forEachIndexed { index, option ->
+                                    if (option.hasImage) including = true
+                                    optionId.add(option.id)
+                                    optionTitle.add(option.title)
+                                    optionPer.add(option.percentage)
+                                }
+                                val decideData = DecideData(
+                                    1,
+                                    res.worryTitle,
+                                    optionId,
+                                    optionTitle,
+                                    optionPer,
+                                    false,
+                                    including
+                                )
+
+                                startActivity(
+                                    Intent(
+                                        this,
+                                        FinalDecideActivity::class.java
+                                    ).putExtra("decideData", decideData)
+                                )
                             }
                         }
-                    }
+                        // 2. [남의 글]
+                        else {
+                            binding.itMyPost = false
+                            // 2-a. [투표 완료]
+                            if (detailVm.detailDto.value!!.data.isVoted) {
+                                binding.itOptSelNum = -1
+                                // TODO 서버에서 어떤 옵션에 투표했는지에 대한 정보가 와야 됨
+                                for (i in 0..(detailVm.detailDto.value!!.data.options.size - 1)) {
+                                    if (detailVm.detailDto.value!!.data.selectedOptionId
+                                        == detailVm.detailDto.value!!.data.options[i].id
+                                    ) {
+                                        binding.itVoteOptSelNum = i + 1
+                                    } else break
+                                }
+                                // binding.itVoteOptSelNum = 1 // TODO 일단 무조건 옵션1에 투표했다고 해보자
+                            }
+                            // 2-b. [투표 미완]
+                            else {
+                                // 2-b-ㄱ. 옵션 아무 것도 선택 X
+                                // 2-b-ㄴ. 옵션 뭔가 선택
+
+                                binding.itOptSelNum = 0 // 투표할 옵션 선택 중
+
+                                // 옵션 1에 대한 onClickListener
+                                bindingList[0].clOptBox.setOnClickListener {
+                                    changeItOptSelNum(binding, 1)
+                                    Timber.e(
+                                        "please1..." + binding.itOptSelNum +
+                                                " " + binding.itVoteOptSelNum
+                                    )
+                                    homeVm.changeSelPostAndOptId(
+                                        detailVm.detailDto.value!!.data.options[0].worryWithId,
+                                        detailVm.detailDto.value!!.data.options[0].id
+                                    )
+                                }
+                                // 옵션 2에 대한 onClickListener
+                                bindingList[1].clOptBox.setOnClickListener {
+                                    changeItOptSelNum(binding, 2)
+                                    Timber.e(
+                                        "please2..." + binding.itOptSelNum +
+                                                " " + binding.itVoteOptSelNum
+                                    )
+                                    homeVm.changeSelPostAndOptId(
+                                        detailVm.detailDto.value!!.data.options[1].worryWithId,
+                                        detailVm.detailDto.value!!.data.options[1].id
+                                    )
+                                }
+                                // 옵션 3에 대한 onClickListener
+                                bindingList[2].clOptBox.setOnClickListener {
+                                    changeItOptSelNum(binding, 3)
+                                    Timber.e(
+                                        "please3..." + binding.itOptSelNum +
+                                                " " + binding.itVoteOptSelNum
+                                    )
+                                    homeVm.changeSelPostAndOptId(
+                                        detailVm.detailDto.value!!.data.options[2].worryWithId,
+                                        detailVm.detailDto.value!!.data.options[2].id
+                                    )
+                                }
+                                // 옵션 4에 대한 onClickListener
+                                bindingList[3].clOptBox.setOnClickListener {
+                                    changeItOptSelNum(binding, 4)
+                                    Timber.e(
+                                        "please4..." + binding.itOptSelNum +
+                                                " " + binding.itVoteOptSelNum
+                                    )
+                                    homeVm.changeSelPostAndOptId(
+                                        detailVm.detailDto.value!!.data.options[3].worryWithId,
+                                        detailVm.detailDto.value!!.data.options[3].id
+                                    )
+                                }
+
+                                // 투표하기 버튼이 눌리면
+                                binding.btnDetailVote.setOnSingleClickListener {
+                                    // homeVm 안의 btnVal 값을 바꿔줌 -> observe에서 감지, 서버 통신
+                                    homeVm.changeBtnVal()
+                                    binding.itOptSelNum = -1
+                                }
+                            }
+                        }
                 }
 
                 if (detailVm.detailDto.value!!.data.commentCount > 0) {
@@ -242,8 +243,16 @@ class DetailWithActivity :
                     binding.count = detailVm.detailDto.value!!.data.commentCount
                     commentAdapter.submitList(detailVm.detailDto.value!!.data.comments)
                 } else {
-                    // TODO 엠티뷰
+                    //TODO 엠티뷰
                 }
+            }
+
+            if (worryData.worryId == 9) { // r
+                binding.flowImage.visibility = View.VISIBLE
+                bindingList[0].advantage = "꼬질꼬질 귀여운 느낌이라 귀여웡"
+                bindingList[0].disadvantage = "브랜딩이랑 조금 다른 느낌이기는 해"
+                bindingList[1].advantage = "전체적인 우리 앱의 UI/UX랑 무드가 잘 맞긴해"
+                bindingList[1].disadvantage = "귀여운 느낌보다는 딱딱한 것 같기는 해 "
             }
         } // get 통신
 

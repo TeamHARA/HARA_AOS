@@ -35,7 +35,10 @@ class WriteActivity : BindingActivity<ActivityWriteBinding>(R.layout.activity_wr
         writeViewModel.success.observe(this) {
             // 성공하면 꺼지고 실패하면 메세지
             if (it) { // TODO 상세화면 이동 (X) => 홈(전체)로 이동
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(
+                    Intent(this, HomeActivity::class.java)
+                        .putExtra("server_connect", true)
+                )
                 finishAffinity() // 기존 스택 비우기
                 finish()
             } else binding.root.makeSnackbar(getString(R.string.server_connet_fail))

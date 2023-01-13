@@ -9,11 +9,10 @@ import androidx.navigation.ui.setupWithNavController
 import com.android.hara.R
 import com.android.hara.databinding.ActivityHomeBinding
 import com.android.hara.presentation.base.BindingActivity
-import com.android.hara.presentation.detail.decision.FinalDecideActivity
-import com.android.hara.presentation.detail.model.DecideData
 import com.android.hara.presentation.home.fragment.together.TogetherFragment
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
 import com.android.hara.presentation.search.SearchActivity
+import com.android.hara.presentation.util.makeSnackbar
 import com.android.hara.presentation.util.setOnSingleClickListener
 import com.android.hara.presentation.write.WriteActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,8 +25,13 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setListener()
+
+        if (intent.getBooleanExtra("server_connect", false)) {
+            //서버통신 완료 업로드
+            binding.root.makeSnackbar("업로드가 완료되었습니다.")
+        }
+
         if (intent.getBooleanExtra("isNextSolve", false)) {
             setNavigation(true)
         } else {
