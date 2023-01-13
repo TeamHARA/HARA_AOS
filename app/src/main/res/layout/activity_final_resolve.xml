@@ -87,7 +87,7 @@
             tools:text="최종 결정된 옵션" />
 
         <TextView
-            android:id="@+id/btn_final_go_storage"
+            android:id="@+id/tv_final_go_storage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="22dp"
