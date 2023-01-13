@@ -6,15 +6,11 @@
     <data>
 
         <variable
-            name="optSel"
-            type="boolean" />
-
-        <variable
-            name="disadvantage"
+            name="advantage"
             type="String" />
 
         <variable
-            name="advantage"
+            name="disadvantage"
             type="String" />
 
         <variable
@@ -24,6 +20,24 @@
         <variable
             name="percentage"
             type="int" />
+
+        <variable
+            name="layOptSel"
+            type="boolean" />
+        
+        <variable
+            name="layOptSelNum"
+            type="int" />
+        
+        <variable
+            name="layVoteOptSel"
+            type="boolean" />
+
+        <variable
+            name="layMyPost"
+            type="boolean" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +53,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="14dp"
             android:layout_marginTop="12dp"
-            android:background="@{optSel ? @drawable/shape_rectangle_blue1_stroke_1_8 : @drawable/shape_rectangle_gray4_stroke_1_8}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -48,12 +61,15 @@
                 android:id="@+id/iv_opt_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="11dp"
+                android:layout_marginVertical="12dp"
                 android:layout_marginStart="14dp"
-                android:background="@{optSel ? @drawable/ic_checkcircle_on : @drawable/ic_checkcircle_off}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layOptSelNum="@{layOptSelNum}"
+                app:layOptSel="@{layOptSel}"
+                app:layVoteOptSel="@{layVoteOptSel}"
+                app:layMyPost="@{layMyPost}" />
 
             <TextView
                 android:id="@+id/tv_opt_content"
@@ -62,11 +78,12 @@
                 android:layout_marginStart="6dp"
                 android:text="@{title}"
                 android:textAppearance="@style/hara_body3_r14"
-                android:textColor="@{optSel ? @color/blue_1 : @color/black}"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_opt_check"
+                app:layout_constraintBottom_toBottomOf="@id/cl_opt_title"
                 app:layout_constraintStart_toEndOf="@+id/iv_opt_check"
-                app:layout_constraintTop_toTopOf="@+id/iv_opt_check"
-                tools:text="선택지 글자수 제한은 공백 포함 20" />
+                app:layout_constraintTop_toTopOf="@id/cl_opt_title"
+                tools:text="선택지 글자수 제한은 공백 포함 20"
+                app:layVoteOptSel="@{layVoteOptSel}"
+                app:layOptSel="@{layOptSel}" />
 
             <TextView
                 android:id="@+id/tv_opt_percent"
@@ -75,11 +92,10 @@
                 android:layout_marginEnd="10dp"
                 android:text="@{@string/percentage(percentage)}"
                 android:textAppearance="@style/hara_body3_r14"
-                android:textColor="@{optSel ? @color/blue_1 : @color/black}"
-                app:layout_constraintBottom_toBottomOf="@id/tv_opt_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_opt_content"
-                tools:text="20%" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/cl_opt_title"
+                app:layout_constraintTop_toTopOf="@id/cl_opt_title"
+                tools:text="90%" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

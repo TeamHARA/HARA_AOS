@@ -16,6 +16,20 @@
         <variable
             name="count"
             type="int" />
+
+        <variable
+            name="itOptSelNum"
+            type="int" />
+
+        <variable
+            name="itVoteOptSelNum"
+            type="int" />
+
+        <variable
+            name="itMyPost"
+            type="boolean" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -183,8 +197,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_image"
-                    app:optSel="@{detailVm.SNum == 1 ? true : false}"
-                    tools:visibility="visible" />
+                    app:layOptSel="@{itOptSelNum == 1 ? true : false}"
+                    app:layOptSelNum="@{itOptSelNum}"
+                    app:layVoteOptSel="@{itVoteOptSelNum == 1 ? true : false}"
+                    tools:visibility="visible"
+                    app:layMyPost="@{itMyPost}"/>
 
                 <include
                     android:id="@+id/layout_option2"
@@ -197,8 +214,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_option1"
-                    app:optSel="@{detailVm.SNum == 2 ? true : false}"
-                    tools:visibility="visible" />
+                    app:layOptSel="@{itOptSelNum == 2 ? true : false}"
+                    app:layOptSelNum="@{itOptSelNum}"
+                    app:layVoteOptSel="@{itVoteOptSelNum == 2 ? true : false}"
+                    tools:visibility="visible"
+                    app:layMyPost="@{itMyPost}"/>
 
                 <include
                     android:id="@+id/layout_option3"
@@ -211,8 +231,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_option2"
-                    app:optSel="@{detailVm.SNum == 3 ? true : false}"
-                    tools:visibility="visible" />
+                    app:layOptSel="@{itOptSelNum == 3 ? true : false}"
+                    app:layOptSelNum="@{itOptSelNum}"
+                    app:layVoteOptSel="@{itVoteOptSelNum == 3 ? true : false}"
+                    tools:visibility="visible"
+                    app:layMyPost="@{itMyPost}"/>
 
                 <include
                     android:id="@+id/layout_option4"
@@ -225,23 +248,26 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_option3"
-                    app:optSel="@{detailVm.SNum == 4 ? true : false}"
-                    tools:visibility="visible" />
+                    app:layOptSel="@{itOptSelNum == 4 ? true : false}"
+                    app:layOptSelNum="@{itOptSelNum}"
+                    app:layVoteOptSel="@{itVoteOptSelNum == 4 ? true : false}"
+                    tools:visibility="visible"
+                    app:layMyPost="@{itMyPost}"/>
 
-                <!-- button -->
+                <!-- 투표하기/투표완료 버튼 -->
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_vote"
+                    android:id="@+id/btn_detail_vote"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="14dp"
-                    android:background="@{detailVm.SNum == 0 ? @drawable/shape_rectangle_orange2_stroke_1_8 : @drawable/shape_rectangle_orange3_fill_8}"
-                    android:enabled="@{detailVm.SNum == 0 ? false : true}"
                     android:stateListAnimator="@null"
-                    android:text="@string/vote"
                     android:textAppearance="@style/hara_heading1_sb16"
                     android:textColor="@color/orange_1"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_option4" />
+                    app:layout_constraintTop_toBottomOf="@+id/layout_option4"
+                    app:itOptSelNum="@{itOptSelNum}"
+                    app:itMyPost="@{itMyPost}"
+                    android:enabled="@{itOptSelNum == -1 ? false : true}" />
 
                 <!-- 투표하기 버튼 아래 회색 선 -->
                 <View
@@ -250,7 +276,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="14dp"
                     android:background="@color/gray_5"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_vote" />
+                    app:layout_constraintTop_toBottomOf="@+id/btn_detail_vote" />
 
                 <TextView
                     android:id="@+id/tv_detail_comment"

@@ -63,7 +63,7 @@ data class DetailWithResDto(
             @SerialName("percentage")
             val percentage: Int?, // 50
             @SerialName("title")
-            val title: String, // 글2 의선택지
+            val title: String, // 글 2의 선택지
             @SerialName("worryWithId")
             val worryWithId: Int // 2
         )

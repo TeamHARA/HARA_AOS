@@ -86,7 +86,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         postAdapter = PostAdapter(
             {
                 val intent = Intent(requireContext(), DetailWithActivity::class.java)
-                intent.putExtra("worryId", it)
+                intent.putExtra("detailData", it)
                 startActivity(intent)
             },
             { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
@@ -116,7 +116,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         // [2] homeVm의 btn이 변하는지 관찰
         homeVm.btnSel.observe(viewLifecycleOwner) {
             Timber.e(
-                "통신 이 값 보내는디!! " + homeVm.getPostId().toString() + homeVm.getOptId().toString()
+                "통신할 때 이 값 보내 " + homeVm.getPostId() + homeVm.getOptId()
             )
             homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
         }

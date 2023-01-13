@@ -185,3 +185,80 @@ fun TextView.setPer(perInt: String?) {
         this.text = "$perInt%"
     }
 }
+
+// [상세보기] 옵션 선택에 따라 check btn src가 달라진다
+@BindingAdapter(value = ["app:layOptSelNum", "app:layOptSel", "app:layVoteOptSel", "app:layMyPost"], requireAll = true)
+fun ImageView.changeCheckSrc(optSelNum: Int, optSel: Boolean, voteOptSel: Boolean, myPost: Boolean) {
+    if (myPost) // [내 글]
+        this.visibility = View.GONE
+    else { // [남의 글]
+        if (optSelNum == -1) { // [투표 완료]
+            if (voteOptSel) { // 이 옵션에 투표함
+                this.background = this.context.getDrawable(R.drawable.ic_check)
+                this.visibility = View.VISIBLE
+            } else { // 이 옵션에 투표 안 함
+                this.visibility = View.GONE
+            }
+        } else if (optSelNum == 0) { // [투표 미완] 아무 옵션도 선택하지 않음
+            this.background = this.context.getDrawable(R.drawable.ic_checkcircle_off)
+            this.visibility = View.VISIBLE
+        } else { // [투표 미완] 어떤 옵션이 선택됨
+            if (optSel) { // 이 옵션이 선택됨
+                this.background = this.context.getDrawable(R.drawable.ic_checkcircle_on)
+                this.visibility = View.VISIBLE
+            } else { // 이 옵션이 선택되지 않음
+                this.background = this.context.getDrawable(R.drawable.ic_checkcircle_off)
+                this.visibility = View.VISIBLE
+            }
+        }
+    }
+}
+
+// [상세보기] 옵션 선택에 따라 옵션 text color가 달라진다
+@BindingAdapter(value = ["app:layVoteOptSel", "app:layOptSel"], requireAll = true)
+fun changeTextColor(tv: TextView, voteOptSel: Boolean, optSel: Boolean) {
+    if (optSel) { // [투표 중] 옵션 선택
+        tv.setTextColor(tv.context.getColor(R.color.blue_1))
+    }
+    else { // [투표 중은 아님]
+        if (voteOptSel) { // [투표 완료] 이 옵션에 투표됐다
+            tv.setTextColor(tv.context.getColor(R.color.blue_1))
+        }
+        else {
+            tv.setTextColor(tv.context.getColor(R.color.black))
+        }
+    }
+}
+
+// [상세보기] 투표하기 버튼 스타일
+@BindingAdapter(value = ["app:itOptSelNum", "app:itMyPost"], requireAll = true)
+fun changeVoteBtnStyle(btn: AppCompatButton, optSelNum: Int, myPost: Boolean) {
+    if (myPost) { // 1. [내 글]
+        btn.background = btn.context.getDrawable(R.drawable.shape_rectangle_orange3_fill_8)
+        btn.text = "최종결정 하러 가기"
+        btn.setTextColor(btn.context.getColor(R.color.orange_1))
+        btn.isEnabled = true
+    }
+    else { // 2. [남의 글]
+        when (optSelNum) {
+            -1 -> { // [투표 완료]
+                btn.background = btn.context.getDrawable(R.drawable.shape_rectangle_gray3_fill_8)
+                btn.text = "투표 완료!"
+                btn.setTextColor(btn.context.getColor(R.color.white))
+                btn.isEnabled = false
+            }
+            0 -> { // [투표 미완] 아무 옵션도 선택 X
+                btn.background = btn.context.getDrawable(R.drawable.shape_rectangle_orange2_stroke_1_8)
+                btn.text = "투표하기"
+                btn.setTextColor(btn.context.getColor(R.color.orange_1))
+                btn.isEnabled = false
+            }
+            else -> { // [투표 미완] 어떤 옵션이 선택됨
+                btn.background = btn.context.getDrawable(R.drawable.shape_rectangle_orange3_fill_8)
+                btn.text = "투표하기"
+                btn.setTextColor(btn.context.getColor(R.color.orange_1))
+                btn.isEnabled = true
+            }
+        }
+    }
+}
