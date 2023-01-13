@@ -15,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
 
         val intent = Intent(this, HomeActivity::class.java)
         lifecycleScope.launch {
-            delay(1500)
+            delay(1000)
             startActivity(intent)
             overridePendingTransition(0, 0)
             finish()

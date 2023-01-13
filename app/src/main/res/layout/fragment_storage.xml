@@ -40,9 +40,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    android:layout_marginStart="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/hara_game_sb18"
+                    android:textAppearance="@style/hara_heading2_m16"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

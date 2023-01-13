@@ -51,9 +51,8 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
 
     private fun init() {
         recyclerView = binding.rvTogetherPost
-
         binding.swipeRefreash.setOnRefreshListener { /* swipe 시 진행할 동작 */
-            recyclerView.smoothScrollToPosition(0)
+            //recyclerView.smoothScrollToPosition(0)
             homeVm.homeVmGetAllPost(homeVm.selCat.value ?: 0)
         }
     }
