@@ -72,9 +72,53 @@ Enjoy, think, solve
 | 김준우 [@IslandOfDream](https://github.com/IslandOfDream) | 장유진 [@wkdyujin](https://github.com/wkdyujin) | 이수현 [@skylartosf](https://github.com/skylartosf) |
 | :---: | :---: | :---: |
 |<img width="1400" src="https://user-images.githubusercontent.com/70648111/210428609-7cc6ae75-c31b-4ae6-9e4f-89437115b3dd.png">|<img width="1400" src="https://user-images.githubusercontent.com/70648111/210428550-3bb9068f-ed99-4cee-969f-cad3bcd75450.png">|<img width="1400" src="https://user-images.githubusercontent.com/70648111/210428639-0151f375-e0b6-458c-a9fe-1b440d99878f.png">|
-|**바텀네비게이션/앱바 , 투표 상세화면**|**홈화면 , 게시물 쓰기/수정**|**보관함 , 1초만에 고민해결하기**|
-
 <br>
+
+## 개인 역할
+
+### 🦦**준우**
+
+- 기초세팅
+    - git ignore
+    - dependency
+    - local propereties
+    - package
+    - application
+    - theme
+    - branch rule
+- 바텀 네비게이션
+- 앱바
+- CI & slack 연동
+- 상세보기 UI
+- 1초 고민 UI & 비지니스 로직
+- 글쓰기_카테고리
+    - 바텀시트
+    - 피커 커스텀
+- 글쓰기_선택지 리사이클러뷰 로직
+- 검색 UI
+- Hilt 적용 / Server Connection 기초 세팅
+- 글쓰기 함께/혼자 PUSH 통신
+- 함께/혼자 상세조회 GET 통신
+
+### 🐰**수현**
+
+- 보관함 UI 및 비지니스 로직
+- 최종 결정 UI 및 비지니스 로직
+- 고민 해결 UI
+- 상세보기 비지니스 로직
+- 함께해라 UI 비지니스 로직
+- 함께해라 글 목록 GET 통신
+- 함께해라 투표 POST 통신
+
+### 🐱**유진**
+
+- 함께해라 UI
+- 작성 액티비티 및 프래그먼트 UI
+- 함께/혼자 보관함 GET 통신
+- 1초 고민 해결 GET 통신
+- 지난 고민 GET 통신
+- 함께/혼자 최종결정 비지니스 로직
+- 함께/혼자 최종결정 PATCH 통신
 
 ## Coding/Git Convnetions
 [Convention 보러가기 Click ✔](https://daffy-lawyer-1b8.notion.site/Android-1c147c6c1e3c4e2eacdb1e781581d4aa)
