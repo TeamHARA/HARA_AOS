@@ -23,25 +23,25 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
     private val _voteResult: MutableLiveData<VoteResDto> = MutableLiveData()
     val voteResult: LiveData<VoteResDto> = _voteResult
 
-    /* [홈화면: 고민글 목록 전체조회] selected category number */
-    private val _selCat: MutableLiveData<Int> = MutableLiveData()
-    val selCat: LiveData<Int> = _selCat
+        /* [홈화면: 고민글 목록 전체조회] selected category number */
+        private val _selCat: MutableLiveData<Int> = MutableLiveData()
+        val selCat: LiveData<Int> = _selCat
 
-    /* [홈화면: 옵션 선택해 투표] 투표하기 버튼 - true면 post 통신을 하자 */
-    private val _btnSel: MutableLiveData<Boolean> = MutableLiveData(false)
-    val btnSel: LiveData<Boolean> = _btnSel
+        /* [홈화면: 옵션 선택해 투표] 투표하기 버튼 - true면 post 통신을 하자 */
+        private val _btnSel: MutableLiveData<Boolean> = MutableLiveData()
+        val btnSel: LiveData<Boolean> = _btnSel
 
-    // [홈화면: 고민글 목록 전체조회] category 별 모든 글 목록
-    private val _catAllPostResult: MutableLiveData<AllPostResDto> = MutableLiveData()
-    val catAllPostResult: LiveData<AllPostResDto> = _catAllPostResult
+        // [홈화면: 고민글 목록 전체조회] category 별 모든 글 목록
+        private val _catAllPostResult: MutableLiveData<AllPostResDto> = MutableLiveData()
+        val catAllPostResult: LiveData<AllPostResDto> = _catAllPostResult
 
-    // [홈화면: 고민글 목록 전체조회] 내가 쓴 글 목록
-    private lateinit var myPostResult: List<AllPostResDto.Data>
+        // [홈화면: 고민글 목록 전체조회] 내가 쓴 글 목록
+        private lateinit var myPostResult: List<AllPostResDto.Data>
 
-    // [홈화면: 고민글 목록 전체조회] 남이 쓴 글 목록
-    private lateinit var otherPostResult: List<AllPostResDto.Data>
+        // [홈화면: 고민글 목록 전체조회] 남이 쓴 글 목록
+        private lateinit var otherPostResult: List<AllPostResDto.Data>
 
-    // 서버통신 결과
+        // 서버통신 결과
     private val _success = MutableLiveData<Boolean>()
     val suceess get() = _success
 

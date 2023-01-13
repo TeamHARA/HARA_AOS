@@ -1,5 +1,6 @@
 package com.android.hara.presentation.detail
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,8 @@ import com.android.hara.R
 import com.android.hara.databinding.ActivityDetailAloneBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.custom.EditBottomSheetDialog
+import com.android.hara.presentation.detail.decision.FinalDecideActivity
+import com.android.hara.presentation.detail.model.DecideData
 import com.android.hara.presentation.detail.viewmodel.DetailAloneViewModel
 import com.android.hara.presentation.home.fragment.together.DetailData
 import com.android.hara.presentation.util.setOnSingleClickListener
@@ -27,6 +30,41 @@ class DetailAloneActivity :
             intent.getParcelableExtra("worryId")
         }
         detailAloneVm.getDetailAlone(worryData?.worryId ?: 0)
+        binding.itMyPost = true
+        binding.layoutOption1.tvOptPercent.visibility = View.GONE
+        binding.layoutOption2.tvOptPercent.visibility = View.GONE
+        binding.layoutOption3.tvOptPercent.visibility = View.GONE
+        binding.layoutOption4.tvOptPercent.visibility = View.GONE
+
+        binding.btnVote.setOnSingleClickListener {
+            val res = detailAloneVm.detailDto.value!!.data
+            var including = false // default: image X=
+            val optionId = mutableListOf<Int>()
+            val optionTitle = mutableListOf<String>()
+            val optionPer = mutableListOf<Int?>()
+
+            res.options.forEachIndexed { index, option ->
+                if (option.hasImage) including = true
+                optionId.add(option.id)
+                optionTitle.add(option.title)
+            }
+            val decideData = DecideData(
+                1,
+                res.worryTitle,
+                optionId,
+                optionTitle,
+                optionPer,
+                true,
+                including
+            )
+
+            startActivity(
+                Intent(
+                    this,
+                    FinalDecideActivity::class.java
+                ).putExtra("decideData", decideData)
+            )
+        }
 
         val bindingList = listOf(
             binding.layoutOption1,
