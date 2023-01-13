@@ -1,5 +1,6 @@
 package com.android.hara.presentation.detail
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -8,6 +9,7 @@ import com.android.hara.databinding.ActivityDetailAloneBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.custom.EditBottomSheetDialog
 import com.android.hara.presentation.detail.viewmodel.DetailAloneViewModel
+import com.android.hara.presentation.home.fragment.together.DetailData
 import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,8 +21,12 @@ class DetailAloneActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val worryId = intent.getIntExtra("worryId", 0)
-        detailAloneVm.getDetailAlone(worryId)
+        val worryData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("worryId", DetailData::class.java)
+        } else {
+            intent.getParcelableExtra("worryId")
+        }
+        detailAloneVm.getDetailAlone(worryData?.worryId ?: 0)
 
         val bindingList = listOf(
             binding.layoutOption1,
