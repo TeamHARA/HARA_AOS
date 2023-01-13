@@ -159,6 +159,7 @@ class FinalDecideActivity :
                     putExtra("optionNum", selOptId!!)
                 }
                 startActivity(intent)
+                finish()
             }
         }
     }

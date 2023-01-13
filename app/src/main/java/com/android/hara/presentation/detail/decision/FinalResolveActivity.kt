@@ -37,9 +37,10 @@ class FinalResolveActivity :
                 Intent(
                     this,
                     HomeActivity::class.java
-                ).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP )
-                    .putExtra("isNextSolve", true)
+                ).putExtra("isNextSolve", true)
             )
+            finishAffinity() // 기존 스택 비우기
+            finish()
         }
     }
 }
