@@ -1,11 +1,13 @@
 package com.android.hara.presentation.write
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.android.hara.R
 import com.android.hara.databinding.ActivityWriteBinding
 import com.android.hara.presentation.base.BindingActivity
+import com.android.hara.presentation.home.HomeActivity
 import com.android.hara.presentation.util.makeSnackbar
 import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,8 +34,11 @@ class WriteActivity : BindingActivity<ActivityWriteBinding>(R.layout.activity_wr
 
         writeViewModel.success.observe(this) {
             // 성공하면 꺼지고 실패하면 메세지
-            if (it) finish() //TODO 상세화면 이동
-            else binding.root.makeSnackbar(getString(R.string.server_connet_fail))
+            if (it) { // TODO 상세화면 이동 (X) => 홈(전체)로 이동
+                startActivity(Intent(this, HomeActivity::class.java))
+                finishAffinity() // 기존 스택 비우기
+                finish()
+            } else binding.root.makeSnackbar(getString(R.string.server_connet_fail))
         }
     }
 

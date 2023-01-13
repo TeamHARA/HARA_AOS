@@ -36,7 +36,8 @@ class WriteHowFragment :
         binding.btnWriteContentUploadButton.setOnSingleClickListener {
             writeViewModel.isWith = howFragViewModel.isWithSelected.value!!
             DecisionDialog(
-                requireContext(), DialogData(
+                requireContext(),
+                DialogData(
                     getString(R.string.dialog_upload_title),
                     getString(R.string.dialog_upload_warn),
                     getString(R.string.cancel),
