@@ -8,6 +8,22 @@
         <variable
             name="detailVm"
             type="com.android.hara.presentation.detail.viewmodel.DetailAloneViewModel" />
+        
+        <variable
+            name="itOptSelNum"
+            type="int" />
+
+        <variable
+            name="itVoteOptSel"
+            type="int" />
+
+        <variable
+            name="itOptSel"
+            type="boolean" />
+
+        <variable
+            name="itMyPost"
+            type="boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -174,7 +190,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/flow_image"
-                    app:optSel="@{detailVm.SNum == 1 ? true : false}"
+                    app:layOptSel="@{itOptSelNum == 1 ? true : false}"
+                    app:layOptSelNum="@{itOptSelNum}"
+                    app:layVoteOptSel="@{itVoteOptSel == 1 ? true : false}"
+                    app:layMyPost="@{itMyPost}"
                     tools:visibility="visible" />
 
                 <include
@@ -188,7 +207,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_option1"
-                    app:optSel="@{detailVm.SNum == 2 ? true : false}"
+                    app:layOptSel="@{itOptSelNum == 2 ? true : false}"
+                    app:layOptSelNum="@{itOptSelNum}"
+                    app:layVoteOptSel="@{itVoteOptSel == 2 ? true : false}"
+                    app:layMyPost="@{itMyPost}"
                     tools:visibility="visible" />
 
                 <include
@@ -202,7 +224,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_option2"
-                    app:optSel="@{detailVm.SNum == 3 ? true : false}"
+                    app:layOptSel="@{itOptSelNum == 3 ? true : false}"
+                    app:layOptSelNum="@{itOptSelNum}"
+                    app:layVoteOptSel="@{itVoteOptSel == 3 ? true : false}"
+                    app:layMyPost="@{itMyPost}"
                     tools:visibility="visible" />
 
                 <include
@@ -216,10 +241,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_option3"
-                    app:optSel="@{detailVm.SNum == 4 ? true : false}"
+                    app:layOptSel="@{itOptSelNum == 4 ? true : false}"
+                    app:layOptSelNum="@{itOptSelNum}"
+                    app:layVoteOptSel="@{itVoteOptSel == 4 ? true : false}"
+                    app:layMyPost="@{itMyPost}"
                     tools:visibility="visible" />
 
-                <!-- button -->
+                <!-- 투표하기 버튼 -->
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_vote"
                     android:layout_width="match_parent"
@@ -227,13 +255,12 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginTop="14dp"
                     android:layout_marginBottom="14dp"
-                    android:background="@{detailVm.SNum == 0 ? @drawable/shape_rectangle_orange2_stroke_1_8 : @drawable/shape_rectangle_orange3_fill_8}"
-                    android:enabled="@{detailVm.SNum == 0 ? false : true}"
                     android:stateListAnimator="@null"
-                    android:text="@string/vote"
                     android:textAppearance="@style/hara_heading1_sb16"
                     android:textColor="@color/orange_1"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_option4" />
+                    app:layout_constraintTop_toBottomOf="@+id/layout_option4"
+                    app:itOptSelNum="@{itOptSelNum}"
+                    app:itMyPost="@{itMyPost}" />
 
                 <!-- 투표하기 버튼 아래 회색 선 -->
                 <View
