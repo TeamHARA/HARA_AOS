@@ -18,7 +18,7 @@ data class DetailAloneResDto(
     @Serializable
     data class Data(
         @SerialName("category")
-        val category: String, // 고민내용
+        val category: Int, // 고민내용
         @SerialName("createdAt")
         val createdAt: String, // 2023.01.06
         @SerialName("finalOption")
