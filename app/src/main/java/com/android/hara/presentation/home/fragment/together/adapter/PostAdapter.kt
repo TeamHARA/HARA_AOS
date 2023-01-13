@@ -9,6 +9,7 @@ import com.android.hara.R
 import com.android.hara.data.model.response.AllPostResDto
 import com.android.hara.data.model.response.VoteResDto
 import com.android.hara.databinding.ItemPostBinding
+import com.android.hara.presentation.detail.model.DecideData
 import com.android.hara.presentation.home.fragment.together.DetailData
 import com.android.hara.presentation.util.GlobalDiffCallBack
 import com.android.hara.presentation.util.setOnSingleClickListener
@@ -18,7 +19,8 @@ class PostAdapter(
     private val detailListener: (DetailData) -> Unit,
     private val optSelListener: (postId: Int, optId: Int) -> Unit,
     private val btnSelListener: () -> Unit,
-    private val getOptVoteRate: () -> List<VoteResDto.Data.Option>?
+    private val getOptVoteRate: () -> List<VoteResDto.Data.Option>?,
+    private val gotoListener: (DecideData) -> Unit
 ) : ListAdapter<AllPostResDto.Data, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
 
     private lateinit var inflater: LayoutInflater // 뷰를 그려준다
@@ -46,7 +48,7 @@ class PostAdapter(
             binding.tvPostTitle.text = curItem.title // 글 제목
             binding.tvPostContent.text = curItem.content // 글 본문
             binding.tvPostCommentNum.text = curItem.commentCount.toString() // 댓글 수 카운트
-            binding.root.setOnClickListener { //전체 아이템 누르면 상세화면 이동
+            binding.root.setOnClickListener { // 전체 아이템 누르면 상세화면 이동
                 detailListener(
                     DetailData(
                         worryId = curItem.worryId,
@@ -58,6 +60,31 @@ class PostAdapter(
             // [최종결정 하러가기] 버튼
             binding.btnPostGoDecide.setOnSingleClickListener {
                 // TODO 최종결정 하러 activity 이동
+                val isAlone = curItem.commentCount == null
+                var including = false // default: image X=
+                val optionId = mutableListOf<Int>()
+                val optionTitle = mutableListOf<String>()
+                val optionPer = mutableListOf<Int?>()
+
+                curItem.option.forEachIndexed { index, option ->
+                    if (option.hasImage) including = true
+                    optionId.add(option.id)
+                    optionTitle.add(option.title)
+                    optionPer.add(option.percentage)
+                }
+
+                var decideData = DecideData(
+                    curItem.worryId,
+                    curItem.title,
+                    optionId,
+                    optionTitle,
+                    optionPer,
+                    isAlone,
+                    including
+                )
+                Timber.e(decideData.toString())
+                // 화면 전환
+                gotoListener(decideData)
             }
             // 각 옵션 뷰에, 서버통신으로 받은 데이터(옵션)를 넣어준다
             setOptTitle(binding, curItem)
@@ -111,10 +138,7 @@ class PostAdapter(
                 binding.itVoteOptSel = maxOptNum + 1
                 */
 
-                // [최종결정 하러가기] 버튼
-                binding.btnPostGoDecide.setOnSingleClickListener {
-                    // TODO 최종결정 하러 activity 이동
-                }
+
             }
 
             // 2) 내가 쓴 글이 아니면(남이 쓴 글이면): 투표 버튼
@@ -149,8 +173,8 @@ class PostAdapter(
 
                         Timber.e(
                             "방곰 선택된 애는: " +
-                                    "글id: " + curItem.worryId.toString()
-                                    + " 옵션id:" + clickOpt[curItem.worryId].toString()
+                                "글id: " + curItem.worryId.toString() +
+                                " 옵션id:" + clickOpt[curItem.worryId].toString()
                         )
 
                         // [이미지 뷰] 옵션에 해당하는 이미지가 있었다면, 옵션 클릭 시 해당 이미지도 활성화
@@ -163,8 +187,8 @@ class PostAdapter(
                         clickImgActivate(binding, binding.itOptSelNum, curItem.option[1], imgToOpt)
                         Timber.e(
                             "방곰 선택된 애는: " +
-                                    "글id: " + curItem.worryId.toString()
-                                    + " 옵션id:" + clickOpt[curItem.worryId].toString()
+                                "글id: " + curItem.worryId.toString() +
+                                " 옵션id:" + clickOpt[curItem.worryId].toString()
                         )
                     }
                     // [옵션 3] 버튼
@@ -173,8 +197,8 @@ class PostAdapter(
                         clickImgActivate(binding, binding.itOptSelNum, curItem.option[2], imgToOpt)
                         Timber.e(
                             "방곰 선택된 애는: " +
-                                    "글id: " + curItem.worryId.toString()
-                                    + " 옵션id:" + clickOpt[curItem.worryId].toString()
+                                "글id: " + curItem.worryId.toString() +
+                                " 옵션id:" + clickOpt[curItem.worryId].toString()
                         )
                     }
                     // [옵션 4] 버튼
@@ -183,8 +207,8 @@ class PostAdapter(
                         clickImgActivate(binding, binding.itOptSelNum, curItem.option[3], imgToOpt)
                         Timber.e(
                             "방곰 선택된 애는: " +
-                                    "글id: " + curItem.worryId.toString()
-                                    + " 옵션id:" + clickOpt[curItem.worryId].toString()
+                                "글id: " + curItem.worryId.toString() +
+                                " 옵션id:" + clickOpt[curItem.worryId].toString()
                         )
                     }
 
@@ -234,7 +258,6 @@ class PostAdapter(
                     }
                 }
             }
-
         }
     }
 
@@ -259,26 +282,30 @@ class PostAdapter(
         if (curItem.option.size >= 1) {
             binding.layoutPostOpt1.tvPostOptTitle.text = curItem.option.get(0).title // text
             binding.layoutPostOpt1.clPostOptContainer.visibility = View.VISIBLE
-        } else
+        } else {
             binding.layoutPostOpt1.clPostOptContainer.visibility = View.GONE
+        }
         // [옵션 2]
         if (curItem.option.size >= 2) {
             binding.layoutPostOpt2.tvPostOptTitle.text = curItem.option.get(1).title // text
             binding.layoutPostOpt2.clPostOptContainer.visibility = View.VISIBLE
-        } else
+        } else {
             binding.layoutPostOpt2.clPostOptContainer.visibility = View.GONE
+        }
         // [옵션 3]
         if (curItem.option.size >= 3) {
             binding.layoutPostOpt3.tvPostOptTitle.text = curItem.option.get(2).title // text
             binding.layoutPostOpt3.clPostOptContainer.visibility = View.VISIBLE
-        } else
+        } else {
             binding.layoutPostOpt3.clPostOptContainer.visibility = View.GONE
+        }
         // [옵션 4]
         if (curItem.option.size >= 4) {
             binding.layoutPostOpt4.tvPostOptTitle.text = curItem.option.get(3).title // text
             binding.layoutPostOpt4.clPostOptContainer.visibility = View.VISIBLE
-        } else
+        } else {
             binding.layoutPostOpt4.clPostOptContainer.visibility = View.GONE
+        }
     }
 
     private fun assignVoteOptNum(
@@ -373,5 +400,4 @@ class PostAdapter(
             binding.layoutPostOpt4.pbTurnout.progress = curOptList[3].percentage?.toFloat() ?: 0f
         }
     }
-
 } // class PostAdapter
