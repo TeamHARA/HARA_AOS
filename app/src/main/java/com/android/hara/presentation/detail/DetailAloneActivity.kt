@@ -1,5 +1,6 @@
 package com.android.hara.presentation.detail
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -8,6 +9,7 @@ import com.android.hara.databinding.ActivityDetailAloneBinding
 import com.android.hara.presentation.base.BindingActivity
 import com.android.hara.presentation.custom.EditBottomSheetDialog
 import com.android.hara.presentation.detail.viewmodel.DetailAloneViewModel
+import com.android.hara.presentation.home.fragment.together.DetailData
 import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,8 +21,12 @@ class DetailAloneActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val worryId = intent.getIntExtra("worryId", 0)
-        detailAloneVm.getDetailAlone(worryId)
+        val worryData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("worryId", DetailData::class.java)
+        } else {
+            intent.getParcelableExtra("worryId")
+        }
+        detailAloneVm.getDetailAlone(worryData?.worryId ?: 0)
 
         val bindingList = listOf(
             binding.layoutOption1,
@@ -32,44 +38,25 @@ class DetailAloneActivity :
         detailAloneVm.success.observe(this) {
             if (it) {
                 binding.detailVm = detailAloneVm
-                detailAloneVm.detailDto.value!!.data.options.forEachIndexed { index, opt ->
-                    // 선택지 갯수 만큼 visibilty 조절
-                    bindingList[index].root.visibility = View.VISIBLE
-                    // 하나라도 이미지 있다면 flag 발동
-                    if (opt.hasImage)
-                        binding.flowImage.visibility = View.VISIBLE
-
+                binding.category = detailAloneVm.detailDto.value!!.data.category
+                detailAloneVm.detailDto.value!!.data.options.forEachIndexed { index, option ->
+                    bindingList[index].root.visibility = View.VISIBLE // 선택지 갯수 만큼 visibilty 조절
+                    if (option.hasImage) binding.flowImage.visibility =
+                        View.VISIBLE // 하나라도 이미지 있다면 Flag발동
                     with(bindingList[index]) {
-                        title = opt.title
-                        if (opt.advantage == "") {
+                        title = option.title
+                        if (option.advantage == "") {
                             tvOptProTitle.visibility = View.GONE
                         } else {
-                            advantage = opt.advantage
+                            advantage = option.advantage
                         }
-                        if (opt.disadvantage == "") {
+                        if (option.disadvantage == "") {
                             tvOptConTitle.visibility = View.GONE
                         } else {
-                            disadvantage = opt.disadvantage
+                            disadvantage = option.disadvantage
                         }
                     }
-
-                    // [투표 완료]
-//                    if (detailAloneVm.detailDto.value.data)
-//
-//                    // 옵션 아무 것도 선택 안 돼있음
-//                    binding.itOptSelNum = 0
                 }
-
-                // itOptSelNum
-                // itVoteOptSel
-                // itOptSel
-
-                // [투표 완료]
-
-
-                // [투표 미완] 옵션 선택 중 / 안 선택 중
-
-
             }
         }
 
@@ -79,8 +66,6 @@ class DetailAloneActivity :
         binding.ivEdit.setOnSingleClickListener {
             EditBottomSheetDialog().show(supportFragmentManager, "edit")
         }
-
-        /*
         // n번째 옵션 클릭 시 옵션과 버튼 스타일 변하는 로직
         binding.layoutOption1.clOptBox.setOnClickListener {
             changeVmSnum(1)
@@ -98,7 +83,6 @@ class DetailAloneActivity :
         detailAloneVm.sNum.observe(this) {
             binding.detailVm = detailAloneVm
         }
-        */
     }
 
     // n번째 옵션이 선택되면 DetailViewModel 안의 sNum의 value가 n으로 바뀐다

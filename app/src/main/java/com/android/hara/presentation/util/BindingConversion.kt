@@ -256,7 +256,7 @@ fun changeTextColor(tv: TextView, voteOptSel: Boolean, optSel: Boolean) {
 fun changeVoteBtnStyle(btn: AppCompatButton, optSelNum: Int, myPost: Boolean) {
     if (myPost) { // 1. [내 글]
         btn.background = btn.context.getDrawable(R.drawable.shape_rectangle_orange3_fill_8)
-        btn.text = "최종결정 하러 가기"
+        btn.text = "최종 결정하러 가기"
         btn.setTextColor(btn.context.getColor(R.color.orange_1))
         btn.isEnabled = true
     }

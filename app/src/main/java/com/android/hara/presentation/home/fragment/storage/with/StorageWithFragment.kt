@@ -23,7 +23,7 @@ class StorageWithFragment :
 
         val storageAdapter = StorageAdapter() {
             val intent = Intent(requireContext(), DetailWithActivity::class.java)
-            intent.putExtra("worryId", it)
+            intent.putExtra("detailData", it)
             startActivity(intent)
         }
         binding.rvPosts.adapter = storageAdapter

@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.data.model.response.WorryListResDto
 import com.android.hara.databinding.ItemStorageBinding
+import com.android.hara.presentation.home.fragment.together.DetailData
 import com.android.hara.presentation.util.GlobalDiffCallBack
 
-class StorageAdapter(private val itemClickListener: (Int) -> Unit) :
+class StorageAdapter(private val itemClickListener: (DetailData) -> Unit) :
     ListAdapter<WorryListResDto.Data, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
 
     private lateinit var inflater: LayoutInflater // 뷰 그려줄려고
@@ -30,7 +31,13 @@ class StorageAdapter(private val itemClickListener: (Int) -> Unit) :
             binding.worry = curItem
             binding.xmlIng = ing
             binding.root.setOnClickListener {
-                itemClickListener(curItem.id)
+                itemClickListener(
+                    DetailData(
+                        worryId = curItem.id,
+                        isVoted = false,
+                        isAuthor = false
+                    )
+                )
             }
             if (ing) binding.tvStorageFlag.text = "고민중"
             else binding.tvStorageFlag.text = "고민완료"
