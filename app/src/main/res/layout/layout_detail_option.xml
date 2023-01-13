@@ -54,7 +54,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/cl_opt_box"
-            app:layout_constraintBottom_toTopOf="@id/cl_prosandcons_container"
             app:layOptSelNum="@{layOptSelNum}"
             app:layOptSel="@{layOptSel}"
             app:layVoteOptSel="@{layVoteOptSel}" >
@@ -117,7 +116,8 @@
                 android:id="@+id/tv_opt_pro_title"
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="@string/write_pros"
                 android:textAppearance="@style/hara_body2_m14"
@@ -146,17 +146,17 @@
                 android:id="@+id/tv_opt_con_title"
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="14dp"
                 android:gravity="center"
                 android:text="@string/write_cons"
                 android:textAppearance="@style/hara_body2_m14"
                 android:textColor="@color/red"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_opt_pro_title"
-                android:textSize="15sp" />
+                app:layout_constraintTop_toBottomOf="@id/tv_opt_pro_title" />
 
             <TextView
                 android:id="@+id/tv_opt_con_content"

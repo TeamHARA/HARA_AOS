@@ -60,17 +60,31 @@ class DetailWithActivity :
                         // 제목
                         title = option.title
 
-                        // 장점 & 단점
-                        if (option.advantage == "" || option.advantage == "")
-                            clProsandconsContainer.visibility = View.GONE
+                        // 장점
+                        if (option.advantage == "") {
+                            tvOptProTitle.visibility = View.GONE
+                            tvOptProContent.visibility = View.GONE
+                        }
                         else {
-                            clProsandconsContainer.visibility = View.VISIBLE
                             advantage = option.advantage
+                            tvOptProTitle.visibility = View.VISIBLE
+                            tvOptProContent.visibility = View.VISIBLE
+                        }
+
+                        // 단점
+                        if (option.disadvantage == "") {
+                            tvOptConTitle.visibility = View.GONE
+                            tvOptConContent.visibility = View.GONE
+                        }
+                        else {
                             disadvantage = option.disadvantage
+                            tvOptConTitle.visibility = View.VISIBLE
+                            tvOptConContent.visibility = View.VISIBLE
                         }
 
                         // 투표율
-                        if (option.percentage == null) tvOptPercent.visibility = View.GONE
+                        if (option.percentage == null)
+                            tvOptPercent.visibility = View.GONE
                         else percentage = option.percentage
                     }
 
@@ -83,7 +97,7 @@ class DetailWithActivity :
                     )
 
                     // 1. [내 글]
-                    if (worryData.isAuthor) {
+                    if (detailVm.detailDto.value!!.data.isAuthor) {
                         var maxVal = 0
                         var maxIndex = -1
                         detailVm.detailDto.value!!.data.options.forEachIndexed { i, opt ->
@@ -106,10 +120,17 @@ class DetailWithActivity :
                     else {
                         binding.itMyPost = false
                         // 2-a. [투표 완료]
-                        if (worryData.isVoted) {
+                        if (detailVm.detailDto.value!!.data.isVoted) {
                             binding.itOptSelNum = -1
                             // TODO 서버에서 어떤 옵션에 투표했는지에 대한 정보가 와야 됨
-                            binding.itVoteOptSelNum = 1 // TODO 일단 무조건 옵션1에 투표했다고 해보자
+                            for (i in 0..(detailVm.detailDto.value!!.data.options.size - 1)) {
+                                if (detailVm.detailDto.value!!.data.selectedOptionId
+                                    == detailVm.detailDto.value!!.data.options[i].id) {
+                                    binding.itVoteOptSelNum = i + 1
+                                }
+                                else break
+                            }
+                            // binding.itVoteOptSelNum = 1 // TODO 일단 무조건 옵션1에 투표했다고 해보자
                         }
                         // 2-b. [투표 미완]
                         else {
