@@ -113,6 +113,9 @@ class WriteOptionAdapter(
             newList.removeAt(2)
             titleList[2] = ""
         }
+        checkEnableListener(
+            titleList.subList(0, newList.size-1)
+                .all { it != "" }) // 모든 에딧텍스트에 입력이 되었는가 검사`
         submitList(newList)
     }
 
