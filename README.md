@@ -6,7 +6,7 @@
 <br>
 
 ## 프로덕트 이름
-해라(HARA)
+해라(HARA) ![image](https://user-images.githubusercontent.com/70648111/212277296-bf80c533-e17a-43b9-a2a3-cf6b21c5ab61.png)
 
 <br>
 
