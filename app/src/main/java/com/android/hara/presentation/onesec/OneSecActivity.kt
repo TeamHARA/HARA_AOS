@@ -15,7 +15,8 @@ class OneSecActivity : BindingActivity<ActivityOneSecBinding>(R.layout.activity_
 
     private val onesecViewModel: OneSecViewModel by viewModels()
     private val oneSecAdapter = OneSecAdapter() { worryTitle ->
-        binding.etSearch.setText(worryTitle)
+        onClickLastWorry(worryTitle)
+//        binding.etSearch.setText(worryTitle)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,12 @@ class OneSecActivity : BindingActivity<ActivityOneSecBinding>(R.layout.activity_
         init()
         addObserve()
         setOnClickListener()
+    }
+
+    private fun onClickLastWorry(worryTitle: String) {
+        onesecViewModel.worry.value = worryTitle
+        binding.ivSolvedCard.setImageResource(R.drawable.img_one_sec) // 텍스트 변경 시 활성화 해제
+        onesecViewModel.solution.value = null
     }
 
     private fun init() {
