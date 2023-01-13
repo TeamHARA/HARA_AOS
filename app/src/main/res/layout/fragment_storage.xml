@@ -16,15 +16,15 @@
             android:id="@+id/cv_storage_btn_onesec"
             android:layout_width="match_parent"
             android:layout_height="64dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
             android:orientation="vertical"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginLeft="12dp"
             app:strokeColor="@color/blue_3"
             app:strokeWidth="1dp">
 
@@ -32,52 +32,25 @@
                 android:id="@+id/cl_btn_onesec"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/img_game"
                 android:layout_margin="0dp"
+                android:background="@drawable/img_game"
                 android:padding="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tv_btn1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="1초만에"
-                    android:layout_marginStart="130dp"
                     android:textAppearance="@style/hara_game_sb18"
-                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_btn2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="고민 해결"
-                    android:textAppearance="@style/hara_game_sb18"
-                    android:textColor="@color/blue_1"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_btn1"
-                    app:layout_constraintEnd_toStartOf="@id/tv_btn3"
-                    app:layout_constraintStart_toEndOf="@+id/tv_btn1"
-                    app:layout_constraintTop_toTopOf="@+id/tv_btn1"
-                    android:layout_marginRight="0dp"/>
-
-                <TextView
-                    android:id="@+id/tv_btn3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="하러 가기"
-                    android:textAppearance="@style/hara_game_sb18"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_btn2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tv_btn2"
-                    app:layout_constraintTop_toTopOf="@+id/tv_btn2"
-                    android:layout_marginRight="30dp"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:title_blue="@{@string/one_sec_solve_game}"
+                    app:title_blue_end="@{10}"
+                    app:title_blue_start="@{5}"
+                    tools:text="@string/one_sec_solve_game" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -87,28 +60,28 @@
             android:id="@+id/tl_storage_tab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cv_storage_btn_onesec"
-            android:layout_marginRight="12dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"
-            app:tabTextAppearance="@style/hara_heading1_sb16"
-            app:tabTextColor="@color/blue_3"
-            app:tabSelectedTextColor="@color/blue_1"
+            android:layout_marginRight="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_storage_btn_onesec"
             app:tabBackground="@drawable/shape_stroke_blue3"
             app:tabIndicatorColor="@color/blue_1"
-            app:tabIndicatorHeight="2dp">
+            app:tabIndicatorHeight="2dp"
+            app:tabSelectedTextColor="@color/blue_1"
+            app:tabTextAppearance="@style/hara_heading1_sb16"
+            app:tabTextColor="@color/blue_3">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="혼자 고민"/>
+                android:text="혼자 고민" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="함께 고민"/>
+                android:text="함께 고민" />
 
         </com.google.android.material.tabs.TabLayout>
 
@@ -118,10 +91,10 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/tl_storage_tab"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/tl_storage_tab" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
