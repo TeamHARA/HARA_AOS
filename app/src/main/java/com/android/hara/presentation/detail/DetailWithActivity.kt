@@ -11,7 +11,6 @@ import com.android.hara.presentation.detail.adapter.CommentAdapter
 import com.android.hara.presentation.detail.viewmodel.DetailWithViewModel
 import com.android.hara.presentation.home.fragment.together.DetailData
 import com.android.hara.presentation.home.viewmodel.HomeViewModel
-import com.android.hara.presentation.util.HARAobjcet.categoryList
 import com.android.hara.presentation.util.HARAobjcet.nicknameList
 import com.android.hara.presentation.util.setOnSingleClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -212,6 +211,14 @@ class DetailWithActivity :
                 } else {
                     //TODO 엠티뷰
                 }
+            }
+
+            if (worryData.worryId == 9) { // r
+                binding.flowImage.visibility = View.VISIBLE
+                bindingList[0].advantage = "꼬질꼬질 귀여운 느낌이라 귀여웡"
+                bindingList[0].disadvantage = "브랜딩이랑 조금 다른 느낌이기는 해"
+                bindingList[1].advantage = "전체적인 우리 앱의 UI/UX랑 무드가 잘 맞긴해"
+                bindingList[1].disadvantage = "귀여운 느낌보다는 딱딱한 것 같기는 해 "
             }
         } // get 통신
 

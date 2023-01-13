@@ -175,13 +175,13 @@
                     android:id="@+id/iv_vote1"
                     android:layout_width="@dimen/vote_image"
                     android:layout_height="@dimen/vote_image"
-                    android:src="@color/blue_1" />
+                    android:src="@drawable/dummy1" />
 
                 <ImageView
                     android:id="@+id/iv_vote2"
                     android:layout_width="@dimen/vote_image"
                     android:layout_height="@dimen/vote_image"
-                    android:src="@color/blue_1" />
+                    android:src="@drawable/dummy2" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcv_detail_vote"
