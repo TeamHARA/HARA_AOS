@@ -32,9 +32,13 @@ data class DetailWithResDto(
         @SerialName("options")
         val options: List<Option>,
         @SerialName("worryContent")
-        val worryContent: String, // userId = 3
+        val worryContent: String,
         @SerialName("worryTitle")
-        val worryTitle: String // userId = 3
+        val worryTitle: String,
+        @SerialName("isVoted")
+        val isVoted: Boolean,
+        @SerialName("selectedOptionId")
+        val selectedOptionId: Int?
     ) {
         @Serializable
         data class Comment(
