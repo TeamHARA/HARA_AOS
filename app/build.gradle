@@ -82,6 +82,9 @@ dependencies {
     //navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    //turnout : ProgressView library
+    implementation "com.github.skydoves:progressview:1.1.3"
+    //TODO ImagePicker, Permission
     //swipe refresh
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 

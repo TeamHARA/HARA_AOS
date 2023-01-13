@@ -9,6 +9,7 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.detail.DetailWithActivity
+import com.android.hara.presentation.detail.decision.FinalDecideActivity
 import com.android.hara.presentation.home.fragment.together.adapter.CategoryAdapter
 import com.android.hara.presentation.home.fragment.together.adapter.PostAdapter
 import com.android.hara.presentation.home.fragment.together.model.SimpleModel
@@ -18,7 +19,6 @@ import com.android.hara.presentation.util.makeSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-
 @AndroidEntryPoint
 class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragment_together) {
 
@@ -26,10 +26,9 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         private lateinit var recyclerView: RecyclerView
 
         fun setScroll() {
-            //recyclerView.scrollToPosition(0)
+            // recyclerView.scrollToPosition(0)
             recyclerView.smoothScrollToPosition(0)
         }
-
     }
 
     private val category: Array<String>
@@ -47,12 +46,12 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         setCategoryRecycler()
         setPostAdapter()
         addObserve()
-    }// fun onViewCreated()
+    } // fun onViewCreated()
 
     private fun init() {
         recyclerView = binding.rvTogetherPost
         binding.swipeRefreash.setOnRefreshListener { /* swipe 시 진행할 동작 */
-            //recyclerView.smoothScrollToPosition(0)
+            // recyclerView.smoothScrollToPosition(0)
             homeVm.homeVmGetAllPost(homeVm.selCat.value ?: 0)
         }
     }
@@ -69,7 +68,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             setOnItemClickListener(object : CategoryAdapter.OnItemClickListener {
                 override fun onItemClick(item: SimpleModel, position: Int) {
                     Timber.e(item.title) // 카테고리가 클릭되면 '전체', '일상' 등이 찍힌다
-                    //recyclerView.scrollToPosition(0)
+                    // recyclerView.scrollToPosition(0)
                 }
             })
         }
@@ -85,15 +84,26 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         postAdapter = PostAdapter(
             {
                 val intent = Intent(requireContext(), DetailWithActivity::class.java)
-                intent.putExtra("worryId", it)
+                intent.putExtra("detailData", it)
                 startActivity(intent)
             },
             { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
             { homeVm.changeBtnVal() },
-            { requireContext().getDrawable(R.drawable.shape_rectangle_gray3_fill_8)!! },
-            { requireContext().getColor(R.color.white) }
+            { homeVm.getOptVoteRate() },
+            { decideData -> // 최종결정 액티비티 이동
+                Timber.e(decideData.toString())
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        FinalDecideActivity::class.java
+                    ).putExtra("decideData", decideData)
+                )
+            }
         )
         binding.rvTogetherPost.adapter = postAdapter
+
+        // private val voteResult: h
+        // { homeVm.voteResult.value },
     }
 
     private fun addObserve() {
@@ -112,7 +122,9 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
 
         // [2] homeVm의 btn이 변하는지 관찰
         homeVm.btnSel.observe(viewLifecycleOwner) {
-            Timber.e("hello", homeVm.getPostId(), homeVm.getOptId())
+            Timber.e(
+                "통신할 때 이 값 보내 " + homeVm.getPostId() + homeVm.getOptId()
+            )
             homeVm.homeVmPostVote(homeVm.getPostId(), homeVm.getOptId())
         }
 
@@ -121,14 +133,11 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             binding.swipeRefreash.isRefreshing = false // 서버통신 완료시 리프레시 중단
             if (!it) {
                 binding.root.makeSnackbar(getString(R.string.server_connet_fail))
-                //실패 시 스낵바, 성공 시 게시물 목록 value 갱신 -> 위의 observer에서 자동 갱신
+                // 실패 시 스낵바, 성공 시 게시물 목록 value 갱신 -> 위의 observer에서 자동 갱신
             }
         }
     }
-
-
-}
-
+} // fun onViewCreated()
 
 /*
 // n번째 옵션이 선택되면 PostViewModel 안의 sNum의 value가 n으로 바뀐다

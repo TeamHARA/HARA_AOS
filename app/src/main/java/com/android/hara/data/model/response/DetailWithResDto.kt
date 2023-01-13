@@ -32,9 +32,13 @@ data class DetailWithResDto(
         @SerialName("options")
         val options: List<Option>,
         @SerialName("worryContent")
-        val worryContent: String, // userId = 3
+        val worryContent: String,
         @SerialName("worryTitle")
-        val worryTitle: String // userId = 3
+        val worryTitle: String,
+        @SerialName("isVoted")
+        val isVoted: Boolean,
+        @SerialName("selectedOptionId")
+        val selectedOptionId: Int?
     ) {
         @Serializable
         data class Comment(
@@ -63,7 +67,7 @@ data class DetailWithResDto(
             @SerialName("percentage")
             val percentage: Int?, // 50
             @SerialName("title")
-            val title: String, // 글2 의선택지
+            val title: String, // 글 2의 선택지
             @SerialName("worryWithId")
             val worryWithId: Int // 2
         )

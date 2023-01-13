@@ -100,6 +100,10 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
         return voteOptId
     }
 
+    fun getOptVoteRate(): List<VoteResDto.Data.Option>? {
+        return _voteResult.value?.data?.option
+    }
+
     /*----------------------------------------------------------*/
     /* 서버통신의 결과인 response를 담는다 */
 

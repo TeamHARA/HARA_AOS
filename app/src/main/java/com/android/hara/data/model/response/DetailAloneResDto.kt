@@ -33,9 +33,9 @@ data class DetailAloneResDto(
         @Serializable
         data class Option(
             @SerialName("advantage")
-            val advantage: String? = "",
+            val advantage: String? = "", // 장점
             @SerialName("disadvantage")
-            val disadvantage: String? = "", // 단점의 이유
+            val disadvantage: String? = "", // 단점
             @SerialName("hasImage")
             val hasImage: Boolean, // false
             @SerialName("id")
