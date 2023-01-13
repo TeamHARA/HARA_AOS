@@ -27,6 +27,46 @@ Enjoy, think, solve
 
 <br>
 
+## 아키텍처 및 프로젝트 구조
+
+- 안드로이드에서 제공한 기본 빌드구조인 Groovy 형태의 build.gradle 빌드를 하였습니다.
+- Git Action을 활용한 yaml기반 CI를 구축하여 Git에서의 협업과정에서 코드의 안정성을 높혔습니다. Push와 PullRequest에 자동적으로 검사를 하도록 설정하였으며, Slack WebHook을 통하여 팀원들이 모두 CI 결과를 공유받을 수 있도록 설정하였습니다.
+- 프로젝트구조 :
+    - 기본적으로 data-domain-presentation의 구조로 패키지를 나누었습니다.
+    - 가능한 Mvvm구조를 채택하려고 하였으며, 필요에 따라 액티비티, 프래그먼트마다 생성위임자를 통한 ViewModel을 사용해주었습니다. 또한 최대한 Class에서의 로직을 분리하기 위해서 DataBinding과 BindingAdapter를 활용 하였습니다.
+    - Service객체 / Repository의 의존성이 필요한 부분은 Hilt-dagger기반의 모듈을 활용하여 의존성 각각 Repository / ViewModel에
+    - Local Properties를 활용하여 개인 데이터를 관리하였습니다.
+
+## 기술스택
+
+- CustomView
+    - BottomSheetDialog
+    - Picker
+- 의존성 주입
+- 서버통신
+    - Retrofit2
+        - Okhttp3
+        - HttpInterceptor
+    - Kotlinx Serialization
+- Coroutine을 통하 비동기 동작
+- LiveData를 활용한 반응형 UI
+- ListAdapter
+
+### 안드로이드 JetPack Library
+
+- ViewBinding
+- DataBinding
+- ViewModel
+- Coroutine
+- Navigation Graph
+
+### 서드파티 라이브러리
+
+- Timber
+- skydoves:progressview
+    
+    [GitHub - skydoves/ProgressView: 🌊 A polished and flexible ProgressView, fully customizable with animations.](https://github.com/skydoves/ProgressView)
+
 ## Contributors
 
 | 김준우 [@IslandOfDream](https://github.com/IslandOfDream) | 장유진 [@wkdyujin](https://github.com/wkdyujin) | 이수현 [@skylartosf](https://github.com/skylartosf) |
