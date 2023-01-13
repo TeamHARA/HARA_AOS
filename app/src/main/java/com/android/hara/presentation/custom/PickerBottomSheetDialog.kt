@@ -9,12 +9,13 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentBottomsheetPickerBinding
 import com.android.hara.presentation.base.BindingNotDraggableBottomSheet
 import com.android.hara.presentation.util.HARAobjcet.categoryList
+import timber.log.Timber
 
 
 class PickerBottomSheetDialog(private val addListener: (Int) -> Unit) :
     BindingNotDraggableBottomSheet<FragmentBottomsheetPickerBinding>(R.layout.fragment_bottomsheet_picker) {
 
-    private var count = 0
+    private var count = 1
 
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -36,6 +37,7 @@ class PickerBottomSheetDialog(private val addListener: (Int) -> Unit) :
 
     private fun setOnClickListener() {
         binding.pickerCategory.setOnValueChangedListener { picker, xoldVal, newVal ->
+            Timber.e(count.toString())
             count = newVal + 1
         }
 
