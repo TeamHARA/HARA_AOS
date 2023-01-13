@@ -37,7 +37,7 @@ class WriteActivity : BindingActivity<ActivityWriteBinding>(R.layout.activity_wr
             if (it) { // TODO 상세화면 이동 (X) => 홈(전체)로 이동
                 startActivity(
                     Intent(this, HomeActivity::class.java)
-                        .putExtra("server", true)
+                        .putExtra("server_connect", true)
                 )
                 finishAffinity() // 기존 스택 비우기
                 finish()
