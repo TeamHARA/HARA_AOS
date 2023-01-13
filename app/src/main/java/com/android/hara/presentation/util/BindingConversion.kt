@@ -1,5 +1,7 @@
 package com.android.hara.presentation.util
 
+import android.R.attr.left
+import android.R.attr.right
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableString
@@ -20,6 +22,7 @@ import com.skydoves.progressview.ProgressView
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.util.*
+
 
 @BindingAdapter("app:decide_selected")
 fun AppCompatButton.selected(sel: Boolean) {
@@ -280,3 +283,4 @@ fun changeVoteBtnStyle(btn: AppCompatButton, optSelNum: Int, myPost: Boolean) {
         }
     }
 }
+

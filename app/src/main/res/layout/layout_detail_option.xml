@@ -58,6 +58,27 @@
             app:layOptSel="@{layOptSel}"
             app:layVoteOptSel="@{layVoteOptSel}" >
 
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/pb_detail_turnout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="0dp"
+                app:layOptSelNum="@{layOptSelNum}"
+                app:layVoteOptSel="@{layVoteOptSel}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:progressView_autoAnimate="false"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/gray_4"
+                app:progressView_labelSize="0sp"
+                app:progressView_padding="0dp"
+                app:progressView_progress="0"
+                app:progressView_radius="8dp" />
+
             <ImageView
                 android:id="@+id/iv_opt_check"
                 android:layout_width="wrap_content"
@@ -93,8 +114,8 @@
                 android:id="@+id/tv_opt_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="@{@string/percentage(percentage)}"
+                android:layout_marginEnd="15dp"
+                android:text="@{percentage}"
                 android:textAppearance="@style/hara_body3_r14"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/cl_opt_title"
@@ -138,8 +159,8 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_opt_pro_title"
                 app:layout_constraintStart_toEndOf="@+id/tv_opt_pro_title"
                 app:layout_constraintTop_toTopOf="@+id/tv_opt_pro_title"
-                tools:text="안녕하세요 반가워요 잘있어요 다시 만나요"
-                android:textSize="15sp" />
+                tools:text="이건 장점이라구요 난 안 졸려용"
+                android:textSize="15sp"  />\
 
             <!-- [option] con -->
             <TextView
@@ -154,7 +175,6 @@
                 android:textAppearance="@style/hara_body2_m14"
                 android:textColor="@color/red"
                 android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_opt_pro_title" />
 
