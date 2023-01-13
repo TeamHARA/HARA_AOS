@@ -116,4 +116,8 @@
         <item name="android:textColorPrimary">@color/black</item>
     </style>
 
+    <style name="Theme.HARA.RemoveSplash" parent="Theme.HARA">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>
