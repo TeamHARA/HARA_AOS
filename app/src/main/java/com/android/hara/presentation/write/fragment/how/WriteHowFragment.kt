@@ -35,15 +35,19 @@ class WriteHowFragment :
     private fun showDialog() {
         binding.btnWriteContentUploadButton.setOnSingleClickListener {
             writeViewModel.isWith = howFragViewModel.isWithSelected.value!!
-            DecisionDialog(
-                requireContext(),
-                DialogData(
-                    getString(R.string.dialog_upload_title),
-                    getString(R.string.dialog_upload_warn),
-                    getString(R.string.cancel),
-                    getString(R.string.dialog_upload)
-                )
-            ) { writeViewModel.postWorry() }.showDialog()
+            if (writeViewModel.isWith) {
+                DecisionDialog(
+                    requireContext(),
+                    DialogData(
+                        getString(R.string.dialog_upload_title),
+                        getString(R.string.dialog_upload_warn),
+                        getString(R.string.cancel),
+                        getString(R.string.dialog_upload)
+                    )
+                ) { writeViewModel.postWorry() }.showDialog()
+            } else {
+                writeViewModel.postWorry()
+            }
         }
     }
 

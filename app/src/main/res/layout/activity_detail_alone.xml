@@ -4,15 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="category"
-            type="String" />
-
         <variable
             name="detailVm"
             type="com.android.hara.presentation.detail.viewmodel.DetailAloneViewModel" />
-        
+
         <variable
             name="itOptSelNum"
             type="int" />
@@ -115,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
-                    android:text="@{category}"
+                    android:text="@{detailVm.detailDto.data.category}"
                     android:textAppearance="@style/hara_sub2_m12"
                     android:textColor="@color/blue_1"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_detail_data"
@@ -193,13 +188,13 @@
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="16dp"
                     android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/flow_image"
+                    app:layMyPost="@{itMyPost}"
                     app:layOptSel="@{itOptSelNum == 1 ? true : false}"
                     app:layOptSelNum="@{itOptSelNum}"
                     app:layVoteOptSel="@{itVoteOptSel == 1 ? true : false}"
-                    app:layMyPost="@{itMyPost}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/flow_image"
                     tools:visibility="visible" />
 
                 <include
@@ -210,13 +205,13 @@
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="12dp"
                     android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_option1"
+                    app:layMyPost="@{itMyPost}"
                     app:layOptSel="@{itOptSelNum == 2 ? true : false}"
                     app:layOptSelNum="@{itOptSelNum}"
                     app:layVoteOptSel="@{itVoteOptSel == 2 ? true : false}"
-                    app:layMyPost="@{itMyPost}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_option1"
                     tools:visibility="visible" />
 
                 <include
@@ -227,13 +222,13 @@
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="12dp"
                     android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_option2"
+                    app:layMyPost="@{itMyPost}"
                     app:layOptSel="@{itOptSelNum == 3 ? true : false}"
                     app:layOptSelNum="@{itOptSelNum}"
                     app:layVoteOptSel="@{itVoteOptSel == 3 ? true : false}"
-                    app:layMyPost="@{itMyPost}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_option2"
                     tools:visibility="visible" />
 
                 <include
@@ -244,13 +239,13 @@
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginTop="12dp"
                     android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_option3"
+                    app:layMyPost="@{itMyPost}"
                     app:layOptSel="@{itOptSelNum == 4 ? true : false}"
                     app:layOptSelNum="@{itOptSelNum}"
                     app:layVoteOptSel="@{itVoteOptSel == 4 ? true : false}"
-                    app:layMyPost="@{itMyPost}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_option3"
                     tools:visibility="visible" />
 
                 <!-- 투표하기 버튼 -->
@@ -264,9 +259,9 @@
                     android:stateListAnimator="@null"
                     android:textAppearance="@style/hara_heading1_sb16"
                     android:textColor="@color/orange_1"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_option4"
+                    app:itMyPost="@{itMyPost}"
                     app:itOptSelNum="@{itOptSelNum}"
-                    app:itMyPost="@{itMyPost}" />
+                    app:layout_constraintTop_toBottomOf="@+id/layout_option4" />
 
                 <!-- 투표하기 버튼 아래 회색 선 -->
                 <View
