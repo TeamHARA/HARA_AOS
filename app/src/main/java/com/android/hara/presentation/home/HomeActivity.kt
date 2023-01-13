@@ -40,25 +40,6 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
             val intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
         }
-        // TODO: TEST코드 -> 추후 상세 보기 및 홈으로 하단 코드 이동
-        var decideData = DecideData(
-            1,
-            "연락 할까 말까?",
-            listOf(1, 2, 3),
-            listOf("연락고고", "연락노노", "기달"),
-            listOf(0, null, 50),
-            false,
-            true
-        )
-        binding.ivHomeSetting.setOnSingleClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    FinalDecideActivity::class.java
-                ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_NEW_TASK) // 이전 Activity들이 백스택에 남지 않도록 설정
-                    .apply { putExtra("decideData", decideData) }
-            )
-        }
 
         binding.ivHomeSearch.setOnSingleClickListener {
             startActivity(Intent(this, SearchActivity::class.java))

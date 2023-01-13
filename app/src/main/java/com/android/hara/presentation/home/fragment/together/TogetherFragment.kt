@@ -9,6 +9,7 @@ import com.android.hara.R
 import com.android.hara.databinding.FragmentTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.detail.DetailWithActivity
+import com.android.hara.presentation.detail.decision.FinalDecideActivity
 import com.android.hara.presentation.home.fragment.together.adapter.CategoryAdapter
 import com.android.hara.presentation.home.fragment.together.adapter.PostAdapter
 import com.android.hara.presentation.home.fragment.together.model.SimpleModel
@@ -18,7 +19,6 @@ import com.android.hara.presentation.util.makeSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-
 @AndroidEntryPoint
 class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragment_together) {
 
@@ -26,10 +26,9 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         private lateinit var recyclerView: RecyclerView
 
         fun setScroll() {
-            //recyclerView.scrollToPosition(0)
+            // recyclerView.scrollToPosition(0)
             recyclerView.smoothScrollToPosition(0)
         }
-
     }
 
     private val category: Array<String>
@@ -47,13 +46,12 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
         setCategoryRecycler()
         setPostAdapter()
         addObserve()
-    }// fun onViewCreated()
-
+    } // fun onViewCreated()
 
     private fun init() {
         recyclerView = binding.rvTogetherPost
         binding.swipeRefreash.setOnRefreshListener { /* swipe 시 진행할 동작 */
-            //recyclerView.smoothScrollToPosition(0)
+            // recyclerView.smoothScrollToPosition(0)
             homeVm.homeVmGetAllPost(homeVm.selCat.value ?: 0)
         }
     }
@@ -70,7 +68,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             setOnItemClickListener(object : CategoryAdapter.OnItemClickListener {
                 override fun onItemClick(item: SimpleModel, position: Int) {
                     Timber.e(item.title) // 카테고리가 클릭되면 '전체', '일상' 등이 찍힌다
-                    //recyclerView.scrollToPosition(0)
+                    // recyclerView.scrollToPosition(0)
                 }
             })
         }
@@ -91,7 +89,16 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             },
             { postId, optId -> homeVm.changeSelPostAndOptId(postId, optId) },
             { homeVm.changeBtnVal() },
-            { homeVm.getOptVoteRate() }
+            { homeVm.getOptVoteRate() },
+            { decideData -> // 최종결정 액티비티 이동
+                Timber.e(decideData.toString())
+                startActivity(
+                    Intent(
+                        requireContext(),
+                        FinalDecideActivity::class.java
+                    ).putExtra("decideData", decideData)
+                )
+            }
         )
         binding.rvTogetherPost.adapter = postAdapter
 
@@ -130,9 +137,7 @@ class TogetherFragment : BindingFragment<FragmentTogetherBinding>(R.layout.fragm
             }
         }
     }
-
 } // fun onViewCreated()
-
 
 /*
 // n번째 옵션이 선택되면 PostViewModel 안의 sNum의 value가 n으로 바뀐다
