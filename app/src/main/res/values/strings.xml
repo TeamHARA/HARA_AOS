@@ -19,14 +19,14 @@
     <string name="dialog_delete">고민글을 삭제하시겠습니까?</string>
     <string name="dialog_delete_warn">작성하신 글을 삭제하습니까?</string>
     <string name="one_sec_solve">1초만에 해결하기</string>
+    <string name="one_sec_solve_game">1초만에 고민 해결 하러 가기</string>
     <string name="one_sec_hint">고민의 제목을 입력해주세요.</string>
     <string name="one_sec_last">지난 나의 고민</string>
     <string name="one_sec_notice">최근 10개의 고민까지만 저장되고 오래된 순으로 자동 삭제돼요!</string>
     <string name="one_sec_pick">해결 카드 뽑기</string>
     <string name="one_sec_retry">다시뽑기</string>
     <string name="write_option_hint">선택지를 입력해주세요 (20자 이내)</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="splash_introduce">할까? 말까? 하는\n당신 위한 고민해결사</string>
 
     <!--  home  -->
     <string name="vote">투표하기</string>

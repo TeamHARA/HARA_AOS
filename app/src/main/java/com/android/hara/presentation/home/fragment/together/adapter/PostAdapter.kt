@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.hara.R
 import com.android.hara.data.model.response.AllPostResDto
 import com.android.hara.databinding.ItemPostBinding
-import com.android.hara.presentation.util.GlobalDiffCallBack
+import com.android.hara.presentation.util.GlobalFalseDiff
 import com.android.hara.presentation.util.setOnSingleClickListener
 import timber.log.Timber
 
@@ -19,7 +19,7 @@ class PostAdapter(
     private val btnSelListener: () -> Unit,
     private val getDrawable: () -> Drawable,
     private val getColor: () -> Int
-) : ListAdapter<AllPostResDto.Data, RecyclerView.ViewHolder>(GlobalDiffCallBack()) {
+) : ListAdapter<AllPostResDto.Data, RecyclerView.ViewHolder>(GlobalFalseDiff()) {
 
     private lateinit var inflater: LayoutInflater // 뷰를 그려준다
 
