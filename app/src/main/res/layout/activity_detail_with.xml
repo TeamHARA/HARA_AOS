@@ -195,73 +195,83 @@
                     app:layout_constraintTop_toBottomOf="@+id/flow_image"
                     tools:listitem="@layout/item_write_proscons" />
 
-                <include
-                    android:id="@+id/layout_option1"
-                    layout="@layout/layout_detail_option"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="16dp"
-                    android:visibility="gone"
-                    app:layMyPost="@{itMyPost}"
-                    app:layOptSel="@{itOptSelNum == 1 ? true : false}"
-                    app:layOptSelNum="@{itOptSelNum}"
-                    app:layVoteOptSel="@{itVoteOptSelNum == 1 ? true : false}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/flow_image"
-                    tools:visibility="visible" />
-
-                <include
-                    android:id="@+id/layout_option2"
-                    layout="@layout/layout_detail_option"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="12dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_options"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:visibility="gone"
-                    app:layMyPost="@{itMyPost}"
-                    app:layOptSel="@{itOptSelNum == 2 ? true : false}"
-                    app:layOptSelNum="@{itOptSelNum}"
-                    app:layVoteOptSel="@{itVoteOptSelNum == 2 ? true : false}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_option1"
-                    tools:visibility="visible" />
+                    app:layout_constraintTop_toBottomOf="@+id/flow_image">
 
-                <include
-                    android:id="@+id/layout_option3"
-                    layout="@layout/layout_detail_option"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="12dp"
-                    android:visibility="gone"
-                    app:layMyPost="@{itMyPost}"
-                    app:layOptSel="@{itOptSelNum == 3 ? true : false}"
-                    app:layOptSelNum="@{itOptSelNum}"
-                    app:layVoteOptSel="@{itVoteOptSelNum == 3 ? true : false}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_option2"
-                    tools:visibility="visible" />
+                    <include
+                        android:id="@+id/layout_option1"
+                        layout="@layout/layout_detail_option"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="12dp"
+                        android:visibility="gone"
+                        app:layMyPost="@{itMyPost}"
+                        app:layOptSel="@{itOptSelNum == 1 ? true : false}"
+                        app:layOptSelNum="@{itOptSelNum}"
+                        app:layVoteOptSel="@{itVoteOptSelNum == 1 ? true : false}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
 
-                <include
-                    android:id="@+id/layout_option4"
-                    layout="@layout/layout_detail_option"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginTop="12dp"
-                    android:visibility="gone"
-                    app:layMyPost="@{itMyPost}"
-                    app:layOptSel="@{itOptSelNum == 4 ? true : false}"
-                    app:layOptSelNum="@{itOptSelNum}"
-                    app:layVoteOptSel="@{itVoteOptSelNum == 4 ? true : false}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_option3"
-                    tools:visibility="visible" />
+                    <include
+                        android:id="@+id/layout_option2"
+                        layout="@layout/layout_detail_option"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="12dp"
+                        android:visibility="gone"
+                        app:layMyPost="@{itMyPost}"
+                        app:layOptSel="@{itOptSelNum == 2 ? true : false}"
+                        app:layOptSelNum="@{itOptSelNum}"
+                        app:layVoteOptSel="@{itVoteOptSelNum == 2 ? true : false}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_option1"
+                        tools:visibility="visible" />
+
+                    <include
+                        android:id="@+id/layout_option3"
+                        layout="@layout/layout_detail_option"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="12dp"
+                        android:visibility="gone"
+                        app:layMyPost="@{itMyPost}"
+                        app:layOptSel="@{itOptSelNum == 3 ? true : false}"
+                        app:layOptSelNum="@{itOptSelNum}"
+                        app:layVoteOptSel="@{itVoteOptSelNum == 3 ? true : false}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_option2"
+                        tools:visibility="visible" />
+
+                    <include
+                        android:id="@+id/layout_option4"
+                        layout="@layout/layout_detail_option"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="12dp"
+                        android:layout_marginTop="12dp"
+                        android:visibility="gone"
+                        app:layMyPost="@{itMyPost}"
+                        app:layOptSel="@{itOptSelNum == 4 ? true : false}"
+                        app:layOptSelNum="@{itOptSelNum}"
+                        app:layVoteOptSel="@{itVoteOptSelNum == 4 ? true : false}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/layout_option3"
+                        tools:visibility="visible" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!-- 투표하기/투표완료 버튼 -->
                 <androidx.appcompat.widget.AppCompatButton
@@ -276,7 +286,7 @@
                     android:textColor="@color/orange_1"
                     app:itMyPost="@{itMyPost}"
                     app:itOptSelNum="@{itOptSelNum}"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_option4" />
+                    app:layout_constraintTop_toBottomOf="@+id/cl_options" />
 
                 <!-- 투표하기 버튼 아래 회색 선 -->
                 <View

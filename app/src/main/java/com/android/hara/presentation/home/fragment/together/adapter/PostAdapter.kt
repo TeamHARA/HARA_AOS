@@ -228,7 +228,7 @@ class PostAdapter(
                             // 투표율을 보여준다
                             // getOptVoteRate() -> AllPostResDto.Option 타입으로 바꿔야 됨
                             var voteRes = mutableListOf<AllPostResDto.Data.Option>()
-                            getOptVoteRate()?.forEachIndexed { index, opt ->
+                            getOptVoteRate()?.forEach { opt ->
                                 voteRes.add(
                                     AllPostResDto.Data.Option(
                                         opt.hasImage,

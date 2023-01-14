@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
         // [홈화면: 고민글 목록 전체조회] 남이 쓴 글 목록
         private lateinit var otherPostResult: List<AllPostResDto.Data>
 
-        // 서버통신 결과
+    // 서버통신 결과
     private val _success = MutableLiveData<Boolean>()
     val suceess get() = _success
 
@@ -101,7 +101,11 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
     }
 
     fun getOptVoteRate(): List<VoteResDto.Data.Option>? {
-        return _voteResult.value?.data?.option
+        for (i in 0..(_voteResult.value?.data?.size?.minus(1) ?: 0)) {
+            if (this.votePostId == _voteResult.value?.data?.get(i)?.worryId)
+                return _voteResult.value?.data?.get(i)?.option
+        }
+        return emptyList()
     }
 
     /*----------------------------------------------------------*/
