@@ -162,7 +162,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_opt_pro_title"
                 app:layout_constraintStart_toEndOf="@+id/tv_opt_pro_title"
                 app:layout_constraintTop_toTopOf="@+id/tv_opt_pro_title"
-                tools:text="이건 장점이라구요 난 안 졸려용" />\
+                tools:text="이건 장점이라구요 난 안 졸려용" />
 
             <!-- [option] con -->
             <TextView
