@@ -17,7 +17,7 @@ interface HARAService {
     // Response에서 별다른 걸 안해줘도 된다면 == 서버에서 status가 정확하게 온다면, Response 필요없음
 
     @GET("/worry/{categoryId}")
-    suspend fun showAllPost(@Path("categoryId") categoryId: Int): Response<AllPostResDto>
+    suspend fun showAllPost(@Path("categoryId") categoryId: Int): AllPostResDto
 
     // TODO: Headers를 제거해도 post 요청이 제대로 가는지 확인
     @Headers("Content-Type: application/json")

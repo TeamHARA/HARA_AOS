@@ -17,7 +17,7 @@ class HARARepositoryImpl @Inject constructor(
     private val HARAService: HARAService
 ) : HARARepository {
 
-    override suspend fun getAllPost(categoryId: Int): Response<AllPostResDto> {
+    override suspend fun getAllPost(categoryId: Int): AllPostResDto {
         return HARAService.showAllPost(categoryId)
     }
 
