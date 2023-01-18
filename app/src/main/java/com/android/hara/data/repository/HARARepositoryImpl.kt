@@ -1,6 +1,6 @@
 package com.android.hara.data.repository
 
-import com.android.hara.data.datasource.HARAService
+import com.android.hara.data.datasource.HARAaloneService
 import com.android.hara.data.model.request.*
 import com.android.hara.data.model.response.*
 import com.android.hara.domain.repository.HARARepository
@@ -14,55 +14,55 @@ import javax.inject.Inject
 // view model에 서버통신 성공/실패 시 작업을 정의한다 (HomeViewModel.kt 참고)
 
 class HARARepositoryImpl @Inject constructor(
-    private val HARAService: HARAService
+    private val HARAaloneService: HARAaloneService
 ) : HARARepository {
 
     override suspend fun getAllPost(categoryId: Int): AllPostResDto {
-        return HARAService.showAllPost(categoryId)
+        return HARAaloneService.showAllPost(categoryId)
     }
 
     override suspend fun postVote(request: VoteReqDto): Response<VoteResDto> {
-        return HARAService.vote(request)
+        return HARAaloneService.vote(request)
     }
 
     override suspend fun getAloneList(isSolved: Int): Response<WorryListResDto> {
-        return HARAService.getAloneList(isSolved)
+        return HARAaloneService.getAloneList(isSolved)
     }
 
     override suspend fun getWithList(isSolved: Int): Response<WorryListResDto> {
-        return HARAService.getWithList(isSolved)
+        return HARAaloneService.getWithList(isSolved)
     }
 
     override suspend fun getRandom(): Response<OnesecResDto> {
-        return HARAService.getRandom()
+        return HARAaloneService.getRandom()
     }
 
     override suspend fun getLastWorry(): Response<RandomListResDto> {
-        return HARAService.getLastWorry()
+        return HARAaloneService.getLastWorry()
     }
 
     override suspend fun patchDecideWith(decision: DecideWithReqDto): Response<DecisionResDto> {
-        return HARAService.patchWithDecision(decision)
+        return HARAaloneService.patchWithDecision(decision)
     }
 
     override suspend fun patchDecideAlone(decision: DecideAloneReqDto): Response<DecisionResDto> {
-        return HARAService.patchAloneDecision(decision)
+        return HARAaloneService.patchAloneDecision(decision)
     }
 
     override suspend fun postWorryWith(request: WorryWithRequestDto): Response<WorryWithResponseDto> {
         Timber.e(request.toString())
-        return HARAService.postWorryWith(request)
+        return HARAaloneService.postWorryWith(request)
     }
 
     override suspend fun postWorryAlone(request: WorryAloneRequestDto): Response<WorryAloneResponseDto> {
-        return HARAService.postWorryAlone(request)
+        return HARAaloneService.postWorryAlone(request)
     }
 
     override suspend fun getDetailWith(worryId: Int): Response<DetailWithResDto> {
-        return HARAService.getDetailWith(worryId)
+        return HARAaloneService.getDetailWith(worryId)
     }
 
     override suspend fun getDetailAlone(worryId: Int): Response<DetailAloneResDto> {
-        return HARAService.getDetailAlone(worryId)
+        return HARAaloneService.getDetailAlone(worryId)
     }
 }
