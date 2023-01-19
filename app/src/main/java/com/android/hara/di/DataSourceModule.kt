@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -29,12 +30,13 @@ object DataSourceModule {
             .build()
     }
 
+    @OptIn(ExperimentalSerializationApi::class)
     @Singleton
     @Provides
     @HARARetrofit
     fun provideHARARetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL) //TODO add local.properties
+            .baseUrl(BuildConfig.BASE_URL) //local.properties
             .client(okHttpClient)
             .addConverterFactory(Json.asConverterFactory(Constant.APPLICATION_JSON.toMediaType()))
             .build()
