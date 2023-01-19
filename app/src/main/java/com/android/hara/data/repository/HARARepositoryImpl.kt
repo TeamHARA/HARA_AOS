@@ -21,48 +21,48 @@ class HARARepositoryImpl @Inject constructor(
         return HARAaloneService.showAllPost(categoryId)
     }
 
-    override suspend fun postVote(request: VoteReqDto): Response<VoteResDto> {
+    override suspend fun postVote(request: VoteReqDto): VoteResDto {
         return HARAaloneService.vote(request)
     }
 
-    override suspend fun getAloneList(isSolved: Int): Response<WorryListResDto> {
+    override suspend fun getAloneList(isSolved: Int): WorryListResDto {
         return HARAaloneService.getAloneList(isSolved)
     }
 
-    override suspend fun getWithList(isSolved: Int): Response<WorryListResDto> {
+    override suspend fun getWithList(isSolved: Int): WorryListResDto {
         return HARAaloneService.getWithList(isSolved)
     }
 
-    override suspend fun getRandom(): Response<OnesecResDto> {
+    override suspend fun getRandom(): OnesecResDto {
         return HARAaloneService.getRandom()
     }
 
-    override suspend fun getLastWorry(): Response<RandomListResDto> {
+    override suspend fun getLastWorry(): RandomListResDto {
         return HARAaloneService.getLastWorry()
     }
 
-    override suspend fun patchDecideWith(decision: DecideWithReqDto): Response<DecisionResDto> {
+    override suspend fun patchDecideWith(decision: DecideWithReqDto): DecisionResDto {
         return HARAaloneService.patchWithDecision(decision)
     }
 
-    override suspend fun patchDecideAlone(decision: DecideAloneReqDto): Response<DecisionResDto> {
+    override suspend fun patchDecideAlone(decision: DecideAloneReqDto): DecisionResDto {
         return HARAaloneService.patchAloneDecision(decision)
     }
 
-    override suspend fun postWorryWith(request: WorryWithRequestDto): Response<WorryWithResponseDto> {
+    override suspend fun postWorryWith(request: WorryWithRequestDto): WorryWithResponseDto {
         Timber.e(request.toString())
         return HARAaloneService.postWorryWith(request)
     }
 
-    override suspend fun postWorryAlone(request: WorryAloneRequestDto): Response<WorryAloneResponseDto> {
+    override suspend fun postWorryAlone(request: WorryAloneRequestDto): WorryAloneResponseDto {
         return HARAaloneService.postWorryAlone(request)
     }
 
-    override suspend fun getDetailWith(worryId: Int): Response<DetailWithResDto> {
+    override suspend fun getDetailWith(worryId: Int): DetailWithResDto {
         return HARAaloneService.getDetailWith(worryId)
     }
 
-    override suspend fun getDetailAlone(worryId: Int): Response<DetailAloneResDto> {
+    override suspend fun getDetailAlone(worryId: Int): DetailAloneResDto {
         return HARAaloneService.getDetailAlone(worryId)
     }
 }
