@@ -26,9 +26,9 @@ class StorageWithViewModel @Inject constructor(private val haraRepository: HARAR
             runCatching {
                 haraRepository.getWithList(_isSolved.value!!)
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
-                    _withData.value = it.body()?.data
+                    _withData.value = it.data
                 } else { // 응답코드 400~599
                     Timber.e("Failure")
                 }

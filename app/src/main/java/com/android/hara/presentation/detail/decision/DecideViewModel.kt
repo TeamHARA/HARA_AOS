@@ -26,7 +26,7 @@ class DecideViewModel @Inject constructor(private val haraRepository: HARAReposi
             runCatching {
                 haraRepository.patchDecideWith(reqData)
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
                     _decideSuccess.value = true
                 } else { // 응답코드 400~599
@@ -45,7 +45,7 @@ class DecideViewModel @Inject constructor(private val haraRepository: HARAReposi
             runCatching {
                 haraRepository.patchDecideAlone(reqData)
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                if (it.status in 200..299) { // retrofit response의 it.successful을 보면 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
                 } else { // 응답코드 400~599
                     Timber.e("Failure")

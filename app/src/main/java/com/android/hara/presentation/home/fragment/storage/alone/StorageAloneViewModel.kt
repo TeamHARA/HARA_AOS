@@ -25,9 +25,9 @@ class StorageAloneViewModel @Inject constructor(private val haraRepository: HARA
             runCatching {
                 haraRepository.getAloneList(_isSolved.value!!)
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
-                    _aloneData.value = it.body()?.data // null로 터지는 걸 막아준다.
+                    _aloneData.value = it.data ?: listOf() // null로 터지는 걸 막아준다.
                 } else { // 응답코드 400~599
                     Timber.e("Failure")
                 }

@@ -2,7 +2,6 @@ package com.android.hara.data.datasource
 
 import com.android.hara.data.model.request.*
 import com.android.hara.data.model.response.*
-import retrofit2.Response
 import retrofit2.http.*
 
 // [서버통신 1] 요청/응답 dto data class를 만든다
@@ -45,10 +44,10 @@ interface HARAaloneService {
     suspend fun patchWithDecision(@Body decision: DecideWithReqDto): DecisionResDto
 
     @POST("/worry/with")
-    suspend fun postWorryWith(@Body requset: WorryWithRequestDto): WorryWithResponseDto
+    suspend fun postWorryWith(@Body request: WorryWithRequestDto): WorryWithResponseDto
 
     @POST("/worry/alone")
-    suspend fun postWorryAlone(@Body requset: WorryAloneRequestDto): WorryAloneResponseDto
+    suspend fun postWorryAlone(@Body request: WorryAloneRequestDto): WorryAloneResponseDto
 
     ///worry/with/:worryId
     @GET("/worry/with/{worryId}")

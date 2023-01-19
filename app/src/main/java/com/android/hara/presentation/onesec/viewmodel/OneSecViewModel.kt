@@ -27,9 +27,9 @@ class OneSecViewModel @Inject constructor(private val haraRepository: HARAReposi
             runCatching {
                 haraRepository.getRandom()
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
-                    _solution.value = it.body()?.data?.content
+                    _solution.value = it.data.content
                 } else { // 응답코드 400~599
                     Timber.e("Failure")
                 }
@@ -44,9 +44,9 @@ class OneSecViewModel @Inject constructor(private val haraRepository: HARAReposi
             runCatching {
                 haraRepository.getLastWorry()
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
-                    _lastWorryList.value = it.body()?.data
+                    _lastWorryList.value = it.data
                 } else { // 응답코드 400~599
                     Timber.e("Failure")
                 }

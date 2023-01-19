@@ -53,7 +53,7 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
                         )
                     )
                 }.onSuccess {
-                    success.value = it.isSuccessful
+                    success.value = true
                 }.onFailure {
                     Timber.e(it)
                     success.value = false
@@ -71,7 +71,7 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
                         )
                     )
                 }.onSuccess {
-                    success.value = it.isSuccessful
+                    success.value = true
                 }.onFailure {
                     success.value = false
                 }
