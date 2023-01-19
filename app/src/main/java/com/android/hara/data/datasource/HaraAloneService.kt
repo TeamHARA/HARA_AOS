@@ -6,7 +6,7 @@ import com.android.hara.data.model.response.*
 import retrofit2.http.*
 
 
-interface HARAaloneService {
+interface HaraAloneService {
     @GET("/worry/alone/list/{isSolved}")
     suspend fun getAloneList(@Path("isSolved") isSolved: Int): WorryListResDto
 

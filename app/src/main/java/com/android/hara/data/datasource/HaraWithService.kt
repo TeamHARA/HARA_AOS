@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 // [서버통신 1] 요청/응답 dto data class를 만든다
 // [서버통신 2] API 호출 함수를 만든다
-interface HARAwithService {
+interface HaraWithService {
     // 가장 먼저 어떠한 액션을 취할 건지 작성합니다.
     /*
     @POST("/worry")
