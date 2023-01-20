@@ -14,7 +14,7 @@ class HaraWithRepositoryImpl @Inject constructor(
 ) : HaraWithRepository {
 
     override suspend fun postVote(request: VoteReqDto): VoteResDto {
-        return HaraWithService.vote(request)
+        return HaraWithService.postVote(request)
     }
 
     override suspend fun getAllPost(categoryId: Int): AllPostResDto {

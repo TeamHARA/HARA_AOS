@@ -24,7 +24,7 @@ interface HaraWithService {
     suspend fun showAllPost(@Path("categoryId") categoryId: Int): AllPostResDto
 
     @POST("/worry")
-    suspend fun vote(@Body request: VoteReqDto): VoteResDto
+    suspend fun postVote(@Body request: VoteReqDto): VoteResDto
 
     @GET("/worry/with/list/{isSolved}")
     suspend fun getWithList(@Path("isSolved") isSolved: Int): WorryListResDto
