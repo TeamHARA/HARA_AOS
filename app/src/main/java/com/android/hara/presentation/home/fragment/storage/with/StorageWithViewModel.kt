@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.response.WorryListResDto
-import com.android.hara.domain.repository.HaraAloneRepository
+import com.android.hara.domain.repository.HaraWithRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class StorageWithViewModel @Inject constructor(private val haraAloneRepository: HaraAloneRepository) :
+class StorageWithViewModel @Inject constructor(private val haraWithRepository: HaraWithRepository) :
     ViewModel() {
     private val _withData = MutableLiveData<List<WorryListResDto.Data>>()
     val withData: LiveData<List<WorryListResDto.Data>> = _withData
@@ -24,7 +24,7 @@ class StorageWithViewModel @Inject constructor(private val haraAloneRepository: 
         Timber.e(_isSolved.value.toString())
         viewModelScope.launch {
             runCatching {
-                haraAloneRepository.getWithList(_isSolved.value!!)
+                haraWithRepository.getWithList(_isSolved.value!!)
             }.onSuccess {
                 if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")

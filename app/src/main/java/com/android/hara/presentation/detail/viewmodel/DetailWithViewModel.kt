@@ -4,14 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.response.DetailWithResDto
-import com.android.hara.domain.repository.HaraAloneRepository
+import com.android.hara.domain.repository.HaraWithRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailWithViewModel @Inject constructor(private val haraAloneRepository: HaraAloneRepository) :
+class DetailWithViewModel @Inject constructor(private val haraWithRepository: HaraWithRepository) :
     ViewModel() {
     // selected number: 현재 선택된 옵션#를 저장, 아무 것도 안 선택돼있으면 0이 저장됨
     private val _sNum = MutableLiveData<Int>(0)
@@ -26,7 +26,7 @@ class DetailWithViewModel @Inject constructor(private val haraAloneRepository: H
     fun getDetailWith(worryId: Int) {
         viewModelScope.launch {
             kotlin.runCatching {
-                haraAloneRepository.getDetailWith(worryId)
+                haraWithRepository.getDetailWith(worryId)
             }.onSuccess {
                 if (it.status in 200..299) {
                     Timber.e(it.toString())

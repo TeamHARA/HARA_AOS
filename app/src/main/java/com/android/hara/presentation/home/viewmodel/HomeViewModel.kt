@@ -7,14 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.request.VoteReqDto
 import com.android.hara.data.model.response.AllPostResDto
 import com.android.hara.data.model.response.VoteResDto
-import com.android.hara.domain.repository.HaraAloneRepository
+import com.android.hara.domain.repository.HaraWithRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val haraAloneRepository: HaraAloneRepository) : ViewModel() {
+class HomeViewModel @Inject constructor(
+    private val haraWithRepository: HaraWithRepository
+) : ViewModel() {
 
     private var votePostId: Int = -1 // [홈화면: 옵션 선택해 투표] 글 id
     private var voteOptId: Int = -1 // [홈화면: 옵션 선택해 투표] 옵션 id
@@ -23,23 +25,23 @@ class HomeViewModel @Inject constructor(private val haraAloneRepository: HaraAlo
     private val _voteResult: MutableLiveData<VoteResDto> = MutableLiveData()
     val voteResult: LiveData<VoteResDto> = _voteResult
 
-        /* [홈화면: 고민글 목록 전체조회] selected category number */
-        private val _selCat: MutableLiveData<Int> = MutableLiveData()
-        val selCat: LiveData<Int> = _selCat
+    /* [홈화면: 고민글 목록 전체조회] selected category number */
+    private val _selCat: MutableLiveData<Int> = MutableLiveData()
+    val selCat: LiveData<Int> = _selCat
 
-        /* [홈화면: 옵션 선택해 투표] 투표하기 버튼 - true면 post 통신을 하자 */
-        private val _btnSel: MutableLiveData<Boolean> = MutableLiveData()
-        val btnSel: LiveData<Boolean> = _btnSel
+    /* [홈화면: 옵션 선택해 투표] 투표하기 버튼 - true면 post 통신을 하자 */
+    private val _btnSel: MutableLiveData<Boolean> = MutableLiveData()
+    val btnSel: LiveData<Boolean> = _btnSel
 
-        // [홈화면: 고민글 목록 전체조회] category 별 모든 글 목록
-        private val _catAllPostResult: MutableLiveData<AllPostResDto> = MutableLiveData()
-        val catAllPostResult: LiveData<AllPostResDto> = _catAllPostResult
+    // [홈화면: 고민글 목록 전체조회] category 별 모든 글 목록
+    private val _catAllPostResult: MutableLiveData<AllPostResDto> = MutableLiveData()
+    val catAllPostResult: LiveData<AllPostResDto> = _catAllPostResult
 
-        // [홈화면: 고민글 목록 전체조회] 내가 쓴 글 목록
-        private lateinit var myPostResult: List<AllPostResDto.Data>
+    // [홈화면: 고민글 목록 전체조회] 내가 쓴 글 목록
+    private lateinit var myPostResult: List<AllPostResDto.Data>
 
-        // [홈화면: 고민글 목록 전체조회] 남이 쓴 글 목록
-        private lateinit var otherPostResult: List<AllPostResDto.Data>
+    // [홈화면: 고민글 목록 전체조회] 남이 쓴 글 목록
+    private lateinit var otherPostResult: List<AllPostResDto.Data>
 
     // 서버통신 결과
     private val _success = MutableLiveData<Boolean>()
@@ -50,7 +52,7 @@ class HomeViewModel @Inject constructor(private val haraAloneRepository: HaraAlo
     init {
         viewModelScope.launch {
             runCatching {
-                haraAloneRepository.getAllPost(0)
+                haraWithRepository.getAllPost(0)
             }.onSuccess {
                 if (it.status in 200..299) { // 내부 코드의 응답코드 200~299
                     Timber.e("Success")
@@ -118,7 +120,7 @@ class HomeViewModel @Inject constructor(private val haraAloneRepository: HaraAlo
     fun homeVmGetAllPost(n: Int) {
         viewModelScope.launch {
             runCatching {
-                haraAloneRepository.getAllPost(n)
+                haraWithRepository.getAllPost(n)
             }.onSuccess {
                 if (it.status in 200..299) { // 내부 코드의 응답코드 200~299
                     Timber.e("Success")
@@ -140,10 +142,10 @@ class HomeViewModel @Inject constructor(private val haraAloneRepository: HaraAlo
     fun homeVmPostVote(postId: Int, optId: Int) {
         viewModelScope.launch {
             runCatching {
-                haraAloneRepository.postVote(VoteReqDto(postId, optId))
+                haraWithRepository.postVote(VoteReqDto(postId, optId))
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드의 응답코드 200~299
-                    _voteResult.value = it.body()
+                if (it.status in 200..299) { // 내부 코드의 응답코드 200~299
+                    _voteResult.value = it
                     Timber.e("Success")
                 } else { // 응답코드 400~599
                     Timber.e("서버통신 응답코드 이상")

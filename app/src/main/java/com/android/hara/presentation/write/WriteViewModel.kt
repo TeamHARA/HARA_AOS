@@ -8,6 +8,7 @@ import com.android.hara.data.model.request.Option
 import com.android.hara.data.model.request.WorryAloneRequestDto
 import com.android.hara.data.model.request.WorryWithRequestDto
 import com.android.hara.domain.repository.HaraAloneRepository
+import com.android.hara.domain.repository.HaraWithRepository
 import com.android.hara.presentation.write.fragment.proscons.model.PronsData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +16,11 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class WriteViewModel @Inject constructor(private val haraAloneRepository: HaraAloneRepository) : ViewModel() {
+class WriteViewModel @Inject constructor(
+    private val HaraAloneRepository: HaraAloneRepository,
+    private val haraWithRepository: HaraWithRepository
+) :
+    ViewModel() {
 
     private val _success = MutableLiveData<Boolean>()
     val success get() = _success
@@ -43,7 +48,7 @@ class WriteViewModel @Inject constructor(private val haraAloneRepository: HaraAl
         if (isWith) {
             viewModelScope.launch {
                 kotlin.runCatching {
-                    haraAloneRepository.postWorryWith(
+                    haraWithRepository.postWorryWith(
                         WorryWithRequestDto(
                             categoryId = categoty,
                             content = content,
@@ -62,7 +67,7 @@ class WriteViewModel @Inject constructor(private val haraAloneRepository: HaraAl
         } else {
             viewModelScope.launch {
                 kotlin.runCatching {
-                    haraAloneRepository.postWorryAlone(
+                    HaraAloneRepository.postWorryAlone(
                         WorryAloneRequestDto(
                             categoryId = categoty,
                             content = content,

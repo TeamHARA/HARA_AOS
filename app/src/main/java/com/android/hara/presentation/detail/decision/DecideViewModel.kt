@@ -6,13 +6,17 @@ import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.request.DecideAloneReqDto
 import com.android.hara.data.model.request.DecideWithReqDto
 import com.android.hara.domain.repository.HaraAloneRepository
+import com.android.hara.domain.repository.HaraWithRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class DecideViewModel @Inject constructor(private val haraAloneRepository: HaraAloneRepository) :
+class DecideViewModel @Inject constructor(
+    private val haraAloneRepository: HaraAloneRepository,
+    private val haraWithRepository: HaraWithRepository
+) :
     ViewModel() {
     private val _enabled = MutableLiveData<Boolean>(false)
     val enabled get() = _enabled
@@ -24,7 +28,7 @@ class DecideViewModel @Inject constructor(private val haraAloneRepository: HaraA
         Timber.e(reqData.toString())
         viewModelScope.launch {
             runCatching {
-                haraAloneRepository.patchDecideWith(reqData)
+                haraWithRepository.patchDecideWith(reqData)
             }.onSuccess {
                 if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
