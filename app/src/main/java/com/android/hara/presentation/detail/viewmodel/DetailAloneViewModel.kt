@@ -4,14 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.response.DetailAloneResDto
-import com.android.hara.domain.repository.HARARepository
+import com.android.hara.domain.repository.HaraAloneRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailAloneViewModel @Inject constructor(private val haraRepository: HARARepository) :
+class DetailAloneViewModel @Inject constructor(private val haraAloneRepository: HaraAloneRepository) :
     ViewModel() {
     private val _sNum = MutableLiveData<Int>(0)
     val sNum get() = _sNum
@@ -25,7 +25,7 @@ class DetailAloneViewModel @Inject constructor(private val haraRepository: HARAR
     fun getDetailAlone(worryId: Int) {
         viewModelScope.launch {
             kotlin.runCatching {
-                haraRepository.getDetailAlone(worryId)
+                haraAloneRepository.getDetailAlone(worryId)
             }.onSuccess {
                 if (it.status in 200..299) {
                     Timber.e(it.toString())

@@ -1,7 +1,7 @@
 package com.android.hara.di
 
-import com.android.hara.data.repository.HARARepositoryImpl
-import com.android.hara.domain.repository.HARARepository
+import com.android.hara.data.repository.HaraAloneRepositoryImpl
+import com.android.hara.domain.repository.HaraAloneRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +13,6 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
     @Binds
     @Singleton
-    abstract fun bindToHARARepository(HARARepositoryImpl: HARARepositoryImpl): HARARepository
+    abstract fun bindToHARARepository(HARARepositoryImpl: HaraAloneRepositoryImpl): HaraAloneRepository
 
 }

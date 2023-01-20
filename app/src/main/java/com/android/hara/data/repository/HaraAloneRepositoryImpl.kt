@@ -1,10 +1,9 @@
 package com.android.hara.data.repository
 
-import com.android.hara.data.datasource.HARAaloneService
+import com.android.hara.data.datasource.HaraAloneService
 import com.android.hara.data.model.request.*
 import com.android.hara.data.model.response.*
-import com.android.hara.domain.repository.HARARepository
-import retrofit2.Response
+import com.android.hara.domain.repository.HaraAloneRepository
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -13,9 +12,9 @@ import javax.inject.Inject
 // [서버통신 5] (@HiltViewModel 사용)
 // view model에 서버통신 성공/실패 시 작업을 정의한다 (HomeViewModel.kt 참고)
 
-class HARARepositoryImpl @Inject constructor(
-    private val HARAaloneService: HARAaloneService
-) : HARARepository {
+class HaraAloneRepositoryImpl @Inject constructor(
+    private val HARAaloneService: HaraAloneService
+) : HaraAloneRepository {
 
     override suspend fun getAllPost(categoryId: Int): AllPostResDto {
         return HARAaloneService.showAllPost(categoryId)

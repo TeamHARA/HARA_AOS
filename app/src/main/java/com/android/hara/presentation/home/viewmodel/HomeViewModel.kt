@@ -7,14 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.request.VoteReqDto
 import com.android.hara.data.model.response.AllPostResDto
 import com.android.hara.data.model.response.VoteResDto
-import com.android.hara.domain.repository.HARARepository
+import com.android.hara.domain.repository.HaraAloneRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val haraRepository: HARARepository) : ViewModel() {
+class HomeViewModel @Inject constructor(private val haraAloneRepository: HaraAloneRepository) : ViewModel() {
 
     private var votePostId: Int = -1 // [홈화면: 옵션 선택해 투표] 글 id
     private var voteOptId: Int = -1 // [홈화면: 옵션 선택해 투표] 옵션 id
@@ -50,7 +50,7 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
     init {
         viewModelScope.launch {
             runCatching {
-                haraRepository.getAllPost(0)
+                haraAloneRepository.getAllPost(0)
             }.onSuccess {
                 if (it.status in 200..299) { // 내부 코드의 응답코드 200~299
                     Timber.e("Success")
@@ -118,7 +118,7 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
     fun homeVmGetAllPost(n: Int) {
         viewModelScope.launch {
             runCatching {
-                haraRepository.getAllPost(n)
+                haraAloneRepository.getAllPost(n)
             }.onSuccess {
                 if (it.status in 200..299) { // 내부 코드의 응답코드 200~299
                     Timber.e("Success")
@@ -140,7 +140,7 @@ class HomeViewModel @Inject constructor(private val haraRepository: HARAReposito
     fun homeVmPostVote(postId: Int, optId: Int) {
         viewModelScope.launch {
             runCatching {
-                haraRepository.postVote(VoteReqDto(postId, optId))
+                haraAloneRepository.postVote(VoteReqDto(postId, optId))
             }.onSuccess {
                 if (it.isSuccessful) { // 내부 코드의 응답코드 200~299
                     _voteResult.value = it.body()
