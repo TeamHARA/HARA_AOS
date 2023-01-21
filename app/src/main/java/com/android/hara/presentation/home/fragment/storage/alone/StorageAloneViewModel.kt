@@ -20,10 +20,14 @@ class StorageAloneViewModel @Inject constructor(private val haraAloneRepository:
     private val _isSolved = MutableLiveData<Int>(0)
     val isSolved get() = _isSolved
 
+    init {
+        getAloneList()
+    }
+
     fun getAloneList() {
         viewModelScope.launch {
             runCatching {
-                haraAloneRepository.getAloneList(_isSolved.value!!)
+                haraAloneRepository.getAloneList(_isSolved.value ?: 0)
             }.onSuccess {
                 if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
