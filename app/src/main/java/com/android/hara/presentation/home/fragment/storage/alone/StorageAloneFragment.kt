@@ -47,8 +47,9 @@ class StorageAloneFragment :
             else newList =
                 storageAdapter.currentList.sortedBy { it.finalOption == null } // 고민완료순으로 정렬
 
-            storageAdapter.submitList(newList)
-            binding.rvPosts.scrollToPosition(0)
+            storageAdapter.submitList(newList){
+                binding.rvPosts.scrollToPosition(0)
+            }
         }
         storageAloneViewModel.aloneData.observe(viewLifecycleOwner) { dataList ->
             storageAdapter.submitList(dataList)
@@ -59,7 +60,6 @@ class StorageAloneFragment :
 
     private fun onClickToggleBtn(storageAdapter: StorageAdapter) {
         binding.tbToggle.setOnClickListener {
-
             if (binding.tbToggle.isChecked) { // 고민중이면
                 storageAloneViewModel.isSolved.value = 0
             } else storageAloneViewModel.isSolved.value = 1

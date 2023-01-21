@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.android.hara.R
+import com.android.hara.data.model.response.WorryListResDto
 import com.android.hara.databinding.FragmentStorageTogetherBinding
 import com.android.hara.presentation.base.BindingFragment
 import com.android.hara.presentation.detail.DetailWithActivity
@@ -34,18 +35,28 @@ class StorageWithFragment :
     }
 
     private fun addObserve(storageAdapter: StorageAdapter) {
+        storageWithViewModel.isSolved.observe(viewLifecycleOwner) {
+            //storageWithViewModel.getWithList()
+            // 바뀐이유는 StorageAloneFragment에 나와있음
+            var newList: List<WorryListResDto.Data>
+            if (it == 0) newList =
+                storageAdapter.currentList.sortedBy { it.finalOption != null } // 고민중으로 정렬
+            else newList =
+                storageAdapter.currentList.sortedBy { it.finalOption == null } // 고민완료순으로 정렬
+
+            storageAdapter.submitList(newList){
+                binding.rvPosts.scrollToPosition(0)
+            }
+        }
         storageWithViewModel.withData.observe(viewLifecycleOwner) { dataList ->
             storageAdapter.submitList(dataList)
             Timber.e(dataList.toString())
             binding.rvPosts.smoothScrollToPosition(0) // TODO: 광클방지
         }
-        storageWithViewModel.isSolved.observe(viewLifecycleOwner) {
-            storageWithViewModel.getWithList()
-        }
     }
 
     private fun onClickToggleBtn() {
-        binding.tbToggle.setOnSingleClickListener {
+        binding.tbToggle.setOnClickListener {
             if (binding.tbToggle.isChecked) { // 고민중이면
                 storageWithViewModel.isSolved.value = 0
             } else storageWithViewModel.isSolved.value = 1
