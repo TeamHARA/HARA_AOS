@@ -36,18 +36,16 @@ class StorageAloneFragment :
     }
 
     private fun addObserve(storageAdapter: StorageAdapter) {
-        storageAloneViewModel.isSolved.observe(viewLifecycleOwner) {
+        storageAloneViewModel.isSolved.observe(viewLifecycleOwner) { isSolved ->
             // TODO 현재는 리스트정렬을 바꿔버리는 식으로 처리 단점은 실시간으로 새로운 데이터가
             // 갱신 되지않는 다는 점이지만 혼자고민임을 감안하면 새로운 데이터가 실시간으로 들어올일도 없고
             // 나중에 정말 필요하다면 SwipeRefresh 추가하는 방식도 괜찮을 듯
             //storageAloneViewModel.getAloneList()
-            var newList: List<WorryListResDto.Data>
-            if (it == 0) newList =
-                storageAdapter.currentList.sortedBy { it.finalOption != null } // 고민중으로 정렬
-            else newList =
-                storageAdapter.currentList.sortedBy { it.finalOption == null } // 고민완료순으로 정렬
+            val newList: List<WorryListResDto.Data> =
+                if (isSolved == 0) storageAdapter.currentList.sortedBy { it.finalOption != null } // 고민중으로 정렬
+                else storageAdapter.currentList.sortedBy { it.finalOption == null } // 고민완료순으로 정렬
 
-            storageAdapter.submitList(newList){
+            storageAdapter.submitList(newList) {
                 binding.rvPosts.scrollToPosition(0)
             }
         }
