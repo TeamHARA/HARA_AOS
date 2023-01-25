@@ -9,6 +9,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,15 +21,51 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DataSourceModule {
 
-    @Singleton
+
+//    @Singleton
+//    @Provides
+//    fun provideOkHttpClient(): OkHttpClient {
+//        val httpLoggingInterceptor = HttpLoggingInterceptor()
+//            .setLevel(HttpLoggingInterceptor.Level.BODY)
+//        return OkHttpClient.Builder()
+//            .addInterceptor(httpLoggingInterceptor)
+//            .build()
+//    }
+
+
     @Provides
-    fun provideOkHttpClient(): OkHttpClient {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-            .setLevel(HttpLoggingInterceptor.Level.BODY)
-        return OkHttpClient.Builder()
-            .addInterceptor(httpLoggingInterceptor)
-            .build()
+    @Singleton
+    fun providesHeaderInterceptor() = Interceptor { chain ->
+        with(chain) {
+            val request = request().newBuilder()
+                .addHeader("Accept", "application/json")
+                .build()
+            proceed(request)
+        }
     }
+
+    @Provides
+    @Singleton
+    fun providesLoggerInterceptor() = HttpLoggingInterceptor().apply {
+        level = if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor.Level.BODY
+        } else {
+            HttpLoggingInterceptor.Level.NONE
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun providesOkHttpClient(
+        headerInterceptor: Interceptor,
+        loggerInterceptor: HttpLoggingInterceptor
+    ) =
+        OkHttpClient.Builder()
+            .addInterceptor(headerInterceptor)
+            .addInterceptor(loggerInterceptor)
+            .build()
+
+
 
     @OptIn(ExperimentalSerializationApi::class)
     @Singleton
