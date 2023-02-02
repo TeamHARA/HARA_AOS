@@ -4,14 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.response.RandomListResDto
-import com.android.hara.domain.repository.HARARepository
+import com.android.hara.domain.repository.HaraAloneRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class OneSecViewModel @Inject constructor(private val haraRepository: HARARepository) :
+class OneSecViewModel @Inject constructor(private val haraAloneRepository: HaraAloneRepository) :
     ViewModel() {
     private val _solution = MutableLiveData<String>()
     val solution get() = _solution
@@ -25,11 +25,11 @@ class OneSecViewModel @Inject constructor(private val haraRepository: HARAReposi
     fun getRandom() {
         viewModelScope.launch {
             runCatching {
-                haraRepository.getRandom()
+                haraAloneRepository.getRandom()
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
-                    _solution.value = it.body()?.data?.content
+                    _solution.value = it.data.content
                 } else { // 응답코드 400~599
                     Timber.e("Failure")
                 }
@@ -42,11 +42,11 @@ class OneSecViewModel @Inject constructor(private val haraRepository: HARAReposi
     fun getLastWorry() {
         viewModelScope.launch {
             runCatching {
-                haraRepository.getLastWorry()
+                haraAloneRepository.getLastWorry()
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
-                    _lastWorryList.value = it.body()?.data
+                    _lastWorryList.value = it.data
                 } else { // 응답코드 400~599
                     Timber.e("Failure")
                 }

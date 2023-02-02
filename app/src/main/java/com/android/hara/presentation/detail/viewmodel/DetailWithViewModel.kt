@@ -4,15 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.response.DetailWithResDto
-import com.android.hara.data.model.response.VoteResDto
-import com.android.hara.domain.repository.HARARepository
+import com.android.hara.domain.repository.HaraWithRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailWithViewModel @Inject constructor(private val haraRepository: HARARepository) :
+class DetailWithViewModel @Inject constructor(private val haraWithRepository: HaraWithRepository) :
     ViewModel() {
     // selected number: 현재 선택된 옵션#를 저장, 아무 것도 안 선택돼있으면 0이 저장됨
     private val _sNum = MutableLiveData<Int>(0)
@@ -27,14 +26,14 @@ class DetailWithViewModel @Inject constructor(private val haraRepository: HARARe
     fun getDetailWith(worryId: Int) {
         viewModelScope.launch {
             kotlin.runCatching {
-                haraRepository.getDetailWith(worryId)
+                haraWithRepository.getDetailWith(worryId)
             }.onSuccess {
-                if (it.isSuccessful) {
-                    Timber.e(it.body().toString())
-                    _detailDto.value = it.body() // 넣어주는 시점 주의!
-                    _success.value = it.isSuccessful
+                if (it.status in 200..299) {
+                    Timber.e(it.toString())
+                    _detailDto.value = it // 넣어주는 시점 주의!
+                    _success.value = true
                 } else {
-                    _success.value = it.isSuccessful
+                    _success.value = false
                 }
             }.onFailure {
                 Timber.e(it)

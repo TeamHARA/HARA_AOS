@@ -5,14 +5,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.request.DecideAloneReqDto
 import com.android.hara.data.model.request.DecideWithReqDto
-import com.android.hara.domain.repository.HARARepository
+import com.android.hara.domain.repository.HaraAloneRepository
+import com.android.hara.domain.repository.HaraWithRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class DecideViewModel @Inject constructor(private val haraRepository: HARARepository) :
+class DecideViewModel @Inject constructor(
+    private val haraAloneRepository: HaraAloneRepository,
+    private val haraWithRepository: HaraWithRepository
+) :
     ViewModel() {
     private val _enabled = MutableLiveData<Boolean>(false)
     val enabled get() = _enabled
@@ -24,9 +28,9 @@ class DecideViewModel @Inject constructor(private val haraRepository: HARAReposi
         Timber.e(reqData.toString())
         viewModelScope.launch {
             runCatching {
-                haraRepository.patchDecideWith(reqData)
+                haraWithRepository.patchDecideWith(reqData)
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                if (it.status in 200..299) { // 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
                     _decideSuccess.value = true
                 } else { // 응답코드 400~599
@@ -43,9 +47,9 @@ class DecideViewModel @Inject constructor(private val haraRepository: HARAReposi
     fun decideAlone(reqData: DecideAloneReqDto) {
         viewModelScope.launch {
             runCatching {
-                haraRepository.patchDecideAlone(reqData)
+                haraAloneRepository.patchDecideAlone(reqData)
             }.onSuccess {
-                if (it.isSuccessful) { // 내부 코드보면 응답코드 200~299를 의미
+                if (it.status in 200..299) { // retrofit response의 it.successful을 보면 내부 코드보면 응답코드 200~299를 의미
                     Timber.e("Success")
                 } else { // 응답코드 400~599
                     Timber.e("Failure")

@@ -7,7 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.android.hara.data.model.request.Option
 import com.android.hara.data.model.request.WorryAloneRequestDto
 import com.android.hara.data.model.request.WorryWithRequestDto
-import com.android.hara.domain.repository.HARARepository
+import com.android.hara.domain.repository.HaraAloneRepository
+import com.android.hara.domain.repository.HaraWithRepository
 import com.android.hara.presentation.write.fragment.proscons.model.PronsData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +16,11 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class WriteViewModel @Inject constructor(private val haraRepository: HARARepository) : ViewModel() {
+class WriteViewModel @Inject constructor(
+    private val HaraAloneRepository: HaraAloneRepository,
+    private val haraWithRepository: HaraWithRepository
+) :
+    ViewModel() {
 
     private val _success = MutableLiveData<Boolean>()
     val success get() = _success
@@ -43,7 +48,7 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
         if (isWith) {
             viewModelScope.launch {
                 kotlin.runCatching {
-                    haraRepository.postWorryWith(
+                    haraWithRepository.postWorryWith(
                         WorryWithRequestDto(
                             categoryId = categoty,
                             content = content,
@@ -53,7 +58,7 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
                         )
                     )
                 }.onSuccess {
-                    success.value = it.isSuccessful
+                    success.value = true
                 }.onFailure {
                     Timber.e(it)
                     success.value = false
@@ -62,7 +67,7 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
         } else {
             viewModelScope.launch {
                 kotlin.runCatching {
-                    haraRepository.postWorryAlone(
+                    HaraAloneRepository.postWorryAlone(
                         WorryAloneRequestDto(
                             categoryId = categoty,
                             content = content,
@@ -71,7 +76,7 @@ class WriteViewModel @Inject constructor(private val haraRepository: HARAReposit
                         )
                     )
                 }.onSuccess {
-                    success.value = it.isSuccessful
+                    success.value = true
                 }.onFailure {
                     success.value = false
                 }

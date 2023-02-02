@@ -24,34 +24,29 @@
 
     <style name="hara_modal2_m18">
         <item name="android:fontFamily">@font/pretendard_medium</item>
-        <item name="android:textStyle">normal</item>
         <item name="android:textSize">18dp</item>
         <item name="android:letterSpacing">-0.01</item>
     </style>
 
     <style name="hara_game_sb18">
         <item name="android:fontFamily">@font/pretendard_semibold</item>
-        <item name="android:textStyle">normal</item>
         <item name="android:textSize">18dp</item>
     </style>
 
     <style name="hara_heading1_sb16">
         <item name="android:fontFamily">@font/pretendard_semibold</item>
-        <item name="android:textStyle">normal</item>
         <item name="android:textSize">16dp</item>
         <item name="android:letterSpacing">-0.01</item>
     </style>
 
     <style name="hara_heading2_m16">
         <item name="android:fontFamily">@font/pretendard_medium</item>
-        <item name="android:textStyle">normal</item>
         <item name="android:textSize">16dp</item>
         <item name="android:letterSpacing">-0.01</item>
     </style>
 
     <style name="hara_body1_sb14">
         <item name="android:fontFamily">@font/pretendard_semibold</item>
-        <item name="android:textStyle">normal</item>
         <item name="android:textSize">14dp</item>
     </style>
 

@@ -25,7 +25,6 @@ import timber.log.Timber
 @AndroidEntryPoint
 class DetailWithActivity :
     BindingActivity<ActivityDetailWithBinding>(R.layout.activity_detail_with) {
-    // TODO [고민글 상세보기] 부분입니다. 추후 네이밍 변경 예정
 
     private val homeVm by viewModels<HomeViewModel>() // vote (post 통신)
     private val detailVm: DetailWithViewModel by viewModels()
@@ -126,7 +125,7 @@ class DetailWithActivity :
                         var maxVal = 0
                         var maxIndex = -1
                         detailVm.detailDto.value!!.data.options.forEachIndexed { i, opt ->
-                            if (maxVal <= opt.percentage ?: 0) {
+                            if (maxVal <= (opt.percentage ?: 0)) {
                                 maxVal = opt.percentage ?: 0
                                 maxIndex = i
                             }
@@ -311,13 +310,13 @@ class DetailWithActivity :
                 }
             }
 
-            if (worryData.worryId == 9) { // r
-                binding.flowImage.visibility = View.VISIBLE
-                bindingList[0].advantage = "꼬질꼬질 귀여운 느낌이라 귀여웡"
-                bindingList[0].disadvantage = "브랜딩이랑 조금 다른 느낌이기는 해"
-                bindingList[1].advantage = "전체적인 우리 앱의 UI/UX랑 무드가 잘 맞긴해"
-                bindingList[1].disadvantage = "귀여운 느낌보다는 딱딱한 것 같기는 해 "
-            }
+//            if (worryData.worryId == 9) { //시연용 코드
+//                binding.flowImage.visibility = View.VISIBLE
+//                bindingList[0].advantage = "꼬질꼬질 귀여운 느낌이라 귀여웡"
+//                bindingList[0].disadvantage = "브랜딩이랑 조금 다른 느낌이기는 해"
+//                bindingList[1].advantage = "전체적인 우리 앱의 UI/UX랑 무드가 잘 맞긴해"
+//                bindingList[1].disadvantage = "귀여운 느낌보다는 딱딱한 것 같기는 해 "
+//            }
         } // get 통신
 
         binding.appbarDetail.setNavigationOnClickListener {
